@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "private": true,
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --watch server.js",
+    "start": "node --env-file-if-exists=.env server.js",
+    "demo": "node --env-file-if-exists=.env --env-file-if-exists=.env.sponsor server.js --demo",
+    "check:demo": "node --env-file-if-exists=.env scripts/check-demo-v2.js --release",
+    "check:demo-v2": "node --env-file-if-exists=.env scripts/check-demo-v2.js"
+  },
+  "dependencies": {
+    "@zama-fhe/relayer-sdk": "0.4.5",
+    "express": "4.22.1",
+    "viem": "2.57.18"
+  }
+}

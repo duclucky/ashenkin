@@ -1,0 +1,24 @@
+services:
+  game:
+    image: "${ASHENKIN_IMAGE:-ashenkin:release}"
+    restart: unless-stopped
+    environment:
+      PUBLIC_ORIGIN: https://ashenkin.xyz
+    ports:
+      - "127.0.0.1:4173:4173"
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:4173/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  tunnel:
+    image: cloudflare/cloudflared@sha256:9b49eed8f62806d5d45ddf59ecefb5710429598ea6d3fcccd2af938f621b2b07
+    restart: unless-stopped
+    command: [tunnel, --no-autoupdate, --config, /etc/cloudflared/config.yml, run]
+    volumes:
+      - ./tunnel:/etc/cloudflared:ro
+    depends_on:
+      game:
+        condition: service_healthy

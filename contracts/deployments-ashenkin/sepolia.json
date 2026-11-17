@@ -1,0 +1,294 @@
+{
+  "chainId": 11155111,
+  "deployer": "0xc944bD9967CE513C4161a867870B1bb3086f96E0",
+  "steps": {
+    "ChimeraLab": {
+      "hash": "0x55537621a26398a34c78d3d9b4fa8746aca3f830ea6e7d7038c90a8e86c67768",
+      "address": "0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2",
+      "block": 12153099
+    },
+    "ChimeraTreasury": {
+      "hash": "0x566f6e76033b1f71fe24cd3262ac2d3b10358b072302cb2864770aa8b65b96eb",
+      "address": "0x2132C2e0f76382DC58414fBbff7068619009d906",
+      "block": 12153099
+    },
+    "ChimeraOracle": {
+      "hash": "0x08a901b279bb09570056e9bfac2b16155e17a84ef0fecaff50be326f8a3f675e",
+      "address": "0x9c79EBa3B3959C0F2F9d14048704407dB99ddFD8",
+      "block": 12153099
+    },
+    "ChimeraArena": {
+      "hash": "0x2a84f6fc613430a0d468f46715aea43e2f1fd0884231787025d0185e09bd2ddd",
+      "address": "0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD",
+      "block": 12153100
+    },
+    "ChimeraMarket": {
+      "hash": "0x4bd9294d4ad6ab015b38b8f8caa5f9f53fa0f7de6e33f0dd18165da57e8c30d0",
+      "address": "0xEd1A5BB249073A404F3b6033c242B10D6529975d",
+      "block": 12153100
+    },
+    "ChimeraRaid": {
+      "hash": "0x4627334d775cd6fa8a9b0dd25886c1149bba5f2e563ffa0875be1e5d16ad97cf",
+      "address": "0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610",
+      "block": 12153100
+    },
+    "ChimeraTraining": {
+      "hash": "0xb9633a889eaf60dad3f55b095a59e99509f8bbcd59cf14393873f74b6f0b00f1",
+      "address": "0x90E352a87be05cAd5C69bA353bF2C5fC23969f47",
+      "block": 12153100
+    },
+    "ChimeraColosseum": {
+      "hash": "0x91eeb8659049015461b0fdbb0b72078219a2936718a1768a9230cc4154da17cb",
+      "address": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+      "block": 12153100
+    },
+    "ChimeraRelics": {
+      "hash": "0xb440cc6c12d01a3548587d9364439d1ac96630c0bee2c5f675de7f26b362fc77",
+      "address": "0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9",
+      "block": 12153100
+    },
+    "ChimeraExpeditions": {
+      "hash": "0xe3dbc5c1ee53ae94f103492c6d6255ade15d1c73edfd5ffea6c41292325645f0",
+      "address": "0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd",
+      "block": 12153100
+    },
+    "ChimeraQuests": {
+      "hash": "0x16835ddea8c0155b57dad6cb3ea2adfbf57128fe15167d45f6c43030eed0dd98",
+      "address": "0x65af84C702d4CE512d0215e0738f4a4CE693FDA5",
+      "block": 12153100
+    },
+    "ChimeraRaffle": {
+      "hash": "0xbabb5fa770bbfebed45e52795f4eb1e1bf50cd5ddc7d16beb0fe9c87f389f802",
+      "address": "0x1a1a62018Af484B8C3390EDAC7c7f63A8bB22BcD",
+      "block": 12153100
+    },
+    "ChimeraAscension": {
+      "hash": "0xed5cf60cb66d1ea8b413ea33e7eba460ace257b5680bf076165212bb0da6e118",
+      "address": "0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD",
+      "block": 12153101
+    },
+    "ChimeraSeason": {
+      "hash": "0xcf89dad6dd2de609102d4296fed769af467072eae37773b65dd54eafb44af937",
+      "address": "0x547c1282C900456d2E398256dCad1254BF5A1d11",
+      "block": 12153101
+    },
+    "ChimeraDepths": {
+      "hash": "0xc6bb213b644cd5ef7a15e2ac774da9d6f490d90fecbecb1f5d0e6f9fd16dec0c",
+      "address": "0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70",
+      "block": 12153101
+    },
+    "ChimeraLab.setArena(0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a)": {
+      "hash": "0x4208d9a74a2497ce6412cf7f6ea2bd5bd1db2340d13f29d9db53aaf146a3d88a",
+      "block": 12153102
+    },
+    "ChimeraLab.setEconomy(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,0x2132C2e0f76382DC58414fBbff7068619009d906,0x65af84C702d4CE512d0215e0738f4a4CE693FDA5)": {
+      "hash": "0x8adceed18ea250089d79ac438ed2fed725b7a4e5ec01a4edb6d9fdf933551da6",
+      "block": 12153102
+    },
+    "ChimeraLab.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47,https://ashenkin.xyz/api/ashenkin-nft/)": {
+      "hash": "0x00dee88fd6c182bea5186999893319cf6d36dbcd3e083b7bb7cc3379c9bd92bb",
+      "block": 12153102
+    },
+    "ChimeraArena.setEconomy(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,0x65af84C702d4CE512d0215e0738f4a4CE693FDA5)": {
+      "hash": "0x9e82305af6c0822c6fdb453692074102aaac6428e5203cb574cb68bdb7053a9f",
+      "block": 12153102
+    },
+    "ChimeraColosseum.setEconomy(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,0x65af84C702d4CE512d0215e0738f4a4CE693FDA5)": {
+      "hash": "0xcbf6afef83bcde6a664b7153293affc121be67962ac6c965695dd32189d8dbe4",
+      "block": 12153102
+    },
+    "ChimeraMarket.setRaid(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610)": {
+      "hash": "0x1022493f6f746e7dd93ead74c0e33301edfaae2e9d414d2213f3026557ed2ee7",
+      "block": 12153102
+    },
+    "ChimeraRaid.setQuests(0x65af84C702d4CE512d0215e0738f4a4CE693FDA5)": {
+      "hash": "0x0cdf9cca0941b1a0f7155732f6a61420e0ba5ee1a20adae4077872f0d05c3b4e",
+      "block": 12153102
+    },
+    "ChimeraExpeditions.setQuests(0x65af84C702d4CE512d0215e0738f4a4CE693FDA5)": {
+      "hash": "0x11232a7d377b61fe9db13e81f9b3798634b133aa4974aa6c129797bbcb849dda",
+      "block": 12153102
+    },
+    "ChimeraTraining.setEconomy(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,0x2132C2e0f76382DC58414fBbff7068619009d906)": {
+      "hash": "0x9465c6c6ec0236253b1cedb4393b180b4d57fb4be335e13900792aa96c68720c",
+      "block": 12153103
+    },
+    "ChimeraTraining.setRelics(0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0xb7944d7e358c8b65c2843e2e84dcd31fdf2617314d603a02a1744d966dc0b8e5",
+      "block": 12153103
+    },
+    "ChimeraRelics.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47)": {
+      "hash": "0x0b123e02c08fdca391794ed8823994aacf3e288e47d6bde9be291d3f3bd6b30c",
+      "block": 12153103
+    },
+    "ChimeraRelics.setEconomy(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,0x2132C2e0f76382DC58414fBbff7068619009d906)": {
+      "hash": "0xc8d50204901bd3438a200beb2349459ffb6a62364c96174bc143bebf7f93e3e8",
+      "block": 12153103
+    },
+    "ChimeraOracle.setRelics(0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0xcfa6aa97e7cc03c2b8ec4f7d409973c1fc65394141533f2bc96e1a336b9cb5e0",
+      "block": 12153103
+    },
+    "ChimeraSeason.setRelics(0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0x44bea658a5c0990034f35e63adb680e19a75b905f03b6f07a4652c176fa6d1c5",
+      "block": 12153103
+    },
+    "ChimeraRaffle.setRelics(0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0x920a0b18003a792e8589b2cfdc5771d542eaa3484feff08efc434b421da1f2a9",
+      "block": 12153103
+    },
+    "ChimeraAscension.setLinks(0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a,0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0xbeaef29554e9d91ecb6109967a1fdef0134cede93cee98b1ee8c9880f913a817",
+      "block": 12153103
+    },
+    "ChimeraDepths.setLinks(0x2132C2e0f76382DC58414fBbff7068619009d906,0x90E352a87be05cAd5C69bA353bF2C5fC23969f47,0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9)": {
+      "hash": "0xc48acb7143e8374b1c60c6ff8f6e09623036a1a51799da8bbfd5b645b4dea004",
+      "block": 12153104
+    },
+    "ChimeraArena.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47)": {
+      "hash": "0x70a0cc38cd4dbe99317ea7fb5df9d0a625f09b45a1d475658e55f1da0645827d",
+      "block": 12153104
+    },
+    "ChimeraColosseum.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47)": {
+      "hash": "0xb733d767acf24be48e024a047ca4c4077138d4261a035e419f4399fb0f96f349",
+      "block": 12153104
+    },
+    "ChimeraRaid.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47)": {
+      "hash": "0x1f7877d9e99a5bcaee36d51cd4a0d01923a18a6e5c63a152f86caf7366ad4b68",
+      "block": 12153104
+    },
+    "ChimeraExpeditions.setTraining(0x90E352a87be05cAd5C69bA353bF2C5fC23969f47)": {
+      "hash": "0x8e5655d119dac674331ea7be9a8d15123fe64194b0f91381cb0f61ac700cc1c7",
+      "block": 12153104
+    },
+    "ChimeraLab.setCombat(0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD,true)": {
+      "hash": "0xcd5219f6d620c241969f2c21d01654bc162c66acbfc61c215dd3d450c612d7ed",
+      "block": 12153104
+    },
+    "ChimeraLab.setCombat(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,true)": {
+      "hash": "0x511bb9b37a3dd3d923c371eb7f1985052460f3bf50410d3b2c07b6351e6bb415",
+      "block": 12153104
+    },
+    "ChimeraLab.setCombat(0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd,true)": {
+      "hash": "0x2297f1a4d0d046835cd5bbb9024e4e07f2a1e7962a5988659fc033272a264c18",
+      "block": 12153104
+    },
+    "ChimeraLab.setCombat(0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70,true)": {
+      "hash": "0x19f8731caa558089b469a673c593308b0668dcb2276e51999e7ab56c1fff3d33",
+      "block": 12153105
+    },
+    "ChimeraTreasury.setGame(0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd,true)": {
+      "hash": "0xba0b3c446e5fd95ab09d5b81ada8d2e1c111c59ec50bca2582c97231b6bf8f78",
+      "block": 12153105
+    },
+    "ChimeraTreasury.setGame(0x65af84C702d4CE512d0215e0738f4a4CE693FDA5,true)": {
+      "hash": "0xd8596e569249af41c029b3ed0a480006372befa8fa0ba73d7d5964bc3f28a0d6",
+      "block": 12153105
+    },
+    "ChimeraTreasury.setGame(0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70,true)": {
+      "hash": "0x84a5edd24ed0f7651d30688b26c2d95fa4ff9f4bce60951b567b881bad9877b3",
+      "block": 12153105
+    },
+    "ChimeraTreasury.setGame(0x547c1282C900456d2E398256dCad1254BF5A1d11,true)": {
+      "hash": "0x511ddb74189bb118b7fbd794ce8a63095b1151c9133b6f4504e96f576fce9b00",
+      "block": 12153105
+    },
+    "ChimeraQuests.setGame(0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2,true)": {
+      "hash": "0xbe1eea2c116b0ab537cc52681def8c5e3ca2fa7aa58ae1ffe1f4dd547ad4803f",
+      "block": 12153105
+    },
+    "ChimeraQuests.setGame(0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD,true)": {
+      "hash": "0x19922ff8ffd82ef0aea97ce73126b7bd430c1430c378c260fdf1bf480571b6dc",
+      "block": 12153105
+    },
+    "ChimeraQuests.setGame(0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a,true)": {
+      "hash": "0x79b0ed9c98aa6adbf00a01fb8aadef36a3388e89a667ec2ad1dbf7c263b93bc0",
+      "block": 12153105
+    },
+    "ChimeraQuests.setGame(0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd,true)": {
+      "hash": "0x3ef151f8d79a3a3c2c19378df8dc18d9e507871f18d83c5f518ed402c6804cdd",
+      "block": 12153106
+    },
+    "ChimeraQuests.setGame(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,true)": {
+      "hash": "0x2040834bc5443285b942482d880b72b34a22c25b01bb7aaaeba25e03f87988c3",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD,true)": {
+      "hash": "0x4041b479e250fc039a922ffeaa5b91bb5dc70004264685bf0337ada6f22f91c8",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a,true)": {
+      "hash": "0x0756b02676b92b90dd3885806e754f0d669f31ad828c62e0c270fafdfc20f16c",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610,true)": {
+      "hash": "0x717b9b49458519b71ce8f95ee5ff0b85a7072b9e271e28d9c6ca05e23ea41430",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd,true)": {
+      "hash": "0xb39c0b5a0bd4303cc547999c530500cf28ff816a9c4531d18cb5e7fa90f817ac",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD,true)": {
+      "hash": "0x0a48e71eb685e496a0d76b8e7661e1d7a84558a6b19e04050b5483a189f1e893",
+      "block": 12153106
+    },
+    "ChimeraTraining.setGame(0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70,true)": {
+      "hash": "0x70cf51f70c86126ac728093bef568ea64eccc738ed21ddbccbbefb8061d8fdda",
+      "block": 12153106
+    },
+    "ChimeraRelics.setGame(0x9c79EBa3B3959C0F2F9d14048704407dB99ddFD8,true)": {
+      "hash": "0xe53b41e527895f859df077c5399fa3bdbb1077e0e6cc692c380c38b2c0ea4b2d",
+      "block": 12153107
+    },
+    "ChimeraRelics.setGame(0x547c1282C900456d2E398256dCad1254BF5A1d11,true)": {
+      "hash": "0x82a7a1f3914c4126392ffa58148f0e59d5feebe9c34c379d802d5c9d1bd434d5",
+      "block": 12153107
+    },
+    "ChimeraRelics.setGame(0x1a1a62018Af484B8C3390EDAC7c7f63A8bB22BcD,true)": {
+      "hash": "0x3c9fe5a26e0025fcbc62e64fa428ec0a4caf1b4b7acce0e1c4aa403797434e48",
+      "block": 12153107
+    },
+    "ChimeraRelics.setGame(0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70,true)": {
+      "hash": "0x4ef37c906c6ccfa8b16582298d70b0d56a36579427a8659b7e1e39bc7d725ee6",
+      "block": 12153107
+    },
+    "ChimeraLab.setRetirementVault(0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD)": {
+      "hash": "0x63b75f9588c0311c816ddac5afd5fac5bc6206222ae05305134ac5d751937673",
+      "block": 12153108
+    },
+    "Mint test supplies": {
+      "hash": "0xaf9071e395086faf008af1bdb318bfc4be463f91e9816ca158079bc5fe10b2b7",
+      "block": 12153109
+    },
+    "Approve test supplies": {
+      "hash": "0x7b7b7044884f48be8e045bacf70bea450263631cf2f66a6855d775b5a7b8f8a3",
+      "block": 12153109
+    },
+    "ChimeraLab.hatchGenesis()": {
+      "hash": "0x0a0c550cd9e6e174b4056dfdadc2073ecb0d0ea3edd9301b804841bf3efbd62a",
+      "block": 12153109
+    },
+    "Seed ChimeraTreasury": {
+      "hash": "0x9701966fe2ca4e53db9813bfd9ef7cac571bf9fd4a34606398091af6b20dc0a3",
+      "block": 12153110
+    },
+    "Seed ChimeraRaid": {
+      "hash": "0xe9d0b959f6d546ddc03d05028ea349d54554dc330110825abd6ef49ff9face74",
+      "block": 12153111
+    },
+    "Seed ChimeraOracle": {
+      "hash": "0xa31bf3e66c88ea8f9ed65180fa8b2f37e7043c0c5e892091e2881f6ce0568622",
+      "block": 12153112
+    },
+    "ChimeraTreasury.publishReserve()": {
+      "hash": "0xd244f465696c54e91d4179263d2ca988d5b9787059c27209fcc9e6d27e81abf6",
+      "block": 12153113
+    },
+    "ChimeraRaid.publishPot()": {
+      "hash": "0xf1cc503b8cb886b02ec7fb5bc736990cd2ee011d4a5facfbb024f01a5b1a291d",
+      "block": 12153113
+    }
+  },
+  "ready": true
+}

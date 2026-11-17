@@ -1,0 +1,21 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "addresses": {
+    "ChimeraLab": "0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2",
+    "ChimeraArena": "0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD",
+    "ChimeraMarket": "0xEd1A5BB249073A404F3b6033c242B10D6529975d",
+    "ChimeraTreasury": "0x2132C2e0f76382DC58414fBbff7068619009d906",
+    "ChimeraRaid": "0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610",
+    "ChimeraExpeditions": "0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd",
+    "ChimeraQuests": "0x65af84C702d4CE512d0215e0738f4a4CE693FDA5",
+    "ChimeraTraining": "0x90E352a87be05cAd5C69bA353bF2C5fC23969f47",
+    "ChimeraColosseum": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+    "ChimeraRelics": "0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9",
+    "ChimeraOracle": "0x9c79EBa3B3959C0F2F9d14048704407dB99ddFD8",
+    "ChimeraAscension": "0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD",
+    "ChimeraSeason": "0x547c1282C900456d2E398256dCad1254BF5A1d11",
+    "ChimeraRaffle": "0x1a1a62018Af484B8C3390EDAC7c7f63A8bB22BcD",
+    "ChimeraDepths": "0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70"
+  }
+}
