@@ -1,10 +1,14 @@
+import { FirstSteps } from './chimera/game/FirstSteps'
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react'
+import './chimera/game/living-world.css'
+import { GasFaucet } from './chimera/game/GasFaucet'
 import { Wallet, KeyRound, Droplets, AlertTriangle, Menu, X, Flame, Music, Music2, Fuel, ChevronDown, LogOut } from 'lucide-react'
 import { PxIcon, type PxIconName } from './chimera/game/hud'
 import { CHIMERA_CSS } from './chimera/styles'
-import { DEPLOYED, connect, disconnect, short, useWallet, wireWallet, CHAIN_ID, ensureChain, errorText, GAS_FAUCET } from './chimera/chain'
+import { DEPLOYED, disconnect, short, useWallet, wireWallet, CHAIN_ID, ensureChain, errorText, GAS_FAUCET } from './chimera/chain'
 import { hasNativePageTransition, useRoute, Link, Toasts, Button, toast, useAction } from './chimera/ui'
-import { useBalance, fmtZama, useRefresh, useQuests, useEthBalance } from './chimera/hooks'
+import { useAccountStats, useBalance, fmtZama, useMyCreatures, useRefresh, useQuests, useEthBalance } from './chimera/hooks'
+import { StarterGate } from './chimera/game/StarterGate'
 import { getFhe, labKey } from './chimera/fhe'
 import { faucet, FAUCET_AMOUNT } from './chimera/actions'
 import WorldMap from './chimera/screens/WorldMap'
@@ -39,6 +43,7 @@ const Oracle = lazy(() => import('./chimera/screens/Oracle'))
 const Raffle = lazy(() => import('./chimera/screens/Raffle'))
 const Depths = lazy(() => import('./chimera/screens/Depths'))
 const Fairness = lazy(() => import('./chimera/screens/Fairness'))
+const LivingWorld = lazy(() => import('./chimera/screens/LivingWorld'))
 
 const NAV = [
   ['map', 'Map'],
@@ -51,6 +56,7 @@ const NAV = [
   ['relics', 'Relics'],
   ['oracle', 'Oracle'],
   ['quests', 'Quests'],
+  ['life', 'Living Xenos'],
 ] as const
 const MORE = [
   ['market', 'Market'],
@@ -66,8 +72,9 @@ const MORE = [
 const PRIMARY = NAV.slice(0, 4)
 const OTHER_PLACES = [...NAV.slice(4), ...MORE.slice(0, 3), MORE[8]]
 const WORLD_INFO = [['lore', 'World Lore'], ['guide', 'How to Play'], ...MORE.slice(3, 8)] as const
+const SIDE_ACTIVITIES = new Set(['oracle', 'relics', 'raffle', 'quests', 'depths'])
 const NAV_SPRITES: Record<string, PxIconName> = {
-  map: 'flag', lab: 'egg', breed: 'egg', arena: 'sword', expeditions: 'flag', raid: 'skull', training: 'bolt', relics: 'gem',
+  map: 'flag', lab: 'egg', breed: 'egg', arena: 'sword', expeditions: 'flag', raid: 'skull', training: 'bolt', relics: 'gem', life: 'paw',
   oracle: 'eye', quests: 'star', market: 'coin', raffle: 'coin', depths: 'skull', economy: 'coin', hall: 'star',
   guide: 'info', lore: 'flag', about: 'info', fairness: 'check', verify: 'eye', journal: 'flag',
 }
@@ -178,6 +185,9 @@ export default function App() {
     case 'expeditions':
       screen = <Expeditions />
       break
+    case 'life':
+      screen = <LivingWorld preset={Number(rest[0]) || undefined} />
+      break
     case 'raid':
       screen = <Raid />
       break
@@ -211,6 +221,7 @@ export default function App() {
     default:
       screen = DEPLOYED ? <WorldMap /> : <About />
   }
+  if (DEPLOYED && SIDE_ACTIVITIES.has(page)) screen = <KeeperActivity>{screen}</KeeperActivity>
 
   return (
     <div className="chm-root">
@@ -268,6 +279,7 @@ export default function App() {
       <main id="main-content" tabIndex={-1} className="chm-playfield" key={page}>
         <div className="mx-auto max-w-7xl px-3 pb-16 pt-4 sm:px-5 sm:pt-6">
           {DEPLOYED && page && PLACE[page] && <BackToMap />}
+          {DEPLOYED && ['map', 'lab', 'arena', 'life', ''].includes(page || '') && <FirstSteps page={page || 'map'} />}
           <div className={hasNativePageTransition() ? undefined : 'chm-rise'} key={routeKey}>
             <Suspense fallback={<p className="chm-panel p-4 text-sm" role="status">Opening destination…</p>}>{screen}</Suspense>
           </div>
@@ -286,6 +298,16 @@ export default function App() {
       {DEPLOYED && <JudgePanel />}
     </div>
   )
+}
+
+function KeeperActivity({ children }: { children: React.ReactNode }) {
+  const { account } = useWallet()
+  const mine = useMyCreatures(account)
+  const stats = useAccountStats(account)
+  // Keep access to claims and draws for players who already minted and have a specimen in escrow.
+  if (account && (mine.data?.length || stats.data?.genesis)) return children
+  if (account && (mine.isPending || stats.isPending)) return <p className="chm-panel p-4" role="status">Checking your Keeper record…</p>
+  return <StarterGate />
 }
 
 const PLACE: Record<string, string> = {
@@ -382,7 +404,7 @@ function ChainWarning() {
 }
 
 function WalletBar({ trigger, open, toggle, close }: { trigger: RefObject<HTMLButtonElement | null>; open: boolean; toggle: () => void; close: () => void }) {
-  const { account, connecting } = useWallet()
+  const { account, mode } = useWallet()
   const bal = useBalance(account)
   const refresh = useRefresh()
   const { busy, run } = useAction()
@@ -390,9 +412,7 @@ function WalletBar({ trigger, open, toggle, close }: { trigger: RefObject<HTMLBu
   const eth = useEthBalance(account)
   if (!account)
     return (
-      <Button className="chm-hud-connect" aria-label="Connect wallet" onClick={() => connect().catch((e) => toast({ kind: 'err', title: 'Could not connect', detail: errorText(e) }))} busy={connecting}>
-        <Wallet className="h-4 w-4 shrink-0" aria-hidden="true" /> <span>Connect<span className="max-[380px]:hidden"> wallet</span></span>
-      </Button>
+      <Link to="lab" className="chm-btn chm-btn-primary chm-hud-connect"><Wallet className="h-4 w-4 shrink-0" aria-hidden="true" /> Start in Lab</Link>
     )
   return (
     <div className="chm-hud-wallet">
@@ -401,11 +421,13 @@ function WalletBar({ trigger, open, toggle, close }: { trigger: RefObject<HTMLBu
       </button>
       <section id="wallet-panel" hidden={!open} aria-label="Wallet" className="chm-wallet-panel">
         <div className="chm-wallet-summary">
-          <h2 className="font-display">Wallet</h2>
+          <h2 className="font-display">{mode === 'circle' ? 'Ashenkin wallet' : 'Wallet'}</h2>
           {DEPLOYED && <p title="Your confidential balance">{bal.keyReady ? `${bal.loading ? '…' : fmtZama(bal.value)} cZAMA` : 'Balance sealed'}</p>}
         </div>
         {DEPLOYED && <div className="chm-wallet-actions">
-          {eth === 0n && (
+          {mode === 'circle' && <GasFaucet compact active={open} />}
+          {mode === 'circle' && <Button variant="ghost" className="chm-wallet-action" onClick={() => run('Copy address', () => navigator.clipboard.writeText(account), 'Sepolia address copied')}>Copy Sepolia address</Button>}
+          {eth === 0n && mode !== 'circle' && (
             <a href={GAS_FAUCET} target="_blank" rel="noreferrer" className="chm-wallet-action">
               <Fuel className="h-4 w-4" aria-hidden="true" /> Get Sepolia ETH
             </a>
@@ -416,7 +438,7 @@ function WalletBar({ trigger, open, toggle, close }: { trigger: RefObject<HTMLBu
             </Link>
           )}
           {!bal.keyReady && (
-            <Button className="chm-wallet-action" busy={busy === 'Unlock lab key'} onClick={() => run('Unlock lab key', () => labKey(account), 'Lab key unlocked for 30 days')}>
+            <Button className="chm-wallet-action" busy={busy === 'Unlock lab key'} onClick={() => run('Unlock lab key', () => labKey(account), 'Lab key unlocked')}>
               <KeyRound className="h-4 w-4" aria-hidden="true" /> Unlock lab key
             </Button>
           )}
@@ -436,8 +458,8 @@ function WalletBar({ trigger, open, toggle, close }: { trigger: RefObject<HTMLBu
             <Droplets className="h-4 w-4" aria-hidden="true" /> Test cZAMA faucet
           </Button>
         </div>}
-        <button type="button" className="chm-wallet-action chm-wallet-disconnect" onClick={() => { close(); disconnect() }}>
-          <LogOut className="h-4 w-4" aria-hidden="true" /> Disconnect wallet
+        <button type="button" disabled={!!busy} className="chm-wallet-action chm-wallet-disconnect" onClick={() => { close(); void run('Sign out', disconnect, 'Signed out') }}>
+          <LogOut className="h-4 w-4" aria-hidden="true" /> {mode === 'circle' ? 'Sign out' : 'Disconnect wallet'}
         </button>
       </section>
     </div>

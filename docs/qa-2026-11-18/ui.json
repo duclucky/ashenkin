@@ -1,0 +1,262 @@
+[
+  {
+    "player": 1,
+    "viewport": {
+      "width": 320,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "returned Sepolia expedition",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "map",
+        "overflow": false
+      },
+      {
+        "route": "lab",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 7.66
+  },
+  {
+    "player": 2,
+    "viewport": {
+      "width": 360,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "returned Sepolia expedition",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "breed",
+        "overflow": false
+      },
+      {
+        "route": "arena",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.05
+  },
+  {
+    "player": 3,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "expeditions",
+        "overflow": false
+      },
+      {
+        "route": "raid",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.55
+  },
+  {
+    "player": 4,
+    "viewport": {
+      "width": 430,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "training",
+        "overflow": false
+      },
+      {
+        "route": "relics",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.17
+  },
+  {
+    "player": 5,
+    "viewport": {
+      "width": 320,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "oracle",
+        "overflow": false
+      },
+      {
+        "route": "quests",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.99
+  },
+  {
+    "player": 6,
+    "viewport": {
+      "width": 360,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "market",
+        "overflow": false
+      },
+      {
+        "route": "raffle",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.49
+  },
+  {
+    "player": 7,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "depths",
+        "overflow": false
+      },
+      {
+        "route": "hall",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.55
+  },
+  {
+    "player": 8,
+    "viewport": {
+      "width": 430,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "lore",
+        "overflow": false
+      },
+      {
+        "route": "guide",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.14
+  },
+  {
+    "player": 9,
+    "viewport": {
+      "width": 320,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "fairness",
+        "overflow": false
+      },
+      {
+        "route": "verify",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 8.05
+  },
+  {
+    "player": 10,
+    "viewport": {
+      "width": 360,
+      "height": 844
+    },
+    "practice": "passed",
+    "fieldEvidence": "browser scouting",
+    "beacon": "passed",
+    "noWalletPrompt": true,
+    "unexpectedSigningOrTxRequests": 0,
+    "overflow": false,
+    "pages": [
+      {
+        "route": "journal",
+        "overflow": false
+      },
+      {
+        "route": "economy",
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "status": "passed",
+    "elapsedSeconds": 7.8
+  }
+]

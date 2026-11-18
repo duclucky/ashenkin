@@ -8,9 +8,8 @@ import { keeperChapter, type KeeperProgress } from './keeper-story'
 const MISSIONS = {
   prologue: { title: 'Practice with Lumen', line: 'Tap the glowing Colosseum or start a free three-round match here.', route: 'arena', action: 'Start practice' },
   beacon: { title: 'Investigate the beacon', line: 'A bell rang beyond the walls. Scout Ashen Dunes with Sable.', route: 'journal', action: 'Open the Journal' },
-  connect: { title: 'Connect your wallet', line: 'Open the Lab and connect on Sepolia to hatch a specimen of your own.', route: 'lab', action: 'Visit the Lab' },
-  gas: { title: 'Get Sepolia ETH', line: 'Use test ETH to pay network fees for hatching and wild hunts.', route: 'lab', action: 'Visit the Lab' },
-  hatch: { title: 'Hatch your first specimen', line: 'Tap the glowing Lab and choose Hatch embryo. The vault rolls its genes in secret.', route: 'lab', action: 'Visit the Lab' },
+  gas: { title: 'Get Sepolia ETH', line: 'Use test ETH to pay network fees for wild hunts.', route: 'lab', action: 'Visit the Lab' },
+  hatch: { title: 'Hatch a specimen', line: 'Visit the Lab to mint your first NFT. The vault rolls its genes in secret.', route: 'lab', action: 'Visit the Lab' },
   fight: { title: 'Enter your first wild hunt', line: 'Choose three moves. Win two rounds to capture your rival. Your champion gains XP either way.', route: 'arena', action: 'Enter the Colosseum' },
   settle: { title: 'Finish your hunt', line: 'Open the battle log to collect your result.', route: 'arena', action: 'Open the battle log' },
   sequence: { title: 'Reading the dark', line: 'Read one combat gene in your specimen’s file. Spend one Lab energy to see both alleles. Decide if this is the line you want to train or breed.', route: 'creature', action: 'Inspect your specimen' },
@@ -29,9 +28,8 @@ export function keeperMission(progress: KeeperProgress) {
   if (chapter === 'sequence') target = `creature/${progress.specimens![0]}/genome`
   if (chapter === 'prologue') target = 'arena/trial/start'
   if (chapter === 'settle') target = 'arena/log'
-  const setup = chapter === 'connect' || (chapter === 'gas' && progress.fights === 0 && progress.genesis === 0)
   const firstHunt = chapter === 'fight' || (chapter === 'settle' && progress.fights === 0)
-  const step = chapter === 'prologue' ? 1 : setup ? 2 : chapter === 'hatch' ? 3 : firstHunt ? 4 : null
+  const step = chapter === 'hatch' ? 1 : chapter === 'prologue' ? 2 : chapter === 'beacon' ? 3 : firstHunt ? 4 : null
   const landmark = mission.route === 'creature' ? 'lab' : mission.route === 'journal' ? null : mission.route
   return { chapter, mission, target, landmark, step }
 }

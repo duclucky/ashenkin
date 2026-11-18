@@ -52,13 +52,14 @@ export default function Depths() {
       </Location>
 
       {!account ? (
-        <>
-          <LanternTrial />
-          <GuestGate place="depths" />
-        </>
+        <GuestGate place="depths" />
       ) : (
         <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
           <div className="space-y-6">
+            {!active && <details className="chm-panel p-3">
+              <summary className="min-h-11 cursor-pointer font-bold">Practice with the lantern · no gas</summary>
+              <LanternTrial />
+            </details>}
             {d.isError && !d.data ? <Empty title="Could not read your dungeon state"><Button variant="ghost" onClick={() => d.refetch()}>Retry dungeon</Button></Empty>
               : !d.data ? <Panel className="p-6"><p role="status">Reading your current dive and daily allowance…</p></Panel>
               : active ? <RunPanel run={active} after={after} /> : <EnterPanel today={d.data.today} maxDaily={d.data.maxDaily} after={after} />}

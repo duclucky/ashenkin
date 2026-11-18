@@ -1,0 +1,30 @@
+✔ only a viable Ashen Dunes route finds the clue, without creating a reward (120.7177ms)
+(node:36748) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet login verifies the challenge once and restores the same Circle wallet on a fresh session (235.4576ms)
+{"event":"keeper-transaction-submitted","at":"2026-11-17T22:49:53.174Z","requestId":"6574e8c4-164e-4807-9e02-ae50ef633bc2","wallet":"0x0000000000000000000000000000000000000001","destination":"0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2","method":"hatchGenesis","circleId":"3d549f82-0caf-4fd3-b43a-0a9811df108e","state":"INITIATED"}
+{"event":"keeper-transaction-submitted","at":"2026-11-17T22:49:53.185Z","requestId":"cb584824-115d-41d5-b395-ef8b87db7638","wallet":"0x0000000000000000000000000000000000000001","destination":"0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2","method":"sequence","circleId":"5fa70f93-8ef7-488a-9eb6-9af23147b54e","state":"INITIATED"}
+{"event":"keeper-circle-transaction-failed","at":"2026-11-17T22:49:53.567Z","keeperId":"7df06af0-adc5-40db-9722-00ad5e3fb246","wallet":"0x7777777777777777777777777777777777777777","circleId":"6ff54997-d74d-4240-bcfd-5516a6a4c486","hash":null,"state":"FAILED","reason":"ESTIMATION_ERROR"}
+{"event":"keeper-circle-transaction-failed","at":"2026-11-17T22:49:53.567Z","keeperId":"7df06af0-adc5-40db-9722-00ad5e3fb246","wallet":"0x7777777777777777777777777777777777777777","circleId":"6ff54997-d74d-4240-bcfd-5516a6a4c486","hash":"0x4242424242424242424242424242424242424242424242424242424242424242","state":"FAILED","reason":"ESTIMATION_ERROR"}
+{"event":"keeper-circle-transaction-failed","at":"2026-11-17T22:49:53.567Z","keeperId":"7df06af0-adc5-40db-9722-00ad5e3fb246","wallet":"0x7777777777777777777777777777777777777777","circleId":"6ff54997-d74d-4240-bcfd-5516a6a4c486","hash":null,"state":"FAILED","reason":"INSUFFICIENT_FUNDS"}
+✔ email proof, starter mint and wallet isolation are enforced on the API (69.3261ms)
+✔ a Circle wallet accepts only allowlisted gameplay calldata and Zama Lab keys (299.6832ms)
+✔ the Circle adapter provisions stable Sepolia EOA wallets and submits signed calldata using the stored wallet ID (76.199ms)
+✔ starter funding estimates new-account gas and retries a reverted grant without paying twice (2.841ms)
+✔ a mined receipt completes the request even while Circle still reports SENT or CLEARED (0.4858ms)
+✔ Circle CLEARED does not finish an unmined transaction (0.4291ms)
+✔ only a Circle estimation failure without a broadcast hash is retryable (0.7233ms)
+✔ metadata distinguishes worlds, shows parents and requests only the seven public phenotype values (108.1063ms)
+✔ a transient Zama error signals retry instead of serving and caching an egg (21.6635ms)
+✔ an unfunded server returns an explicit disabled response (103.3386ms)
+✔ uses only the deployed contract and chain handles, and shares a single in-flight submission (75.3277ms)
+✔ a stale training round cannot spend the sponsor budget after a new round starts (9.0438ms)
+✔ a temporary proof failure can recover without a second signed transaction (1010.9549ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2617.5026

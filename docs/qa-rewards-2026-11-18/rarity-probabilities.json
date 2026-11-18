@@ -1,0 +1,32 @@
+{
+  "singleRareProbability": "1/16",
+  "requiredRareTraits": 5,
+  "visibleTraits": 7,
+  "randomBirthTitleProbability": "4831/268435456",
+  "randomBirthTitlePercent": 0.0017996877431869507,
+  "meanRandomBirthsPerQualified": 55565.194783688676,
+  "noTitleIn30RandomBirthsPercent": 99.9460234544486,
+  "comparison": [
+    {
+      "required": 2,
+      "percent": 6.646553426980972,
+      "oneIn": 15.045391735521255
+    },
+    {
+      "required": 3,
+      "percent": 0.7058795541524887,
+      "oneIn": 141.6672283702346
+    },
+    {
+      "required": 4,
+      "percent": 0.04580467939376831,
+      "oneIn": 2183.18305735385
+    },
+    {
+      "required": 5,
+      "percent": 0.0017996877431869507,
+      "oneIn": 55565.194783688676
+    }
+  ],
+  "scope": "Uniform random genesis/wild births. Selective breeding depends on parent alleles and is not assigned this fixed probability."
+}

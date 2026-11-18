@@ -1,0 +1,11 @@
+Compiled 1 Solidity file successfully (evm target: cancun).
+
+
+  Rare title reward — deterministic local ciphertext fixtures
+    √ exactly five visible traits at 12+ award the title and increment the count once (186ms)
+    √ four rare traits cannot claim, and 11 does not count as rare (133ms)
+    √ forged cleartexts and a proof for another NFT cannot award a title (326ms)
+    √ a third-party submitter awards the current NFT owner, including after transfer (149ms)
+
+
+  4 passing (1s)

@@ -1,0 +1,241 @@
+{
+  "raffle": {
+    "round": 1,
+    "participants": [
+      3,
+      6,
+      7
+    ],
+    "boughtCountsVerifiedPrivately": true
+  },
+  "season": {
+    "holders": [
+      "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+      "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+      "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7"
+    ],
+    "scores": [
+      17,
+      11,
+      8
+    ],
+    "earnedByNormalGameplay": true
+  },
+  "rareScan": {
+    "scanned": 30,
+    "eligible": [],
+    "highestRareTraitCount": 2,
+    "rows": [
+      {
+        "nftId": 1,
+        "rareTraits": 0,
+        "owner": "0xc944bD9967CE513C4161a867870B1bb3086f96E0",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 2,
+        "rareTraits": 0,
+        "owner": "0xc944bD9967CE513C4161a867870B1bb3086f96E0",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 3,
+        "rareTraits": 1,
+        "owner": "0x14F34965c9D6dBAF7e5a1f207CD949ed01d92054",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 4,
+        "rareTraits": 1,
+        "owner": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 5,
+        "rareTraits": 0,
+        "owner": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 6,
+        "rareTraits": 0,
+        "owner": "0x5f20BB8deEAcAF17e0610d9803C9A0B8489476F9",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 7,
+        "rareTraits": 1,
+        "owner": "0xE7C029B751B6c56B680AC91bb1b3e2A81c1d1252",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 8,
+        "rareTraits": 0,
+        "owner": "0x95f1C6D96253b5728433e38500e25e310E0DB039",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 9,
+        "rareTraits": 0,
+        "owner": "0x84af7784dAA3Bc62D96c798282d081c5cf3E8D22",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 10,
+        "rareTraits": 0,
+        "owner": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 11,
+        "rareTraits": 0,
+        "owner": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 12,
+        "rareTraits": 0,
+        "owner": "0x46f5452A67696e86daE566d7986664Dbe3b9aCde",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 13,
+        "rareTraits": 2,
+        "owner": "0x8fA7cBB2B6641F6AA6Afe9705D981f510Da483fC",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 14,
+        "rareTraits": 1,
+        "owner": "0x5f20BB8deEAcAF17e0610d9803C9A0B8489476F9",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 15,
+        "rareTraits": 2,
+        "owner": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 16,
+        "rareTraits": 0,
+        "owner": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 17,
+        "rareTraits": 1,
+        "owner": "0x95f1C6D96253b5728433e38500e25e310E0DB039",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 18,
+        "rareTraits": 0,
+        "owner": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 19,
+        "rareTraits": 0,
+        "owner": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 20,
+        "rareTraits": 0,
+        "owner": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 21,
+        "rareTraits": 2,
+        "owner": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 22,
+        "rareTraits": 0,
+        "owner": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 23,
+        "rareTraits": 0,
+        "owner": "0x8fA7cBB2B6641F6AA6Afe9705D981f510Da483fC",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 24,
+        "rareTraits": 0,
+        "owner": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 25,
+        "rareTraits": 0,
+        "owner": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 26,
+        "rareTraits": 0,
+        "owner": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 27,
+        "rareTraits": 0,
+        "owner": "0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 28,
+        "rareTraits": 0,
+        "owner": "0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 29,
+        "rareTraits": 0,
+        "owner": "0x5f20BB8deEAcAF17e0610d9803C9A0B8489476F9",
+        "eligible": false,
+        "alreadyClaimed": false
+      },
+      {
+        "nftId": 30,
+        "rareTraits": 1,
+        "owner": "0x95f1C6D96253b5728433e38500e25e310E0DB039",
+        "eligible": false,
+        "alreadyClaimed": false
+      }
+    ]
+  }
+}

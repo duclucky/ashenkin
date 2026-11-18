@@ -74,6 +74,7 @@ export default function Arena({ preset, practice = false, starter = false, log =
   const now = useNow(1000)
   const inHunt = DEPLOYED && !practice && tab === 'hunt' && chainId === CHAIN_ID && !!account
   const hasChampion = champ != null && (mine.data?.includes(champ) ?? false)
+  const practiceSpecimen = hasChampion ? champ : mine.data?.[0]
   const packedHuntPlan = packPlan(plan)
   const firstFight = stats.data?.wins === 0 && stats.data.losses === 0 && keeperGuideEnabled()
 
@@ -186,10 +187,20 @@ export default function Arena({ preset, practice = false, starter = false, log =
                 <SpecimenLink id={defenderId} className="mt-2 inline-block text-sm font-bold underline">View specimen</SpecimenLink>
               </div>
             </Panel>
-          ) : <PracticeBattle starter={starter} onReady={account ? moves => { stagePracticeDraft(account, moves); go('arena') } : undefined} />}
+          ) : practice && account && practiceSpecimen != null ? (
+            <>
+              {!!mine.data && mine.data.length > 1 && <label className="chm-panel flex items-center justify-between gap-3 p-3 text-sm font-bold">
+                Practice specimen
+                <select className="min-h-11 min-w-0 border px-2" value={practiceSpecimen} onChange={event => setChamp(Number(event.target.value))}>
+                  {mine.data.map(id => <option key={id} value={id}>Specimen #{id}</option>)}
+                </select>
+              </label>}
+              <PracticeBattle key={practiceSpecimen} specimen={practiceSpecimen} starter={starter} onReady={moves => { stagePracticeDraft(account, moves); go(`arena/${practiceSpecimen}`) }} />
+            </>
+          ) : account && mine.isPending ? <p className="chm-panel p-4" role="status">Checking your specimens…</p> : null}
           <LocationNotes title="Move matchups"><MoveTriangle /></LocationNotes>
           <LocationNotes title="How Sepolia fights work"><MatchRules /></LocationNotes>
-          {account ? <Link to="arena" className="chm-btn chm-btn-ghost">Enter the Sepolia Colosseum</Link> : <GuestGate place="arena" />}
+          {account && practiceSpecimen != null ? <Link to="arena" className="chm-btn chm-btn-ghost">Enter the Sepolia Colosseum</Link> : (!account || !mine.isPending) && <GuestGate place="arena" />}
         </>
       ) : (
         <>

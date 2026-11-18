@@ -16,8 +16,8 @@ const ENDINGS = {
   wayfinding: { title: 'Light for the road', text: 'Sable turns the lens toward the dunes. For the first time in years the scouts can mark a road home. He points to the Spore Hollows, where the old road once continued.', action: 'Scout the next route', to: 'expeditions' },
 } as const
 
-export function BeaconChapter({ scope, guestScope, evidence, specimen, connected }: {
-  scope: string; guestScope: string; evidence: BeaconEvidence; specimen: number | null; connected: boolean
+export function BeaconChapter({ scope, guestScope, evidence, specimen }: {
+  scope: string; guestScope: string; evidence: BeaconEvidence; specimen: number
 }) {
   const [record, setRecord] = useState(() => loadBeacon(scope) ?? loadBeacon(guestScope))
   const [route, setRoute] = useState<BeaconRune[]>([])
@@ -35,7 +35,7 @@ export function BeaconChapter({ scope, guestScope, evidence, specimen, connected
   }
 
   const ending = record?.ending && ENDINGS[record.ending]
-  const archiveAvailable = connected && specimen != null
+  const archiveAvailable = evidence.ownsSpecimen
   return <section className="chm-beacon" aria-labelledby="chm-beacon-title">
     <div className="chm-beacon-scene" data-lit={step === 'finished' || (step === 'relay' && tuned)}>
       <Backdrop theme="zone" zone={0} moving={step === 'field'} />
@@ -46,20 +46,20 @@ export function BeaconChapter({ scope, guestScope, evidence, specimen, connected
       {step === 'locked' && <>
         <p><b>Lumen</b> “The watchtower has been dark for years. Last night its bell rang, and the wilds came to the wall.”</p>
         <Link to="arena/trial/start" className="chm-btn chm-btn-primary">Practice with Lumen<ArrowRight size={17} aria-hidden="true" /></Link>
-        <p className="chm-beacon-note">One practice match opens the investigation. No wallet needed.</p>
+        <p className="chm-beacon-note">One practice match with your specimen opens the investigation.</p>
       </>}
 
       {step === 'choose-lead' && <>
         <p><b>Lumen</b> “After your fight, the bell called again. There was no light in the tower. We need to know what the old keepers built it for.”</p>
         <div className="chm-beacon-options">
-          <button type="button" onClick={() => remember({ lead: 'field' })}><Footprints size={20} aria-hidden="true" /><span><b>Follow the tracks</b><small>Scout Ashen Dunes with Sable. No wallet needed.</small></span><ArrowRight size={17} aria-hidden="true" /></button>
+          <button type="button" onClick={() => remember({ lead: 'field' })}><Footprints size={20} aria-hidden="true" /><span><b>Follow the tracks</b><small>Scout Ashen Dunes with Sable and your specimen.</small></span><ArrowRight size={17} aria-hidden="true" /></button>
           {archiveAvailable && <button type="button" onClick={() => remember({ lead: 'archive' })}><Lamp size={20} aria-hidden="true" /><span><b>Read the old records</b><small>Use a sequenced gene or read a new one on Sepolia.</small></span><ArrowRight size={17} aria-hidden="true" /></button>}
         </div>
       </>}
 
       {step === 'archive' && <>
         <p><b>Lumen</b> “The old keepers drew their trail marks from creatures they raised. Sequence a gene and compare what you find with my records. The allele stays yours to share.”</p>
-        <Link to={specimen != null ? `creature/${specimen}/genome` : 'lab'} className="chm-btn chm-btn-primary">{specimen != null ? 'Open the Genome tab' : 'Visit the Lab'}<ArrowRight size={17} aria-hidden="true" /></Link>
+        <Link to={`creature/${specimen}/genome`} className="chm-btn chm-btn-primary">Open the Genome tab<ArrowRight size={17} aria-hidden="true" /></Link>
         <Button variant="ghost" onClick={() => remember({ lead: 'field' })}>Follow the tracks</Button>
       </>}
 

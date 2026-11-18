@@ -3,6 +3,7 @@ export type BeaconEnding = 'shelter' | 'wayfinding'
 export type BeaconRecord = { lead: BeaconLead; scouted?: boolean; ending?: BeaconEnding }
 export type BeaconRune = 'paw' | 'lantern' | 'crest'
 export type BeaconEvidence = {
+  ownsSpecimen: boolean
   fight: boolean | null
   practiced?: boolean
   genome: boolean | null
@@ -16,6 +17,7 @@ export function fieldEvidence(trips?: readonly { zone: number; claimed: boolean 
 }
 
 export function beaconStep(evidence: BeaconEvidence, record: BeaconRecord | null) {
+  if (!evidence.ownsSpecimen) return 'locked'
   if (record?.ending) return 'finished'
   if (!evidence.fight && !evidence.practiced) return 'locked'
   if (!record) return 'choose-lead'

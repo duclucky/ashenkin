@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-18T00:02:52.418Z",
+  "checks": [
+    {
+      "name": "game wallet API refuses setDuration",
+      "status": "passed",
+      "httpStatus": 400
+    },
+    {
+      "name": "game wallet API refuses setRules",
+      "status": "passed",
+      "httpStatus": 400
+    },
+    {
+      "name": "game wallet API refuses setLength",
+      "status": "passed",
+      "httpStatus": 400
+    },
+    {
+      "name": "honest non-rare NFT remains ineligible",
+      "status": "passed",
+      "rejection": "NotAChimera"
+    },
+    {
+      "name": "forged rare traits cannot use an honest NFT proof",
+      "status": "passed",
+      "rejection": "KMS"
+    },
+    {
+      "name": "another NFT cannot reuse this phenotype proof",
+      "status": "passed",
+      "rejection": "KMS"
+    }
+  ],
+  "status": "passed"
+}

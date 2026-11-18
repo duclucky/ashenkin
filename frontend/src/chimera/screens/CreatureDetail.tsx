@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Location } from '../game/Location'
 import { SpecimenLink, travel } from '../game/Transition'
-import { Microscope, ScrollText, Sparkles, Swords, HeartHandshake, Store, Lock, Shield } from 'lucide-react'
+import { Microscope, ScrollText, Sparkles, Swords, HeartHandshake, Store, Lock, Shield, ArrowRight } from 'lucide-react'
 import CreatureArt, { ElementSigil } from '../CreatureArt'
 import { Addr, Button, CreatureCard, DnaStrand, Empty, Label, Link, Panel, TraitTable, creatureTitle, go, useAction } from '../ui'
 import { DEPLOYED, MARKET, ARENA, COLOSSEUM, EXPEDITIONS, useWallet, errorText } from '../chain'
@@ -315,6 +315,7 @@ export default function CreatureDetail({ id, initialSection = 'overview' }: { id
             {!mine && !inMarket && <Empty title="This specimen is not for sale">Only its keeper can list it on the Market.</Empty>}
           </>}
           {section === 'history' && <>
+          {mine && <Link to={`life/${id}`} className="chm-btn chm-btn-primary">Living encounters & field bag <ArrowRight className="ml-2 h-4 w-4" /></Link>}
           <ChronicleFeed creature={id} limit={12} title={`#${id} · LIFE STORY`} more={false} empty="No public events for this specimen yet." />          </>}
 
         </div>

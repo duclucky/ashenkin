@@ -4,8 +4,9 @@ const { createPublicClient, createWalletClient, http, parseGwei } = require('vie
 const { privateKeyToAccount, nonceManager } = require('viem/accounts')
 const { sepolia } = require('viem/chains')
 const { RPC, zama } = require('./zama')
+const { sponsorLane } = require('./sponsor-lane')
 
-function createSettlementSponsor(env = process.env) {
+function sponsorClients(env = process.env) {
   let key = env.CHIMERA_SETTLEMENT_PRIVATE_KEY
   if (!key && env.CHIMERA_SETTLEMENT_KEY_FILE) {
     try {
@@ -31,7 +32,13 @@ function createSettlementSponsor(env = process.env) {
   const config = { chain: sepolia, transport: http(RPC, { timeout: 8000, retryCount: 1 }) }
   const client = createPublicClient(config)
   const wallet = createWalletClient({ ...config, account })
+  return { account, client, wallet, maxFee }
+}
 
+function createSettlementSponsor(env = process.env) {
+  const clients = sponsorClients(env)
+  if (!clients) return null
+  const { account, client, wallet, maxFee } = clients
   return {
     read: call => client.readContract(call),
     async prove(handles) {
@@ -39,18 +46,23 @@ function createSettlementSponsor(env = process.env) {
       return inst.publicDecrypt(handles)
     },
     async send(call) {
-      const input = { ...call, account: account.address }
-      const [fees, balance, simulation, estimate] = await Promise.all([
-        client.estimateFeesPerGas(),
-        client.getBalance({ address: account.address, blockTag: 'pending' }),
-        client.simulateContract(input),
-        client.estimateContractGas(input),
-      ])
-      const gas = estimate * 12n / 10n
-      if (gas > 9_000_000n || fees.maxFeePerGas > maxFee || gas * fees.maxFeePerGas > balance) {
-        throw new Error('The settlement is outside the sponsor budget.')
-      }
-      return wallet.writeContract({ ...simulation.request, ...fees, gas, account })
+      return sponsorLane(account.address, async () => {
+        const input = { ...call, account: account.address }
+        const [fees, balance, simulation, estimate] = await Promise.all([
+          client.estimateFeesPerGas(),
+          client.getBalance({ address: account.address, blockTag: 'pending' }),
+          client.simulateContract(input),
+          client.estimateContractGas(input),
+        ])
+        const gas = estimate * 12n / 10n
+        if (gas > 9_000_000n || fees.maxFeePerGas > maxFee || gas * fees.maxFeePerGas > balance) {
+          throw new Error('The settlement is outside the sponsor budget.')
+        }
+        // Living-world raw signing may have consumed a nonce since this manager's
+        // previous interactive settlement. Reload its pending nonce inside the lane.
+        nonceManager.reset({ address: account.address, chainId: sepolia.id })
+        return wallet.writeContract({ ...simulation.request, ...fees, gas, account })
+      })
     },
     async wait(hash) {
       const receipt = await client.waitForTransactionReceipt({ hash, timeout: 90_000 })
@@ -59,4 +71,4 @@ function createSettlementSponsor(env = process.env) {
   }
 }
 
-module.exports = { createSettlementSponsor }
+module.exports = { createSettlementSponsor, sponsorClients }

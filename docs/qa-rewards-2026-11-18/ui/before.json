@@ -1,0 +1,15 @@
+{
+  "phase": "before",
+  "checks": [
+    {
+      "name": "Oracle UI displays the confirmed jackpot win",
+      "status": "passed"
+    },
+    {
+      "name": "Hall displays earned points and the occupied season thrones",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": [],
+  "status": "passed"
+}

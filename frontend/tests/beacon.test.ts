@@ -1,7 +1,7 @@
 import { expect, test } from 'bun:test'
 import { beaconScope, beaconStep, fieldEvidence, resolveBeacon, type BeaconEvidence } from '../src/chimera/game/beacon'
 
-const evidence: BeaconEvidence = { fight: true, genome: false, field: 'home' }
+const evidence: BeaconEvidence = { ownsSpecimen: true, fight: true, genome: false, field: 'home' }
 const archive = { lead: 'archive' } as const
 const field = { lead: 'field' } as const
 const relay = ['paw', 'lantern', 'crest'] as const
@@ -12,14 +12,16 @@ test('the investigation opens after a settled fight, without requiring a win', (
   expect(beaconStep(evidence, null)).toBe('choose-lead')
 })
 
-test('a guest can reach the ending after one practice fight and a successful scout', () => {
-  const guest = { fight: null, practiced: true, genome: null, field: 'unread' } as const
-  expect(beaconStep(guest, null)).toBe('choose-lead')
-  expect(resolveBeacon(guest, field, relay, 'wayfinding')).toBeNull()
+test('an owner can reach the ending after practice and a scout without an on-chain fight', () => {
+  const keeper = { ownsSpecimen: true, fight: null, practiced: true, genome: null, field: 'unread' } as const
+  expect(beaconStep({ ...keeper, ownsSpecimen: false }, null)).toBe('locked')
+  expect(beaconStep(keeper, null)).toBe('choose-lead')
+  expect(resolveBeacon(keeper, field, relay, 'wayfinding')).toBeNull()
   const scouted = { ...field, scouted: true }
-  expect(beaconStep(guest, scouted)).toBe('relay')
-  expect(resolveBeacon(guest, scouted, relay, 'wayfinding')).toEqual({ ...scouted, ending: 'wayfinding' })
-  expect(beaconStep({ ...guest, practiced: false }, { ...scouted, ending: 'wayfinding' })).toBe('finished')
+  expect(beaconStep(keeper, scouted)).toBe('relay')
+  expect(resolveBeacon({ ...keeper, ownsSpecimen: false }, scouted, relay, 'wayfinding')).toBeNull()
+  expect(resolveBeacon(keeper, scouted, relay, 'wayfinding')).toEqual({ ...scouted, ending: 'wayfinding' })
+  expect(beaconStep({ ...keeper, practiced: false }, { ...scouted, ending: 'wayfinding' })).toBe('finished')
 })
 
 test('each route needs evidence from its own activity', () => {

@@ -3,10 +3,12 @@ import {
   createPublicClient,
   createWalletClient,
   custom,
+  encodeFunctionData,
   fallback,
   http,
   parseAbi,
   parseEventLogs,
+  stringToHex,
   BaseError,
   ContractFunctionRevertedError,
   UserRejectedRequestError,
@@ -21,6 +23,8 @@ import deployment from './contracts.json'
 import deploymentV2 from './contracts.v2.json'
 import ashenkinDeployment from './contracts.ashenkin.json'
 import { firstReceipt, ReplacedActionError } from './transaction-receipt'
+import { actionHash, keeperRequest, readKeeperSession, type KeeperSession } from './keeper-api'
+import { withKeeperRetry } from './keeper-retry'
 
 /* ───────────────────────── deployment ───────────────────────── */
 
@@ -124,12 +128,14 @@ const ALL_ABI = Object.values(dep.abis).flat() as Abi
 
 /* ───────────────────────── clients ───────────────────────── */
 
+const sepoliaTransport = fallback([
+  http('https://ethereum-sepolia-rpc.publicnode.com', { timeout: 4_000, retryCount: 0 }),
+  http('https://sepolia.gateway.tenderly.co', { timeout: 4_000, retryCount: 0 }),
+], { retryCount: 1, retryDelay: 250 })
+
 export const publicClient = createPublicClient({
   chain: sepolia,
-  transport: fallback([
-    http('https://ethereum-sepolia-rpc.publicnode.com', { timeout: 4_000, retryCount: 0 }),
-    http('https://sepolia.gateway.tenderly.co', { timeout: 4_000, retryCount: 0 }),
-  ], { retryCount: 1, retryDelay: 250 }),
+  transport: sepoliaTransport,
   batch: { multicall: true },
   pollingInterval: 3_000,
 })
@@ -146,8 +152,11 @@ export const injected = (): Eip1193 | undefined => (typeof window === 'undefined
 
 /* ───────────────────────── wallet store ───────────────────────── */
 
-type WalletState = { account: Address | null; chainId: number | null; connecting: boolean }
-let state: WalletState = { account: null, chainId: null, connecting: false }
+type WalletState = {
+  account: Address | null; chainId: number | null; connecting: boolean; mode: 'circle' | 'injected' | null
+  keeper: KeeperSession | null; keeperError: boolean
+}
+let state: WalletState = { account: null, chainId: null, connecting: false, mode: null, keeper: null, keeperError: false }
 const listeners = new Set<() => void>()
 const set = (p: Partial<WalletState>) => {
   state = { ...state, ...p }
@@ -159,42 +168,106 @@ const subscribe = (l: () => void) => {
 }
 export const useWallet = () => useSyncExternalStore(subscribe, () => state, () => state)
 export const getWallet = () => state
+const KEEPER_SYNC = 'ash:keeper-session'
+export function applyKeeperSession(keeper: KeeperSession, sync = true) {
+  const previous = state.mode === 'circle' ? state.account?.toLowerCase() : null
+  if (previous && previous !== keeper.address?.toLowerCase()) {
+    try {
+      sessionStorage.removeItem(`chm:key:${LAB.toLowerCase()}:${previous}`)
+      Object.keys(sessionStorage).filter(key => key.startsWith(`chm:ud:${previous}:`)).forEach(key => sessionStorage.removeItem(key))
+    } catch { /* Storage can be unavailable on this device. */ }
+  }
+  if (keeper.enabled) {
+    set({ keeper, keeperError: false, account: keeper.address ?? null, chainId: CHAIN_ID, mode: 'circle' })
+  } else {
+    set({ keeper, keeperError: false, ...(state.mode === 'circle' && { account: null, mode: null, chainId: null }) })
+  }
+  if (sync) {
+    try { localStorage.setItem(KEEPER_SYNC, String(Date.now())) } catch { /* The server session still works. */ }
+  }
+}
+
+export async function refreshKeeperSession() {
+  try {
+    applyKeeperSession(await readKeeperSession(), false)
+  } catch {
+    set({ keeperError: true })
+  }
+}
+
+export async function signInWithWallet() {
+  const eth = injected()
+  if (!eth) throw new Error('Install an Ethereum wallet or sign in by email.')
+  const [address] = await eth.request({ method: 'eth_requestAccounts' }) as Address[]
+  if (!address) throw new Error('Select a wallet to sign in.')
+  const { id, message } = await keeperRequest<{ id: string; message: string }>('wallet/start', { address })
+  const signature = await eth.request({ method: 'personal_sign', params: [stringToHex(message), address] })
+  applyKeeperSession(await keeperRequest<KeeperSession>('wallet/finish', { id, signature }))
+}
+
+export async function provisionKeeper() {
+  const keeper = await keeperRequest<KeeperSession>('provision', {}, 40_000)
+  applyKeeperSession(keeper)
+  if (!keeper.address) throw new Error('Circle is still preparing your game wallet.')
+}
 
 let wired = false
 export function wireWallet() {
-  const eth = injected()
-  if (!eth || wired) return
+  if (wired) return
   wired = true
-  eth.on?.('accountsChanged', (a: string[]) => set({ account: (a?.[0] as Address) ?? null }))
-  eth.on?.('chainChanged', (c: string) => set({ chainId: parseInt(c, 16) }))
+  if (ACTIVE_WORLD === 'ashenkin') {
+    window.addEventListener('storage', event => {
+      if (event.key === KEEPER_SYNC) void refreshKeeperSession()
+    })
+  }
+  const eth = injected()
+  eth?.on?.('accountsChanged', (a: string[]) => {
+    if (state.mode === 'injected') set({ account: (a?.[0] as Address) ?? null })
+  })
+  eth?.on?.('chainChanged', (c: string) => {
+    if (state.mode !== 'circle') set({ chainId: parseInt(c, 16) })
+  })
   // silent reconnect
-  eth.request({ method: 'eth_accounts' }).then((a) => {
-    const list = a as string[]
-    if (list?.[0] && localStorage.getItem('chm:connected') === '1') set({ account: list[0] as Address })
-  }).catch(() => {})
-  eth.request({ method: 'eth_chainId' }).then((c) => set({ chainId: parseInt(c as string, 16) })).catch(() => {})
+  async function restore() {
+    if (ACTIVE_WORLD === 'ashenkin') {
+      await refreshKeeperSession()
+      if (state.keeper?.enabled || state.keeperError) return
+    }
+    if (!eth || localStorage.getItem('chm:connected') !== '1') return
+    const [accounts, chainId] = await Promise.all([eth.request({ method: 'eth_accounts' }), eth.request({ method: 'eth_chainId' })])
+    const [account] = accounts as Address[]
+    if (account && !state.account && !state.connecting) set({ account, chainId: parseInt(chainId as string, 16), mode: 'injected' })
+  }
+  void restore().catch(() => {})
 }
 
 export async function connect() {
+  if (ACTIVE_WORLD === 'ashenkin' && state.keeper?.enabled) throw new Error('Sign in at the Lab.')
   const eth = injected()
   if (!eth) throw new Error('No browser wallet found. Install MetaMask or Rabby, then reload.')
   set({ connecting: true })
   try {
     const a = (await eth.request({ method: 'eth_requestAccounts' })) as string[]
+    if (!a[0]) throw new Error('No account was connected.')
     localStorage.setItem('chm:connected', '1')
-    set({ account: (a[0] as Address) ?? null })
+    set({ account: a[0] as Address, mode: 'injected' })
     await ensureChain()
   } finally {
     set({ connecting: false })
   }
 }
 
-export function disconnect() {
+export async function disconnect() {
+  if (state.mode === 'circle') {
+    applyKeeperSession(await keeperRequest<KeeperSession>('logout', {}))
+    return
+  }
   localStorage.removeItem('chm:connected')
-  set({ account: null })
+  set({ account: null, mode: null, chainId: null })
 }
 
 export async function ensureChain() {
+  if (state.mode === 'circle') return
   const eth = injected()
   if (!eth) return
   const hex = '0x' + CHAIN_ID.toString(16)
@@ -257,6 +330,22 @@ export async function send(call: Call): Promise<Sent> {
     }
   }
   checkAccount()
+  if (state.mode === 'circle') {
+    const account = state.account
+    if (!account) throw new Error('Sign in to your Ashenkin account.')
+    txStep?.('Sending from your Ashenkin wallet…')
+    const data = encodeFunctionData({ abi: c.abi as Abi, functionName: c.functionName, args: c.args })
+    const hash = await withKeeperRetry(async () => {
+      checkAccount()
+      const { id } = await keeperRequest<{ id: string }>('transactions', { address: account, destination: c.address, data }, 45_000)
+      return actionHash(id, account)
+    }, () => report?.('Synchronizing your game wallet with Sepolia…'))
+    report?.('Sent — waiting for a Sepolia confirmation…', hash)
+    const sent = await readSentReceipt(hash)
+    lastMinedAt = Date.now()
+    report?.('Confirmed on Sepolia — preparing the result…', hash)
+    return sent
+  }
   await ensureChain()
   checkAccount()
   const wc = walletClient()

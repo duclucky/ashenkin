@@ -1,5 +1,6 @@
 import { bytesToHex, getAddress, type Address, type Hex } from 'viem'
-import { ACTIVE_WORLD, COLOSSEUM, CZAMA, DEPTHS, EXPEDITIONS, LAB, ORACLE, RAFFLE, RAID, RELICS, TRAINING, injected, publicClient } from './chain'
+import { ACTIVE_WORLD, COLOSSEUM, CZAMA, DEPTHS, EXPEDITIONS, LAB, ORACLE, RAFFLE, RAID, RELICS, TRAINING, getWallet, injected, publicClient } from './chain'
+import { keeperRequest } from './keeper-api'
 import { DecryptionFlights, privateDecryptionKey, publicDecryptionKey, retryDecryption, transientDecryptionError } from './decryption-requests'
 
 /* Lazy, browser-only Zama relayer instance. */
@@ -102,6 +103,7 @@ export async function publicDecryptWithProof(handles: string[], { tries = 14 }: 
 
 type LabKey = { publicKey: string; privateKey: string; signature: string; start: number; days: number; contracts: string[] }
 const KEY = (a: string) => ACTIVE_WORLD === 'v1' ? `chm:key:${a.toLowerCase()}` : `chm:key:${LAB.toLowerCase()}:${a.toLowerCase()}`
+const labKeyStorage = () => getWallet().mode === 'circle' ? sessionStorage : localStorage
 /** Contracts whose handles the player decrypts privately. The Zama relayer accepts at most 10 per key,
  *  so only list contracts that really hand out user-decryptable handles (Arena/Market proofs are public). */
 const MAX_KEY_CONTRACTS = 10
@@ -109,7 +111,7 @@ const CONTRACTS = () => [LAB, RAID, EXPEDITIONS, TRAINING, CZAMA, COLOSSEUM, REL
 
 export function storedLabKey(account: string): LabKey | null {
   try {
-    const raw = localStorage.getItem(KEY(account))
+    const raw = labKeyStorage().getItem(KEY(account))
     if (!raw) return null
     const k = JSON.parse(raw) as LabKey
     const now = Math.floor(Date.now() / 1000)
@@ -129,15 +131,23 @@ export async function labKey(account: Address): Promise<LabKey> {
   const inst = await getFhe()
   const kp = inst.generateKeypair()
   const start = Math.floor(Date.now() / 1000) - 60
-  const days = 30
+  const managed = getWallet().mode === 'circle'
+  const days = managed ? 7 : 30
   const contracts = CONTRACTS()
   const eip712 = inst.createEIP712(kp.publicKey, contracts, start, days)
-  const eth = injected()
-  if (!eth) throw new Error('No wallet found.')
-  const payload = JSON.stringify(eip712, (_k, v) => (typeof v === 'bigint' ? v.toString() : v))
-  const signature = (await eth.request({ method: 'eth_signTypedData_v4', params: [account, payload] })) as string
+  let signature: string
+  if (managed) {
+    const result = await keeperRequest<{ signature: string }>('lab-key', { address: account, publicKey: kp.publicKey, start, days })
+    signature = result.signature
+  } else {
+    const eth = injected()
+    if (!eth) throw new Error('No wallet found.')
+    const payload = JSON.stringify(eip712, (_k, v) => (typeof v === 'bigint' ? v.toString() : v))
+    signature = (await eth.request({ method: 'eth_signTypedData_v4', params: [account, payload] })) as string
+  }
   const key: LabKey = { publicKey: kp.publicKey, privateKey: kp.privateKey, signature, start, days, contracts }
-  localStorage.setItem(KEY(account), JSON.stringify(key))
+  if (getWallet().account?.toLowerCase() !== account.toLowerCase()) throw new Error('The active wallet changed.')
+  labKeyStorage().setItem(KEY(account), JSON.stringify(key))
   window.dispatchEvent(new Event('chm:labkey'))
   return key
 }

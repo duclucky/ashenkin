@@ -1,0 +1,16 @@
+**/node_modules
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+backend/db
+deploy/tunnel
+.git
+uploads
+tmpshots
+
+/contracts
+/frontend/src
+/frontend/public
+/frontend/tests
+source.tar.gz

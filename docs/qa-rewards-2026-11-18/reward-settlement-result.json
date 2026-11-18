@@ -1,0 +1,122 @@
+{
+  "raffle": {
+    "before": {
+      "participants": [
+        {
+          "index": 2,
+          "address": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+          "balance": "1094800000",
+          "wins": 0
+        },
+        {
+          "index": 5,
+          "address": "0x84af7784dAA3Bc62D96c798282d081c5cf3E8D22",
+          "balance": "1108100000",
+          "wins": 0
+        },
+        {
+          "index": 6,
+          "address": "0x46f5452A67696e86daE566d7986664Dbe3b9aCde",
+          "balance": "1109700000",
+          "wins": 0
+        }
+      ],
+      "reserve": "299931647436"
+    },
+    "status": "passed",
+    "round": 1,
+    "winner": "0x84af7784dAA3Bc62D96c798282d081c5cf3E8D22",
+    "potBaseUnits": "10000000",
+    "prizeBaseUnits": "9000000",
+    "treasuryIncreaseBaseUnits": "1000000",
+    "relicId": 6,
+    "replayBlocked": true,
+    "hash": "0xaac793237cb8f8522aaee424fe8183c460af6e8da86245c98c5295ac58ff1d1e"
+  },
+  "season": {
+    "before": {
+      "winners": [
+        {
+          "index": 1,
+          "address": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+          "balance": "1641435339",
+          "crowns": 0,
+          "weight": "2000000000"
+        },
+        {
+          "index": 8,
+          "address": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+          "balance": "1110700000",
+          "crowns": 0,
+          "weight": "1000000000"
+        },
+        {
+          "index": 2,
+          "address": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+          "balance": "1094800000",
+          "crowns": 0,
+          "weight": "500000000"
+        }
+      ],
+      "scores": [
+        17,
+        11,
+        8
+      ],
+      "reserve": "299932647436",
+      "budget": "2999326474",
+      "requested": "3500000000",
+      "funded": "2999326474",
+      "relics": "6"
+    },
+    "status": "passed",
+    "season": 1,
+    "fundedPoolBaseUnits": "2999326474",
+    "prizes": [
+      {
+        "address": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+        "rank": 1,
+        "paidBaseUnits": "1713900842"
+      },
+      {
+        "address": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+        "rank": 2,
+        "paidBaseUnits": "856950421"
+      },
+      {
+        "address": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "rank": 3,
+        "paidBaseUnits": "428475211"
+      }
+    ],
+    "threeRelicCachesGranted": true,
+    "nextSeason": 2,
+    "replayBlocked": true,
+    "rejoinVerified": true,
+    "hash": "0x0aceb0b7b53e022570a1d38f2949ba2f1424f7534b63c34bcedc57da7b26e03e"
+  },
+  "oracleExpiry": {
+    "before": {
+      "pot": "2000000",
+      "potHandle": "0xc1a7f048200978ad158451f2ea7046c3102fd123e2ff0000000000aa36a70500",
+      "startedAt": 1794959064,
+      "length": 3168
+    },
+    "status": "passed",
+    "round": 2,
+    "potPreservedBaseUnits": "2000000",
+    "answerPublicAfterExpiry": [
+      13,
+      15,
+      14,
+      11
+    ],
+    "nextRound": 3,
+    "nextPotBaseUnits": "4000000",
+    "staleClaimBlocked": true,
+    "hash": "0x36a8d3d7ed2e6b6536e546029b0aed70628f9562b849803da63658c100cea8da",
+    "nextRoundHash": "0x0fdc68184745d91e30cae7bc7713f49524cbb67d7eb8872ae94cf8cce795eba6"
+  },
+  "finishedAt": "2026-11-18T00:40:45.790Z",
+  "failures": []
+}

@@ -1,0 +1,45 @@
+
+
+  Sealed Raffle
+    √ ticket counts are sealed: each keeper reads only their own (425ms)
+    √ caps a purchase at 50 and counts an unpaid purchase as 0 (444ms)
+    √ the draw opens only winner + pot; the winner gets 90% and a relic, 10% refills the Treasury (746ms)
+    √ both buyers win sometimes (weighted lead over sealed counts) (712ms)
+    √ an empty round is extended; buying after the deadline is refused (94ms)
+
+      HCU per transaction (limits: 20,000,000 global / 5,000,000 depth)
+        raffle.buy           global   2,914,224   depth  1,822,032   gas     780,675
+        raffle.draw          global           0   depth          0   gas     102,639
+        raffle.finalize      global   2,690,736   depth    790,032   gas   1,705,838
+
+  P1 — Ascension altar · Season thrones
+    Ascension altar
+      √ sacrifices a spare creature for 30 + 10·gen XP and locks it in the altar (102ms)
+      √ rejects same creature, foreign creatures and a hero with no XP room today (134ms)
+      √ an active Colosseum defender cannot be sacrificed (126ms)
+      √ charge-only retirement refuses equipped relics without losing the NFT or earning a charge (110ms)
+    Season thrones
+      √ only activity after joining scores; out-scoring a holder takes the throne (284ms)
+      √ ending pays the holders from the Treasury, grants a relic cache and a crown, and restarts (1277ms)
+        budgeted season: HCU 8505184, depth 4169064
+      √ a constrained season pool pays both occupied seats proportionally instead of exhausting it on the first (764ms)
+      √ owner can shorten the season for demos
+        three-seat season: HCU 12692760, depth 4386064
+      √ three seats conserve the funded pool including rounding dust within the FHE budget (1124ms)
+
+  Season of Masks (Colosseum · Relics · Oracle · Training v2)
+    Oracle's Riddle — private hints
+      √ hints are private, a 4/4 solver takes the jackpot + a relic, the answer is revealed (3976ms)
+      √ daily guess limit and expiry roll the jackpot over (738ms)
+
+      HCU per transaction (limits: 20,000,000 global / 5,000,000 depth)
+        oracle.guess         global   3,454,640   depth    715,032   gas   1,449,588
+        oracle.finalize      global   2,104,544   depth    790,032   gas   1,450,961
+
+  ChimeraLab
+    certification & chimera claims
+      √ certify publishes genome and element (126ms)
+      √ claimChimera checks KMS proof and rarity (147ms)
+
+
+  18 passing (16s)

@@ -1,0 +1,12 @@
+✔ metadata distinguishes worlds, shows parents and requests only the seven public phenotype values (110.0311ms)
+✔ a transient Zama error signals retry instead of serving and caching an egg (23.992ms)
+✔ an earned rare title appears in metadata while genome and element stay sealed (10.8985ms)
+✔ five rare looks without an onchain claim never advertise a verified title (8.4835ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2081.3077

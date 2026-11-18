@@ -8,12 +8,12 @@ const handles = Array.from({ length: 8 }, (_, i) => `0x${String(i + 1).repeat(64
 const traits = [12, 4, 12, 3, 8, 0, 15]
 const origin = 'https://chimera.example'
 
-async function withApi(decrypt, inspect) {
+async function withApi(decrypt, inspect, creature = {}) {
   const reader = {
     async readContract({ address, functionName }) {
       switch (functionName) {
         case 'getCreature':
-          return { parentA: address === v2Lab ? 2 : 0, parentB: address === v2Lab ? 5 : 0, generation: address === v2Lab ? 1 : 0, wild: false, bornAt: 1735689600n, breeds: 1, certified: false, chimera: false }
+          return { parentA: address === v2Lab ? 2 : 0, parentB: address === v2Lab ? 5 : 0, generation: address === v2Lab ? 1 : 0, wild: false, bornAt: 1735689600n, breeds: 1, certified: false, chimera: false, ...creature }
         case 'getPhenotypeHandles': return handles
         case 'getProfile': return [{ level: 5, xp: 12 }, 1]
         default: throw new Error(`Unexpected read ${functionName}`)
@@ -84,5 +84,29 @@ test('a transient Zama error signals retry instead of serving and caching an egg
     const next = await get('/api/nft-v2/7')
     assert.equal(next.status, 200)
     assert.notEqual((await next.json()).name, 'Specimen #7')
+  })
+})
+
+test('an earned rare title appears in metadata while genome and element stay sealed', async () => {
+  await withApi(async requested => {
+    assert.deepEqual(requested, handles.slice(0, 7))
+    return [12, 13, 14, 15, 12, 11, 0]
+  }, async get => {
+    const response = await get('/api/ashenkin-nft/7')
+    assert.equal(response.status, 200)
+    const nft = await response.json()
+    const fields = Object.fromEntries(nft.attributes.map(({ trait_type, value }) => [trait_type, value]))
+    assert.equal(fields['Rare lineage'], 'Verified')
+    assert.equal(fields.Element, 'Sealed')
+    assert.equal(fields['Hidden alleles'], 'Sealed')
+  }, { chimera: true })
+})
+
+test('five rare looks without an onchain claim never advertise a verified title', async () => {
+  await withApi(async () => [12, 13, 14, 15, 12, 11, 0], async get => {
+    const response = await get('/api/ashenkin-nft/7')
+    const nft = await response.json()
+    assert.equal(response.status, 200)
+    assert.equal(nft.attributes.some(field => field.trait_type === 'Rare lineage'), false)
   })
 })

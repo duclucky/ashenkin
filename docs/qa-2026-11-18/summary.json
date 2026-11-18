@@ -1,0 +1,44 @@
+{
+  "accounts": 10,
+  "checkpoints": {
+    "passed": 295,
+    "expected-revert": 3,
+    "superseded": 1
+  },
+  "ledger": {
+    "receipts": 229,
+    "successful": 226,
+    "reverted": 3,
+    "gasEth": "0.075946552876993193",
+    "sponsorGasEth": "0.000000000528538448",
+    "requests": 229
+  },
+  "starterSponsorship": {
+    "configuredLimit": 10,
+    "reserved": 10,
+    "remaining": 0
+  },
+  "deferred": [
+    {
+      "activity": "raffle draw and payout",
+      "until": "2026-11-20T08:05:36.000Z",
+      "reason": "Live round remains open; early-draw guard verified."
+    },
+    {
+      "activity": "Oracle expiry and winning jackpot",
+      "until": "2026-11-20T22:25:36.000Z",
+      "reason": "Expiry is gated; the encrypted guess did not win the jackpot."
+    },
+    {
+      "activity": "season end and prizes",
+      "until": "2026-12-01T08:05:48.000Z",
+      "reason": "Live season remains open; early-end guard verified."
+    },
+    {
+      "activity": "rare Chimera successful claim",
+      "reason": "This test specimen does not meet five rare visible traits; rejection with valid KMS proof verified."
+    }
+  ],
+  "unresolvedExercisedSteps": [],
+  "uiPassed": 10
+}

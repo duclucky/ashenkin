@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-18T00:06:41.896Z",
+  "method": "eth_simulateV1",
+  "changesRealChain": false,
+  "supported": true,
+  "status": "0x1",
+  "gasUsed": "12535761",
+  "error": null
+}

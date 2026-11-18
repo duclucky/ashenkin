@@ -14,6 +14,7 @@ import { campaignProgress } from '../game/campaign'
 import { BeaconChapter } from '../game/BeaconChapter'
 import { beaconScope, fieldEvidence } from '../game/beacon'
 import { hasPracticed } from '../game/keeper-story'
+import { StarterGate } from '../game/StarterGate'
 
 const CHAPTERS: { title: string; goal: string; text: string[] }[] = [
   {
@@ -107,7 +108,9 @@ export default function Journal() {
     <div className="space-y-5">
       <Location place="journal" actions={<Link to="lore" className="chm-btn chm-btn-ghost">Explore the Arkhive</Link>}>{account && <span>{unlocked.filter(Boolean).length}/{CHAPTERS.length} entries unlocked</span>}</Location>
 
-      <BeaconChapter key={scope} scope={scope} guestScope={beaconScope(CHAIN_ID, LAB)} evidence={{ fight: campaign.fight.done, practiced: hasPracticed(), genome, field: fieldEvidence(expeditions.data?.list) }} specimen={campaign.own.specimen} connected={!!account} />
+      {account && mine.data?.length ? <BeaconChapter key={scope} scope={scope} guestScope={beaconScope(CHAIN_ID, LAB)} evidence={{ ownsSpecimen: true, fight: campaign.fight.done, practiced: hasPracticed(), genome, field: fieldEvidence(expeditions.data?.list) }} specimen={campaign.own.specimen ?? mine.data[0]} /> :
+        account && mine.isPending ? <p role="status">Checking your specimens…</p> :
+          <StarterGate>Hatch a specimen to begin The Silent Beacon.</StarterGate>}
       <details className="chm-panel p-4"><summary className="min-h-11 cursor-pointer content-center text-sm font-semibold">Bloodline campaign</summary><div className="mt-4"><CampaignBoard connected={!!account} progress={campaign} /></div></details>
       {(mine.isError || all.isError || tactics.isError || crests.isError || expeditions.isError) && <Panel className="p-4 text-sm"><p>Some campaign evidence could not be read. Unconfirmed objectives remain open for verification.</p><Button variant="ghost" onClick={() => { mine.refetch(); tactics.refetch(); expeditions.refetch(); if (mine.data?.length) all.refetch(); if (children.length) crests.refetch() }}>Retry campaign record</Button></Panel>}
 

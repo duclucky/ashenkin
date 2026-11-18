@@ -1,0 +1,130 @@
+{
+  "original": {
+    "observedAt": "2026-11-17T23:37:18.849Z",
+    "raffle": {
+      "id": 1,
+      "startedAt": 1794902736,
+      "endsAt": 1795161936,
+      "duration": 259200,
+      "done": false
+    },
+    "oracle": {
+      "id": 1,
+      "startedAt": 1794954336,
+      "roundLength": 259200,
+      "dailyGuesses": 6,
+      "ended": false
+    },
+    "season": {
+      "id": 1,
+      "startedAt": 1794902748,
+      "endsAt": 1796112348,
+      "length": 1209600
+    }
+  },
+  "target": 1794962232,
+  "owner": "0xc944bD9967CE513C4161a867870B1bb3086f96E0",
+  "actions": {
+    "shorten-raffle": {
+      "hash": "0x7389d45cc887622bdc879fc88a6dbdc7dd8871a31ab32f90969ea83d8fba559f",
+      "contract": "ChimeraRaffle",
+      "functionName": "setDuration",
+      "args": [
+        "59496",
+        "true"
+      ],
+      "status": "success",
+      "gasCostWei": "818482"
+    },
+    "shorten-season": {
+      "hash": "0x69bfe93515b2ef88d78c6dac1f1b8588514f1d99c146f4d37c8b98bb57e8c650",
+      "contract": "ChimeraSeason",
+      "functionName": "setLength",
+      "args": [
+        "59484",
+        "true"
+      ],
+      "status": "success",
+      "gasCostWei": "621509"
+    },
+    "shorten-oracle": {
+      "hash": "0xdee7f52d336018751ce440f32ad9f752f2c14a35126adabfbc7e21d74e62abdf",
+      "contract": "ChimeraOracle",
+      "functionName": "setRules",
+      "args": [
+        "7896",
+        "6"
+      ],
+      "status": "success",
+      "gasCostWei": "575054"
+    },
+    "align-oracle-2": {
+      "hash": "0x309a9c46538ebf90474047c9131906555f1cd2ca6710b9f0d747d621038574e0",
+      "contract": "ChimeraOracle",
+      "functionName": "setRules",
+      "args": [
+        "3168",
+        "6"
+      ],
+      "status": "success",
+      "gasCostWei": "575054"
+    },
+    "restore-raffle": {
+      "hash": "0xa5b5f44e20b38b55e7229b566280f316fc4ab50351502f49c5c678cf76a0769d",
+      "contract": "ChimeraRaffle",
+      "functionName": "setDuration",
+      "args": [
+        "259200",
+        "true"
+      ],
+      "status": "success",
+      "gasCostWei": "861800"
+    },
+    "restore-season": {
+      "hash": "0xfca6dcee3c1dcdc5c2f159f5caaaca3ff1da7740bbbde7ac8848c225ef3ce70e",
+      "contract": "ChimeraSeason",
+      "functionName": "setLength",
+      "args": [
+        "1209600",
+        "true"
+      ],
+      "status": "success",
+      "gasCostWei": "654220"
+    },
+    "restore-oracle": {
+      "hash": "0x2babb986e8852cf997f02557f412967a1a5816484541356c6fee315c12b2a58a",
+      "contract": "ChimeraOracle",
+      "functionName": "setRules",
+      "args": [
+        "259200",
+        "6"
+      ],
+      "status": "success",
+      "gasCostWei": "635838"
+    }
+  },
+  "restored": true,
+  "latest": {
+    "observedAt": "2026-11-18T00:41:51.024Z",
+    "raffle": {
+      "id": 2,
+      "startedAt": 1794962292,
+      "endsAt": 1795221492,
+      "duration": 259200,
+      "done": false
+    },
+    "oracle": {
+      "id": 3,
+      "startedAt": 1794962436,
+      "roundLength": 259200,
+      "dailyGuesses": 6,
+      "ended": false
+    },
+    "season": {
+      "id": 2,
+      "startedAt": 1794962340,
+      "endsAt": 1796171940,
+      "length": 1209600
+    }
+  }
+}

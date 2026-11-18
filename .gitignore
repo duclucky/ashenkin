@@ -23,3 +23,11 @@ fhevmTemp/
 /deploy/tunnel/
 /tmpshots/
 /uploads/
+
+# Runtime and verification artifacts
+__pycache__/
+*.py[cod]
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+source.tar.gz

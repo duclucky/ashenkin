@@ -16,24 +16,25 @@ const start: KeeperProgress = {
 }
 
 test('the first chapter hatches a specimen and sends it into a fight before any key or coin setup', () => {
-  expect(keeperChapter({ ...start, connected: false, practiced: false })).toBe('prologue')
+  expect(keeperChapter({ ...start, connected: false, practiced: false })).toBe('hatch')
   expect(keeperChapter(start)).toBe('hatch')
   expect(keeperChapter({ ...start, specimens: [7], genesis: 1 })).toBe('fight')
 })
 
-test('one practice match offers the free story before wallet setup', () => {
-  expect(keeperChapter({ ...start, connected: false, beaconDone: false })).toBe('beacon')
-  expect(keeperChapter({ ...start, connected: false })).toBe('connect')
-  expect(keeperChapter({ ...start, beaconDone: false, hasGas: false })).toBe('beacon')
-  expect(keeperChapter({ ...start, practiced: false, hasGas: false })).toBe('prologue')
-  expect(keeperChapter({ ...start, hasGas: null })).toBe('loading')
-  expect(keeperChapter({ ...start, hasGas: false })).toBe('gas')
-  expect(keeperChapter({ ...start, hasGas: true })).toBe('hatch')
+test('even a returning guest must own a real specimen before the trial and the Beacon', () => {
+  expect(keeperChapter({ ...start, connected: false, beaconDone: false })).toBe('hatch')
+  expect(keeperChapter({ ...start, connected: false })).toBe('hatch')
+  expect(keeperChapter({ ...start, practiced: false, hasGas: false })).toBe('hatch')
+  const owner = { ...start, specimens: [7], genesis: 1, hasGas: false }
+  expect(keeperChapter({ ...owner, practiced: false })).toBe('prologue')
+  expect(keeperChapter({ ...owner, beaconDone: false })).toBe('beacon')
+  expect(keeperChapter({ ...owner, hasGas: null })).toBe('loading')
+  expect(keeperChapter(owner)).toBe('gas')
 })
 
-test('a player with a specimen or a pending battle can continue on-chain without replaying practice', () => {
+test('a pending or settled battle takes precedence over the trial', () => {
   const afterHatch = { ...start, practiced: false, specimens: [7], genesis: 1 }
-  expect(keeperChapter(afterHatch)).toBe('fight')
+  expect(keeperChapter(afterHatch)).toBe('prologue')
   expect(keeperChapter({ ...afterHatch, pendingFight: true })).toBe('settle')
   expect(keeperChapter({ ...afterHatch, fights: 1 })).toBe('sequence')
 })
@@ -60,5 +61,5 @@ test('a settled hunt advances the story whether or not the keeper opens the proo
 test('recovery avoids sending a player to an empty lab with no free embryos or energy', () => {
   expect(keeperChapter({ ...start, genesis: 3 })).toBe('recover')
   expect(keeperChapter({ ...start, specimens: [7], fights: 1, energy: 0 })).toBe('dispatch')
-  expect(keeperChapter({ ...start, hasGas: false })).toBe('gas')
+  expect(keeperChapter({ ...start, hasGas: false })).toBe('hatch')
 })

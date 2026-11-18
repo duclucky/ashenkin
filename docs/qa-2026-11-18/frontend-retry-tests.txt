@@ -1,0 +1,12 @@
+bun test v1.4.0 (34cbb9a40)
+
+tests\keeper-retry.test.ts:
+(pass) only an explicit estimation failure without a hash permits a retry [0.49ms]
+(pass) a pre-broadcast estimation failure recovers with one replacement submission [0.55ms]
+(pass) ambiguous network errors and already broadcast actions are never resubmitted [0.32ms]
+(pass) recovery is bounded to three attempts [0.22ms]
+
+ 4 pass
+ 0 fail
+ 13 expect() calls
+Ran 4 tests across 1 file. [19.00ms]

@@ -14,7 +14,7 @@ import { BeaconReturn } from '../game/BeaconReturn'
 
 import { ZONE_META } from '../game/world-encounters'
 
-export default function Expeditions() {
+export default function Expeditions({ manual = true }: { manual?: boolean }) {
   const { account } = useWallet()
   const zones = useZones()
   const mine = useMyCreatures(account)
@@ -55,8 +55,9 @@ export default function Expeditions() {
     <div className="space-y-8">
       <Location place="expeditions">{exp.data && <span>{runs}/{max} runs today · resets in {fmtDuration(resetIn)}</span>}</Location>
       <BeaconReturn account={account} lead="field" />
+      <Link to="life" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold underline">Your Xeno’s living encounters →</Link>
 
-      {!account ? (
+      {manual && (!account ? (
         <GuestGate place="expeditions" />
       ) : (
         <>
@@ -90,9 +91,9 @@ export default function Expeditions() {
           </div>
 
         </>
-      )}
+      ))}
 
-      <section aria-labelledby="expedition-routes">
+      {manual && <section aria-labelledby="expedition-routes">
         <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="expedition-routes" className="font-display text-2xl">Choose a route</h2>
           {active != null && training.data && <span className="text-sm font-bold">
@@ -111,7 +112,7 @@ export default function Expeditions() {
         {exp.isError && !exp.data && <p className="mt-3 text-sm font-bold">Could not read your expedition allowance. <button type="button" className="min-h-11 underline" onClick={() => exp.refetch()}>Try again</button></p>}
         {exp.data && runs >= max && <div className="mt-3 border-[3px] border-[#111] bg-[#FF7020] px-4 py-2 font-bold">All {max} runs used today. The camp reopens in {fmtDuration(resetIn)} (00:00 UTC).</div>}
         <p className="mt-4 text-sm text-[var(--chm-dim)]">Pick a route, then bring your specimen home to collect its rewards and read its report.</p>
-      </section>
+      </section>}
 
       {!!done.length && (
         <div>

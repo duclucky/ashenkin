@@ -588,7 +588,7 @@ function HatchScene({ s }: { s: SceneState }) {
   function hatchActions(profileLabel: string): Cta[] {
     const profile = { label: profileLabel, to: `creature/${childId}` }
     return s.firstHatch
-      ? [{ label: 'Enter your first hunt', to: `arena/${childId}`, primary: true }, profile]
+      ? [{ label: 'Train with your specimen', to: 'arena/trial/start', primary: true }, profile]
       : [{ ...profile, primary: true }, { label: 'Stay here' }]
   }
   const pa = useMon(breed || awaitingEgg ? s.me : undefined)

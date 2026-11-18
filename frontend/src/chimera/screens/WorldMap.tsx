@@ -1,8 +1,9 @@
+import { useFirstSteps, useLifeRoster } from '../game/use-first-steps'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import type { Address } from 'viem'
 import { ChevronDown } from 'lucide-react'
-import { CHAIN_ID, DEPLOYED, LAB, connect, errorText, useWallet } from '../chain'
+import { CHAIN_ID, DEPLOYED, LAB, useWallet } from '../chain'
 import { isZero } from '../fhe'
 import { faucet, FAUCET_AMOUNT } from '../actions'
 import {
@@ -426,6 +427,8 @@ function Ground() {
 export default function WorldMap() {
   const { account } = useWallet()
   const w = useWorldState(account)
+  const firstSteps = useFirstSteps()
+  const livingRoster = useLifeRoster()
   const refresh = useRefresh()
   const { run } = useAction()
   const box = useRef<HTMLDivElement>(null)
@@ -443,12 +446,12 @@ export default function WorldMap() {
   const u = width / MW
 
   const quest = keeperMission(w.progress)
-  const guided = hidden ? null : quest.landmark
+  const guided = hidden ? null : firstSteps.active ? (['gas','hatch'].includes(firstSteps.stage) ? 'lab' : firstSteps.stage === 'fight' ? 'arena' : null) : quest.landmark
   const guidedRef = useRef<Key | null>(null)
   guidedRef.current = guided
 
   async function drawWell() {
-    if (!account) return doConnect()
+    if (!account || (!w.progress.specimens?.length && !w.progress.genesis)) return travel('lab')
     if (w.noGas) return void toast({ kind: 'err', title: 'Your wallet has no gas', detail: 'Drawing from the well is a transaction, so you need a little test ETH first. Grab some free from a Sepolia faucet, then try again.' })
     await run(
       'Faucet',
@@ -460,13 +463,6 @@ export default function WorldMap() {
       `${FAUCET_AMOUNT.toLocaleString()} cZAMA added to your wallet`,
       { spec: { kind: 'faucet' } },
     )
-  }
-  async function doConnect() {
-    try {
-      await connect()
-    } catch (e) {
-      toast({ kind: 'err', title: 'Could not connect', detail: errorText(e) })
-    }
   }
   function enter(p: Place) {
     unlockAudio()
@@ -559,7 +555,12 @@ export default function WorldMap() {
           <span title="Lab energy"><EnergyPips value={w.stats?.energy} size={14} /></span>
         </div>}
       </div>
-      <aside className="chm-world-guide" aria-label="Keeper guide">
+      {account && <Link to={livingRoster.data?.unread?.latest ? `life/${livingRoster.data.unread.latest.nft}` : 'life'} className={livingRoster.data?.unread?.count ? 'returning-story' : 'living-world-link'}>
+        <span><PxIcon name={livingRoster.data?.unread?.count ? 'star' : 'paw'} size={22} /></span>
+        <span><strong>{livingRoster.data?.unread?.count ? `${livingRoster.data.unread.count} new ${livingRoster.data.unread.count === 1 ? 'story' : 'stories'} from your Xenos` : 'Your Xenos have a life here'}</strong>
+        <small>{livingRoster.data?.unread?.count ? livingRoster.data.unread.items ? `${livingRoster.data.unread.items} ${livingRoster.data.unread.items === 1 ? 'item' : 'items'} earned · already in their bags` : 'They returned safely. See what happened.' : 'Encounters, discoveries and their field bags'}</small></span><span aria-hidden="true">→</span>
+      </Link>}
+      {!firstSteps.active && <aside className="chm-world-guide" aria-label="Keeper guide">
         {hidden ? (
           <button type="button" onClick={() => setGuide(false)} className="chm-guide-toggle">
             <span className="w-7 shrink-0" aria-hidden="true"><Px rows={PROF} pal={PROF_PAL} /></span>
@@ -568,7 +569,7 @@ export default function WorldMap() {
         ) : (
           <KeeperBriefing quest={quest} hide={() => setGuide(true)} enter={travel} />
         )}
-      </aside>
+      </aside>}
       <div className="chm-world-board">
         <div ref={box} role="region" aria-label="Interactive world map" aria-describedby="map-controls" tabIndex={0} data-motion="full" className="chm-world-map" style={{ aspectRatio: `${MW} / ${MH}` }}>
           <Ground />

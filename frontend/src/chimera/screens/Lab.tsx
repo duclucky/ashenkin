@@ -1,7 +1,7 @@
 import { ChevronDown, Egg, KeyRound } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
 import { EnergyPips } from '../game/hud'
-import { GuestGate } from '../game/GuestGate'
+import { StarterGate } from '../game/StarterGate'
 import { Button, CreatureCard, Empty, Link, Panel, Stat, useAction, BusyNote } from '../ui'
 import { travel } from '../game/Transition'
 import { DEPLOYED, errorText, GAS_FAUCET, useWallet } from '../chain'
@@ -11,10 +11,10 @@ import { labKey } from '../fhe'
 import Habitat from '../game/Habitat'
 import { Location } from '../game/Location'
 import { useTStats } from '../season'
-import { keeperGuideEnabled } from '../game/keeper-story'
+import { hasPracticed, keeperGuideEnabled } from '../game/keeper-story'
 
 export default function Lab() {
-  const { account } = useWallet()
+  const { account, mode } = useWallet()
   const mine = useMyCreatures(account)
   const stats = useAccountStats(account)
   const eth = useEthBalance(account)
@@ -26,8 +26,8 @@ export default function Lab() {
   const { busy, run, status } = useAction()
 
   if (!DEPLOYED) return <Empty title="The lab opens once the contracts are live">Check the Journal for the specimen atlas while you wait.</Empty>
-  if (!account)
-    return <div className="space-y-5"><Location place="lab" /><GuestGate place="lab" /></div>
+  if (!account || (mode === 'circle' && !mine.data?.length && (stats.data?.genesis ?? 0) === 0))
+    return <div className="space-y-5"><Location place="lab" /><StarterGate lab /></div>
 
   const s = stats.data
   const left = s ? 3 - s.genesis : 0
@@ -36,6 +36,7 @@ export default function Lab() {
   const firstHatch = guide && s?.genesis === 0 && mine.data?.length === 0
   const needsGas = firstHatch && eth === 0n
   const readyForHunt = guide && !!mine.data?.length && tactics.data?.wins === 0 && tactics.data.losses === 0
+  const practiced = hasPracticed()
 
   async function doHatch() {
     const r = await run('Hatch embryo', (st) => hatch(st), 'An embryo has been sealed', { spec: { kind: 'hatch', firstHatch } })
@@ -54,8 +55,8 @@ export default function Lab() {
         <a href={GAS_FAUCET} target="_blank" rel="noreferrer" className="chm-btn chm-btn-primary chm-quest-target">Get Sepolia ETH</a>
       </Panel>}
       {readyForHunt && <Panel className="flex flex-wrap items-center justify-between gap-3 p-3 text-sm">
-        <p>Your specimen is ready for its first hunt.</p>
-        <Link to="arena" className="chm-btn chm-btn-primary chm-quest-target">Enter the Colosseum</Link>
+        <p>{practiced ? 'Your specimen is ready for its first hunt.' : 'Your specimen is ready for its first training match.'}</p>
+        <Link to={practiced ? 'arena' : 'arena/trial/start'} className="chm-btn chm-btn-primary chm-quest-target">{practiced ? 'Enter the Colosseum' : 'Train with Lumen'}</Link>
       </Panel>}
       {busy && mine.data?.length ? <BusyNote status={status} className="ml-auto -mt-4 justify-end" /> : null}
 
@@ -80,7 +81,7 @@ export default function Lab() {
         <details className="chm-lab-key">
           <summary><KeyRound className="h-4 w-4" aria-hidden="true" /> Read your sealed genes <ChevronDown className="ml-auto h-4 w-4" aria-hidden="true" /></summary>
           <div className="flex flex-wrap items-center gap-3 px-3 pb-3">
-            <p className="min-w-36 flex-1 text-sm">Sign once to read your private genes and cZAMA balance in this browser for 30 days. No gas required.</p>
+            <p className="min-w-36 flex-1 text-sm">{mode === 'circle' ? 'Unlock private genes and cZAMA balance for this session.' : 'Sign once to read your private genes and cZAMA balance for 30 days.'} No gas required.</p>
             <Button busy={busy === 'Unlock lab key'} onClick={() => run('Unlock lab key', () => labKey(account), 'Lab key unlocked')}>Unlock lab key</Button>
           </div>
         </details>

@@ -1,0 +1,12 @@
+{
+  "player": 4,
+  "requestId": "fc8a2e17-ae08-4058-92fd-8c6b0e22c3f3",
+  "circleLabKeySigned": true,
+  "status": "passed",
+  "externalWalletCalls": [
+    "eth_requestAccounts",
+    "personal_sign"
+  ],
+  "circleTransactionSubmissions": 1,
+  "flow": "wallet UI login -> animated NFT hatch -> Circle Lab key without another wallet signature"
+}

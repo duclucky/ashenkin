@@ -1,0 +1,32 @@
+{
+  "before": {
+    "balance": "1099800000",
+    "pot": "10000000",
+    "solves": 0
+  },
+  "jackpot": {
+    "status": "passed",
+    "round": 1,
+    "guessId": 5,
+    "player": 5,
+    "winner": "0xE7C029B751B6c56B680AC91bb1b3e2A81c1d1252",
+    "hash": "0x361dafb00a613a02dbd4cbc91d4ce84fd48975b9e49c483e5057d129a6c1014c",
+    "potBaseUnits": "10000000",
+    "balanceIncreaseBaseUnits": "10000000",
+    "relicId": 5,
+    "answerPublicAfterRoundEnded": [
+      9,
+      4,
+      1,
+      0
+    ],
+    "solvedUsingPrivateHintsOnly": true,
+    "probes": 4
+  },
+  "nextRound": {
+    "id": 2,
+    "player": 1,
+    "guessId": 6,
+    "hash": "0xa4cdc4961721fdfff6d3d03a50f89492861bbf0bbbbd8a255fd07869151da2ce"
+  }
+}

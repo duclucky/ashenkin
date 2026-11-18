@@ -1,0 +1,19 @@
+{
+  "phase": "after",
+  "checks": [
+    {
+      "name": "Raffle UI displays the paid winner and past draw",
+      "status": "passed"
+    },
+    {
+      "name": "Hall shows season 2, the earned crown and season 1 winners",
+      "status": "passed"
+    },
+    {
+      "name": "Oracle UI displays the expired round and rolled-over jackpot",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": [],
+  "status": "passed"
+}

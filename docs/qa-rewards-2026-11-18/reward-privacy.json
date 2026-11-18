@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-17T23:54:30.253Z",
+  "checks": [
+    {
+      "name": "live Oracle answer cannot be public-decrypted",
+      "status": "passed",
+      "reason": "ACL_DENIED"
+    },
+    {
+      "name": "live Oracle answer cannot be privately decrypted by a player",
+      "status": "passed",
+      "reason": "ACL_DENIED"
+    },
+    {
+      "name": "Oracle private hint cannot be read by another QA wallet",
+      "status": "passed",
+      "reason": "ACL_DENIED"
+    },
+    {
+      "name": "the same hint is readable by its owner",
+      "status": "passed"
+    },
+    {
+      "name": "raffle winner and pot handles are hidden before draw",
+      "status": "passed"
+    },
+    {
+      "name": "raffle tickets cannot be public-decrypted",
+      "status": "passed",
+      "reason": "ACL_DENIED"
+    },
+    {
+      "name": "raffle tickets cannot be privately read by a different keeper",
+      "status": "passed",
+      "reason": "ACL_DENIED"
+    },
+    {
+      "name": "owner can read their paid raffle tickets",
+      "status": "passed"
+    },
+    {
+      "name": "public Oracle pot remains decryptable: relayer is healthy",
+      "status": "passed"
+    }
+  ],
+  "status": "passed"
+}

@@ -1,0 +1,205 @@
+{
+  "at": "2026-11-18T04:34:10.131Z",
+  "checks": [
+    {
+      "name": "worker completed the live settlements and restoration",
+      "status": "passed"
+    },
+    {
+      "name": "live contract rules match the journaled original periods and guess limit",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: shorten-raffle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: shorten-season",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: shorten-oracle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: align-oracle-2",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: restore-raffle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: restore-season",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: restore-oracle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-probe-0",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-probe-1",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-probe-2",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-probe-3",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-claim",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-jackpot-verified",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: allow-ChimeraOracle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-open-expiry-round",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: allow-ChimeraRaffle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-extra-buyer-1",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: allow-ChimeraRaffle",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-extra-buyer-1",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-claim-seat-0",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-claim-seat-1",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-claim-seat-2",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-reserve-before",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-draw",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-payout-verified",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-raffle-reserve-after",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-reserve-before",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-payouts-verified",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-season-rejoin",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-expiry-verified",
+      "status": "passed"
+    },
+    {
+      "name": "receipt succeeded: reward-oracle-open-post-expiry-round",
+      "status": "passed"
+    },
+    {
+      "name": "raffle live branch passed",
+      "status": "passed"
+    },
+    {
+      "name": "season live branch passed",
+      "status": "passed"
+    },
+    {
+      "name": "oracleExpiry live branch passed",
+      "status": "passed"
+    },
+    {
+      "name": "fresh FHE decryption of the mined token event confirms the raffle payout",
+      "status": "passed"
+    },
+    {
+      "name": "raffle winner remains recorded on Sepolia",
+      "status": "passed"
+    },
+    {
+      "name": "fresh FHE decryption of the mined token event confirms season seat 1",
+      "status": "passed"
+    },
+    {
+      "name": "fresh FHE decryption of the mined token event confirms season seat 2",
+      "status": "passed"
+    },
+    {
+      "name": "fresh FHE decryption of the mined token event confirms season seat 3",
+      "status": "passed"
+    },
+    {
+      "name": "season prizes conserve the entire affordable pool including rounding",
+      "status": "passed"
+    },
+    {
+      "name": "fresh FHE decryption of the mined token event confirms the Oracle jackpot",
+      "status": "passed"
+    },
+    {
+      "name": "Oracle winning guess remains finalized",
+      "status": "passed"
+    },
+    {
+      "name": "Oracle expiry remains unsolved and closed",
+      "status": "passed"
+    }
+  ],
+  "liveRules": {
+    "raffle": 259200,
+    "oracle": 259200,
+    "dailyGuesses": 6,
+    "season": 1209600
+  },
+  "rareTitle": {
+    "scanned": 30,
+    "eligible": [],
+    "highestRareTraitCount": 2,
+    "naturallyQualifiedSepoliaClaimVerified": false,
+    "deterministicLocalBranchTests": 4
+  },
+  "ledger": {
+    "transactions": 31,
+    "gasEth": "0.000266805294799155",
+    "seasonEndGas": "12535761",
+    "allReceiptsSuccessful": true
+  },
+  "status": "passed"
+}

@@ -1,0 +1,19 @@
+
+
+  Reward settlement edge branches — local FHEVM
+    Raffle proof binding and zero-payment rounds
+      √ an all-unpaid round rolls forward with no winner, payout or Relic (288ms)
+      √ identical winner and pot values cannot reuse the prior round's KMS proof (712ms)
+      √ forged winner cleartexts and duplicate draw are rejected without consuming a valid payout (625ms)
+    Oracle winning-claim races
+      √ two correct claims can produce only one jackpot and one Relic (2238ms)
+      √ knowing all four genes without paying cannot win the jackpot (2475ms)
+      √ an exact claim finalized after expiry is rejected and its pot remains available (2235ms)
+    Season payout availability and precision
+      √ an empty season closes and restarts without attempting a payout (192ms)
+      √ one occupied third seat receives the entire affordable pool (549ms)
+      √ zero configured cash prizes still grant three crowns and caches (1009ms)
+      √ extreme valid weights keep six-decimal precision without uint64 multiplication overflow (912ms)
+
+
+  10 passing (11s)

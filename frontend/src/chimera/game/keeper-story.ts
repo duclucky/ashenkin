@@ -13,7 +13,7 @@ export type KeeperProgress = {
   expedition?: 'none' | 'away' | 'ready'
 }
 
-export type KeeperChapter = 'prologue' | 'beacon' | 'connect' | 'gas' | 'hatch' | 'fight' | 'settle' | 'sequence' | 'dispatch' | 'away' | 'return' | 'choose' | 'recover' | 'loading'
+export type KeeperChapter = 'prologue' | 'beacon' | 'gas' | 'hatch' | 'fight' | 'settle' | 'sequence' | 'dispatch' | 'away' | 'return' | 'choose' | 'recover' | 'loading'
 
 const PRACTICE_KEY = 'chm:starter-practice'
 
@@ -30,15 +30,7 @@ export function keeperGuideEnabled() {
 }
 
 export function keeperChapter(progress: KeeperProgress): KeeperChapter {
-  if (!progress.connected) {
-    if (!progress.practiced) return 'prologue'
-    return progress.beaconDone ? 'connect' : 'beacon'
-  }
-  const newKeeper = progress.genesis === 0 && progress.specimens?.length === 0 && progress.fights === 0 && progress.expedition === 'none' && !progress.pendingFight
-  if (newKeeper && !progress.practiced) return 'prologue'
-  if (newKeeper && !progress.beaconDone) return 'beacon'
-  if (newKeeper && progress.hasGas == null) return 'loading'
-  if (progress.hasGas === false) return 'gas'
+  if (!progress.connected) return 'hatch'
   if (progress.pendingFight) return 'settle'
   if (progress.expedition === 'ready') return 'return'
   if (!progress.specimens || progress.genesis == null || progress.fights == null) return 'loading'
@@ -46,6 +38,10 @@ export function keeperChapter(progress: KeeperProgress): KeeperChapter {
     if (progress.expedition === 'away') return 'away'
     return progress.genesis < 3 ? 'hatch' : 'recover'
   }
+  if (progress.fights === 0 && !progress.practiced) return 'prologue'
+  if (progress.fights === 0 && !progress.beaconDone) return 'beacon'
+  if (progress.hasGas == null) return 'loading'
+  if (progress.hasGas === false) return 'gas'
   if (progress.fights === 0) return 'fight'
   if (progress.claimedExpedition) return 'choose'
   if (progress.expedition === 'away') return 'away'

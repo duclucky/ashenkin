@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "guestGates": [
+    {
+      "route": "oracle",
+      "status": "passed"
+    },
+    {
+      "route": "relics",
+      "status": "passed"
+    },
+    {
+      "route": "raffle",
+      "status": "passed"
+    },
+    {
+      "route": "quests",
+      "status": "passed"
+    },
+    {
+      "route": "depths",
+      "status": "passed"
+    },
+    {
+      "route": "arena/trial/start",
+      "status": "passed"
+    }
+  ],
+  "ownerLanternTrial": "passed",
+  "playbookSaveReloadApplyDelete": "passed",
+  "beaconArchiveAndShelterEnding": "passed",
+  "unexpectedSigningOrTransactionRequests": 0
+}

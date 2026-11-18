@@ -1,0 +1,37 @@
+[
+  {
+    "name": "unauthenticated-mint-is-blocked",
+    "status": "passed",
+    "at": "2026-11-17T22:43:50.406Z"
+  },
+  {
+    "name": "another-wallet-cannot-operate-my-account",
+    "status": "passed",
+    "at": "2026-11-17T22:43:50.659Z"
+  },
+  {
+    "name": "foreign-origin-is-blocked",
+    "status": "passed",
+    "at": "2026-11-17T22:43:50.786Z"
+  },
+  {
+    "name": "arbitrary-nft-approval-is-blocked",
+    "status": "passed",
+    "at": "2026-11-17T22:43:50.917Z"
+  },
+  {
+    "name": "another-account-cannot-read-my-transaction",
+    "status": "passed",
+    "at": "2026-11-17T22:43:51.046Z"
+  },
+  {
+    "name": "wrong-signature-and-replayed-login-are-blocked",
+    "status": "passed",
+    "at": "2026-11-17T22:43:51.996Z"
+  },
+  {
+    "name": "zama-rejects-decrypting-another-keepers-element",
+    "status": "passed",
+    "at": "2026-11-17T22:43:58.881Z"
+  }
+]

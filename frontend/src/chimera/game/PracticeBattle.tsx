@@ -7,14 +7,13 @@ import { MOVE_ICON, PlanPicker, RoundPips } from './Tactics'
 import { cipherTrialView, continueCipherTrial, fightCipherTrial, retryCipherTrial, startCipherTrial, TRAINING_POWER, type TrialView } from './cipher-trial'
 import { finishStarterPractice } from './keeper-story'
 import { getWallet } from '../chain'
+import { useCreature, useTraits } from '../hooks'
+import { speciesName } from '../genetics'
 import { saveStarterPracticePlan } from './practice-draft'
 import { ARENA_TIMING, ArenaStage } from './ArenaStage'
 import { sfx, unlockAudio } from './sfx'
 
-const PLAYERS = [
-  { name: 'Your specimen', traits: [3, 6, 7, 5, 8, 11, 5], seed: 3 },
-  { name: 'Training rival', traits: [7, 2, 12, 8, 5, 7, 11], seed: 9 },
-] satisfies Parameters<typeof ArenaStage>[0]['fighters']
+const RIVAL = { name: 'Training rival', traits: [7, 2, 12, 8, 5, 7, 11], seed: 9 }
 const STEPS = [
   { key: 'blind', title: 'Blind encounter', task: 'Choose three commands. Your rival’s plan and local rolls are concealed.' },
   { key: 'exposed', title: 'The leaked plan', task: 'Same rival, same rolls. Counter all three exposed commands to advance.' },
@@ -22,7 +21,10 @@ const STEPS = [
 ] as const
 type Replay = { round: number; beat: 'moves' | 'verdict' }
 
-export function PracticeBattle({ onReady, starter = false }: { onReady?: (moves: number[]) => void; starter?: boolean }) {
+export function PracticeBattle({ specimen, onReady, starter = false }: { specimen: number; onReady: (moves: number[]) => void; starter?: boolean }) {
+  const creature = useCreature(specimen)
+  const traits = useTraits(creature.data).data
+  const player = { name: traits ? speciesName(traits) : `Specimen #${specimen}`, traits: traits ?? null, seed: specimen }
   const [plan, setPlan] = useState([0, 1, 2])
   const [pickedRounds, setPickedRounds] = useState<number[]>([])
   const [trial, setTrial] = useState(() => startCipherTrial())
@@ -124,7 +126,7 @@ export function PracticeBattle({ onReady, starter = false }: { onReady?: (moves:
     <div className="chm-trial-body">
       <p className="chm-trial-boundary"><Lock size={13} aria-hidden="true" /> Local training · no encryption, gas or rewards</p>
       <div ref={stage} tabIndex={-1} aria-label="Practice arena" role="group" className="chm-practice-stage">
-        <ArenaStage fighters={PLAYERS} beat={finished ? 'result' : live?.beat === 'verdict' ? 'impact' : live ? 'moves' : fighting ? 'intro' : 'idle'}
+        <ArenaStage fighters={[player, RIVAL]} beat={finished ? 'result' : live?.beat === 'verdict' ? 'impact' : live ? 'moves' : fighting ? 'intro' : 'idle'}
           round={live?.round} scores={view.rows.slice(0, visible).map(row => row.won)}
           commands={current ? [current.mine, current.rival] : undefined} winner={finished ? (view.wins ?? 0) >= 2 : live?.beat === 'verdict' ? current?.won : undefined} />
       </div>
@@ -134,7 +136,7 @@ export function PracticeBattle({ onReady, starter = false }: { onReady?: (moves:
         <ol className="chm-trial-tally" aria-label="Your field trial results">{[{ label: 'Blind', bout: trial.blind }, { label: 'Exposed', bout: trial.exposed }, { label: 'Replanned', bout: trial.result }].map(row => <li key={row.label}><span>{row.label}</span><b>{row.bout?.wins ?? 0}–{3 - (row.bout?.wins ?? 0)}</b></li>)}</ol>
         <p>Leaked commands let you choose three counters. A past win record cannot tell you a new plan or its next roll.</p>
         <p>On Sepolia, FHE keeps plans, power and Zama rolls encrypted during scoring. The public proof reveals round winners.</p>
-        {onReady ? <Button className="w-full" onClick={() => onReady([...trial.result!.mine])}>Take plan to Colosseum <ArrowRight size={16} aria-hidden="true" /></Button> : <Link to="lab" className="chm-btn chm-btn-primary w-full">Prepare a Sepolia specimen <ArrowRight size={16} aria-hidden="true" /></Link>}
+        <Button className="w-full" onClick={() => onReady([...trial.result!.mine])}>Take plan to Colosseum <ArrowRight size={16} aria-hidden="true" /></Button>
         <Link to="fairness" className="chm-trial-link">How to verify a Sepolia fight</Link>
         <Button variant="ghost" onClick={restart}><RotateCcw size={14} aria-hidden="true" /> New field trial</Button>
       </div> : finished ? <div className="chm-trial-result">
@@ -155,7 +157,7 @@ export function PracticeBattle({ onReady, starter = false }: { onReady?: (moves:
         <div ref={commands}><PlanPicker plan={plan} onChange={choosePlan} label="Your training plan" practice guided={firstLesson && !commandsReady} /></div>
         <div ref={fightAction}><Button className={`w-full${firstLesson && commandsReady ? ' chm-quest-target' : ''}`} onClick={fight}><Swords size={16} aria-hidden="true" /> Fight three rounds</Button></div>
       </div>}
-      <p className="chm-trial-footnote">Equal power {TRAINING_POWER} · counter +{MOVE_BONUS} · browser rolls 0–{ROLL_BOUND - 1}. No real NFT stats are used. Training resets when you leave.</p>
+      <p className="chm-trial-footnote">Your NFT trains at equal practice power {TRAINING_POWER}. Counter +{MOVE_BONUS} · browser rolls 0–{ROLL_BOUND - 1}.</p>
     </div>
   </section>
 }

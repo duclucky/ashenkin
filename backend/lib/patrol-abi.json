@@ -1,0 +1,651 @@
+{
+  "ChimeraLab": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ChimeraArena": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDefender",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "since",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "stakeHandle",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "ChimeraExpeditions": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "expeditionId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "successHandle",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "lootHandle",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "sentHandle",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ExpeditionReturned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "expeditionId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "creatureId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "zone",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "endsAt",
+          "type": "uint64"
+        }
+      ],
+      "name": "ExpeditionStarted",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "expeditionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "expeditionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getExpedition",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "creatureId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint8",
+              "name": "zone",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "claimed",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "keeper",
+              "type": "address"
+            },
+            {
+              "internalType": "uint64",
+              "name": "startedAt",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "endsAt",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct ChimeraExpeditions.Expedition",
+          "name": "e",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "successHandle",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "lootHandle",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "sentHandle",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "zone",
+          "type": "uint8"
+        }
+      ],
+      "name": "getZone",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "duration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint16",
+              "name": "difficulty",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint8",
+              "name": "element",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint64",
+              "name": "lootBase",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "lootRoll",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "consolation",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct ChimeraExpeditions.Zone",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maxDailyRuns",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        }
+      ],
+      "name": "runsToday",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "creatureId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "zone",
+          "type": "uint8"
+        }
+      ],
+      "name": "start",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "expeditionId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ChimeraTraining": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "creatureId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProfile",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint32",
+              "name": "xp",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint8",
+              "name": "level",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "pending",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint16",
+              "name": "trainings",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint64",
+              "name": "trainedAt",
+              "type": "uint64"
+            },
+            {
+              "internalType": "address",
+              "name": "keeper",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "spentXp",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint64",
+              "name": "fee",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct ChimeraTraining.Profile",
+          "name": "profile",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint8",
+          "name": "stage",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "paidHandle",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "bonusHandle",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "ChimeraColosseum": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDefender",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "since",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "replans",
+          "type": "uint32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "stakeHandle",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "planHandle",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "ChimeraOracle": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "guessId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ChimeraDepths": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "activeRun",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "runId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRun",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "keeper",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "creatureId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint8",
+              "name": "floor",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "cleared",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "lit",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "over",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "revealing",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "recorded",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint64",
+              "name": "startedAt",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct ChimeraDepths.Run",
+          "name": "run",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "hp",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "maxHp",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "sack",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "litDoor",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "survived",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "paid",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maxDailyRuns",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "keeper",
+          "type": "address"
+        }
+      ],
+      "name": "runsToday",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

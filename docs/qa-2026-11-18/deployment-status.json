@@ -1,0 +1,17 @@
+{
+  "image": "ashenkin:keeper-playtest-20261118-final",
+  "imageId": "sha256:55e50167533717ff35c5d863ea10d417eaca2ddb014bee04c12d3ae57d14b1d6",
+  "container": "running",
+  "health": "healthy",
+  "publicHealth": {
+    "status": "ok"
+  },
+  "keeperPublicFlags": {
+    "enabled": true,
+    "email": true,
+    "sponsored": true,
+    "signedIn": false,
+    "address": null,
+    "method": null
+  }
+}

@@ -2,8 +2,13 @@ services:
   game:
     image: "${ASHENKIN_IMAGE:-ashenkin:release}"
     restart: unless-stopped
+    env_file:
+      - path: .env.keeper
+        required: false
     environment:
       PUBLIC_ORIGIN: https://ashenkin.xyz
+    volumes:
+      - keeper-data:/app/backend/db
     ports:
       - "127.0.0.1:4173:4173"
     healthcheck:
@@ -22,3 +27,6 @@ services:
     depends_on:
       game:
         condition: service_healthy
+
+volumes:
+  keeper-data:

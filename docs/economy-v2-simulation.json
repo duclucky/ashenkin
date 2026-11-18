@@ -1,0 +1,78 @@
+{
+  "assumptions": "Each day receives the stated fee inflow before the first payout and spends the entire global budget. No token price, new-player demand, or profit is assumed.",
+  "unit": "cZAMA atomic units (1e6)",
+  "scenarios": [
+    {
+      "days": 30,
+      "seed": "300000000000",
+      "dailyFees": "0",
+      "reserve": "221910112026",
+      "paid": "78089887974",
+      "inflow": "0"
+    },
+    {
+      "days": 90,
+      "seed": "300000000000",
+      "dailyFees": "0",
+      "reserve": "121419591831",
+      "paid": "178580408169",
+      "inflow": "0"
+    },
+    {
+      "days": 365,
+      "seed": "300000000000",
+      "dailyFees": "0",
+      "reserve": "7655389381",
+      "paid": "292344610619",
+      "inflow": "0"
+    },
+    {
+      "days": 30,
+      "seed": "300000000000",
+      "dailyFees": "500000000",
+      "reserve": "234798679405",
+      "paid": "80201320595",
+      "inflow": "15000000000"
+    },
+    {
+      "days": 90,
+      "seed": "300000000000",
+      "dailyFees": "500000000",
+      "reserve": "150887403286",
+      "paid": "194112596714",
+      "inflow": "45000000000"
+    },
+    {
+      "days": 365,
+      "seed": "300000000000",
+      "dailyFees": "500000000",
+      "reserve": "55892379020",
+      "paid": "426607620980",
+      "inflow": "182500000000"
+    },
+    {
+      "days": 30,
+      "seed": "300000000000",
+      "dailyFees": "3000000000",
+      "reserve": "300000000000",
+      "paid": "90000000000",
+      "inflow": "90000000000"
+    },
+    {
+      "days": 90,
+      "seed": "300000000000",
+      "dailyFees": "3000000000",
+      "reserve": "300000000000",
+      "paid": "270000000000",
+      "inflow": "270000000000"
+    },
+    {
+      "days": 365,
+      "seed": "300000000000",
+      "dailyFees": "3000000000",
+      "reserve": "300000000000",
+      "paid": "1095000000000",
+      "inflow": "1095000000000"
+    }
+  ]
+}

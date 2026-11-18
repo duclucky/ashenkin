@@ -1,0 +1,3435 @@
+{
+  "startedAt": "2026-11-17T22:05:28.813Z",
+  "origin": "https://ashenkin.xyz",
+  "players": [
+    {
+      "player": 1,
+      "steps": {
+        "starter-mint": {
+          "hash": "0x2daff4ff680c707e95e176cccd4ad33293187997b5c59b59df971bbd2c960c2a",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 6,
+          "status": "passed",
+          "elapsedMs": 13836,
+          "finishedAt": "2026-11-17T22:12:40.384Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "6e848b74-19d3-4977-8dae-cbae92e0696d"
+          },
+          "hash": "0x8819d6599583f0f213a6e8871720df7b3de71aa6ecadaf7a08dac542215e6345",
+          "gasUsed": "380110",
+          "gasCostWei": "2280686607700",
+          "status": "passed",
+          "elapsedMs": 12275,
+          "finishedAt": "2026-11-17T22:13:38.265Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "91451894-c6cd-46d0-a1b0-0043822caa1e"
+          },
+          "hash": "0x4962f4b881016474563c710b9bdbd8b3e2382d6062f4996e76d466555b4d4c4a",
+          "gasUsed": "1744657",
+          "gasCostWei": "9770210049275",
+          "status": "passed",
+          "elapsedMs": 12382,
+          "finishedAt": "2026-11-17T22:13:50.648Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "523604d0-6b33-4b3d-a6c0-4e273875bd24"
+          },
+          "hash": "0xce037074605c24810d749cfa1837b77e2c51d7066f04d0c6dc886ff87ae0f608",
+          "gasUsed": "276314",
+          "gasCostWei": "1547379123550",
+          "status": "passed",
+          "elapsedMs": 12425,
+          "finishedAt": "2026-11-17T22:14:03.074Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 35103,
+          "finishedAt": "2026-11-17T22:14:38.177Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "c777aa2e-d12b-4ca2-a6b8-fdb701e00d97"
+          },
+          "hash": "0x939bdfdd42cae844b1f681bd89db252cabd626d34e5bc643ca4cef9aba1c09a4",
+          "gasUsed": "10909568",
+          "gasCostWei": "32292943125376",
+          "status": "passed",
+          "elapsedMs": 8834,
+          "finishedAt": "2026-11-17T22:15:02.032Z"
+        },
+        "hunt-start": {
+          "battleId": 2,
+          "handles": [
+            "0xa476aaf5508e6e960625882b1f27dba0e87659b6bfff0000000000aa36a70000",
+            "0x045facc4ccc1af4ec39c93b60d5dab46dda9137341ff0000000000aa36a70000",
+            "0xf9334ec57bbbf099bbe639c763624c31c5030a55b7ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 24102,
+          "finishedAt": "2026-11-17T22:15:02.279Z"
+        },
+        "hunt-settle": {
+          "hash": "0x6cc1f89e0397a3fe8c3a86f36d20fb676b7195f59a0e475e48c182e4329cd4a6",
+          "gasUsed": "1603451",
+          "gasCostWei": "33672471",
+          "status": "passed",
+          "elapsedMs": 26443,
+          "finishedAt": "2026-11-17T22:15:28.723Z"
+        },
+        "hunt-proof": {
+          "battleId": 2,
+          "rounds": [
+            true,
+            true,
+            false
+          ],
+          "won": true,
+          "settlement": "0x6cc1f89e0397a3fe8c3a86f36d20fb676b7195f59a0e475e48c182e4329cd4a6",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3834,
+          "finishedAt": "2026-11-17T22:15:32.569Z"
+        },
+        "expedition-approve": {
+          "request": {
+            "id": "24e9cbf3-f735-4f3a-9432-2c4a98f3e664"
+          },
+          "hash": "0xe4eeec921044f3cf94a27f8298fce47398f0b2f95acd51a6dc3e5fdf11890bb2",
+          "gasUsed": "128294",
+          "gasCostWei": "578545000350",
+          "status": "passed",
+          "elapsedMs": 12784,
+          "finishedAt": "2026-11-17T22:20:26.529Z"
+        },
+        "expedition-dispatch": {
+          "request": {
+            "id": "7e7edb1a-37ac-49c3-9a16-e3ff391fdc4e"
+          },
+          "hash": "0xd95b206a997cc443cf0d78d4c7819434c019158e30ecc1a918bc2c2832b2aa0d",
+          "gasUsed": "2317609",
+          "gasCostWei": "9177900825457",
+          "status": "passed",
+          "elapsedMs": 11393,
+          "finishedAt": "2026-11-17T22:24:14.396Z"
+        },
+        "expedition-start": {
+          "expeditionId": 2,
+          "endsAt": 1794954852,
+          "nftId": 6,
+          "status": "passed",
+          "elapsedMs": 11554,
+          "finishedAt": "2026-11-17T22:24:14.555Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "3299962b-91ab-4847-824d-952f98a93338"
+          },
+          "hash": "0x73611891005eb118bb0c5337ce656c611264f80d2a469669809c871d5e641892",
+          "gasUsed": "141024",
+          "gasCostWei": "567377628480",
+          "status": "passed",
+          "elapsedMs": 9586,
+          "finishedAt": "2026-11-17T22:20:39.125Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "2da432bc-6ac4-47b5-be42-be4911cafc37"
+          },
+          "hash": "0x42ae428476787820e2cab29a9c389a1948a600126ed7b7aba681a0cde2e3fcdc",
+          "gasUsed": "128321",
+          "gasCostWei": "516270029670",
+          "status": "passed",
+          "elapsedMs": 12489,
+          "finishedAt": "2026-11-17T22:20:51.616Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "067acb4e-cce2-4882-920e-bfdef4eb98c8"
+          },
+          "hash": "0x1f763ab300cbcd63a6bcae13f0b98077fcd81fabdb2e45671c117ed67839e76a",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 7833,
+          "finishedAt": "2026-11-17T22:24:25.494Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "57306c7d-3ea6-443f-bc58-f8cff3ce0aea"
+          },
+          "hash": "0xb1adaff0fddcd9a020125fae8add3519736f9220a11f414fe848753c27244948",
+          "gasUsed": "2899115",
+          "gasCostWei": "3301535354920",
+          "status": "passed",
+          "elapsedMs": 10180,
+          "finishedAt": "2026-11-17T22:29:03.765Z"
+        },
+        "boss-proof": {
+          "strikeId": 2,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:12.161Z"
+        },
+        "expedition-claim": {
+          "request": {
+            "id": "91132b5b-49db-43be-ae69-28e3fb35a7ae"
+          },
+          "hash": "0xb890db228ad7fb207ee58c8a1cff4d59128369fdd5b18280969651e80c6d64d1",
+          "gasUsed": "2204672",
+          "gasCostWei": "29366268519424",
+          "status": "passed",
+          "elapsedMs": 13098,
+          "finishedAt": "2026-11-17T22:34:25.106Z"
+        },
+        "expedition-loot": {
+          "privateReportVerified": true,
+          "values": [
+            "true",
+            "4617225"
+          ],
+          "sent": [
+            "4617225"
+          ],
+          "specimenReturned": true,
+          "status": "passed",
+          "elapsedMs": 12646,
+          "finishedAt": "2026-11-17T22:41:01.770Z"
+        },
+        "ascension-new-offering": {
+          "request": {
+            "id": "0e44c366-837b-45e9-b97c-4c0028bf3cca"
+          },
+          "hash": "0x238f0dde270c4acedff7a45095c5c314f8c2c90669e6e73389ccc290bf13855c",
+          "gasUsed": "6010414",
+          "gasCostWei": "51208829457038",
+          "status": "passed",
+          "elapsedMs": 16034,
+          "finishedAt": "2026-11-17T22:34:52.230Z"
+        },
+        "ascension-approve": {
+          "request": {
+            "id": "2683b2c7-6ea2-472f-b913-86e442b01ea3"
+          },
+          "hash": "0x73f27d51362fe90f3c290acb004d9df4d45ec355ef4ee4228b5f1b4f7add6b68",
+          "gasUsed": "130701",
+          "gasCostWei": "1113574741917",
+          "status": "passed",
+          "elapsedMs": 10293,
+          "finishedAt": "2026-11-17T22:35:02.769Z"
+        },
+        "ascension-offer": {
+          "request": {
+            "id": "fb204d94-3c52-46a3-9972-18370912514e"
+          },
+          "hash": "0xffd1e4d485b7c62be0c8e6bdc0f6d16faad2b5be744bbb8d5e5aa3d3a28f9832",
+          "gasUsed": "1168780",
+          "gasCostWei": "9817771869260",
+          "status": "passed",
+          "elapsedMs": 10420,
+          "finishedAt": "2026-11-17T22:35:13.227Z"
+        },
+        "allow-ChimeraTraining": {
+          "request": {
+            "id": "1d8c3336-60d4-4c01-a297-31778cafb451"
+          },
+          "hash": "0x3c17c998bcc4c58931487dc9cbc5be6d438077d4afe016bbdf8f84a985024413",
+          "gasUsed": "133549",
+          "gasCostWei": "1121813870333",
+          "status": "passed",
+          "elapsedMs": 25757,
+          "finishedAt": "2026-11-17T22:35:39.097Z"
+        },
+        "training-start": {
+          "request": {
+            "id": "6b358a6a-2164-43e0-b385-508ed0b2219e"
+          },
+          "hash": "0xa31c8ca4c8a3c95562dee2ab11baa5a7397d47e4b200235d5b4d352f376df03f",
+          "gasUsed": "1743259",
+          "gasCostWei": "12551497921921",
+          "status": "passed",
+          "elapsedMs": 12923,
+          "finishedAt": "2026-11-17T22:35:52.022Z"
+        },
+        "training-complete": {
+          "hash": "0x28c890d6caf7a13ee3167550918b36e3b3eec141df9b94e26f5bee6f274a1356",
+          "gasUsed": "2742385",
+          "gasCostWei": "52105315",
+          "status": "passed",
+          "elapsedMs": 21103,
+          "finishedAt": "2026-11-17T22:36:13.312Z"
+        },
+        "training-reveal-bonus": {
+          "request": {
+            "id": "4053b130-9cf7-4c52-b3ad-12cec3d96304"
+          },
+          "hash": "0xcad80074f763b25ff04208c473f4f6fc1af765e172f65dccccfd6978079667d6",
+          "gasUsed": "46418",
+          "gasCostWei": "111404081942",
+          "status": "passed",
+          "elapsedMs": 13055,
+          "finishedAt": "2026-11-17T22:36:26.379Z"
+        },
+        "quest-single-task": {
+          "request": {
+            "id": "202e201b-9737-40df-9da0-1c013bb7bde6"
+          },
+          "hash": "0x2f10c70f7b58abe5a31cb29ea6b9280a559d76e4b57af454fe80210707a5fd61",
+          "gasUsed": "1548663",
+          "gasCostWei": "3716819075934",
+          "status": "passed",
+          "elapsedMs": 7759,
+          "finishedAt": "2026-11-17T22:36:50.515Z"
+        },
+        "quest-daily-chest": {
+          "request": {
+            "id": "d5904f15-d5e8-418d-8042-15485f5888aa"
+          },
+          "hash": "0xa4fa2c1e632d3905c693a8779ba6a9f28fba37ff33bf4357a278ec077ac2cf77",
+          "gasUsed": "1548440",
+          "gasCostWei": "3716283871920",
+          "status": "passed",
+          "elapsedMs": 12730,
+          "finishedAt": "2026-11-17T22:37:03.246Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "3e8722c3-6665-41e2-b56e-97d83e4ae258"
+          },
+          "hash": "0x9c532d333752fb24d77b78c38a476be1302a23adbeb6a744bbff28628b117971",
+          "gasUsed": "1552753",
+          "gasCostWei": "1863331549554",
+          "status": "passed",
+          "elapsedMs": 10290,
+          "finishedAt": "2026-11-17T22:37:13.638Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "536ae890-51dc-4e8e-9c91-3ef5f7c1b0d5"
+          },
+          "status": "expected-revert",
+          "error": "Sepolia transaction reverted: 0x41fc62453543f3a0bf7c68bc2393b0661403674e7e2b691fd7ce9ee6e9c37d09",
+          "elapsedMs": 12873,
+          "reason": "Another keeper claimed the same throne first; historical Sepolia scores verify NotEnough.",
+          "mineAtBlock": "7",
+          "holderScoreAtBlock": "7",
+          "hash": "0x41fc62453543f3a0bf7c68bc2393b0661403674e7e2b691fd7ce9ee6e9c37d09",
+          "gasCostWei": "112679290164"
+        },
+        "boss-wave2-strike": {
+          "request": {
+            "id": "00c0fc74-4251-4d1e-af25-cab02561f9ec"
+          },
+          "hash": "0xab67106914489e381b10166d94f1a6350088a492df457b25ffc58270fed6f0de",
+          "gasUsed": "2754365",
+          "gasCostWei": "13213069007370",
+          "status": "passed",
+          "elapsedMs": 10596,
+          "finishedAt": "2026-11-17T22:45:16.528Z"
+        },
+        "boss-wave2-proof": {
+          "strikeId": 11,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:45:29.074Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "bfdaeaa3-f1ef-45fa-9c3f-ac0d3f1ef43d"
+          },
+          "hash": "0x14e171fb332986e0ce25bb7b4c9e2223dfe69d82980cf67b33b7ba8a98b12376",
+          "gasUsed": "1550467",
+          "gasCostWei": "8405297121913",
+          "status": "passed",
+          "elapsedMs": 10739,
+          "finishedAt": "2026-11-17T22:46:12.955Z"
+        },
+        "training-and-ascension-state": {
+          "level": 1,
+          "trainings": 1,
+          "offeringPermanentlyVaulted": true,
+          "status": "passed",
+          "elapsedMs": 508,
+          "finishedAt": "2026-11-17T22:49:15.726Z"
+        },
+        "challenge-roaming-wild": {
+          "request": {
+            "id": "f4db5225-bcb8-4fba-a786-013e3da56ca3"
+          },
+          "hash": "0x11c5a13ec149300a380b22a1acf7b12427b1298b6df15ef26ef034b245eea2df",
+          "gasUsed": "4632719",
+          "gasCostWei": "38915075868669",
+          "status": "passed",
+          "elapsedMs": 11008,
+          "finishedAt": "2026-11-17T22:49:49.365Z"
+        },
+        "challenge-wild-settle": {
+          "hash": "0x5cb7d2072f2e7cb19f1e53f3066985c00b2456274561b852fe8b16fa534c3d9d",
+          "gasUsed": "557298",
+          "gasCostWei": "11703258",
+          "status": "passed",
+          "elapsedMs": 36629,
+          "finishedAt": "2026-11-17T22:50:26.237Z"
+        },
+        "challenge-wild-proof": {
+          "battleId": 13,
+          "rounds": [
+            false,
+            false,
+            false
+          ],
+          "won": false,
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3779,
+          "finishedAt": "2026-11-17T22:50:30.018Z"
+        },
+        "season-early-end-gate": {
+          "expectedRevert": "SeasonRunning",
+          "verifiedOnSepolia": true,
+          "status": "passed",
+          "elapsedMs": 99,
+          "finishedAt": "2026-11-17T22:50:30.118Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x86858726ee10db88cc03cf7634d5b9cf7081c7d5d46a63b1f55c644dd5993286",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 299,
+          "finishedAt": "2026-11-17T22:52:01.068Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Ashukor #6",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/6/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 4916,
+          "finishedAt": "2026-11-17T22:52:05.984Z"
+        }
+      },
+      "address": "0x5f20BB8deEAcAF17e0610d9803C9A0B8489476F9",
+      "identity": "0xDD2B4AE98ca38C76a090211aDeD526773719B068",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x447873f69628e55858f92b4323531d501afc4c4818c2e21d26667dc3d74c92a2"
+      ],
+      "nftId": 6,
+      "finalEth": "0.022268190012981412"
+    },
+    {
+      "player": 2,
+      "steps": {
+        "starter-mint": {
+          "hash": "0xd995d69572943617cf16bbf8ac1b4db7ce390ca124112d394b318bfb5c3282a4",
+          "gasUsed": "6208539",
+          "gasCostWei": "7450246775165844",
+          "nftId": 4,
+          "status": "passed",
+          "elapsedMs": 13886,
+          "finishedAt": "2026-11-17T22:12:40.428Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "34a7a280-0e3f-4125-9bf0-8a3f9e3a4df0"
+          },
+          "hash": "0x33e9b2e8d33fa7161f1f791a920df7ffd8191dea591511b9931ae78cb5d0b8ea",
+          "gasUsed": "282190",
+          "gasCostWei": "1693159753300",
+          "status": "passed",
+          "elapsedMs": 12301,
+          "finishedAt": "2026-11-17T22:13:38.281Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "97a7c803-1f7d-4f8a-af59-3a5e557e4fb5"
+          },
+          "hash": "0x67536231f3afbe3f980c01c40eaa50752ff321f1b9dda4c3c1550f86b265b017",
+          "gasUsed": "1744657",
+          "gasCostWei": "9770210049275",
+          "status": "passed",
+          "elapsedMs": 12371,
+          "finishedAt": "2026-11-17T22:13:50.653Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "ba65b1e3-9fd2-44ce-8b24-83bc30122fa2"
+          },
+          "hash": "0x43c51fa1efdf2094b3688d795f076cdb906b6813fd0f92e04e611d3c43344205",
+          "gasUsed": "276314",
+          "gasCostWei": "1547379123550",
+          "status": "passed",
+          "elapsedMs": 12370,
+          "finishedAt": "2026-11-17T22:14:03.029Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 10164,
+          "finishedAt": "2026-11-17T22:14:13.194Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "84326795-180f-4799-b792-5855d8ac566c"
+          },
+          "hash": "0x7210c30624ce58ac15b83a356d5c067c24c90808fa6ca39df1ff2909d1a54ede",
+          "gasUsed": "10821644",
+          "gasCostWei": "32032683073708",
+          "status": "passed",
+          "elapsedMs": 10240,
+          "finishedAt": "2026-11-17T22:15:01.936Z"
+        },
+        "hunt-start": {
+          "battleId": 3,
+          "handles": [
+            "0x63942e5d03ce7f23747d4f2b2184fccb547d704486ff0000000000aa36a70000",
+            "0xe66c3aa87dad333c5fd798c3da89cfcccaf21ed64aff0000000000aa36a70000",
+            "0xdfcbabe0674cfa2fe5ddb93d2c67e8c996dc89c883ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 49004,
+          "finishedAt": "2026-11-17T22:15:02.198Z"
+        },
+        "hunt-settle": {
+          "hash": "0x1d9f1b40e10bb3bd8538b39fa946049dddd4f5135d94f5a9383e99f8d0bf0bb1",
+          "gasUsed": "1567269",
+          "gasCostWei": "32912649",
+          "status": "passed",
+          "elapsedMs": 13532,
+          "finishedAt": "2026-11-17T22:15:15.731Z"
+        },
+        "hunt-proof": {
+          "battleId": 3,
+          "rounds": [
+            true,
+            true,
+            false
+          ],
+          "won": true,
+          "settlement": "0x1d9f1b40e10bb3bd8538b39fa946049dddd4f5135d94f5a9383e99f8d0bf0bb1",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3380,
+          "finishedAt": "2026-11-17T22:15:19.112Z"
+        },
+        "expedition-approve": {
+          "request": {
+            "id": "f25a48f5-5516-45d8-a32d-c1d90d47e254"
+          },
+          "hash": "0x954ca133cd43259ed88fb8a30a8f7451d34b32d784ab6877df88a23c9c6d09d6",
+          "gasUsed": "128294",
+          "gasCostWei": "578545000350",
+          "status": "passed",
+          "elapsedMs": 12772,
+          "finishedAt": "2026-11-17T22:20:26.539Z"
+        },
+        "expedition-dispatch": {
+          "request": {
+            "id": "462267f5-e416-4d5a-a938-90160aa20a8c"
+          },
+          "hash": "0x629de8d3926f984cd905f1b0f1f6900c56203320c378f84ddc35cc50ed13c9ca",
+          "gasUsed": "2405529",
+          "gasCostWei": "9237406963617",
+          "status": "passed",
+          "elapsedMs": 11413,
+          "finishedAt": "2026-11-17T22:24:14.436Z"
+        },
+        "expedition-start": {
+          "expeditionId": 1,
+          "endsAt": 1794954852,
+          "nftId": 4,
+          "status": "passed",
+          "elapsedMs": 11574,
+          "finishedAt": "2026-11-17T22:24:14.597Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "9a6e12b0-d7eb-452c-8389-8a3186b88d2e"
+          },
+          "hash": "0xcfbee12e7a3f08bc638c86b53d231a4c59fc63fb7d44c4d373a1bfaf35040b5f",
+          "gasUsed": "141024",
+          "gasCostWei": "567377628480",
+          "status": "passed",
+          "elapsedMs": 9661,
+          "finishedAt": "2026-11-17T22:20:39.198Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "99358981-1368-460c-a970-8cc71bfbb435"
+          },
+          "hash": "0x113f3db6b4a259b8efb7db7c826ff7e6e779806b3e2c129ef52c7a58e4e51803",
+          "gasUsed": "128321",
+          "gasCostWei": "516270029670",
+          "status": "passed",
+          "elapsedMs": 12422,
+          "finishedAt": "2026-11-17T22:20:51.620Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "89283fde-29c9-4672-ac83-2dd07e008ba1"
+          },
+          "hash": "0xda353800b59d0544204ee0a6c70421ec76e5a0818d20dc1fe6149102be62c2e7",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 7839,
+          "finishedAt": "2026-11-17T22:24:25.491Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "8dc3de94-3b62-4dc5-a59e-1e392cca229d"
+          },
+          "hash": "0x4230469a60047cb01b997f39771d22e20b4003caa4daad09703baa77b544a7ae",
+          "gasUsed": "3320799",
+          "gasCostWei": "3781752467592",
+          "status": "passed",
+          "elapsedMs": 10125,
+          "finishedAt": "2026-11-17T22:29:03.713Z"
+        },
+        "boss-proof": {
+          "strikeId": 1,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:12.138Z"
+        },
+        "expedition-claim": {
+          "request": {
+            "id": "046b2f21-940b-466d-84de-57a69cf5bc8c"
+          },
+          "hash": "0xa05cba9709c67b7ec66709e482bd334b6a8e71945ea7b02ef883779b89ce13ef",
+          "gasUsed": "2239178",
+          "gasCostWei": "29825889026026",
+          "status": "passed",
+          "elapsedMs": 13143,
+          "finishedAt": "2026-11-17T22:34:25.182Z"
+        },
+        "expedition-loot": {
+          "privateReportVerified": true,
+          "values": [
+            "true",
+            "5635339"
+          ],
+          "sent": [
+            "5635339"
+          ],
+          "specimenReturned": true,
+          "status": "passed",
+          "elapsedMs": 12643,
+          "finishedAt": "2026-11-17T22:41:01.788Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "4c6c4345-f0b2-4bae-b363-43626c510e8a"
+          },
+          "hash": "0xd28a8ef1703bc28cc94f567700c582c2253310cf5a7ced38164614579f77d914",
+          "gasUsed": "1543172",
+          "gasCostWei": "1851834177096",
+          "status": "passed",
+          "elapsedMs": 10280,
+          "finishedAt": "2026-11-17T22:37:13.636Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "8517dde4-11d2-478d-a647-e513a3c8694e"
+          },
+          "hash": "0x82f57b3029d8e0ada57aabe2c60d47cfcc8dad5580dce2c61392d658bf329c19",
+          "gasUsed": "183035",
+          "gasCostWei": "219645294630",
+          "status": "passed",
+          "elapsedMs": 12920,
+          "finishedAt": "2026-11-17T22:37:26.768Z"
+        },
+        "boss-wave2-strike": {
+          "request": {
+            "id": "b960e24d-ba57-4285-8cec-64ddb3b60ba9"
+          },
+          "hash": "0xf0a1d03c9c62023b7b81826e312e7d2bfa84043b30ad177b12ab05c0615b587b",
+          "gasUsed": "2729438",
+          "gasCostWei": "9818165148444",
+          "status": "passed",
+          "elapsedMs": 10606,
+          "finishedAt": "2026-11-17T22:45:39.997Z"
+        },
+        "boss-wave2-finalize-kill": {
+          "request": {
+            "id": "2504d8b3-4000-43b2-bdb8-992816e5183b"
+          },
+          "hash": "0x01df91e4b6ea166daf02a8751b202ca5a88ce0194bb642af93a1a78e16930ca4",
+          "gasUsed": "2656097",
+          "gasCostWei": "11211751978386",
+          "status": "passed",
+          "elapsedMs": 15819,
+          "finishedAt": "2026-11-17T22:46:01.917Z"
+        },
+        "boss-wave2-proof": {
+          "strikeId": 12,
+          "killed": true,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:46:01.919Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "0f7012fa-c469-46ba-b5b0-df2c4b312fe6"
+          },
+          "hash": "0x73b0efb482294bd103aefa6224e4e02924b4f103390f5bd91b91ff8ae43ccde4",
+          "gasUsed": "1550471",
+          "gasCostWei": "8405318806469",
+          "status": "passed",
+          "elapsedMs": 10464,
+          "finishedAt": "2026-11-17T22:46:12.819Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0xa2e14b9869f11cc660197badeb101c2d81241eac58d8a83d44cef8fe1213a310",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 310,
+          "finishedAt": "2026-11-17T22:52:01.081Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Myraital #4",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/4/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 5024,
+          "finishedAt": "2026-11-17T22:52:06.105Z"
+        },
+        "boss-kill-and-shares": {
+          "levelKilled": 1,
+          "newLevel": 2,
+          "killer": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+          "claimed": 10,
+          "status": "passed",
+          "elapsedMs": 435,
+          "finishedAt": "2026-11-17T22:54:15.763Z"
+        }
+      },
+      "address": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+      "identity": "0xa407887634E145428C602fbA7A2606E02a93cff6",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x4f1207091f4e6145d4eec59bb4dac3c9c782b680d60005ea98d8222c04b61423"
+      ],
+      "nftId": 4,
+      "finalEth": "0.022425669483450838"
+    },
+    {
+      "player": 3,
+      "steps": {
+        "starter-mint": {
+          "hash": "0x3c446dcb54f8211f9418eca63f85a1b43046f1442962b09e7ba4c0b885abc4bd",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 5,
+          "status": "passed",
+          "elapsedMs": 13880,
+          "finishedAt": "2026-11-17T22:12:40.431Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "cb223ced-faf9-47aa-bc7c-261616a211b8"
+          },
+          "hash": "0x10cd5e3ff55168836c1cc6d0df646e16605e48c3362d2abe90dcc4aa5dfef430",
+          "gasUsed": "282190",
+          "gasCostWei": "1693159753300",
+          "status": "passed",
+          "elapsedMs": 12394,
+          "finishedAt": "2026-11-17T22:13:38.380Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "827c65c0-7fac-4603-99e0-2271626556bc"
+          },
+          "hash": "0x3aacc1298bee0f2808d1d2d14cffce00930b2046472fc4d06892a8b61a8446be",
+          "gasUsed": "2412421",
+          "gasCostWei": "14474694869470",
+          "status": "passed",
+          "elapsedMs": 12407,
+          "finishedAt": "2026-11-17T22:13:50.787Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "2c7180c8-f428-4ffe-b8c7-7190fc41a3dd"
+          },
+          "hash": "0xc48ce83efdb2a85fe0698feb24aeef3a2b93fcacef0f837f96ec4918eb8d6179",
+          "gasUsed": "276314",
+          "gasCostWei": "1547379123550",
+          "status": "passed",
+          "elapsedMs": 12247,
+          "finishedAt": "2026-11-17T22:14:03.035Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 22608,
+          "finishedAt": "2026-11-17T22:14:25.675Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "cece8c32-93a1-4cb7-8fa7-78315701293e"
+          },
+          "hash": "0x28f8a237b0f98d95b2a6e9025879f57c9c13a48e6ab9346a53725ab9e4a5438d",
+          "gasUsed": "10821632",
+          "gasCostWei": "32032647553024",
+          "status": "passed",
+          "elapsedMs": 9181,
+          "finishedAt": "2026-11-17T22:15:02.007Z"
+        },
+        "hunt-start": {
+          "battleId": 4,
+          "handles": [
+            "0x6cef8d26b4df51fa06edbd7e5de594ba393a9fe50cff0000000000aa36a70000",
+            "0xa0f19953e6b7d77b201a4bf08bbe6bc4140d698575ff0000000000aa36a70000",
+            "0x459754947570f33efa398cf364d9c38312f97ee593ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 36503,
+          "finishedAt": "2026-11-17T22:15:02.178Z"
+        },
+        "hunt-settle": {
+          "hash": "0x27bba83edc498ec5402c470e6b33f7ca98f7dd7eed82cbf262b9e00aed2361f5",
+          "gasUsed": "1629378",
+          "gasCostWei": "34216938",
+          "status": "passed",
+          "elapsedMs": 26573,
+          "finishedAt": "2026-11-17T22:15:28.762Z"
+        },
+        "hunt-proof": {
+          "battleId": 4,
+          "rounds": [
+            true,
+            true,
+            true
+          ],
+          "won": true,
+          "settlement": "0x27bba83edc498ec5402c470e6b33f7ca98f7dd7eed82cbf262b9e00aed2361f5",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3229,
+          "finishedAt": "2026-11-17T22:15:31.992Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "e3c05d07-ec7e-4eac-bb36-ac8d2e2457d7"
+          },
+          "hash": "0xde5cc84496eed78b669949c247b8f2a23cfccaa4c2e888b0451d592ca6a0a3ac",
+          "gasUsed": "141024",
+          "gasCostWei": "567377628480",
+          "status": "passed",
+          "elapsedMs": 9568,
+          "finishedAt": "2026-11-17T22:20:39.097Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "ec9ecae7-7522-483a-a311-1b4a970fa79f"
+          },
+          "hash": "0x577af774a4e1b062725ff126f93dae97dd10e888f2792b18c314d062fae7e2d6",
+          "gasUsed": "128321",
+          "gasCostWei": "516270029670",
+          "status": "passed",
+          "elapsedMs": 12482,
+          "finishedAt": "2026-11-17T22:20:51.581Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "f495761c-b3e7-480b-8382-16b940ca4835"
+          },
+          "hash": "0x870d6ef2d0a842c9c08a1cfe2e399afeccdd534380da2299a16f0f3cbdd53a0a",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 7880,
+          "finishedAt": "2026-11-17T22:24:25.539Z"
+        },
+        "second-genesis": {
+          "request": {
+            "id": "be6ac4c5-2c7b-4caf-a216-94487e53f120"
+          },
+          "hash": "0x0185783fd088dec9cd3efc7edcade84b5a3038da095f1b5abc76236a2f19b6f6",
+          "gasUsed": "6010410",
+          "gasCostWei": "22359019710090",
+          "status": "passed",
+          "elapsedMs": 10579,
+          "finishedAt": "2026-11-17T22:25:03.211Z"
+        },
+        "allow-ChimeraLab": {
+          "request": {
+            "id": "39aef6ef-390d-444e-aded-d537130cb263"
+          },
+          "hash": "0x4ae54288aaeb620486e71a614a593fb033c4292bf6a1019a5b977cba0aa01a14",
+          "gasUsed": "133549",
+          "gasCostWei": "538471971882",
+          "status": "passed",
+          "elapsedMs": 15089,
+          "finishedAt": "2026-11-17T22:27:15.200Z"
+        },
+        "breed-parents": {
+          "request": {
+            "id": "e5759d5d-e51a-4a87-a6ff-c05740477424"
+          },
+          "hash": "0x4b18a07b3e6286c5e824feb9ec233d00389b6613a84e90128823f7a088e7320c",
+          "gasUsed": "8744292",
+          "gasCostWei": "42619137061896",
+          "status": "passed",
+          "elapsedMs": 10203,
+          "finishedAt": "2026-11-17T22:27:25.405Z"
+        },
+        "breed-hatch": {
+          "hash": "0x860ccd72f44776853a07ed00a6b6fd6b44050de8df1c7e441936ac6c61c70b97",
+          "gasUsed": "3165295",
+          "gasCostWei": "60140605",
+          "status": "passed",
+          "elapsedMs": 12366,
+          "finishedAt": "2026-11-17T22:27:50.191Z"
+        },
+        "breed-lineage": {
+          "childId": 26,
+          "parents": [
+            5,
+            24
+          ],
+          "generation": 1,
+          "status": "passed",
+          "elapsedMs": 12582,
+          "finishedAt": "2026-11-17T22:28:02.775Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "ea6a70e3-fa0d-4019-af82-73947a95a250"
+          },
+          "hash": "0xc1983b1605a847a79862c5c96f521cf4e671d177c93c6d616918e52ff9baf2ff",
+          "gasUsed": "2820611",
+          "gasCostWei": "3212134371688",
+          "status": "passed",
+          "elapsedMs": 15569,
+          "finishedAt": "2026-11-17T22:29:27.876Z"
+        },
+        "boss-proof": {
+          "strikeId": 3,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:31.685Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "a0137c41-afc4-46b4-a82f-1e2d2a27a9d6"
+          },
+          "hash": "0xe9654195dd890c560c82606f4c150a9db63a1da8cdde5ef1f08b5e34e3aff8ae",
+          "gasUsed": "1552622",
+          "gasCostWei": "1863175899818",
+          "status": "passed",
+          "elapsedMs": 12834,
+          "finishedAt": "2026-11-17T22:37:39.708Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "218656d7-1f5c-4e74-95ed-7914b7f8bbb7"
+          },
+          "hash": "0x50db578ce19b14f3536f237ff0178620a98684b498e3dd9ffbb9c1c8e0e8e30f",
+          "gasUsed": "111439",
+          "gasCostWei": "267455717341",
+          "status": "passed",
+          "elapsedMs": 10179,
+          "finishedAt": "2026-11-17T22:37:50.112Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "64ac695e-14f4-4fd0-a4d9-22b9fe0ff3ad"
+          },
+          "hash": "0xa58d196684b70615109d6b9c8e3632caa5d6016e897709a3160d8ba5f3551fae",
+          "gasUsed": "1550467",
+          "gasCostWei": "8405297121913",
+          "status": "passed",
+          "elapsedMs": 12835,
+          "finishedAt": "2026-11-17T22:46:25.750Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x5226e198ccea69307dd9b5c5ed7ff04a44c2a98db6e64d729bf92c7761a92722",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 289,
+          "finishedAt": "2026-11-17T22:52:06.454Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Lumaetal #5",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/5/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3865,
+          "finishedAt": "2026-11-17T22:52:10.321Z"
+        },
+        "breed-parents-retained": {
+          "parents": [
+            5,
+            24
+          ],
+          "child": 26,
+          "bothParentsRetained": true,
+          "status": "passed",
+          "elapsedMs": 197,
+          "finishedAt": "2026-11-17T22:54:15.328Z"
+        }
+      },
+      "address": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+      "identity": "0x3bF755eD47064b8984a764ae1F9BE2e99DDAFD22",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x84d13d484d2364881397adc1b58de3f9c1383deea6d2f20a6ee954a286aa255d"
+      ],
+      "nftId": 5,
+      "finalEth": "0.022416635451159293"
+    },
+    {
+      "player": 4,
+      "steps": {
+        "starter-mint": {
+          "hash": "0x72dbc6444d144ccc79e76c554fa20e165d8b9371e45d012de2397a293b543378",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 8,
+          "status": "passed",
+          "elapsedMs": 11040,
+          "finishedAt": "2026-11-17T22:12:51.702Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "89eb4b99-63df-4f15-b58e-6c68d45efab1"
+          },
+          "hash": "0x52fc1751e8da4abc844d219f358d02ba61070891276c705e7fe77d28d526f3bd",
+          "gasUsed": "282190",
+          "gasCostWei": "354447853590",
+          "status": "passed",
+          "elapsedMs": 9541,
+          "finishedAt": "2026-11-17T22:15:28.868Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "ca1b6347-da91-473e-8ed0-7577bfebc6c2"
+          },
+          "hash": "0xb5e69cdf67d138ede5ec95002ef1d1f0583741bed7a8ae91ed18b4b248961f7b",
+          "gasUsed": "1754661",
+          "gasCostWei": "2203917383796",
+          "status": "passed",
+          "elapsedMs": 9863,
+          "finishedAt": "2026-11-17T22:15:38.732Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "67093df5-1134-4da6-a4cd-f1325b90c98a"
+          },
+          "hash": "0x85b8aae472a8b8d91097ee66de0fcb3b3ec08e9f3dff29cda69445da82e75928",
+          "gasUsed": "276314",
+          "gasCostWei": "457584273420",
+          "status": "passed",
+          "elapsedMs": 14744,
+          "finishedAt": "2026-11-17T22:15:53.477Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 4287,
+          "finishedAt": "2026-11-17T22:15:57.764Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "ec0dacbe-3d7b-4a16-8786-c52ac48be3d2"
+          },
+          "hash": "0x23d9f4076afbdc8fb42c85e2275b70463c0a58b05529e7469638c1968eb64fd2",
+          "gasUsed": "10909532",
+          "gasCostWei": "28976044277960",
+          "status": "passed",
+          "elapsedMs": 27383,
+          "finishedAt": "2026-11-17T22:16:40.407Z"
+        },
+        "hunt-start": {
+          "battleId": 5,
+          "handles": [
+            "0xc266db865228b6f2c89ccd2c1b5215f3d013a89f66ff0000000000aa36a70000",
+            "0x70178b90f1a28a3360dac119a2521a55156bf7bfbbff0000000000aa36a70000",
+            "0x0fd5e5728ac980fc16d35401c0c4117019d0cc8fa2ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 42884,
+          "finishedAt": "2026-11-17T22:16:40.648Z"
+        },
+        "hunt-settle": {
+          "hash": "0x924b3eca6d1a1c2b915733850422806d56f6f8ae4c99b8839fff8dcdc9927da9",
+          "gasUsed": "1774188",
+          "gasCostWei": "37257948",
+          "status": "passed",
+          "elapsedMs": 9490,
+          "finishedAt": "2026-11-17T22:16:50.138Z"
+        },
+        "hunt-proof": {
+          "battleId": 5,
+          "rounds": [
+            true,
+            true,
+            true
+          ],
+          "won": true,
+          "settlement": "0x924b3eca6d1a1c2b915733850422806d56f6f8ae4c99b8839fff8dcdc9927da9",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3232,
+          "finishedAt": "2026-11-17T22:16:53.371Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "ca962cd7-5900-4d39-b990-f698b1d2e280"
+          },
+          "hash": "0x6dffc703a1f9498d126f349617fd673ec0b09e61d51b569c228b02fdb95a3f33",
+          "gasUsed": "141012",
+          "gasCostWei": "632916568656",
+          "status": "passed",
+          "elapsedMs": 9606,
+          "finishedAt": "2026-11-17T22:21:02.741Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "43bfdcb6-e734-4b5f-8325-a1b152f763b8"
+          },
+          "hash": "0x1d889f504334534f2d97fd60fa36b8293aa74b136c52b09162bbc438070d4c2c",
+          "gasUsed": "128321",
+          "gasCostWei": "575954436548",
+          "status": "passed",
+          "elapsedMs": 23124,
+          "finishedAt": "2026-11-17T22:21:25.902Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "fc1f00de-2b77-4891-a8ce-e3985ed4b17f"
+          },
+          "hash": "0xfa2ca300f0d52b551f8bf892ced2c0b400e9c5aab64c00b9bc986fc26158af9d",
+          "gasUsed": "813517",
+          "gasCostWei": "3026323102333",
+          "status": "passed",
+          "elapsedMs": 12942,
+          "finishedAt": "2026-11-17T22:24:38.538Z"
+        },
+        "allow-ChimeraRelics": {
+          "request": {
+            "id": "273333ad-ee46-47e6-9751-d74f2a1e8ca5"
+          },
+          "hash": "0x60de3f513c27b37a1dac6d1b0a6edfc3622a4208c1ee7730104bf6e6970465a1",
+          "gasUsed": "133549",
+          "gasCostWei": "496808823901",
+          "status": "passed",
+          "elapsedMs": 10204,
+          "finishedAt": "2026-11-17T22:25:03.083Z"
+        },
+        "relic-cache-0": {
+          "request": {
+            "id": "24955150-633b-4604-8c1a-896590925e9a"
+          },
+          "hash": "0x5bf62e4b45f01c02a8e7d6650cf898a57a4d79b4b18b1b85637e878d01e09a04",
+          "gasUsed": "5339083",
+          "gasCostWei": "19861650375067",
+          "status": "passed",
+          "elapsedMs": 17992,
+          "finishedAt": "2026-11-17T22:25:21.103Z"
+        },
+        "relic-private-report": {
+          "privateValuesVerified": true,
+          "status": "passed",
+          "elapsedMs": 3296,
+          "finishedAt": "2026-11-17T22:25:24.600Z"
+        },
+        "relic-equip": {
+          "request": {
+            "id": "0d87cef6-8d88-4330-b176-288d8e6faa5f"
+          },
+          "hash": "0x90945bb842b153ed1bc8598d70f68e6201fd53f2fa24a3cf1f5b50a864a430f8",
+          "gasUsed": "147372",
+          "gasCostWei": "371384661228",
+          "status": "passed",
+          "elapsedMs": 14472,
+          "finishedAt": "2026-11-17T22:25:39.073Z"
+        },
+        "relic-unequip": {
+          "request": {
+            "id": "e98cdc23-12f6-4e83-9447-70ca82812718"
+          },
+          "hash": "0x8291b3fbfabfb263a097938f3ff2d4285090053cd9cc8c9b34054dd9dac587dd",
+          "gasUsed": "33880",
+          "gasCostWei": "126034209840",
+          "status": "passed",
+          "elapsedMs": 10451,
+          "finishedAt": "2026-11-17T22:25:49.526Z"
+        },
+        "relic-cache-1": {
+          "request": {
+            "id": "346555c9-99a5-4f86-a5ba-6d94e00c4a92"
+          },
+          "hash": "0x60e47d84b0310bc95c589104ebe4195052dd3ea9b2eada82e3e5f8d77d7f95f7",
+          "gasUsed": "4834219",
+          "gasCostWei": "17983381695942",
+          "status": "passed",
+          "elapsedMs": 13601,
+          "finishedAt": "2026-11-17T22:26:03.128Z"
+        },
+        "relic-cache-2": {
+          "request": {
+            "id": "c7a19309-15ab-4cfc-9dd5-2deabd2ddaac"
+          },
+          "hash": "0xbde3e241fe3bd1e7845d1cb1324422ba8a3ef03d15df5cf5e69717f2d6fabb75",
+          "gasUsed": "4834219",
+          "gasCostWei": "17403430110950",
+          "status": "passed",
+          "elapsedMs": 19704,
+          "finishedAt": "2026-11-17T22:41:48.638Z"
+        },
+        "relic-fuse": {
+          "request": {
+            "id": "64bd654b-4c4b-4149-bd0c-c2b097bec005"
+          },
+          "hash": "0xcfd3be8b74cb1a064948243f9de75c94eb04008acb1a9dfb0cf8855ca9ff5052",
+          "gasUsed": "4558390",
+          "gasCostWei": "10940363919500",
+          "status": "passed",
+          "elapsedMs": 18569,
+          "finishedAt": "2026-11-17T22:42:07.400Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "0c23a25f-3c70-4e20-ac7c-a18264bf7cac"
+          },
+          "hash": "0x013b69029092837ac452b4bc6ba4c4bbb384193f5305fa32f4072a82ed3fb13c",
+          "gasUsed": "2594767",
+          "gasCostWei": "2954941417736",
+          "status": "passed",
+          "elapsedMs": 15538,
+          "finishedAt": "2026-11-17T22:29:27.872Z"
+        },
+        "boss-proof": {
+          "strikeId": 4,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:33.979Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "69593a52-94a4-4fd1-97af-45e2be3827b7"
+          },
+          "hash": "0xdf5cbf98b142ec4acb81204e4c31e327fa3ed9aeec8d695d61bd4f6dcacb0398",
+          "gasUsed": "1542618",
+          "gasCostWei": "1851170909742",
+          "status": "passed",
+          "elapsedMs": 12802,
+          "finishedAt": "2026-11-17T22:37:39.757Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "79673a50-63f8-4e1e-b235-8233c3e43305"
+          },
+          "status": "expected-revert",
+          "error": "Sepolia transaction reverted: 0x633e186bce74db32cc76f397ab7a0c5f0a9930b1a39d7a28f3987b67a53951a2",
+          "elapsedMs": 10258,
+          "reason": "Another keeper claimed the same throne first; historical Sepolia scores verify NotEnough.",
+          "mineAtBlock": "8",
+          "holderScoreAtBlock": "8",
+          "hash": "0x633e186bce74db32cc76f397ab7a0c5f0a9930b1a39d7a28f3987b67a53951a2",
+          "gasCostWei": "225356890164"
+        },
+        "relic-appraise": {
+          "request": {
+            "id": "22596281-1bb9-4bf7-9522-12c2288c72ad"
+          },
+          "hash": "0x71310dba7ef8c4f19e2b872ae4c522834d27e1a8970cc84f785c13c1c51d3b84",
+          "gasUsed": "273610",
+          "gasCostWei": "985009680500",
+          "status": "passed",
+          "elapsedMs": 7726,
+          "finishedAt": "2026-11-17T22:42:15.337Z"
+        },
+        "relic-publish-appraisal-transaction": {
+          "request": {
+            "id": "b2805dd1-4bd4-4dba-8e9c-020d2f07eb54"
+          },
+          "hash": "0x88ac1c8812197599c76dd1349c600197915dd9c6ecdef836fdd7029aac31367e",
+          "gasUsed": "482626",
+          "gasCostWei": "1737462769894",
+          "status": "passed",
+          "elapsedMs": 6863,
+          "finishedAt": "2026-11-17T22:42:25.803Z"
+        },
+        "relic-publish-appraisal": {
+          "request": {
+            "id": "b2805dd1-4bd4-4dba-8e9c-020d2f07eb54"
+          },
+          "hash": "0x88ac1c8812197599c76dd1349c600197915dd9c6ecdef836fdd7029aac31367e",
+          "gasUsed": "482626",
+          "gasCostWei": "1737462769894",
+          "status": "passed",
+          "elapsedMs": 10457,
+          "finishedAt": "2026-11-17T22:42:25.804Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "49283d58-07bb-4140-b5e6-7153c5aeab1d"
+          },
+          "hash": "0x8c36251aad9e7bb16a24e0a5c504b3009d9328d8d61640da00f9efa231c796e0",
+          "gasUsed": "1550471",
+          "gasCostWei": "10265882455998",
+          "status": "passed",
+          "elapsedMs": 12946,
+          "finishedAt": "2026-11-17T22:46:25.998Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x6280764681ec0a04938a70a15f12565457559141a2412d30053e1fda283fda8d",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 315,
+          "finishedAt": "2026-11-17T22:52:06.644Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Noxyosel #8",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/8/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 4015,
+          "finishedAt": "2026-11-17T22:52:10.660Z"
+        }
+      },
+      "address": "0x95f1C6D96253b5728433e38500e25e310E0DB039",
+      "identity": "0x84Bca0ffd46aE64EED996C3ef00Ce941C8302F2c",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0xe28e49422477c85a4f03d35ce0e8dee0ec58d57e6f27b60958a75f07954d655b"
+      ],
+      "nftId": 8,
+      "finalEth": "0.022405969098729095"
+    },
+    {
+      "player": 5,
+      "steps": {
+        "starter-mint": {
+          "hash": "0xd1b77cfc8b338d0ae8c2d9cb0436f9e840a6acbda158c0a2fc6e7b424d73b2e9",
+          "gasUsed": "6208539",
+          "gasCostWei": "7450246775165844",
+          "nftId": 7,
+          "status": "passed",
+          "elapsedMs": 10860,
+          "finishedAt": "2026-11-17T22:12:51.548Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "17d450a5-e830-48bc-9c0e-aade129b5917"
+          },
+          "hash": "0xdc26d4ecc1d556d001289fc61bdbaf96fc480859c60eb0a5070fd22decf4aec7",
+          "gasUsed": "282190",
+          "gasCostWei": "354440798840",
+          "status": "passed",
+          "elapsedMs": 6743,
+          "finishedAt": "2026-11-17T22:15:38.845Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "8d6ec2c9-2aae-459e-a52f-f834e816f9d9"
+          },
+          "hash": "0x28542c04e9e8fedc62516c0b1ada381853a08d1e3bc7355d18b636aeb3736780",
+          "gasUsed": "1744657",
+          "gasCostWei": "2889204331710",
+          "status": "passed",
+          "elapsedMs": 14711,
+          "finishedAt": "2026-11-17T22:15:53.557Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "09a4aa24-5418-44e9-a956-efd2041c75f8"
+          },
+          "hash": "0x72b8c2c7e7e5cacaf6509fced9cc801f2ba56afa3406754447f284d74e72a360",
+          "gasUsed": "276314",
+          "gasCostWei": "457584273420",
+          "status": "passed",
+          "elapsedMs": 16967,
+          "finishedAt": "2026-11-17T22:16:10.525Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 3849,
+          "finishedAt": "2026-11-17T22:16:14.374Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "ec911351-3be7-4caf-865b-11fc28ef3c43"
+          },
+          "hash": "0x4722ae10a3aab0c8d71093b5c9a6f37ea5c5adab588319e1bbeb211d5896bd93",
+          "gasUsed": "10821644",
+          "gasCostWei": "35668398343456",
+          "status": "passed",
+          "elapsedMs": 8556,
+          "finishedAt": "2026-11-17T22:16:50.328Z"
+        },
+        "hunt-start": {
+          "battleId": 7,
+          "handles": [
+            "0x68c12cc0f2547155d7aa46878135ee1b47ac5801b4ff0000000000aa36a70000",
+            "0x70726b7f52408d7b4daa241e0137994d1a726ab8a1ff0000000000aa36a70000",
+            "0xe1273bf08de75b25e3f55371cec22b822bed7a0811ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 36067,
+          "finishedAt": "2026-11-17T22:16:50.442Z"
+        },
+        "hunt-settle": {
+          "hash": "0x5ee34f04760417ec8851b346f7580a4875e29e8441161971f4964a98be27ad8f",
+          "gasUsed": "873651",
+          "gasCostWei": "18346671",
+          "status": "passed",
+          "elapsedMs": 25746,
+          "finishedAt": "2026-11-17T22:17:16.189Z"
+        },
+        "hunt-proof": {
+          "battleId": 7,
+          "rounds": [
+            false,
+            false,
+            false
+          ],
+          "won": false,
+          "settlement": "0x5ee34f04760417ec8851b346f7580a4875e29e8441161971f4964a98be27ad8f",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3266,
+          "finishedAt": "2026-11-17T22:17:19.456Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "1d937e79-f5b1-44c0-ba49-b9dc04741742"
+          },
+          "hash": "0x2eb09c7e749b8155853caf7d9473784d7c58ede605f6c1441a84e8184ba9a3ab",
+          "gasUsed": "141024",
+          "gasCostWei": "567377628480",
+          "status": "passed",
+          "elapsedMs": 9609,
+          "finishedAt": "2026-11-17T22:21:02.784Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "9f07661c-a05c-404c-b571-4b5dc9fc5417"
+          },
+          "hash": "0xd3aa3d86b2ae729e92967b171166bcc69912ac51e6279f796bb4fe730283db4f",
+          "gasUsed": "128321",
+          "gasCostWei": "575967268648",
+          "status": "passed",
+          "elapsedMs": 23099,
+          "finishedAt": "2026-11-17T22:21:25.888Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "426586f9-2bef-493c-a339-bf1aca4be18d"
+          },
+          "hash": "0x41f263f494fc141157c4618099d3bff2bc634f9fa1b86f5c2415e130bdf999f4",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 12964,
+          "finishedAt": "2026-11-17T22:24:38.576Z"
+        },
+        "allow-ChimeraOracle": {
+          "request": {
+            "id": "62a128a6-2b7d-41e0-b575-f44e563dbe2c"
+          },
+          "hash": "0xf0c8bfd0d085eb00c54216986ad9f5fdd255890373f51cd3da10e669da55c209",
+          "gasUsed": "133549",
+          "gasCostWei": "496808823901",
+          "status": "passed",
+          "elapsedMs": 10200,
+          "finishedAt": "2026-11-17T22:25:03.073Z"
+        },
+        "oracle-submit": {
+          "request": {
+            "id": "27b25bce-7603-485e-960b-5264a73c3f82"
+          },
+          "hash": "0x3b6869d82d4bb6ca4481960a3ab29ad5ae244f450b1fda5322994e477ad63b7b",
+          "gasUsed": "4826024",
+          "gasCostWei": "12161816955176",
+          "status": "passed",
+          "elapsedMs": 15567,
+          "finishedAt": "2026-11-17T22:25:38.975Z"
+        },
+        "oracle-guess": {
+          "guessId": 1,
+          "privateHintVerified": true,
+          "feedback": "16",
+          "status": "passed",
+          "elapsedMs": 41401,
+          "finishedAt": "2026-11-17T22:25:44.476Z"
+        },
+        "oracle-claim-proof": {
+          "request": {
+            "id": "b52355ca-36de-4191-b48f-f424876533d8"
+          },
+          "hash": "0x4cb3f8ff1abbe660d3585be4905887d30cf0c9ba4673e5ebae22177f3cf518ee",
+          "gasUsed": "266760",
+          "gasCostWei": "992352001680",
+          "status": "passed",
+          "elapsedMs": 5124,
+          "finishedAt": "2026-11-17T22:25:49.601Z"
+        },
+        "oracle-finalize-transaction": {
+          "request": {
+            "id": "702d46c5-782a-4230-81c9-32ca2156373d"
+          },
+          "hash": "0xcc94268bb4cf81901904a6deaf3fa57ccbaffa7d2abadc4c4aa822683649e422",
+          "gasUsed": "370425",
+          "gasCostWei": "1377987667650",
+          "status": "passed",
+          "elapsedMs": 9884,
+          "finishedAt": "2026-11-17T22:26:03.116Z"
+        },
+        "oracle-finalize": {
+          "request": {
+            "id": "702d46c5-782a-4230-81c9-32ca2156373d"
+          },
+          "hash": "0xcc94268bb4cf81901904a6deaf3fa57ccbaffa7d2abadc4c4aa822683649e422",
+          "gasUsed": "370425",
+          "gasCostWei": "1377987667650",
+          "status": "passed",
+          "elapsedMs": 13407,
+          "finishedAt": "2026-11-17T22:26:03.117Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "e21d8d92-0002-452d-91e0-bea03e806ac4"
+          },
+          "hash": "0x803ee8719669b28e1bf4e023ad80114110a8feebbbca0270898729c760332326",
+          "gasUsed": "2820607",
+          "gasCostWei": "1222854420601",
+          "status": "passed",
+          "elapsedMs": 7517,
+          "finishedAt": "2026-11-17T22:29:39.299Z"
+        },
+        "boss-proof": {
+          "strikeId": 5,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:44.818Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "b7d7d04b-386f-4916-b5f5-3c329ab2b5b4"
+          },
+          "hash": "0x6a1ad9591ff775a8b73a8eb2ca33b02a0466e49c0760249d386f3c2745293a9c",
+          "gasUsed": "1542618",
+          "gasCostWei": "3702312509742",
+          "status": "passed",
+          "elapsedMs": 12893,
+          "finishedAt": "2026-11-17T22:38:03.116Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "5788394f-f14c-449b-a067-558a65318f8a"
+          },
+          "status": "expected-revert",
+          "error": "Sepolia transaction reverted: 0x64ffff072677e186956ed30f95e2ccea41eb4d4bf7f242dd690f3f4d357231bd",
+          "elapsedMs": 10470,
+          "reason": "Another keeper claimed the same throne first; historical Sepolia scores verify NotEnough.",
+          "mineAtBlock": "2",
+          "holderScoreAtBlock": "2",
+          "hash": "0x64ffff072677e186956ed30f95e2ccea41eb4d4bf7f242dd690f3f4d357231bd",
+          "gasCostWei": "338077690380"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "adb26bc2-0e45-4ce1-b297-13366beea4e1"
+          },
+          "hash": "0xf7d8068a26f3e4a52f5a707f3a85f8ee1dc27b7004b109531c0226d80362a740",
+          "gasUsed": "1550471",
+          "gasCostWei": "9488910428478",
+          "status": "passed",
+          "elapsedMs": 23710,
+          "finishedAt": "2026-11-17T22:46:49.557Z"
+        },
+        "oracle-early-expiry-gate": {
+          "expectedRevert": "RoundLive",
+          "verifiedOnSepolia": true,
+          "status": "passed",
+          "elapsedMs": 93,
+          "finishedAt": "2026-11-17T22:50:30.212Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0xc19a1006e54af7e8095567b120c7570eb7552b363e7fcdeee596f5c060f7739a",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 293,
+          "finishedAt": "2026-11-17T22:52:10.709Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Hexorin #7",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/7/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3870,
+          "finishedAt": "2026-11-17T22:52:14.582Z"
+        },
+        "oracle-final-result": {
+          "guessId": 1,
+          "finalized": true,
+          "won": false,
+          "status": "passed",
+          "elapsedMs": 111,
+          "finishedAt": "2026-11-17T22:54:15.876Z"
+        }
+      },
+      "address": "0xE7C029B751B6c56B680AC91bb1b3e2A81c1d1252",
+      "identity": "0xfDeAFDA6d7EAA5058e3A824690B09b8d713611C8",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x2dbefc7f8a1180757d39999992ed849b7ef76982ea81f62454f120acd001f738"
+      ],
+      "nftId": 7,
+      "finalEth": "0.022476432778829269"
+    },
+    {
+      "player": 6,
+      "steps": {
+        "starter-mint": {
+          "hash": "0x1df8f7de7e9451ff1235733fc8c74a59041299ded43086c3a5f201db8e4622f6",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 9,
+          "status": "passed",
+          "elapsedMs": 10902,
+          "finishedAt": "2026-11-17T22:12:51.563Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "61b3eb4a-b440-45a1-93d7-60ee597ac984"
+          },
+          "hash": "0x1aa61d892d73a04f64b74ae20932e0d25485978df8781eaa84cf2efc4f066936",
+          "gasUsed": "282190",
+          "gasCostWei": "354440798840",
+          "status": "passed",
+          "elapsedMs": 5933,
+          "finishedAt": "2026-11-17T22:15:38.886Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "98a5029c-bc77-47e5-ae1d-c2df9ce36a36"
+          },
+          "hash": "0x623b17c770dbe26eddf7e0262dd369bb0648b669e3b72274298476a94f9f56f9",
+          "gasUsed": "1754657",
+          "gasCostWei": "2905764631710",
+          "status": "passed",
+          "elapsedMs": 14744,
+          "finishedAt": "2026-11-17T22:15:53.631Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "d546cc34-0cb2-479f-9f3b-610c9af6db60"
+          },
+          "hash": "0x26cae04347ec9754c3e726be8b7bb88c69a14b46736eb83d8a4744d08dcc4c92",
+          "gasUsed": "276314",
+          "gasCostWei": "457584273420",
+          "status": "passed",
+          "elapsedMs": 17026,
+          "finishedAt": "2026-11-17T22:16:10.658Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 16267,
+          "finishedAt": "2026-11-17T22:16:26.925Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "8bfac810-cff0-4584-85cb-30510de1e23d"
+          },
+          "hash": "0x84bb5a31881e45e94f6d50f75d15b4509b11fdff1d69a8ede1d36592e28f8b70",
+          "gasUsed": "10821648",
+          "gasCostWei": "35668411527552",
+          "status": "passed",
+          "elapsedMs": 8267,
+          "finishedAt": "2026-11-17T22:16:50.385Z"
+        },
+        "hunt-start": {
+          "battleId": 6,
+          "handles": [
+            "0x1237d62c37cf0917169f8d403b2335768d9f7866efff0000000000aa36a70000",
+            "0x66061c511f3f14782a3a7bc676028814e360b7290dff0000000000aa36a70000",
+            "0xe20fd7298e29d7a78e31dcf88a20be0ee2c9db0090ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 23705,
+          "finishedAt": "2026-11-17T22:16:50.631Z"
+        },
+        "hunt-settle": {
+          "hash": "0xa333654bbba8d0eb5eea522e10e6d5962751f6259143b7fe1e25992ec438936e",
+          "gasUsed": "981598",
+          "gasCostWei": "20613558",
+          "status": "passed",
+          "elapsedMs": 15269,
+          "finishedAt": "2026-11-17T22:17:05.902Z"
+        },
+        "hunt-proof": {
+          "battleId": 6,
+          "rounds": [
+            false,
+            true,
+            false
+          ],
+          "won": false,
+          "settlement": "0xa333654bbba8d0eb5eea522e10e6d5962751f6259143b7fe1e25992ec438936e",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3198,
+          "finishedAt": "2026-11-17T22:17:09.102Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "e2d76a50-afc6-4743-a9f8-ba90238217e2"
+          },
+          "hash": "0xdc12d9d49f6d1428ba856eb7a813af9a629a4a51aa19482ebf5870f9a85bf17e",
+          "gasUsed": "141024",
+          "gasCostWei": "567377628480",
+          "status": "passed",
+          "elapsedMs": 9589,
+          "finishedAt": "2026-11-17T22:21:02.780Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "900a2a43-6c63-4b95-845f-03e528434a73"
+          },
+          "hash": "0x479022ecad50eb49f227f05d896b8fc8ac9b55e76c0b582f7119b3d55612e6d6",
+          "gasUsed": "128321",
+          "gasCostWei": "575954436548",
+          "status": "passed",
+          "elapsedMs": 12521,
+          "finishedAt": "2026-11-17T22:21:15.303Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "7f0196a4-3189-47f6-9f1b-94f2e5825a4a"
+          },
+          "hash": "0xcc1f1ea21a89bc30727adee759621ce5ae6b3611d6e39e55c247f80cc3431b15",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 12877,
+          "finishedAt": "2026-11-17T22:24:38.532Z"
+        },
+        "allow-ChimeraDepths": {
+          "request": {
+            "id": "86ccff4b-c574-48db-9069-febe75a08599"
+          },
+          "hash": "0xc0ba082da301b7ef47c755b2db47d0cf8e793f776da428f66befefaee50272cd",
+          "gasUsed": "133549",
+          "gasCostWei": "480778803882",
+          "status": "passed",
+          "elapsedMs": 10136,
+          "finishedAt": "2026-11-17T22:26:13.368Z"
+        },
+        "depths-enter": {
+          "request": {
+            "id": "8720c62f-5b71-4380-8033-d341df404a2c"
+          },
+          "hash": "0x99001610fce3e29e6448c7f5387c2abff58f5fd8507c405c1fb2bf00a635b344",
+          "gasUsed": "4858039",
+          "gasCostWei": "17489027844702",
+          "status": "passed",
+          "elapsedMs": 25410,
+          "finishedAt": "2026-11-17T22:26:38.780Z"
+        },
+        "depths-open-0": {
+          "request": {
+            "id": "8d52eff4-c125-49ac-aea4-c0074e53b63d"
+          },
+          "hash": "0x308866b3d916093fe15cb160d33e7b0d8de755ce0f2c1fef2d3efc27f968148e",
+          "gasUsed": "2875536",
+          "gasCostWei": "11594212911648",
+          "status": "passed",
+          "elapsedMs": 10352,
+          "finishedAt": "2026-11-17T22:26:49.435Z"
+        },
+        "depths-open-1": {
+          "request": {
+            "id": "8d52eff4-c125-49ac-aea4-c0074e53b63d"
+          },
+          "hash": "0x308866b3d916093fe15cb160d33e7b0d8de755ce0f2c1fef2d3efc27f968148e",
+          "gasUsed": "2875536",
+          "gasCostWei": "11594212911648",
+          "status": "passed",
+          "elapsedMs": 1538,
+          "finishedAt": "2026-11-17T22:26:51.086Z"
+        },
+        "depths-open-2": {
+          "request": {
+            "id": "8d52eff4-c125-49ac-aea4-c0074e53b63d"
+          },
+          "hash": "0x308866b3d916093fe15cb160d33e7b0d8de755ce0f2c1fef2d3efc27f968148e",
+          "gasUsed": "2875536",
+          "gasCostWei": "11594212911648",
+          "status": "passed",
+          "elapsedMs": 1274,
+          "finishedAt": "2026-11-17T22:26:52.598Z"
+        },
+        "depths-leave": {
+          "request": {
+            "id": "f48cec72-0aac-45ab-87e9-e86a40ca6654"
+          },
+          "hash": "0xf5287aefee8ff085693c69653e4fd1b77d62f6789ae9d9a0e7bc491149a8b491",
+          "gasUsed": "2170079",
+          "gasCostWei": "8749797589422",
+          "status": "passed",
+          "elapsedMs": 8875,
+          "finishedAt": "2026-11-17T22:27:01.579Z"
+        },
+        "depths-reveal-survival": {
+          "request": {
+            "id": "cbcc6a54-5684-417f-a6b1-582d26ecb849"
+          },
+          "hash": "0x1f4678a9b610f69aad6ac04f70cbf36313f4ed5a2316ca163986878249b10318",
+          "gasUsed": "163804",
+          "gasCostWei": "660460676472",
+          "status": "passed",
+          "elapsedMs": 13737,
+          "finishedAt": "2026-11-17T22:27:15.317Z"
+        },
+        "depths-record-transaction": {
+          "request": {
+            "id": "db863850-9a53-4cf6-a20a-d180f42e316b"
+          },
+          "hash": "0xb80addfb5b17ee742ea32855ea739935c86542c9cb3d0ab1b9a62be3ee0b8be6",
+          "gasUsed": "590806",
+          "gasCostWei": "2879551814028",
+          "status": "passed",
+          "elapsedMs": 7124,
+          "finishedAt": "2026-11-17T22:27:25.427Z"
+        },
+        "depths-record": {
+          "request": {
+            "id": "db863850-9a53-4cf6-a20a-d180f42e316b"
+          },
+          "hash": "0xb80addfb5b17ee742ea32855ea739935c86542c9cb3d0ab1b9a62be3ee0b8be6",
+          "gasUsed": "590806",
+          "gasCostWei": "2879551814028",
+          "status": "passed",
+          "elapsedMs": 9997,
+          "finishedAt": "2026-11-17T22:27:25.429Z"
+        },
+        "depths-final-state": {
+          "runId": 1,
+          "floors": 1,
+          "exited": true,
+          "recorded": true,
+          "status": "superseded",
+          "elapsedMs": 12383,
+          "finishedAt": "2026-11-17T22:27:37.813Z",
+          "reason": "Receipt deduplication truncated the original three-floor run; new run required"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "51e90cb4-6474-4326-8334-76acd5434aa6"
+          },
+          "hash": "0xd484da3c8ac23ed13ae115761db22da4a98f334949e7be848fc46af89ebc2cb2",
+          "gasUsed": "2820607",
+          "gasCostWei": "1222854420601",
+          "status": "passed",
+          "elapsedMs": 15511,
+          "finishedAt": "2026-11-17T22:29:49.595Z"
+        },
+        "boss-proof": {
+          "strikeId": 6,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:56.234Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "f26f7d10-8a63-4860-ba8c-64f2c24db8a2"
+          },
+          "hash": "0xc828044e647bf4b18605e36dd79997b44cbe19420bd9fe61f99f68476c19763f",
+          "gasUsed": "1552622",
+          "gasCostWei": "3726322299818",
+          "status": "passed",
+          "elapsedMs": 12819,
+          "finishedAt": "2026-11-17T22:38:03.120Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "93f8ed53-166d-4f3e-ad1d-cd51b5bd04a0"
+          },
+          "hash": "0xa38a6a325048000c97e434728d556c93d2a1b4b63114a5ea63cea6d9f8af7647",
+          "gasUsed": "183047",
+          "gasCostWei": "658972494846",
+          "status": "passed",
+          "elapsedMs": 10304,
+          "finishedAt": "2026-11-17T22:38:13.700Z"
+        },
+        "depths-repeat-enter": {
+          "request": {
+            "id": "6a6452e0-138d-429a-9eb0-632646375d84"
+          },
+          "hash": "0xbe7af70ae13d4140845a69e0ac34eaedf7aee1276bebcc5d9fc700bd873ddc53",
+          "gasUsed": "4564279",
+          "gasCostWei": "24537646061022",
+          "status": "passed",
+          "elapsedMs": 7620,
+          "finishedAt": "2026-11-17T22:43:49.922Z"
+        },
+        "depths-repeat-open-0": {
+          "request": {
+            "id": "1d1c6ecb-c757-4841-bc69-def431995e21"
+          },
+          "hash": "0xb2f57877f2b21d82db9302381d179c4a7d19856497c69230d858c0d5dc58d5c7",
+          "gasUsed": "2767608",
+          "gasCostWei": "14878710424944",
+          "status": "passed",
+          "elapsedMs": 18115,
+          "finishedAt": "2026-11-17T22:44:08.345Z"
+        },
+        "depths-repeat-open-1": {
+          "request": {
+            "id": "6a14c7d9-c5b7-4fd9-a342-e11fcdac1815"
+          },
+          "hash": "0x76257da2e68e90c902595c9229a15c81f3a52f405c613ed45dd228b82521cbb9",
+          "gasUsed": "2767608",
+          "gasCostWei": "11557580824944",
+          "status": "passed",
+          "elapsedMs": 5281,
+          "finishedAt": "2026-11-17T22:44:13.727Z"
+        },
+        "depths-repeat-open-2": {
+          "request": {
+            "id": "22e76aff-f637-4de1-aed2-3fa9c639e7ad"
+          },
+          "hash": "0xe8e3729d8a6d553aaeab98dc2ac920cd9a0146727eae588cfeaf1b5fa77af8a6",
+          "gasUsed": "2875540",
+          "gasCostWei": "12008306799720",
+          "status": "passed",
+          "elapsedMs": 13009,
+          "finishedAt": "2026-11-17T22:44:26.834Z"
+        },
+        "depths-repeat-leave": {
+          "request": {
+            "id": "ef353d9f-3286-44bb-9d73-c2c119c8d74d"
+          },
+          "hash": "0x5a993c42d8844a92a434a73806132ab2731d3b84f7bec69a9cc36848cf93f848",
+          "gasUsed": "2170083",
+          "gasCostWei": "10149777662454",
+          "status": "passed",
+          "elapsedMs": 10500,
+          "finishedAt": "2026-11-17T22:44:37.434Z"
+        },
+        "depths-repeat-reveal-survival": {
+          "request": {
+            "id": "7ba0a8b0-ef45-4682-8a0d-fe43349353ba"
+          },
+          "hash": "0x132aa45da9ce1cf652b2964d12fe320c6eee5f862ec5bbbda0173eda6dd6f8c4",
+          "gasUsed": "163804",
+          "gasCostWei": "962698712952",
+          "status": "passed",
+          "elapsedMs": 13187,
+          "finishedAt": "2026-11-17T22:44:50.622Z"
+        },
+        "depths-repeat-record-transaction": {
+          "request": {
+            "id": "8fc26571-6ffb-423b-9223-64efc3ff63e5"
+          },
+          "hash": "0xfec8988e83eb31b6836c4e42e6bfa9cafd3e8519b042703bf563caa2487f3303",
+          "gasUsed": "394954",
+          "gasCostWei": "1894648841652",
+          "status": "passed",
+          "elapsedMs": 7776,
+          "finishedAt": "2026-11-17T22:45:02.007Z"
+        },
+        "depths-repeat-record": {
+          "request": {
+            "id": "8fc26571-6ffb-423b-9223-64efc3ff63e5"
+          },
+          "hash": "0xfec8988e83eb31b6836c4e42e6bfa9cafd3e8519b042703bf563caa2487f3303",
+          "gasUsed": "394954",
+          "gasCostWei": "1894648841652",
+          "status": "passed",
+          "elapsedMs": 11269,
+          "finishedAt": "2026-11-17T22:45:02.009Z"
+        },
+        "depths-repeat-final-state": {
+          "runId": 2,
+          "floors": 3,
+          "exited": true,
+          "recorded": true,
+          "status": "passed",
+          "elapsedMs": 113,
+          "finishedAt": "2026-11-17T22:45:02.133Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "f85b96f3-ee23-4a03-95b6-9247cf9abc52"
+          },
+          "hash": "0x9402c548fba10f1cf3e0c0bad6c3bed8328f7a1ed6b2c28b1d34bf4ce5af0d3e",
+          "gasUsed": "1550467",
+          "gasCostWei": "9488885948406",
+          "status": "passed",
+          "elapsedMs": 23416,
+          "finishedAt": "2026-11-17T22:46:49.512Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0xc09f82bc6631f01d33dc9f963f3e5da91e3c97e52daa406330ecf494dde32154",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 290,
+          "finishedAt": "2026-11-17T22:52:11.128Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Iriiadra #9",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/9/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3873,
+          "finishedAt": "2026-11-17T22:52:15.004Z"
+        },
+        "depths-private-floor-log": {
+          "distinctTransactions": 3,
+          "privateFloorReadVerified": true,
+          "status": "passed",
+          "elapsedMs": 9391,
+          "finishedAt": "2026-11-17T22:52:33.028Z"
+        }
+      },
+      "address": "0x84af7784dAA3Bc62D96c798282d081c5cf3E8D22",
+      "identity": "0x88d58C3990a6A9444A8F3F15335d7244aa7BB409",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x2b2807c926d661141bd6578001f94d5f197d7ad4edcfb224c5e0b30f94e4fe07"
+      ],
+      "nftId": 9,
+      "finalEth": "0.022373261904543352"
+    },
+    {
+      "player": 7,
+      "steps": {
+        "starter-mint": {
+          "hash": "0x702826181a8f6aa28ec1422bcfb368c12bec22716491cdd1807fa73faf221fbe",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 12,
+          "status": "passed",
+          "elapsedMs": 10967,
+          "finishedAt": "2026-11-17T22:13:02.749Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "28a37488-7074-496b-95d6-8ca1c9f3c6d4"
+          },
+          "hash": "0xb1b2bd3a495005664f3718e82c5cef8ce252e32b3a1114b5c501aa41a7bfd64c",
+          "gasUsed": "282190",
+          "gasCostWei": "1023114836560",
+          "status": "passed",
+          "elapsedMs": 12344,
+          "finishedAt": "2026-11-17T22:17:05.944Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "8020312f-98d9-474f-a219-d2bf2ddcf68b"
+          },
+          "hash": "0x5c484ef8176be7db633254d5deb71cd6f44afaec9769d8e42cb97416287a55dd",
+          "gasUsed": "1754661",
+          "gasCostWei": "7597017113481",
+          "status": "passed",
+          "elapsedMs": 10426,
+          "finishedAt": "2026-11-17T22:17:16.370Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "9e5f460a-3b21-4c65-ad3d-f893c186e4b7"
+          },
+          "hash": "0x2ff38bb472fbbc61d79a8cd4f95bbeaaa687cba9ff06eeb8173966f552fbbfce",
+          "gasUsed": "276314",
+          "gasCostWei": "1472648620680",
+          "status": "passed",
+          "elapsedMs": 9517,
+          "finishedAt": "2026-11-17T22:17:25.888Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 3908,
+          "finishedAt": "2026-11-17T22:17:29.797Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "b5311476-5511-4472-9d07-a2ac1c1c4878"
+          },
+          "hash": "0x698d8783f6b7f42c117cd74f5b02f61324bb5cc4be60ea2ccc5856ef026f6bda",
+          "gasUsed": "10821624",
+          "gasCostWei": "52621012429920",
+          "status": "passed",
+          "elapsedMs": 14948,
+          "finishedAt": "2026-11-17T22:17:59.769Z"
+        },
+        "hunt-start": {
+          "battleId": 8,
+          "handles": [
+            "0xc501ed67f2c65b46560bf2dcd4f36afd8eddb25f61ff0000000000aa36a70000",
+            "0x6dda9d67beaf14992cf30e4d7d13b8f25470d61bbfff0000000000aa36a70000",
+            "0x12a4c65b4aaa281ca5f102a0f5bcac8d1b2c259dedff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 30096,
+          "finishedAt": "2026-11-17T22:17:59.894Z"
+        },
+        "hunt-settle": {
+          "hash": "0xe784b64bc433784d2e3c71b4a1b0d9674996e6839d53ade886f83ef5f1c66e0d",
+          "gasUsed": "981598",
+          "gasCostWei": "19631960",
+          "status": "passed",
+          "elapsedMs": 15738,
+          "finishedAt": "2026-11-17T22:18:15.634Z"
+        },
+        "hunt-proof": {
+          "battleId": 8,
+          "rounds": [
+            false,
+            false,
+            true
+          ],
+          "won": false,
+          "settlement": "0xe784b64bc433784d2e3c71b4a1b0d9674996e6839d53ade886f83ef5f1c66e0d",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3054,
+          "finishedAt": "2026-11-17T22:18:18.689Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "17293ad5-7521-4360-a7b2-91eac5eeeb32"
+          },
+          "hash": "0x5ad75722814cec62656fcaa689dddc3d277c625c40851c019eb0fe71f8f20de9",
+          "gasUsed": "141024",
+          "gasCostWei": "564126743232",
+          "status": "passed",
+          "elapsedMs": 9254,
+          "finishedAt": "2026-11-17T22:21:25.885Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "08040bf1-7726-46f5-8d28-5cd5432175ca"
+          },
+          "hash": "0xeceda6325e5087400ac8e6bcf68ecef84211bb99f6e93138100e0b0cf2352ace",
+          "gasUsed": "128321",
+          "gasCostWei": "513311973978",
+          "status": "passed",
+          "elapsedMs": 15243,
+          "finishedAt": "2026-11-17T22:21:41.130Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "7427ac22-5da9-49b1-80c5-5dcfa11ab759"
+          },
+          "hash": "0x11b78880c14fbf6ad460e74b5051d989ab17163de9804379a907caa319a51548",
+          "gasUsed": "813525",
+          "gasCostWei": "3026352862725",
+          "status": "passed",
+          "elapsedMs": 10610,
+          "finishedAt": "2026-11-17T22:24:49.386Z"
+        },
+        "allow-ChimeraRaffle": {
+          "request": {
+            "id": "e053f107-846a-4f02-b233-391210d93bdb"
+          },
+          "hash": "0xe8f7609c76bdf977a34f56a9b661d65b3d316305dd3eb56de316fc19be9fc378",
+          "gasUsed": "133549",
+          "gasCostWei": "480778803882",
+          "status": "passed",
+          "elapsedMs": 7509,
+          "finishedAt": "2026-11-17T22:26:13.442Z"
+        },
+        "raffle-buy-tickets": {
+          "request": {
+            "id": "9b5d44aa-80b5-41e4-a655-3c2bbfb3c4f9"
+          },
+          "hash": "0xe9fbd3cb32c98b3e264fd9a0b2a9396cd96cd0028f07b1ead832b3bed59d5a0e",
+          "gasUsed": "2426230",
+          "gasCostWei": "8734471672140",
+          "status": "passed",
+          "elapsedMs": 9528,
+          "finishedAt": "2026-11-17T22:26:38.879Z"
+        },
+        "raffle-private-tickets": {
+          "round": 1,
+          "tickets": 2,
+          "drawAvailableAt": "2026-11-20T08:05:36.000Z",
+          "status": "passed",
+          "elapsedMs": 6740,
+          "finishedAt": "2026-11-17T22:26:45.621Z"
+        },
+        "raffle-draw-gate": {
+          "correctlyBlockedUntil": "2026-11-20T08:05:36.000Z",
+          "status": "passed",
+          "elapsedMs": 99,
+          "finishedAt": "2026-11-17T22:41:51.804Z"
+        },
+        "market-new-specimen": {
+          "request": {
+            "id": "6fb4ef5d-8fd2-47b6-95c1-bc63fd120d98"
+          },
+          "hash": "0xe0ee9bc377a345329ff8d8b449f61b9df6ef523367800209de091e5e15918fae",
+          "gasUsed": "6010414",
+          "gasCostWei": "24234097435452",
+          "status": "passed",
+          "elapsedMs": 15745,
+          "finishedAt": "2026-11-17T22:27:01.479Z"
+        },
+        "market-approve": {
+          "request": {
+            "id": "2e04ffba-31d6-4fa8-9eda-8446b29e20d0"
+          },
+          "hash": "0x1d76823cea1f15364790ba79c804b7313eb734f05dfc8f3698e33216d53b1736",
+          "gasUsed": "130701",
+          "gasCostWei": "313688935050",
+          "status": "passed",
+          "elapsedMs": 15404,
+          "finishedAt": "2026-11-17T22:42:07.407Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "e2a12f1d-81e4-49cf-befa-d7af7ef55df6"
+          },
+          "hash": "0xad8ad601b9d909e8aa1f8fec946a18030992e1809c798f657e39cff0150f27d2",
+          "gasUsed": "2594767",
+          "gasCostWei": "1124943069481",
+          "status": "passed",
+          "elapsedMs": 4459,
+          "finishedAt": "2026-11-17T22:29:49.492Z"
+        },
+        "boss-proof": {
+          "strikeId": 7,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:29:58.481Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "619230fd-1203-424e-a4fc-660639dc5291"
+          },
+          "hash": "0x0a9c4ca59a5696b355dd54ad0d772e73d68f35c9e850a0398fa4e3621ce7acb9",
+          "gasUsed": "1542618",
+          "gasCostWei": "3702312509742",
+          "status": "passed",
+          "elapsedMs": 12715,
+          "finishedAt": "2026-11-17T22:38:26.517Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "9c06f9b2-3b5a-441b-9479-0a7ede3c9e39"
+          },
+          "hash": "0x5431a92dce5d0cda0163438bb15f134598adc38f7d984728a9e3eea379604638",
+          "gasUsed": "183047",
+          "gasCostWei": "571109934846",
+          "status": "passed",
+          "elapsedMs": 12896,
+          "finishedAt": "2026-11-17T22:38:39.611Z"
+        },
+        "market-list": {
+          "request": {
+            "id": "30824650-4a9d-491a-89f0-ae7d550b7ddf"
+          },
+          "hash": "0x33f6c76bec741b33a2ea141f2ad42fa4d87808129ed0f4505b1429bed2a93064",
+          "gasUsed": "969303",
+          "gasCostWei": "3489539265150",
+          "status": "passed",
+          "elapsedMs": 7896,
+          "finishedAt": "2026-11-17T22:42:15.335Z"
+        },
+        "market-cancel": {
+          "request": {
+            "id": "7b555803-a16c-4e65-9188-3953da89328c"
+          },
+          "hash": "0x9290d93c9a050855c58fc4e20277e1817e76293d806e89e9bdab540f99fca385",
+          "gasUsed": "319789",
+          "gasCostWei": "1151246475991",
+          "status": "passed",
+          "elapsedMs": 10207,
+          "finishedAt": "2026-11-17T22:42:25.665Z"
+        },
+        "market-approve-sale": {
+          "request": {
+            "id": "aa64911c-3fc3-45c1-85f6-19b9e00ba3b8"
+          },
+          "hash": "0xf6b8f946a0e2acd9654ac65dc93639219a1f8178192d3c01f048544f10cd921b",
+          "gasUsed": "130701",
+          "gasCostWei": "470526083319",
+          "status": "passed",
+          "elapsedMs": 13768,
+          "finishedAt": "2026-11-17T22:42:39.435Z"
+        },
+        "market-relist": {
+          "request": {
+            "id": "33f07034-4414-47ed-8a27-db455209cfcb"
+          },
+          "hash": "0x0d2b0099f8d18b0ecd9dd7cf842e4addcbfb99e21f80518f14e522129536666a",
+          "gasUsed": "763463",
+          "gasCostWei": "1832325705797",
+          "status": "passed",
+          "elapsedMs": 15347,
+          "finishedAt": "2026-11-17T22:42:54.784Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "731b9aa0-5757-4c98-9b71-522c637cd11b"
+          },
+          "hash": "0xd4e9ef40a9168190a288ed311c3fb988924aa0e4ce3630528509b00a3bd09f4d",
+          "gasUsed": "1550467",
+          "gasCostWei": "7628513154913",
+          "status": "passed",
+          "elapsedMs": 13105,
+          "finishedAt": "2026-11-17T22:47:02.762Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x2ad8e079b6c3af6c5869e125f8d0c5a13ad0c0490165d2d9cfc1032c82cd036f",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 286,
+          "finishedAt": "2026-11-17T22:52:14.968Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Drevenyx #12",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/12/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3890,
+          "finishedAt": "2026-11-17T22:52:18.860Z"
+        }
+      },
+      "address": "0x46f5452A67696e86daE566d7986664Dbe3b9aCde",
+      "identity": "0x54124d8dBb50a1DD6AEAdf6dE37d451f1BbECC4d",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x2f1fc18d01ca75e65522152b513612543b67f1b16a3316ac37b4a061d18c69cd"
+      ],
+      "nftId": 12,
+      "finalEth": "0.022429206887207801"
+    },
+    {
+      "player": 8,
+      "steps": {
+        "starter-mint": {
+          "hash": "0xaa15ddc918e7acad29732bc42a24c627d71fd79582604b80ddee75aaefbcfe6c",
+          "gasUsed": "6208535",
+          "gasCostWei": "7450241975165860",
+          "nftId": 11,
+          "status": "passed",
+          "elapsedMs": 10965,
+          "finishedAt": "2026-11-17T22:13:02.734Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "799cc67a-ea5c-48d3-94f1-b144eda6f58a"
+          },
+          "hash": "0x3b909c0a22c1c69d8a3d53bb347420a26488fb0447f8189c511c881fd8d83871",
+          "gasUsed": "282190",
+          "gasCostWei": "1221775749990",
+          "status": "passed",
+          "elapsedMs": 7110,
+          "finishedAt": "2026-11-17T22:17:16.323Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "22bc371b-ae6b-41b4-ae2b-95ed17cd957f"
+          },
+          "hash": "0x606d796590afea9bf2ac385e62cc25fa4063a21c26b6aff9af1322838561b782",
+          "gasUsed": "1754661",
+          "gasCostWei": "9351676358820",
+          "status": "passed",
+          "elapsedMs": 9416,
+          "finishedAt": "2026-11-17T22:17:25.740Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "d96c4dc7-c65a-40f3-b6dd-5233b9864bfe"
+          },
+          "hash": "0xc04b81434e774d79b2fc96bdcf5735d86478aa7cfa127e5b41bc86f31071774b",
+          "gasUsed": "276314",
+          "gasCostWei": "1619912930120",
+          "status": "passed",
+          "elapsedMs": 16833,
+          "finishedAt": "2026-11-17T22:17:42.574Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 3967,
+          "finishedAt": "2026-11-17T22:17:46.578Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "861a1748-6d6e-4580-b343-506c3cdfc63c"
+          },
+          "hash": "0x18dfe9d98a258c15e83cc46ad7289dcadd6040eca763878d44d445d5f78bdfa1",
+          "gasUsed": "10821636",
+          "gasCostWei": "57883145394060",
+          "status": "passed",
+          "elapsedMs": 14722,
+          "finishedAt": "2026-11-17T22:18:16.303Z"
+        },
+        "hunt-start": {
+          "battleId": 9,
+          "handles": [
+            "0xfb22fdc1a4f0778cb3421e31633b1e858de197391aff0000000000aa36a70000",
+            "0x915e3b7d0f385b4c8a15a188087f86a335628c26e7ff0000000000aa36a70000",
+            "0x391c52bb807e043282148e7509f1b836b823f8567dff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 29986,
+          "finishedAt": "2026-11-17T22:18:16.565Z"
+        },
+        "hunt-settle": {
+          "hash": "0x74bb2a93ffe732dbcc79bcca3ffd742c2a45a9bd9510a540a7a8ffd962c661cc",
+          "gasUsed": "1577269",
+          "gasCostWei": "31545380",
+          "status": "passed",
+          "elapsedMs": 11267,
+          "finishedAt": "2026-11-17T22:18:27.833Z"
+        },
+        "hunt-proof": {
+          "battleId": 9,
+          "rounds": [
+            true,
+            true,
+            false
+          ],
+          "won": true,
+          "settlement": "0x74bb2a93ffe732dbcc79bcca3ffd742c2a45a9bd9510a540a7a8ffd962c661cc",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3130,
+          "finishedAt": "2026-11-17T22:18:30.964Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "a337ad82-c489-496d-b160-8a0b98580529"
+          },
+          "hash": "0x8cdc76c7128dad7366698bee23f619c0ddeecc174bf12fcda54d80318ac8e1a1",
+          "gasUsed": "141024",
+          "gasCostWei": "564126743232",
+          "status": "passed",
+          "elapsedMs": 13766,
+          "finishedAt": "2026-11-17T22:21:41.199Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "9a467a02-e285-426d-9177-a2f7e31f2b96"
+          },
+          "hash": "0x7414e16432f829183078358e6c2d21bee915a2d6bd611a11766d227627d06557",
+          "gasUsed": "128321",
+          "gasCostWei": "256669973978",
+          "status": "passed",
+          "elapsedMs": 9807,
+          "finishedAt": "2026-11-17T22:21:51.008Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "c8a6fff4-c74c-4c01-9c6f-0ac6cc4ae3a4"
+          },
+          "hash": "0x78899f4e246d111883038bffd3a6dc1617b205c19b7ff71f29f6da0d2bcfdd5c",
+          "gasUsed": "813529",
+          "gasCostWei": "3026367742921",
+          "status": "passed",
+          "elapsedMs": 10614,
+          "finishedAt": "2026-11-17T22:24:49.407Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "978438b6-7398-4849-a7a1-6c19dffff510"
+          },
+          "hash": "0x57b7222fddf28effc032651bc74d5e82c7ccd3dd4fcd75b135a78563b7d58272",
+          "gasUsed": "2820611",
+          "gasCostWei": "1222856154773",
+          "status": "passed",
+          "elapsedMs": 4618,
+          "finishedAt": "2026-11-17T22:30:01.030Z"
+        },
+        "boss-proof": {
+          "strikeId": 8,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:30:07.617Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "b39e7622-4b78-4b98-9e99-323820ead66c"
+          },
+          "hash": "0xeccc02714acf0b6443c1c0b901f630f705a1dc716cc05eb776024bffac9d153c",
+          "gasUsed": "1552622",
+          "gasCostWei": "3726322299818",
+          "status": "passed",
+          "elapsedMs": 12620,
+          "finishedAt": "2026-11-17T22:38:26.550Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "0a38cb06-9306-4c62-9a59-5b5b3c1db0a7"
+          },
+          "hash": "0xfec087a7709c76ae03b111e36a69924a4b6cb2229c3c27426624aa6234146407",
+          "gasUsed": "111451",
+          "gasCostWei": "347729126118",
+          "status": "passed",
+          "elapsedMs": 12837,
+          "finishedAt": "2026-11-17T22:38:39.572Z"
+        },
+        "treasury-publish-reserve": {
+          "request": {
+            "id": "45ad3b78-e008-4270-8f7e-d8046a554434"
+          },
+          "hash": "0x6a286b4ac7e0090ab2a9d21c7a6f55832ac48705de7da0b549d98fa1f9c68568",
+          "gasUsed": "65753",
+          "gasCostWei": "308672066754",
+          "status": "passed",
+          "elapsedMs": 10716,
+          "finishedAt": "2026-11-17T22:39:27.058Z"
+        },
+        "boss-publish-pot": {
+          "request": {
+            "id": "9479bf37-6b38-4168-bb22-61b0cf458877"
+          },
+          "hash": "0x51eb0acadfe8e4b7cd8cc3ad6e0d0aede2f56f4908ee58c685a3a5158003d1b6",
+          "gasUsed": "337760",
+          "gasCostWei": "1180275299200",
+          "status": "passed",
+          "elapsedMs": 12921,
+          "finishedAt": "2026-11-17T22:39:39.980Z"
+        },
+        "allow-ChimeraMarket": {
+          "request": {
+            "id": "78b39bb9-7336-49af-97b7-2d8bb2be9c36"
+          },
+          "hash": "0x9e9b94f501a903ea41a37490d1d0da5462ddaf186860cf37a4583f588ccb147d",
+          "gasUsed": "133549",
+          "gasCostWei": "480778937431",
+          "status": "passed",
+          "elapsedMs": 16858,
+          "finishedAt": "2026-11-17T22:43:11.831Z"
+        },
+        "market-buy": {
+          "request": {
+            "id": "23020467-8ac9-4b7f-8d3c-54f4efc60d39"
+          },
+          "hash": "0x8e65adb3ff69d1dfa183825c21feefe3c89ca7b7054ed774f904407ea6dc599c",
+          "gasUsed": "1637204",
+          "gasCostWei": "7858608669672",
+          "status": "passed",
+          "elapsedMs": 28207,
+          "finishedAt": "2026-11-17T22:43:40.039Z"
+        },
+        "market-finalize-transaction": {
+          "request": {
+            "id": "02073723-4b28-4a58-8a5e-ee83b36f77e6"
+          },
+          "hash": "0xb1157b641b1660cc647b13c0707deb984722d8f7d6aad20ec1d21b8fc72c8a68",
+          "gasUsed": "2820024",
+          "gasCostWei": "15160499784432",
+          "status": "passed",
+          "elapsedMs": 6489,
+          "finishedAt": "2026-11-17T22:43:50.076Z"
+        },
+        "market-finalize": {
+          "request": {
+            "id": "02073723-4b28-4a58-8a5e-ee83b36f77e6"
+          },
+          "hash": "0xb1157b641b1660cc647b13c0707deb984722d8f7d6aad20ec1d21b8fc72c8a68",
+          "gasUsed": "2820024",
+          "gasCostWei": "15160499784432",
+          "status": "passed",
+          "elapsedMs": 9926,
+          "finishedAt": "2026-11-17T22:43:50.077Z"
+        },
+        "market-ownership": {
+          "nftId": 25,
+          "seller": "0x46f5452A67696e86daE566d7986664Dbe3b9aCde",
+          "buyer": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+          "status": "passed",
+          "elapsedMs": 118,
+          "finishedAt": "2026-11-17T22:43:50.205Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "505658c1-109a-4b0d-b7cb-e6ed9f989d79"
+          },
+          "hash": "0xdd8f358447df025e51863636125a39a8e2fa52a814ddbc3e32f61b6e1eb9f47a",
+          "gasUsed": "1550471",
+          "gasCostWei": "9488911978949",
+          "status": "passed",
+          "elapsedMs": 13138,
+          "finishedAt": "2026-11-17T22:47:02.808Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x26f99c581c3e2de21d6a8374e70c014773ea40609b859f4bdfb298d160770ecf",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 202,
+          "finishedAt": "2026-11-17T22:52:15.303Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Caelothar #11",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/11/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3865,
+          "finishedAt": "2026-11-17T22:52:19.170Z"
+        }
+      },
+      "address": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+      "identity": "0xa38dd479CbC841C27375E43DCec44f4C148005eA",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0xbbcba0d6be823014b8a3250ca357c23866f116d3dda394ab63999eb88832a33c"
+      ],
+      "nftId": 11,
+      "finalEth": "0.022436059695623872"
+    },
+    {
+      "player": 9,
+      "steps": {
+        "starter-mint": {
+          "hash": "0xff087d5dcb343ff9455422ef0ef86c64d413090f32894a869cb3ea941a0ba471",
+          "gasUsed": "6208539",
+          "gasCostWei": "7450246775165844",
+          "nftId": 10,
+          "status": "passed",
+          "elapsedMs": 10839,
+          "finishedAt": "2026-11-17T22:13:02.752Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "5d7ac577-b4c6-4939-a0b9-c0bae2068128"
+          },
+          "hash": "0x0187553c186a013b0b08878fb8046cb7bec9af980c33151e50651b70ea5d516c",
+          "gasUsed": "282190",
+          "gasCostWei": "1503965467800",
+          "status": "passed",
+          "elapsedMs": 6263,
+          "finishedAt": "2026-11-17T22:17:25.833Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "204cfa27-de02-4a59-82b8-4347ff4ce9b2"
+          },
+          "hash": "0x110a9a2a2eda3539a3e90bcc8e4f1f62e20bc83214be1b49cb0c5e1dd879b45c",
+          "gasUsed": "1754661",
+          "gasCostWei": "10286840485380",
+          "status": "passed",
+          "elapsedMs": 16797,
+          "finishedAt": "2026-11-17T22:17:42.631Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "0337868e-5349-4285-b40d-2dedd80316df"
+          },
+          "hash": "0x18442eef4771713d7f9a7cbd083e00c4db4dccd3cbc3afa454ad4e06f1eb43fe",
+          "gasUsed": "276314",
+          "gasCostWei": "1343598930120",
+          "status": "passed",
+          "elapsedMs": 16511,
+          "finishedAt": "2026-11-17T22:17:59.143Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 3822,
+          "finishedAt": "2026-11-17T22:18:02.966Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "d780318b-301c-4b25-ac05-74e48300695a"
+          },
+          "hash": "0x2f969de2afe92226852a5667f0ca6332909f05440c4231d1f64ea2c2751d1ae3",
+          "gasUsed": "10821636",
+          "gasCostWei": "57883145394060",
+          "status": "passed",
+          "elapsedMs": 9709,
+          "finishedAt": "2026-11-17T22:18:27.731Z"
+        },
+        "hunt-start": {
+          "battleId": 10,
+          "handles": [
+            "0x9ad34dec9d795b95135fa48428fe8c01f7346cf9d3ff0000000000aa36a70000",
+            "0xf8189ff5b4ee12c3ce69aca41eb5337b9bd17b5301ff0000000000aa36a70000",
+            "0x86d6b4e62b4fe699326c5fc23790da74da25e8260fff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 24891,
+          "finishedAt": "2026-11-17T22:18:27.858Z"
+        },
+        "hunt-settle": {
+          "hash": "0xe8b85e64df1cb7528f30690c685d5ea0fc1d1031366cf08438921c9503d09a27",
+          "gasUsed": "1528751",
+          "gasCostWei": "30575020",
+          "status": "passed",
+          "elapsedMs": 9889,
+          "finishedAt": "2026-11-17T22:18:37.749Z"
+        },
+        "hunt-proof": {
+          "battleId": 10,
+          "rounds": [
+            false,
+            true,
+            true
+          ],
+          "won": true,
+          "settlement": "0xe8b85e64df1cb7528f30690c685d5ea0fc1d1031366cf08438921c9503d09a27",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3299,
+          "finishedAt": "2026-11-17T22:18:41.048Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "c3109a93-da52-472e-bd52-54a9a65a0579"
+          },
+          "hash": "0x9f0250e083f19241ca96075296b8e65dbb73bf570dc7fc3b4591a0dd57337b19",
+          "gasUsed": "141024",
+          "gasCostWei": "564126743232",
+          "status": "passed",
+          "elapsedMs": 13572,
+          "finishedAt": "2026-11-17T22:21:41.192Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "8f3eb4bd-adea-4c64-b4ad-ca83fdb4c521"
+          },
+          "hash": "0x11fb4ddc622ba3443eced21eb6c5b29f83163616c917a77c4e849291fa74f2af",
+          "gasUsed": "128321",
+          "gasCostWei": "256669973978",
+          "status": "passed",
+          "elapsedMs": 9864,
+          "finishedAt": "2026-11-17T22:21:51.058Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "92ad3694-3bc9-4832-91c3-5ea4c7eaf628"
+          },
+          "hash": "0xb9c24742061d2dff2bda5ea7bdaf7f11943ab35f7aacb4329bf5470ddfa877e0",
+          "gasUsed": "813525",
+          "gasCostWei": "1627227348450",
+          "status": "passed",
+          "elapsedMs": 12371,
+          "finishedAt": "2026-11-17T22:22:03.430Z"
+        },
+        "allow-ChimeraColosseum": {
+          "request": {
+            "id": "5a14c202-94c8-4789-928a-dd2b73f07535"
+          },
+          "hash": "0x31dc224c1d2f84c4d878fb4d38ddfa9fdb103d670a3a9951ea89180e9e2c27fe",
+          "gasUsed": "133549",
+          "gasCostWei": "538471971882",
+          "status": "passed",
+          "elapsedMs": 12138,
+          "finishedAt": "2026-11-17T22:27:15.313Z"
+        },
+        "pvp-post-defender": {
+          "request": {
+            "id": "eaba9f30-47eb-4b3e-95cf-bcf4c3a6f821"
+          },
+          "hash": "0xaf863e2c33aa1f6aad16b868ef1266c7f42a95ac4307644b6c91728f11e1dffa",
+          "gasUsed": "2255826",
+          "gasCostWei": "5580773662788",
+          "status": "passed",
+          "elapsedMs": 9213,
+          "finishedAt": "2026-11-17T22:27:50.292Z"
+        },
+        "pvp-change-plan": {
+          "request": {
+            "id": "a3bf76e8-0114-4db6-a353-a2d45dc7cd42"
+          },
+          "hash": "0x34b15e31f6e30e9c1c7301d17d110d433a08bdc595c347c26f43ec569bad64f8",
+          "gasUsed": "582842",
+          "gasCostWei": "1441914971796",
+          "status": "passed",
+          "elapsedMs": 10463,
+          "finishedAt": "2026-11-17T22:28:16.550Z"
+        },
+        "pvp-withdraw": {
+          "hash": "0xdc88ecd4b0ff02a9c0b251b072045e6b49ff6bf359d1388a7fedda6987aebe9e",
+          "request": {
+            "id": "2462bddb-b634-4f68-b0d4-9e82d0ed3b23"
+          },
+          "uiRecoveryVerified": true,
+          "gasUsed": "1036740",
+          "gasCostWei": "8061757628100",
+          "status": "passed",
+          "elapsedMs": 527,
+          "finishedAt": "2026-11-17T22:54:03.717Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "c6031ccf-3bae-4a7e-adfe-d9a7860488e8"
+          },
+          "hash": "0xbbd86b47534a09a51566638636a4bbd88bde8ee11a3200861ba5975399ec54f8",
+          "gasUsed": "2820611",
+          "gasCostWei": "1222853334162",
+          "status": "passed",
+          "elapsedMs": 27961,
+          "finishedAt": "2026-11-17T22:30:26.538Z"
+        },
+        "boss-proof": {
+          "strikeId": 10,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:30:32.023Z"
+        },
+        "retire-new-offering": {
+          "request": {
+            "id": "a8b5d726-dcd0-4ce2-a58b-8ea96f84c87b"
+          },
+          "hash": "0x56ec58c5d67681a3a199796f69c1e88e3eaf62543b90f8eb3d6235e2a772141c",
+          "gasUsed": "6010414",
+          "gasCostWei": "14425107797866",
+          "status": "passed",
+          "elapsedMs": 13410,
+          "finishedAt": "2026-11-17T22:36:39.827Z"
+        },
+        "retire-approve": {
+          "request": {
+            "id": "4a2ad75e-bd5e-441a-84e9-d58cdb99918c"
+          },
+          "hash": "0x76cdb448f81b199184c92edabe2ccd2e9bfef05b540e32f8fa20e2ad98848e8f",
+          "gasUsed": "130701",
+          "gasCostWei": "470530265751",
+          "status": "passed",
+          "elapsedMs": 11614,
+          "finishedAt": "2026-11-17T22:41:14.834Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "d315c1ab-b241-4304-a6ee-53af318c8a9d"
+          },
+          "hash": "0xd3522d1488b9cbe6bc2d90d2f5b75803312535e8f0c3a9d4c2e1814978921420",
+          "gasUsed": "1542428",
+          "gasCostWei": "4812403123704",
+          "status": "passed",
+          "elapsedMs": 10566,
+          "finishedAt": "2026-11-17T22:38:50.241Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "db900ab0-d821-4f12-9a37-1da0d52c61f8"
+          },
+          "hash": "0x1e2e429eed4643b2b822aeb3915e913d7b8d89c3d8031d44a42a1145755a9647",
+          "gasUsed": "111439",
+          "gasCostWei": "347691685902",
+          "status": "passed",
+          "elapsedMs": 12977,
+          "finishedAt": "2026-11-17T22:39:03.424Z"
+        },
+        "retire-specimen": {
+          "request": {
+            "id": "e39306d8-5e55-449f-9ffb-d764680d8977"
+          },
+          "hash": "0x5d2778a1e34d0b6f2b3c97e201eb553e0897155a8204dad4fc5364db2b2b36f1",
+          "gasUsed": "713204",
+          "gasCostWei": "1711727399812",
+          "status": "passed",
+          "elapsedMs": 10490,
+          "finishedAt": "2026-11-17T22:41:25.326Z"
+        },
+        "retire-lineage-charge": {
+          "charges": 1,
+          "retiredNft": 28,
+          "status": "passed",
+          "elapsedMs": 108,
+          "finishedAt": "2026-11-17T22:41:25.435Z"
+        },
+        "pvp-defender-consumed": {
+          "inactiveAfterDuel": true,
+          "status": "passed",
+          "elapsedMs": 109,
+          "finishedAt": "2026-11-17T22:43:11.869Z"
+        },
+        "pvp-register-to-withdraw": {
+          "request": {
+            "id": "2e9900e3-7014-45f1-9784-6bcfde39761a"
+          },
+          "hash": "0x3085264764a28a717c6888ba8b43f114f98d72b0e55bb4c7006da524b602158a",
+          "gasUsed": "1856008",
+          "gasCostWei": "8908871808144",
+          "status": "passed",
+          "elapsedMs": 13239,
+          "finishedAt": "2026-11-17T22:43:40.143Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "d351bd53-a679-4aa1-b027-4269d0d638fc"
+          },
+          "hash": "0xe2c143fbde960bf54488abb36d128ac8df7b8849831e45328eb827ab20cff942",
+          "gasUsed": "1550467",
+          "gasCostWei": "7442458665380",
+          "status": "passed",
+          "elapsedMs": 13058,
+          "finishedAt": "2026-11-17T22:47:15.933Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x48123c48a580dfd2af35696852fc4bb608228ef6139f97f3ddb8881c9132252f",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 288,
+          "finishedAt": "2026-11-17T22:52:19.245Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Bryouvex #10",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/10/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3864,
+          "finishedAt": "2026-11-17T22:52:23.110Z"
+        }
+      },
+      "address": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+      "identity": "0xA6392d4b918D9c37FaA4721B7d050EFC6cA62235",
+      "manualFundingWei": "20000000000000000",
+      "fundingHashes": [
+        "0x351b801c484ff2d81a6f2cf3031107b7696a5b1e59cc671da531cb3dfd3748dd"
+      ],
+      "nftId": 10,
+      "finalEth": "0.022415733977430435"
+    },
+    {
+      "player": 10,
+      "steps": {
+        "starter-mint": {
+          "hash": "0xa60d309d2c849632ac2362d223376558bf56decf115736672a6698f4e2bc0a20",
+          "gasUsed": "6208539",
+          "gasCostWei": "7450246775165844",
+          "nftId": 13,
+          "status": "passed",
+          "elapsedMs": 13539,
+          "finishedAt": "2026-11-17T22:13:16.514Z"
+        },
+        "season-join": {
+          "request": {
+            "id": "75201618-a3f3-4e45-9ed1-61b2f5fa7b8d"
+          },
+          "hash": "0x8970d76de85612726c96958f812a7227f650c082dfac19fd418dddaa756bed0c",
+          "gasUsed": "282190",
+          "gasCostWei": "1509387748650",
+          "status": "passed",
+          "elapsedMs": 8892,
+          "finishedAt": "2026-11-17T22:18:27.795Z"
+        },
+        "daily-check-in": {
+          "request": {
+            "id": "d51a85da-8917-4f4f-9dee-7d73d2d1ad5c"
+          },
+          "hash": "0xc4f689743cc53b8079486c529768f9429821b506cc8f9916576cc38e6467848a",
+          "gasUsed": "1754657",
+          "gasCostWei": "10323903465412",
+          "status": "passed",
+          "elapsedMs": 9885,
+          "finishedAt": "2026-11-17T22:18:37.682Z"
+        },
+        "sequence-gene": {
+          "request": {
+            "id": "1daffae7-20eb-4f01-a4e2-b11594cd575e"
+          },
+          "hash": "0xbe18bec66d177e002a2ab8200d4f1208b85c26bec724a60935260e31b70a5fa1",
+          "gasUsed": "276314",
+          "gasCostWei": "1349439379138",
+          "status": "passed",
+          "elapsedMs": 17692,
+          "finishedAt": "2026-11-17T22:18:55.384Z"
+        },
+        "private-lab-key": {
+          "noExternalSignature": true,
+          "privateElementVerified": true,
+          "status": "passed",
+          "elapsedMs": 4289,
+          "finishedAt": "2026-11-17T22:18:59.675Z"
+        },
+        "hunt-submit": {
+          "request": {
+            "id": "d001fff2-27d8-4393-9f5a-9082a327ab45"
+          },
+          "hash": "0x19fa187d1ce82c6e73dc674687bb175f660540ff329e74a1d64d336b4cebf99f",
+          "gasUsed": "10821624",
+          "gasCostWei": "54567887517264",
+          "status": "passed",
+          "elapsedMs": 12810,
+          "finishedAt": "2026-11-17T22:19:27.525Z"
+        },
+        "hunt-start": {
+          "battleId": 11,
+          "handles": [
+            "0x84abfc9a5078b5d35c6a03f72e28a0d091890a3ba0ff0000000000aa36a70000",
+            "0xf5453c12243b21c064f00754985a1fd902f0f2a31cff0000000000aa36a70000",
+            "0x369ebc1a052301182c5390ce14c37d5874aea0cbd7ff0000000000aa36a70000"
+          ],
+          "status": "passed",
+          "elapsedMs": 28108,
+          "finishedAt": "2026-11-17T22:19:27.784Z"
+        },
+        "hunt-settle": {
+          "hash": "0x57a3faec0078649b77185de5f739d15ae28943cf0e109f96cff6ac603ce2cf26",
+          "gasUsed": "1639378",
+          "gasCostWei": "31148182",
+          "status": "passed",
+          "elapsedMs": 22374,
+          "finishedAt": "2026-11-17T22:19:50.159Z"
+        },
+        "hunt-proof": {
+          "battleId": 11,
+          "rounds": [
+            true,
+            true,
+            true
+          ],
+          "won": true,
+          "settlement": "0x57a3faec0078649b77185de5f739d15ae28943cf0e109f96cff6ac603ce2cf26",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3826,
+          "finishedAt": "2026-11-17T22:19:53.996Z"
+        },
+        "faucet-mint": {
+          "request": {
+            "id": "582ff684-a5a0-47ac-b10c-a6089649e478"
+          },
+          "hash": "0xa638ecb1b089602e5daebcf8dfb12a2fdd95098f3d11c963250d2cd4e52e1ea1",
+          "gasUsed": "141024",
+          "gasCostWei": "423102743232",
+          "status": "passed",
+          "elapsedMs": 8486,
+          "finishedAt": "2026-11-17T22:21:51.150Z"
+        },
+        "faucet-approve": {
+          "request": {
+            "id": "21533bbe-9cc3-4c35-8b9a-ec7a0960251d"
+          },
+          "hash": "0x6ac2853cdbeef9181ffcc86bc3a50991b1dec9a3ae28c6de9750419658886a0c",
+          "gasUsed": "128321",
+          "gasCostWei": "256669973978",
+          "status": "passed",
+          "elapsedMs": 12321,
+          "finishedAt": "2026-11-17T22:22:03.474Z"
+        },
+        "faucet-wrap": {
+          "request": {
+            "id": "a240ac4a-f1aa-486c-a0ea-b7e4fd672210"
+          },
+          "hash": "0x413f253545cf442dcc882426aa8eab2e584577736996ed3bd762d5cbfe31eb07",
+          "gasUsed": "813529",
+          "gasCostWei": "1627235349322",
+          "status": "passed",
+          "elapsedMs": 10005,
+          "finishedAt": "2026-11-17T22:22:13.481Z"
+        },
+        "allow-ChimeraColosseum": {
+          "request": {
+            "id": "9aa10ad2-d4aa-42af-b5ae-f1b043a71936"
+          },
+          "hash": "0xa90979ea8c299eb5acb0a5385ff281866610ce3d7ab03efc0469a674c8cfc8c3",
+          "gasUsed": "133549",
+          "gasCostWei": "650909545962",
+          "status": "passed",
+          "elapsedMs": 10037,
+          "finishedAt": "2026-11-17T22:27:25.462Z"
+        },
+        "pvp-duel": {
+          "request": {
+            "id": "898c9226-49a9-4665-bf1a-5d3d996e0f6b"
+          },
+          "hash": "0xf5c0bafcd8a02504583446309924bb91bd1beedca2ad039cdd528c77e43b6f0d",
+          "gasUsed": "6004077",
+          "gasCostWei": "14853714245226",
+          "status": "passed",
+          "elapsedMs": 7822,
+          "finishedAt": "2026-11-17T22:28:39.511Z"
+        },
+        "pvp-settle": {
+          "hash": "0xe815ed95f910c3e6007541c65419eedcd5ff91c4c05a53556e9e315d9ba76bdb",
+          "gasUsed": "3660447",
+          "gasCostWei": "69548493",
+          "status": "passed",
+          "elapsedMs": 10518,
+          "finishedAt": "2026-11-17T22:28:50.276Z"
+        },
+        "boss-strike": {
+          "request": {
+            "id": "60c7473f-d564-4442-b449-8031f307fe7c"
+          },
+          "hash": "0xfe051e7071eef2fdcdcb8f9b1c8106331fe029ad02790f0e328c1786e7ca4948",
+          "gasUsed": "2820611",
+          "gasCostWei": "35070179692940",
+          "status": "passed",
+          "elapsedMs": 5866,
+          "finishedAt": "2026-11-17T22:30:13.613Z"
+        },
+        "boss-proof": {
+          "strikeId": 9,
+          "killed": false,
+          "status": "passed",
+          "elapsedMs": 0,
+          "finishedAt": "2026-11-17T22:30:19.077Z"
+        },
+        "quest-claim-all": {
+          "request": {
+            "id": "bf664b70-379a-45d9-ad24-bd6caa82dc31"
+          },
+          "hash": "0x0b9b182e74e253ba288f401fc9c9f2ec67ba43b67c4f2f56f453d0b4339eaddb",
+          "gasUsed": "1552432",
+          "gasCostWei": "4843615783776",
+          "status": "passed",
+          "elapsedMs": 10513,
+          "finishedAt": "2026-11-17T22:38:50.235Z"
+        },
+        "season-claim-throne": {
+          "request": {
+            "id": "62f519a9-e92d-4649-bfc8-3d82774d1380"
+          },
+          "hash": "0xd0443be49c6c218c6aa7b4352e959631f22624a831d3c5505a08007e6e56b835",
+          "gasUsed": "111451",
+          "gasCostWei": "347729126118",
+          "status": "passed",
+          "elapsedMs": 12992,
+          "finishedAt": "2026-11-17T22:39:03.430Z"
+        },
+        "certify-public-genome": {
+          "request": {
+            "id": "96c7b684-f013-4af0-8d6f-ef11da6ba726"
+          },
+          "hash": "0x23f70b9f389ca28a80b2e509a94aeb6793052bdd06910264f689dd693806c606",
+          "gasUsed": "1127172",
+          "gasCostWei": "3938810125896",
+          "status": "passed",
+          "elapsedMs": 12878,
+          "finishedAt": "2026-11-17T22:39:16.340Z"
+        },
+        "boss-share-claim": {
+          "request": {
+            "id": "d9cc8abe-d98d-49d8-ab6b-78a868d43dc5"
+          },
+          "hash": "0x8708f12c7d02bb04ace66dbfb72261530f43bccd23d694efa07097f3fd8f88ae",
+          "gasUsed": "1550471",
+          "gasCostWei": "7442477865940",
+          "status": "passed",
+          "elapsedMs": 13074,
+          "finishedAt": "2026-11-17T22:47:15.998Z"
+        },
+        "nft-genome-commitment": {
+          "commitment": "0x382bd30cf20795ae49fd71fb1350940ceca5bbccaa4fd15292bf98bd1d085a53",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 289,
+          "finishedAt": "2026-11-17T22:52:19.668Z"
+        },
+        "nft-metadata-and-image": {
+          "name": "Galilume #13",
+          "image": "https://ashenkin.xyz/api/ashenkin-nft/13/image.svg",
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 3855,
+          "finishedAt": "2026-11-17T22:52:23.535Z"
+        },
+        "pvp-round-proof": {
+          "battleId": 12,
+          "rounds": [
+            false,
+            false,
+            false
+          ],
+          "won": false,
+          "verified": true,
+          "status": "passed",
+          "elapsedMs": 11410,
+          "finishedAt": "2026-11-17T22:54:15.128Z"
+        },
+        "certified-genome-public-proof": {
+          "certified": true,
+          "eightGeneProofVerified": true,
+          "status": "passed",
+          "elapsedMs": 3625,
+          "finishedAt": "2026-11-17T22:54:19.503Z"
+        },
+        "chimera-rarity-rule": {
+          "rareTraits": 2,
+          "correctlyRejected": true,
+          "status": "passed",
+          "elapsedMs": 3534,
+          "finishedAt": "2026-11-17T22:54:23.037Z"
+        }
+      },
+      "address": "0x8fA7cBB2B6641F6AA6Afe9705D981f510Da483fC",
+      "identity": "0x029e135EAeA198120054f543a570D68A6533151B",
+      "manualFundingWei": "30000000000000000",
+      "fundingHashes": [
+        "0x4a5bfe70debdd618fa0ae6248febcb684143172d742462a57c1068f740561f44",
+        "0x892f60f537aa7d682a681872cd2a59852e91e04854cd5358240ee697381f81b8"
+      ],
+      "nftId": 13,
+      "finalEth": "0.022406288361589888"
+    }
+  ],
+  "payer": "0xc944bD9967CE513C4161a867870B1bb3086f96E0",
+  "initialPayerBalance": "2.484483942024923846",
+  "lastRun": {
+    "command": "baseline",
+    "finishedAt": "2026-11-17T22:19:53.997Z",
+    "failures": []
+  },
+  "payerBalance": "2.184483941496385398",
+  "activityRuns": [
+    {
+      "mode": "expedition",
+      "at": "2026-11-17T22:20:28.128Z",
+      "failures": [
+        {
+          "player": 1,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 2,
+          "error": "Circle transaction failed: FAILED"
+        }
+      ]
+    },
+    {
+      "mode": "coins",
+      "at": "2026-11-17T22:22:13.519Z",
+      "failures": [
+        {
+          "player": 2,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 3,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 1,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 6,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 4,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 5,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 7,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 8,
+          "error": "Circle transaction failed: FAILED"
+        }
+      ]
+    },
+    {
+      "mode": "expedition",
+      "at": "2026-11-17T22:24:14.598Z",
+      "failures": []
+    },
+    {
+      "mode": "coins",
+      "at": "2026-11-17T22:24:49.423Z",
+      "failures": []
+    },
+    {
+      "mode": "activities",
+      "at": "2026-11-17T22:28:50.894Z",
+      "failures": [
+        {
+          "player": 2,
+          "error": "HTTP 503: Ashenkin could not complete this request. Please try again."
+        },
+        {
+          "player": 5,
+          "error": "The contract function \"draw\" reverted."
+        },
+        {
+          "player": 6,
+          "error": "Circle transaction failed: FAILED"
+        },
+        {
+          "player": 7,
+          "error": "HTTP 503: Ashenkin could not complete this request. Please try again."
+        }
+      ]
+    },
+    {
+      "mode": "raid",
+      "at": "2026-11-17T22:30:32.023Z",
+      "failures": []
+    },
+    {
+      "mode": "claim",
+      "at": "2026-11-17T22:34:35.222Z",
+      "failures": [
+        {
+          "player": 1,
+          "error": "dapp contract 0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd is not authorized to user decrypt handle 0x48eed66ad132fe4477d4e63b0ffeb3912cfdf2494cff0000000000aa36a70500!"
+        },
+        {
+          "player": 2,
+          "error": "dapp contract 0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd is not authorized to user decrypt handle 0x7b6b643c60fc9f370f4833b660a34c74ed54ed3e09ff0000000000aa36a70500!"
+        }
+      ]
+    },
+    {
+      "mode": "rewards",
+      "at": "2026-11-17T22:39:39.982Z",
+      "failures": [
+        {
+          "player": 1,
+          "error": "Sepolia transaction reverted: 0x41fc62453543f3a0bf7c68bc2393b0661403674e7e2b691fd7ce9ee6e9c37d09"
+        },
+        {
+          "player": 4,
+          "error": "Sepolia transaction reverted: 0x633e186bce74db32cc76f397ab7a0c5f0a9930b1a39d7a28f3987b67a53951a2"
+        },
+        {
+          "player": 5,
+          "error": "Sepolia transaction reverted: 0x64ffff072677e186956ed30f95e2ccea41eb4d4bf7f242dd690f3f4d357231bd"
+        }
+      ]
+    },
+    {
+      "mode": "claim",
+      "at": "2026-11-17T22:41:01.790Z",
+      "failures": []
+    },
+    {
+      "mode": "training",
+      "at": "2026-11-17T22:41:25.437Z",
+      "failures": []
+    },
+    {
+      "mode": "retest",
+      "at": "2026-11-17T22:45:02.135Z",
+      "failures": [
+        {
+          "player": 4,
+          "error": "Circle transaction failed: FAILED"
+        }
+      ]
+    },
+    {
+      "mode": "raid-finish",
+      "at": "2026-11-17T22:47:16.000Z",
+      "failures": []
+    }
+  ],
+  "finalVerification": {
+    "at": "2026-11-17T22:52:33.246Z",
+    "failures": []
+  },
+  "deferred": [
+    {
+      "activity": "raffle draw and payout",
+      "until": "2026-11-20T08:05:36.000Z",
+      "reason": "Live round remains open; early-draw guard verified."
+    },
+    {
+      "activity": "Oracle expiry and winning jackpot",
+      "until": "2026-11-20T22:25:36.000Z",
+      "reason": "Expiry is gated; the encrypted guess did not win the jackpot."
+    },
+    {
+      "activity": "season end and prizes",
+      "until": "2026-12-01T08:05:48.000Z",
+      "reason": "Live season remains open; early-end guard verified."
+    },
+    {
+      "activity": "rare Chimera successful claim",
+      "reason": "This test specimen does not meet five rare visible traits; rejection with valid KMS proof verified."
+    }
+  ],
+  "funding": {
+    "allocatedEth": "0.3",
+    "manualEth": "0.21",
+    "starterEth": "0.09",
+    "starterTransfers": [
+      {
+        "address": "0x8D2A94a3038628dDcE15FFD3771735DC08f4B0b7",
+        "hash": "0x261e12aad895e88527d02e6512b4dce828fa13ee61726b0bce12913804eddeb0",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x56937336f0EdE4a2884E8F55C7e4847F039A820a",
+        "hash": "0x5b98a01591de78de0320ec645bb295748750c81b3eef3af2ae84f75079ac6310",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x5f20BB8deEAcAF17e0610d9803C9A0B8489476F9",
+        "hash": "0x9ae9d36bdebc979d1d66ce5cf377a7bd0c2efd52280719538df4094d4f3cf101",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0xE7C029B751B6c56B680AC91bb1b3e2A81c1d1252",
+        "hash": "0x30676fd156df2dd250355f21ea582b1063310c7eb68082a5204ca7b7e52fbb65",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x84af7784dAA3Bc62D96c798282d081c5cf3E8D22",
+        "hash": "0x80d64310f66adde996de606f66403a02aab70cafe30f8ff64f591cd39e04ecd4",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x95f1C6D96253b5728433e38500e25e310E0DB039",
+        "hash": "0x73ee5684f836b46977c6ff4b04a45231b521113ecd6a6cf151010202add45fb2",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x64ECdbB36EBcFc0477BF6E9801D4A980BfC12B0c",
+        "hash": "0xf2baff03a1bf29b104788d168736a33e545e5c244750455e68a1075f03b04a1b",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x8F31c1EB2F6c093bFd56Da119d2573F9683bf2dc",
+        "hash": "0x0978c78e301a2cb9509eeb59da41c0cebe98c60b7e4b5558077d3f41d7e2b7de",
+        "valueWei": "10000000000000000"
+      },
+      {
+        "address": "0x46f5452A67696e86daE566d7986664Dbe3b9aCde",
+        "hash": "0xcdfced44e21014f1be972c959dc69f72e95371f7a3f1476424338df13a9620e8",
+        "valueWei": "10000000000000000"
+      }
+    ]
+  },
+  "starterSponsorship": {
+    "configuredLimit": 10,
+    "reserved": 10,
+    "remaining": 0
+  },
+  "completedAt": "2026-11-17T23:02:30.889Z",
+  "chainLedger": {
+    "receipts": 229,
+    "successful": 226,
+    "reverted": 3,
+    "gasEth": "0.075946552876993193",
+    "sponsorGasEth": "0.000000000528538448",
+    "requests": 229
+  }
+}

@@ -9,6 +9,7 @@ ENV NODE_ENV=production BACKEND_HOST=0.0.0.0 PORT=4173
 COPY --from=dependencies --chown=node:node /build/node_modules backend/node_modules/
 COPY --chown=node:node backend/ backend/
 COPY --chown=node:node frontend/dist/ frontend/dist/
+RUN install -d -o node -g node /app/backend/db
 USER node
 EXPOSE 4173
 CMD ["node", "backend/server.js", "--demo"]

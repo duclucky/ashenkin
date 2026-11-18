@@ -1,0 +1,19 @@
+{
+  "health": {
+    "status": 200,
+    "body": {
+      "status": "ok"
+    }
+  },
+  "keeper": {
+    "status": 200,
+    "body": {
+      "enabled": true,
+      "email": true,
+      "sponsored": true,
+      "signedIn": false,
+      "address": null,
+      "method": null
+    }
+  }
+}
