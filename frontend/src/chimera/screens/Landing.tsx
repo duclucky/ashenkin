@@ -27,6 +27,8 @@ export default function Landing() {
       <LocationNotes title="About Ashenkin">
         <p>Hatch, breed and battle Xenos on Sepolia. Zama FHEVM keeps recessive alleles, combat plans and cZAMA balances encrypted. In the Colosseum, the contract verifies a proof for the three round results.</p>
         <Link to="fairness" className="mt-2 inline-flex min-h-11 items-center font-bold underline">Open Proof Center</Link>
+        <p className="mt-3">Sign in with a wallet or email, mint a Xeno and complete your first hunt. While you are away, sponsored daily challenges can add materials to its field bag. Story replays and cosmetic crafting need no gas.</p>
+        <Link to="life" className="mt-2 inline-flex min-h-11 items-center font-bold underline">Explore Living Xenos</Link>
       </LocationNotes>
     </div>
   )

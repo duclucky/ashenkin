@@ -636,7 +636,7 @@ function HatchScene({ s }: { s: SceneState }) {
   useOnce(s.phase === 'done' && !ok, () => {
     sfx.lose()
     fx.pop('NOT ENOUGH cZAMA', 80, 14, { stay: true, color: '#E5341D', size: 4.5 })
-    fx.say({ who: 'BREEDING', text: 'The hidden fee check failed, so the egg was returned. Nothing was charged. Top up cZAMA from the faucet and try again.', ctas: [{ label: 'OK', primary: true }] })
+    fx.say({ who: 'BREEDING', text: 'The hidden fee check failed, so the egg was returned. Nothing was charged. Get test cZAMA at the Wishing Well and try again.', ctas: [{ label: 'OK', primary: true }] })
   })
 
   const incubating = s.phase === 'prep' || s.phase === 'wallet' || s.phase === 'chain' || s.phase === 'confirmed' || s.phase === 'fhe'
@@ -966,7 +966,7 @@ function BattleScene({ s }: { s: SceneState }) {
         act: () => openProof({ mode: 'tactics', id: Number(battleId), title: `Fight #${battleId}` }),
       }] : []
       const next: Cta = s.replay ? { label: s.replayOrigin === 'scout' ? 'Back to planning' : 'Back to the log', primary: true }
-        : s.starterHunt ? { label: 'Investigate the beacon', to: 'journal', primary: true }
+        : s.starterHunt ? { label: 'Meet your living Xeno', to: 'life', primary: true }
           : meL.current.trainingReady ? { label: 'Train at the Dojo', to: `training/${s.me}`, primary: true }
             : { label: 'Plan the next hunt', to: `arena/${s.me}`, primary: true }
       say({ who: 'ARENA', text: won ? 'Victory' : 'Defeat', ctas: [next, ...proof] })
@@ -1098,7 +1098,7 @@ function FaucetScene({ s }: { s: SceneState }) {
     at(1500, () =>
       fx.say({
         who: 'FAUCET',
-        text: '1,000 cZAMA landed in your wallet as an encrypted balance. Only you can read it with your lab key. Spend it on breeding and training, and win more in raids, duels and expeditions.',
+        text: '1,000 test cZAMA landed in your game wallet as an encrypted balance. Unlock the Lab key for wallet-authorized reads. Use it for game fees; Sepolia ETH for gas comes from the separate daily faucet.',
         ctas: [{ label: 'Go to my lab', to: 'lab', primary: true }, { label: 'Close' }],
       }),
     )

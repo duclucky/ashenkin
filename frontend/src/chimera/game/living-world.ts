@@ -1,3 +1,4 @@
+export const LIVING_ENCOUNTER_ADDRESS = '0xf2aAf9a3dc7b1a58013117f4712ee6214D8F73E4' as const
 export type LivingResult = {
   day: number
   nft: number

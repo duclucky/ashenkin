@@ -386,12 +386,12 @@ function FheWarmup() {
 }
 
 function ChainWarning() {
-  const { account, chainId } = useWallet()
+  const { account, chainId, mode } = useWallet()
   const eth = useEthBalance(account)
   if (!account || chainId == null) return null
   if (chainId === CHAIN_ID) {
     if (eth !== 0n) return null
-    return <div className="border-b-2 border-[#111] bg-[#fff3c4] px-3 text-center text-sm sm:hidden"><a href={GAS_FAUCET} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center font-bold underline">Get Sepolia ETH for gas</a></div>
+    return <div className="border-b-2 border-[#111] bg-[#fff3c4] px-3 text-center text-sm sm:hidden">{mode === 'circle' ? <Link to="lab/gas" className="inline-flex min-h-11 items-center font-bold underline">Get daily Sepolia gas</Link> : <a href={GAS_FAUCET} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center font-bold underline">Get Sepolia ETH for gas</a>}</div>
   }
   return (
     <div className="chm-chain-warning px-4 py-2 text-center text-sm font-bold">

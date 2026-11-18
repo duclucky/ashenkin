@@ -6,8 +6,9 @@ import { useMyGuesses, useMyRelics, useTStats } from '../season'
 import { useProofSpec } from '../proof'
 import { go, useRoute } from '../ui'
 import { travel } from './Transition'
+import { useLifeRoster } from './use-first-steps'
 
-/* Judge mode: a 3-minute guided loop through every place FHE matters, with live progress from the chain. */
+/* Judge mode: a guided tour of selected FHE systems, with live progress from the chain. */
 
 const KEY = 'chm:judge'
 const subs = new Set<() => void>()
@@ -23,15 +24,16 @@ const setFlag = (k: string) => localStorage.setItem(`chm:judge:${k}`, '1')
 
 type StepDef = { key: string; title: string; hidden: string; route: string; place: string; cta: string }
 const STEPS: StepDef[] = [
-  { key: 'wallet', title: 'Connect a wallet with Sepolia ETH', hidden: 'Every move is a real Sepolia transaction. Grab free test ETH if the top bar says "No gas".', route: 'map', place: 'WORLD MAP', cta: 'Connect in the top bar' },
+  { key: 'wallet', title: 'Sign in and prepare Sepolia gas', hidden: 'Use a wallet or email to access your Circle-managed game wallet. The daily faucet offers 0.002 Sepolia ETH. Practice, story replays and item crafting need no blockchain transaction.', route: 'lab', place: 'LAB', cta: 'Start at the Lab' },
   { key: 'czama', title: 'Draw 1,000 cZAMA at the Wishing Well', hidden: 'cZAMA is an ERC-7984 confidential token: the chain stores only a ciphertext of your balance.', route: 'map', place: 'WORLD MAP', cta: 'Find the Wishing Well on the map' },
-  { key: 'key', title: 'Unlock your lab key', hidden: 'One signature lets your browser ask the Zama KMS to re-encrypt your own data for you. Nobody else can read it.', route: 'map', place: 'WORLD MAP', cta: 'Unlock key in the top bar' },
-  { key: 'hatch', title: 'Hatch a creature in the Lab', hidden: 'Genes are rolled with encrypted randomness. Only you can read the genome; others see a sealed sprite.', route: 'lab', place: 'LAB', cta: 'Go to the Lab' },
+  { key: 'key', title: 'Unlock your lab key', hidden: 'Unlock wallet-authorized private reads without gas. Circle authorizes hosted game wallets; an external wallet signs its own request.', route: 'map', place: 'WORLD MAP', cta: 'Unlock key in the top bar' },
+  { key: 'hatch', title: 'Hatch a creature in the Lab', hidden: 'Genes are rolled with Zama encrypted randomness. Appearance and ownership are public. Hidden alleles stay sealed until owner-authorized sequencing or deliberate publication.', route: 'lab', place: 'LAB', cta: 'Go to the Lab' },
   { key: 'relic', title: 'Open a Relic Cache', hidden: 'Odds are public, your roll is private. Pity is an encrypted counter, so nobody can time the drop.', route: 'relics', place: 'RELIC FORGE', cta: 'Go to the Forge' },
   { key: 'fight', title: 'Fight in the Colosseum', hidden: 'Pick 3 moves that stay encrypted. The contract scores them blind; only the round winners are revealed.', route: 'arena', place: 'COLOSSEUM', cta: 'Go to the Colosseum' },
+  { key: 'life', title: 'Verify a living encounter', hidden: 'A server-sponsored daily challenge tests hidden strength with Zama randomness. Only the story and loot outcome opens. Items are credited after a read-only proof check, without a player claim transaction.', route: 'life', place: 'LIVING XENOS', cta: 'Open Living Xenos' },
   { key: 'riddle', title: "Guess the Oracle's genome", hidden: 'Your guess is encrypted. The hint comes back privately; a perfect guess is proven with a KMS signature.', route: 'oracle', place: 'ORACLE', cta: 'Go to the Oracle' },
   { key: 'proof', title: 'Open "How was this decided?"', hidden: 'Every result links to its transactions and ciphertext handles. Decrypt the public ones yourself.', route: 'fairness', place: 'PROOF CENTER', cta: 'Go to the Proof Center' },
-  { key: 'economy', title: 'Check the closed economy', hidden: 'Fees flow to the Treasury and Boss pot; the reserve is encrypted but publicly decryptable on demand.', route: 'economy', place: 'TREASURY', cta: 'Go to the Treasury' },
+  { key: 'economy', title: 'Trace the reward pools', hidden: 'cZAMA fee pools, sponsor ETH and ordinary game items are separate. Treasury payouts depend on available funding and a shared daily budget.', route: 'economy', place: 'TREASURY', cta: 'Go to the Treasury' },
 ]
 
 export function JudgeButton({ className = '' }: { className?: string }) {
@@ -45,7 +47,7 @@ export function JudgeButton({ className = '' }: { className?: string }) {
       <Gavel className="h-5 w-5 shrink-0" />
       <span className="flex-1">
         Judge Mode
-        <span className="mt-0.5 block text-xs font-normal text-[var(--chm-dim)]">{on ? 'Checklist is on' : 'Follow the on-chain demo checklist'}</span>
+        <span className="mt-0.5 block text-xs font-normal text-[var(--chm-dim)]">{on ? 'Checklist is on' : 'Follow the current game and proof checklist'}</span>
       </span>
     </button>
   )
@@ -67,8 +69,14 @@ function Panel() {
   const relics = useMyRelics(account)
   const ts = useTStats(account)
   const guesses = useMyGuesses(account)
+  const life = useLifeRoster()
   const proof = useProofSpec()
   const [min, setMin] = useState(true)
+  useEffect(() => {
+    const verified = () => { setFlag('life-proof'); bump(x => x + 1) }
+    window.addEventListener('ash:living-proof-verified', verified)
+    return () => window.removeEventListener('ash:living-proof-verified', verified)
+  }, [])
   const [, bump] = useState(0)
   useEffect(() => {
     if (proof) setFlag('proof')
@@ -83,6 +91,7 @@ function Panel() {
     hatch: (mine.data?.length ?? 0) > 0,
     relic: (relics.data?.length ?? 0) > 0,
     fight: !!ts.data && ts.data.wins + ts.data.losses > 0,
+    life: (life.data?.specimens.length ?? 0) > 0 && flag('life-proof'),
     riddle: (guesses.data?.guesses.length ?? 0) > 0,
     proof: flag('proof'),
     economy: flag('economy'),
@@ -123,7 +132,7 @@ function Panel() {
               </button>
             </div>
           ) : (
-            <div className="mb-3 border-[3px] border-[#111] bg-[#3DDC97] p-3 text-sm font-bold">Tour complete. Every secret you touched stayed encrypted onchain, and every result had a proof.</div>
+            <div className="mb-3 border-[3px] border-[#111] bg-[#3DDC97] p-3 text-sm font-bold">Tour complete. You explored encrypted game systems, sponsored living encounters and their verification paths.</div>
           )}
           <ol className="space-y-1">
             {STEPS.map((s, i) => (

@@ -21,7 +21,15 @@ Use Node 22.13 or newer. Supply the following environment variables on the serve
 
 Back up the SQLite data and the Circle entity recovery file. Docker Compose persists the default database in its `keeper-data` volume. The stored identity and wallet ID association is required to recover a player's account.
 
-## Sponsor the starter mint
+## Current hosted first-mint path
+
+The hosted onboarding now points users to the dedicated daily Sepolia faucet:
+0.002 ETH per account per rolling 24 hours, while funded. Minting then uses the
+Circle game wallet's ETH balance. The faucet sponsor wallet is separate from the
+living-encounter sponsorship budget and cZAMA supplies. See [faucet policy](daily-gas-faucet.md).
+The UI must not promise that the Lab always pays the first mint.
+
+## Optional legacy starter sponsorship
 
 Configure `CHIMERA_SETTLEMENT_PRIVATE_KEY` or `CHIMERA_SETTLEMENT_KEY_FILE` for the existing Sepolia sponsor. Set `ASHENKIN_CIRCLE_STARTER_ETH` to the test ETH grant and `ASHENKIN_STARTER_MINT_LIMIT` to the maximum number of funded accounts. The server estimates gas for both the funding transfer and the Lab mint. Mint fees use EIP-1559 parameters bounded by `CHIMERA_SETTLEMENT_MAX_GWEI` and the game wallet's balance. The sponsor grants gas at most once to each account. A reverted funding transfer can be retried because it transferred no ETH. The Circle wallet submits the Lab mint itself. Gameplay gas beyond the starter depends on the Circle wallet's balance and the existing settlement sponsorship.
 

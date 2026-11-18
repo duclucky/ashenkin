@@ -183,7 +183,7 @@ export default function Arena({ preset, practice = false, starter = false, log =
               <div className="w-36"><CreatureCard id={defenderId} compact /></div>
               <div className="min-w-0 flex-1">
                 <h2 className="font-display text-xl">Challenge specimen #{defenderId}</h2>
-                <p className="mt-2 text-sm">Connect your wallet to bring a champion and choose three sealed moves.</p>
+                <p className="mt-2 text-sm">Sign in, bring a champion NFT and choose three sealed moves.</p>
                 <SpecimenLink id={defenderId} className="mt-2 inline-block text-sm font-bold underline">View specimen</SpecimenLink>
               </div>
             </Panel>
@@ -366,7 +366,7 @@ function Duels({ target, champ, cd, busy, run, plan, onDuel }: { target?: number
             })}
           </div>
         )}
-        <p className="mt-4 text-xs text-[var(--chm-dim)]">Duels need cZAMA (Zama's confidential token). Draw 1,000 free test cZAMA at the Wishing Well on the map, or with the droplet button up top.</p>
+        <p className="mt-4 text-xs text-[var(--chm-dim)]">Duels use test cZAMA, an ERC-7984 confidential token. Get 1,000 test cZAMA at the Wishing Well on the map or in the wallet menu. Sepolia ETH for gas comes from the separate daily faucet.</p>
       </div>
     </div>
   )

@@ -59,6 +59,12 @@ export default function Economy() {
         </Panel>
       </div>
 
+      <LocationNotes title="Three separate resources">
+        <p><b>Sepolia ETH:</b> blockchain gas. The dedicated daily faucet offers 0.002 ETH per account every 24 hours while funded. Living trials use the game’s separate sponsor budget.</p>
+        <p><b>Test cZAMA:</b> confidential game currency for fees and funded reward pools. The Wishing Well’s test supply is not revenue or a promise of cash earnings.</p>
+        <p><b>Living items:</b> materials and cosmetic lanterns in each NFT’s server-side bag. A verified victory awards loot. Its first lantern costs 3 Ash thread, or 1 Ash thread + 1 Archive fragment. There is no gas or combat bonus for crafting it.</p>
+      </LocationNotes>
+
       {/* flow diagram */}
       <div>
         <Label className="mb-4">Where every cZAMA goes</Label>
@@ -72,7 +78,7 @@ export default function Economy() {
             <Node icon={<Dumbbell className="h-4 w-4" />} t="Training fee" d="3 cZAMA for LV 1, +2 per level, up to 21 cZAMA for LV 10." tags={[['60% → Boss', '#FFDD00'], ['40% → Treasury', '#3DDC97']]} />
             <Node icon={<Store className="h-4 w-4" />} t="Market fee" d="5% of every sale. The seller keeps 95%." tags={[['5% → Boss', '#FFDD00']]} />
             <Node icon={<Swords className="h-4 w-4" />} t="Duel rake" d="Each side risks the smaller of the two sealed stakes. The winner receives the matched pot after the 5% fee." tags={[['5% → Boss', '#FFDD00']]} />
-            <Node icon={<Gem className="h-4 w-4" />} t="Relic cache · fusion" d={`${CACHE_PRICE} cZAMA per cache, ${FUSE_PRICE} per fusion. New in Season of Masks.`} tags={[['60% → Boss', '#FFDD00'], ['40% → Treasury', '#3DDC97']]} />
+            <Node icon={<Gem className="h-4 w-4" />} t="Relic cache · fusion" d={`${CACHE_PRICE} cZAMA per cache, ${FUSE_PRICE} per fusion. The fee enters the shared game pools.`} tags={[['60% → Boss', '#FFDD00'], ['40% → Treasury', '#3DDC97']]} />
             <Node icon={<Eye className="h-4 w-4" />} t="Riddle guess" d={`${GUESS_PRICE} cZAMA per guess, 6 a day. All of it goes into the jackpot.`} tags={[['100% → Jackpot', '#E9D9FF']]} />
             <Node icon={<Flame className="h-4 w-4" />} t="Ascension" d="Voluntarily lock a spare creature in the altar forever. Hero XP remains subject to the daily cap. This removes the offering from circulation; its NFT history remains on-chain." tags={[['Permanently retired', '#FFD209']]} />
             <Node icon={<Ticket className="h-4 w-4" />} t="Raffle ticket" d="1 cZAMA per sealed ticket. Ticket counts and the pot stay encrypted until the draw." tags={[['90% → Winner', '#FF8FC7'], ['10% → Treasury', '#3DDC97']]} />
@@ -94,7 +100,7 @@ export default function Economy() {
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         <Rule icon={<Dumbbell className="h-5 w-5" />} t="Training" color="#3DDC97">
-          XP from expeditions (10/25/50), boss strikes (12) and Colosseum fights (15 win, 8 loss, 6 for a defender who holds). Capped at 120 XP per creature per day, so LV 10 takes about a week of play. Each level adds a hidden 2–5 power.
+          XP from expeditions (10/25/50), boss strikes (12) and Colosseum fights (15 win, 8 loss, 6 for a defender who holds). Capped at 120 XP per creature per day, so progress depends on earned XP and the daily cap. Each level adds a hidden 2–5 power.
         </Rule>
         <Rule icon={<MapIcon className="h-5 w-5" />} t="Expeditions" color="#5AC8FA">
           3–7, 8–16 or 20–53 cZAMA on success, a small consolation on failure. 6 runs a day. The outcome is sealed until the creature returns.
@@ -160,7 +166,7 @@ function Circulation() {
       <p className="text-sm">Keep both parents. After one introductory egg, each new egg needs a lineage charge from one permanent, voluntary offering. Unpaid eggs return the charge.</p>
       <div className="mt-3 grid grid-cols-2 gap-2 border-y-2 border-[#111] py-3 font-mono text-xs">
         <span>Population<br /><b>{lineage.data.population.toString()} / {lineage.data.limit.toString()}</b></span>
-        <span>Your charges<br /><b>{account ? lineage.data.charges.toString() : 'Connect wallet'}</b></span>
+        <span>Your charges<br /><b>{account ? lineage.data.charges.toString() : 'Sign in'}</b></span>
       </div>
     </> : lineage.data ? <p className="text-sm">This world uses breeding fees, cooldowns and seven slots per parent. Parents survive. Ascension permanently retires spare creatures for hero XP; lineage charges are not active here.</p> : <p className="text-sm" role="status">Reading this world’s rules…</p>}
     <p className="mt-3 text-xs text-[var(--chm-dim)]">cZAMA fees circulate into reward pools. They are not token burns. The Sepolia Wishing Well supplies test tokens, not earned game revenue.</p>

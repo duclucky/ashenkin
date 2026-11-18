@@ -144,7 +144,7 @@ export function PracticeBattle({ specimen, onReady, starter = false }: { specime
         <TrialRounds view={view} />
         {firstLesson ? <>
           <p>A bell rings beyond the arena. Lumen reaches for her journal.</p>
-          <Link to="journal" className="chm-btn chm-btn-primary chm-quest-target w-full">Investigate the beacon <ArrowRight size={16} aria-hidden="true" /></Link>
+          <Link to="journal" className="chm-btn chm-btn-primary chm-quest-target w-full">Explore the optional Beacon story <ArrowRight size={16} aria-hidden="true" /></Link>
         </> : trial.step === 'blind' ? <p>Only round winners are shown. Next, expose this training rival’s plan and see what that changes.</p> : trial.step === 'exposed' ? <>
           <p><b>{trial.result!.counters}/3 commands countered.</b> {view.canAdvance ? `Blind: ${trial.blind!.wins} wins. Exposed: ${view.wins} wins, with the same rolls. The +30 bonus helps; it never guarantees victory.` : 'Choose Guard against Strike, Feint against Guard, and Strike against Feint.'}</p>
           <details className="chm-trial-math"><summary>Training score breakdown</summary>{view.rows.map((row, index) => <div key={index}><b>Round {index + 1}</b><span>You: {TRAINING_POWER} + {row.edge! > 0 ? MOVE_BONUS : 0} counter + {row.rollMe} roll = {row.scoreMe}</span><span>Rival: {TRAINING_POWER} + {row.edge! < 0 ? MOVE_BONUS : 0} counter + {row.rollRival} roll = {row.scoreRival}</span></div>)}<p>Equal scores go to the rival, as to a Sepolia defender. This uses equal training power, not an NFT’s real power.</p></details>

@@ -2,13 +2,15 @@
 
 ## Điều kiện của Season 5
 
-- **Confidential Gaming** là hạng mục duy nhất. Ban giám khảo chấm gameplay và UX, cách mã hóa tạo ra luật chơi, công bằng có thể kiểm chứng, một vòng chơi hoàn chỉnh trên Sepolia, chất lượng video và chất lượng mã nguồn. Hạn chót là **14/12/2026, 23:59 AoE** (15/12, 18:59 giờ Việt Nam). Giữ mốc nộp nội bộ 13/12 theo [kế hoạch](../plan.md). [Bài công bố chính thức](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming)
+- **Confidential Gaming** là hạng mục duy nhất. Ban giám khảo chấm gameplay và UX, cách mã hóa tạo ra luật chơi, công bằng có thể kiểm chứng, một vòng chơi hoàn chỉnh trên Sepolia, chất lượng video và chất lượng mã nguồn. Hạn chót là **14/12/2026, 23:59 AoE** (15/12, 18:59 giờ Việt Nam). Giữ mốc chuẩn bị nội bộ trước hạn công bố. [Bài công bố chính thức](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming)
 - Hồ sơ cần mã nguồn hợp đồng và frontend, tài liệu rõ ràng, **website demo hoạt động**, video pitch **3 phút do người thật trình bày** và một thread hoặc bài viết đã đăng trên X. Form yêu cầu dùng token bí mật ERC-7984 khi phù hợp. cZAMA trong game là wrapper thử nghiệm `cZAMAMock` trên Sepolia; cUSDT là đơn vị trao giải. [Form](https://forms.zama.org/zama-developer-program-mainnet-season-5-confidential-gaming) · [Registry Sepolia](https://docs.zama.org/protocol/protocol-apps/addresses/testnet/sepolia)
 - Form yêu cầu tên dự án không chứa “Zama” và hiện đúng câu sau **cả trong game lẫn README**: “This project is not audited, endorsed or operated by Zama. Use at your own risk.” Tên **Ashenkin** phù hợp. Mỗi email nộp một dự án, một lần; bài đã gửi không sửa được. Email phải trùng với email dùng để xin API key. Trang đăng ký bắt buộc email, hồ sơ GitHub và hồ sơ X; hai trang cuối chỉ mở sau khi điền các trường bắt buộc. [Form nộp bài](https://forms.zama.org/zama-developer-program-mainnet-season-5-confidential-gaming)
 
 ## Trục demo
 
-Lộ trình người chơi bắt đầu bằng thử thách của Lumen. Người chơi đánh ba hiệp khi chưa biết chiêu, rồi thử lại với cùng đối thủ sau khi mở kế hoạch. Bản thử dùng luật khắc chế trong trình duyệt. Trận Sepolia còn tính sức mạnh, nguyên tố và số ngẫu nhiên trên dữ liệu mã hóa. Sau trận Sepolia đầu, nhiệm vụ dẫn người chơi giải trình tự, gửi và đón quái thám hiểm, rồi dùng XP và cZAMA để luyện hoặc lai.
+Lộ trình mới là **đăng nhập ví/email → gas nếu thiếu → mint NFT → hoàn tất trận săn đầu → Living Xenos**. Danh tính đăng nhập liên kết với ví game do Circle quản lý; phải có NFT mới vào hoạt động chơi. Faucet gas cấp 0.002 ETH Sepolia mỗi tài khoản mỗi 24 giờ khi có tiền. Đấu tập và cốt truyện Beacon là nhánh tùy chọn sau khi có NFT, không tốn gas và không dùng Zama để sinh kết quả.
+
+Living Xenos là điểm nhấn mới: máy chủ tài trợ tối đa một thử thách đủ điều kiện/NFT/ngày UTC. Zama sinh loại sự kiện, mức khó, luck và loot; FHE kiểm tra sức mạnh và lợi thế nguyên tố mà không công khai các giá trị này. Backend kiểm chứng proof qua hàm đọc của hợp đồng trước khi cộng vật phẩm thông thường. Người chơi không ký claim; thắng nhận đồ, thua không mất gì. Đèn Trail đầu tiên dùng 3 Ash thread hoặc 1 Ash thread + 1 Archive fragment, không tăng sức chiến đấu và không phải đèn đọc cửa Depths.
 
 Đưa **Colosseum → ba hiệp → Proof Center** lên trước. Nếu kế hoạch của người giữ cổng hiện công khai, đối thủ có thể chọn chiêu khắc chế trước khi vào trận. Hợp đồng tính từng hiệp từ kế hoạch và sức mạnh mã hóa, dùng số ngẫu nhiên sinh trong giao dịch, rồi kiểm tra chữ ký KMS trên ba bit kết quả. Quay rõ người xem có thể tự đối chiếu ba bit với giao dịch chốt trận. Ấp và lai gen cho thấy cách một con quái được xây dựng trước trận; Market, Relics và Depths bổ sung chiều sâu nếu còn thời gian. [Tài liệu ngẫu nhiên mã hóa](https://docs.zama.org/protocol/solidity-guides/smart-contract/operations/random)
 
@@ -20,18 +22,29 @@ Lần đo trên Chrome với ví thử tự ký mất 38,6 giây từ nút mở 
 
 Bản hiện tại dùng Relayer SDK cũ và phép kiểm tra trên vẫn chạy. Tài liệu Zama giới thiệu SDK mới làm mặc định. Chỉ đưa việc đổi SDK vào luồng phát hành nếu có vấn đề tương thích hoặc lỗi thực tế khi kiểm tra demo. [Tổng quan Zama SDK](https://docs.zama.org/protocol/sdk)
 
-## Video 3 phút
+## Video 3 phút — bản cập nhật 18/11
 
-Chuẩn bị một ví Sepolia đã có cZAMA, hai sinh vật đã hết hồi chiêu và một ví mua riêng. Mở sẵn Judge Mode và Proof Center. Quay người thật nói, dùng cảnh giao dịch Sepolia thật và cắt đoạn chờ ví hoặc KMS khi dựng.
+Video mới quay chuyển động thực từ giao diện hiện tại và dữ liệu Sepolia đã có.
+Không gửi giao dịch mới chỉ để quay. Phần đấu thật ghi rõ là replay; phần thực
+hành ghi rõ là local, không gas và không thưởng. Xác minh gọi relayer/KMS và RPC
+thật. Không thay kết quả, không bịa phần thưởng và không dùng ảnh tĩnh làm gameplay.
 
-| Thời gian | Cảnh quay | Lời dẫn |
-| --- | --- | --- |
-| 0:00–0:20 | Bản đồ, mở Colosseum, hiện ba thẻ chiêu | “Nếu biết trước ba chiêu của người giữ đấu trường, đối thủ chỉ cần chọn ba chiêu khắc chế. Trong Ashenkin, hai bên chốt kế hoạch bằng dữ liệu mã hóa và hợp đồng tính kết quả trên Sepolia.” |
-| 0:20–0:55 | Ấp phôi ở Lab, mở hồ sơ và giải trình tự một locus | “Mỗi sinh vật có tám locus, mỗi locus có hai alen. Ngoại hình hiện công khai. Chủ sinh vật có thể giải trình tự để xem locus có alen hiếm hay không, rồi quyết định giữ con đó hay mang đi lai.” |
-| 0:55–1:25 | Chọn hai bố mẹ, tạo trứng, mở trứng và xem phả hệ | “Con nhận một alen từ mỗi bố mẹ ở từng locus. Hợp đồng chọn các alen trên dữ liệu mã hóa. Khi nở, ta thấy ngoại hình và phả hệ, còn các alen ẩn vẫn được giữ kín.” |
-| 1:25–2:20 | Chọn ba chiêu, chốt trận, mở bảng Proof và giao dịch settle | “Mình chọn Strike, Guard và Feint. Hợp đồng kết hợp chiêu, chỉ số ẩn và ngẫu nhiên on-chain. Khi chốt trận, bằng chứng Zama xác nhận ai thắng từng hiệp. Đối thủ vẫn giữ kín kế hoạch và chỉ số.” |
-| 2:20–2:45 | Niêm yết con mới, đổi sang ví mua, hoàn tất giao dịch | “Giá niêm yết hiện công khai. Người mua trả bằng cZAMA và hợp đồng xác minh khoản thanh toán qua một bit. Khi thanh toán hợp lệ, sinh vật chuyển sang ví mua.” |
-| 2:45–3:00 | Mở Judge Mode và hiện URL bản demo | “Judge Mode dẫn bạn qua Lab, Colosseum và Proof Center. Nursery và Market có trên bản đồ. Proof Center ghi rõ dữ liệu nào được mở và cách kiểm tra kết quả.” |
+| Mốc | Cảnh |
+| --- | --- |
+| 0:00–0:10 | Thế giới Arkhive đang chuyển động |
+| 0:10–0:30 | Đăng nhập, ví game Circle, chính sách faucet và bộ sưu tập NFT |
+| 0:30–0:48 | Ngoại hình NFT công khai, gen và sức mạnh ẩn |
+| 0:48–1:12 | Bài tập local: kế hoạch ẩn rồi lộ; cùng các lượt roll |
+| 1:12–1:32 | Phát lại Wild Hunt #1 trên Sepolia |
+| 1:32–2:00 | Đối chiếu ba kết quả KMS với bản ghi đã chốt |
+| 2:00–2:30 | Living Xenos: phát lại sự kiện, phần thưởng thật và Verify |
+| 2:30–2:50 | Túi đồ và hai công thức đèn đầu tiên; không hứa thưởng chắc chắn |
+| 2:50–3:00 | URL game và repo |
+
+Xuất bản nhạc nền + phụ đề tiếng Anh và tệp SRT, kèm kịch bản đọc có mốc thời
+gian để chủ dự án thu giọng thật. Theo thông báo chính thức, pitch phải do người
+thật trình bày; bản nhạc/phụ đề chưa có giọng người thật là bản để lồng tiếng,
+không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp.
 
 ## Bản nháp chuỗi bài X
 

@@ -114,7 +114,7 @@ export function SeasonThrones() {
         <Panel className="p-5">
           <Label>Your season</Label>
           {!account ? (
-            <p className="mt-2 text-sm text-[var(--chm-dim)]">Connect a wallet to join the season.</p>
+            <p className="mt-2 text-sm text-[var(--chm-dim)]">Sign in to join the season.</p>
           ) : !me?.joined ? (
             <>
               <p className="mt-2 text-sm">Joining is free. Only what you do <b>after</b> joining counts toward your season score.</p>

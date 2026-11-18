@@ -55,8 +55,8 @@ export default function Lab() {
         <a href={GAS_FAUCET} target="_blank" rel="noreferrer" className="chm-btn chm-btn-primary chm-quest-target">Get Sepolia ETH</a>
       </Panel>}
       {readyForHunt && <Panel className="flex flex-wrap items-center justify-between gap-3 p-3 text-sm">
-        <p>{practiced ? 'Your specimen is ready for its first hunt.' : 'Your specimen is ready for its first training match.'}</p>
-        <Link to={practiced ? 'arena' : 'arena/trial/start'} className="chm-btn chm-btn-primary chm-quest-target">{practiced ? 'Enter the Colosseum' : 'Train with Lumen'}</Link>
+        <p>{practiced ? 'Your specimen is ready for its first hunt.' : 'Your specimen is ready for its first hunt. Practice is optional.'}</p>
+        <Link to={practiced ? 'arena' : 'arena/trial/start'} className="chm-btn chm-btn-primary chm-quest-target">{practiced ? 'Enter the Colosseum' : 'Practice with Lumen · optional'}</Link>
       </Panel>}
       {busy && mine.data?.length ? <BusyNote status={status} className="ml-auto -mt-4 justify-end" /> : null}
 

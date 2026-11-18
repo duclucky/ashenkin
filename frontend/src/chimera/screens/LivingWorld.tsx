@@ -137,6 +137,7 @@ export default function LivingWorld({ preset }: { preset?: number }) {
         args: [BigInt(result.day), BigInt(id), proof.cleartexts, proof.proof],
       })
       if (!valid) throw new Error('The Zama proof did not verify.')
+      window.dispatchEvent(new Event('ash:living-proof-verified'))
       setMessage(
         'Verified against the encounter contract. Your Xeno’s strength stays sealed.',
       )
@@ -284,8 +285,7 @@ export default function LivingWorld({ preset }: { preset?: number }) {
                 </div>
                 {!history.length ? (
                   <p className="living-note">
-                    No encounter recorded yet. Your Xeno can explore, train and
-                    rest while the next sponsored trial is prepared.
+                    No encounter recorded yet. The home scene is ambient; a reward is added only after a sponsored trial has a verified winning result.
                   </p>
                 ) : (
                   <ol className="living-history">
@@ -377,7 +377,7 @@ export default function LivingWorld({ preset }: { preset?: number }) {
                 <p className="living-note">
                   Items stay with this NFT when it changes owner. Materials and
                   cosmetics are game items; they do not mint tokens or change
-                  onchain combat strength.
+                  onchain combat strength. The Trail lantern is cosmetic, not the Depths door-reading lantern.
                 </p>
               </section>
             </>

@@ -112,7 +112,7 @@ export default function Hall() {
           <Panel className="p-5">
             <Label>Your standing</Label>
             {!account ? (
-              <p className="mt-2 text-sm text-[var(--chm-dim)]">Connect a wallet to see your rank.</p>
+              <p className="mt-2 text-sm text-[var(--chm-dim)]">Sign in to see your rank.</p>
             ) : !me ? (
               <p className="mt-2 text-sm text-[var(--chm-dim)]">You are not on the board yet. Hatch, fight, strike the boss or run an expedition to get in.</p>
             ) : (

@@ -8,7 +8,7 @@ const objective = {
   arena: 'Bring a specimen NFT to enter the arena.',
   relics: 'Hatch a specimen before opening a cache.',
   raffle: 'Hatch a specimen before entering the raffle.',
-  depths: 'Bring a specimen and a lantern into the Depths.',
+  depths: 'Bring a specimen into the Depths. Its door-reading lantern is part of that run.',
   oracle: 'Hatch a specimen before consulting the Oracle.',
   expeditions: 'Send a specimen through the gate to earn loot.',
   raid: 'Bring a specimen to join the raid.',

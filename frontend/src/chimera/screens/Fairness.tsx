@@ -5,6 +5,7 @@ import type { Address } from 'viem'
 import { Search, ExternalLink } from 'lucide-react'
 import { ARENA, ASCENSION, COLOSSEUM, CZAMA, DEPLOYED, DEPTHS, EXPEDITIONS, LAB, MARKET, ORACLE, QUESTS, RAFFLE, RAID, RELICS, SEASON, TRAINING, TREASURY, addrUrl, short } from '../chain'
 import { Button, Empty, Label, Link, Panel } from '../ui'
+import { LIVING_ENCOUNTER_ADDRESS } from '../game/living-world'
 import { MODES, latestDepthRecord, openProof, type ModeKey } from '../proof'
 import { ProofButton } from '../game/ProofDrawer'
 import { roundBits, useTBattles } from '../season'
@@ -12,6 +13,7 @@ import { roundBits, useTBattles } from '../season'
 const CONTRACTS: [string, () => Address, string][] = [
   ['Lab', () => LAB, 'Genomes, hatching, breeding'],
   ['Colosseum', () => COLOSSEUM, 'Blind Tactics fights'],
+  ['Living encounters', () => LIVING_ENCOUNTER_ADDRESS, 'Sponsored daily FHE challenges'],
   ['Relics', () => RELICS, 'Caches, fusion, sockets'],
   ['Oracle', () => ORACLE, 'The genome riddle and jackpot'],
   ['Raffle', () => RAFFLE, 'Sealed tickets, encrypted leader'],
@@ -56,9 +58,20 @@ export default function Fairness() {
           <li>The browser encrypts moves and guesses before sending them.</li>
           <li>The contract computes scores and generates randomness on encrypted data.</li>
           <li>The contract marks the values needed for settlement as public. Zama KMS decrypts and signs those values.</li>
-          <li>The settlement transaction checks the KMS signature on-chain before accepting the result.</li>
+          <li>Modes with onchain settlement check that proof in the settlement transaction. Living Xenos uses a read-only contract proof check before the backend credits ordinary items; it has no player claim transaction.</li>
         </ol>
       </details>
+
+      <section className="chm-panel space-y-3 p-4" aria-labelledby="living-proof-title">
+        <h2 id="living-proof-title" className="font-display text-xl">Living Xenos · proof without a claim</h2>
+        <dl className="grid gap-3 text-sm leading-relaxed">
+          <div><dt className="font-bold">Encrypted</dt><dd>Gene power, elemental advantage and the Zama luck roll.</dd></div>
+          <div><dt className="font-bold">Public outcome</dt><dd>Encounter kind, challenge tier, win/loss and item quantity. Ownership and the occurrence of a trial are public too.</dd></div>
+          <div><dt className="font-bold">How to check</dt><dd>The sponsor pays for one eligible trial per NFT per UTC day. The backend calls the encounter contract’s read-only verifier with the Zama proof before crediting the NFT’s field bag. The Verify button repeats that check without gas.</dd></div>
+        </dl>
+        <p className="text-sm">Rewards are ordinary game items stored by the server. They are not onchain tokens, yield or a guaranteed daily drop. No delegation or owner claim is needed; a loss takes nothing.</p>
+        <Link to="life" className="chm-btn chm-btn-primary">Open living stories and proofs</Link>
+      </section>
 
       <section>
         <h2 className="font-display text-2xl sm:text-3xl">What each mode reveals</h2>
@@ -157,8 +170,8 @@ export default function Fairness() {
           <Panel className="p-5 text-sm">
             <Label>Honest notes</Label>
             <ul className="mt-2 list-disc space-y-1 pl-4 text-[var(--chm-dim)]">
-              <li>The Wishing Well hands out free test cZAMA so anyone can play. It would be switched off on mainnet.</li>
-              <li>Totals (jackpot, caches opened, levels) are public on purpose: the world is transparent, each keeper is private.</li>
+              <li>The Wishing Well supplies test cZAMA. The separate daily faucet supplies 0.002 Sepolia ETH per account every 24 hours when funded. These are testnet supplies, not game revenue.</li>
+              <li>Totals (jackpot, caches opened, levels) are public on purpose: public activity is visible, while each mode restricts access to its encrypted values. Hosted wallets are developer-controlled through Circle.</li>
               <li>
                 Want to audit a creature’s genome? Use the <Link to="verify" className="underline">Verifier</Link>.
               </li>

@@ -41,7 +41,7 @@ export default function Tournament() {
         </div>
         {cup.status === 1 && <div className="space-y-2 text-sm">
           <p>{cup.joined} / 8 registered · {now < details.endsAt ? `closes in ${fmtDuration(details.endsAt - now)}` : 'registration closed'}</p>
-          {!account && <p>Connect your wallet to enter.</p>}
+          {!account && <p>Sign in to enter with your game wallet.</p>}
           {!!account && !!joined && <p>Specimen #{joined} is registered.</p>}
           {!!account && !cup.invited && <p>Entry is limited to the eight invited keepers.</p>}
           {!!account && cup.invited && !joined && now < details.endsAt && <>
