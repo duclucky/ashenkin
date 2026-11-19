@@ -29,6 +29,12 @@
       "passed": 130,
       "documents": 29,
       "missingFiles": 0
+    },
+    "frontendTestOrderRegression": {
+      "passed": 111,
+      "seed": 19,
+      "fileIsolation": true,
+      "persistentModuleMockRemoved": true
     }
   },
   "liveReadChecks": {

@@ -1,16 +1,18 @@
 import { afterEach, beforeEach, expect, mock, spyOn, test } from 'bun:test'
 import type { Address } from 'viem'
 
-const chain = await import('../src/chimera/chain')
-const read = mock()
-const send = mock()
-mock.module('../src/chimera/chain', () => ({ ...chain, read, send }))
+import * as chain from '../src/chimera/chain'
+import { ensureOperator } from '../src/chimera/actions'
 
-const { ensureOperator } = await import('../src/chimera/actions')
+let read: ReturnType<typeof spyOn<typeof chain, 'read'>>
+let send: ReturnType<typeof spyOn<typeof chain, 'send'>>
 const keeper = '0x0000000000000000000000000000000000000001' as Address
 const step = () => {}
 
 beforeEach(() => {
+  // Restorable spies avoid replacing chain exports for every other test file.
+  read = spyOn(chain, 'read')
+  send = spyOn(chain, 'send')
   const schedule = globalThis.setTimeout
   spyOn(globalThis, 'setTimeout').mockImplementation((fn) => schedule(fn, 0))
 })

@@ -15,7 +15,7 @@ bun install --cwd frontend --frozen-lockfile
 bun install --cwd backend --frozen-lockfile
 npm --prefix frontend run lint
 npm --prefix frontend run type-check
-bun test --cwd frontend tests
+bun test --isolate --cwd frontend tests
 npm --prefix frontend run build
 node scripts/check-doc-links.js
 node --test backend/lib/*.test.js
@@ -27,7 +27,9 @@ The November 19 repository review began at commit
 `4d4774069f1619fe8d5c0346bf131b38a380ea67`. That clean public clone passed 110
 frontend, 74 backend and 128 contract tests (312 total), type checking and build.
 The follow-up repository-readiness patch adds a control-character regression test
-and repairs the two lint errors without disabling either rule. The original
+and repairs the two lint errors without disabling either rule. The first GitHub
+run exposed a persistent module mock in the operator tests; it was replaced with
+restorable spies, and file isolation is enabled for repeatable CI execution. The original
 63 frontend warnings are reviewed debt: mixed component/helper exports, hook
 subscriptions and unused expressions/imports. They are not silently suppressed or
 claimed fixed. `npm run lint` permits warnings but fails on errors.

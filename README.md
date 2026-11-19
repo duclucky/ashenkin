@@ -80,7 +80,7 @@ For development, run `npm --prefix backend run dev` and `npm --prefix frontend r
 npm --prefix frontend run lint
 npm --prefix frontend run type-check
 node scripts/check-doc-links.js
-bun test --cwd frontend tests
+bun test --isolate --cwd frontend tests
 node --test backend/lib/*.test.js
 npm --prefix contracts ci
 npm --prefix contracts test

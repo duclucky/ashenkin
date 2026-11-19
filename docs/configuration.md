@@ -68,7 +68,7 @@ its own credentials rather than either local sponsor key.
 ```sh
 npm --prefix frontend run lint
 npm --prefix frontend run type-check
-bun test --cwd frontend tests
+bun test --isolate --cwd frontend tests
 npm --prefix frontend run build
 node scripts/check-doc-links.js
 node --test backend/lib/*.test.js
