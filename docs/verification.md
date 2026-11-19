@@ -29,7 +29,10 @@ frontend, 74 backend and 128 contract tests (312 total), type checking and build
 The follow-up repository-readiness patch adds a control-character regression test
 and repairs the two lint errors without disabling either rule. The first GitHub
 run exposed a persistent module mock in the operator tests; it was replaced with
-restorable spies, and file isolation is enabled for repeatable CI execution. The original
+restorable spies, and file isolation is enabled for repeatable CI execution.
+The contracts job also installs backend dependencies for its worker integration
+test. An older random-outcome hunt test now reuses the same rival NFT across
+losses instead of exhausting the genesis mint cap. No contract rules were changed. The original
 63 frontend warnings are reviewed debt: mixed component/helper exports, hook
 subscriptions and unused expressions/imports. They are not silently suppressed or
 claimed fixed. `npm run lint` permits warnings but fails on errors.

@@ -10,7 +10,14 @@ This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
 ## Compile and test without a funded wallet
 
-Node.js 22+ and npm are required. From this directory:
+Node.js 22+, npm and Bun 1.4.0 are required. The encounter integration test loads
+real backend modules, so first install their locked dependencies from the repo root:
+
+```sh
+bun install --cwd backend --frozen-lockfile
+```
+
+Then, from this directory:
 
 ```sh
 npm ci

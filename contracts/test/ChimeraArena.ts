@@ -105,6 +105,9 @@ describe("ChimeraArena", function () {
 
     it("winning captures the wild creature, losing leaves it roaming for others", async function () {
       const mine = await hatch(alice);
+      // A hunter keeps the same NFT across attempts; repeated losses must not
+      // consume another genesis claim or make this random-outcome test flaky.
+      const bobs = await hatch(bob);
       let sawWin = false;
       let sawLoss = false;
       for (let i = 0; i < 12 && !(sawWin && sawLoss); i++) {
@@ -126,13 +129,13 @@ describe("ChimeraArena", function () {
           expect(await lab.ownerOf(wildId)).to.eq(arenaAddress);
           expect(roaming).to.include(wildId);
           // another hunter can take a shot at the escaped wild
-          const bobs = await hatch(bob);
           await measure("challengeWild", arena.connect(bob).challengeWild(bobs, wildId));
           await settle(await arena.totalBattles());
         }
         await time.increase(COOLDOWN);
       }
       expect(sawWin || sawLoss).to.eq(true);
+      expect(await lab.genesisClaimed(bob.address)).to.eq(1n);
       expect(await arena.wins(alice.address)).to.eq(await arena.captures(alice.address));
     });
 

@@ -35,6 +35,11 @@
       "seed": 19,
       "fileIsolation": true,
       "persistentModuleMockRemoved": true
+    },
+    "contractTestHarness": {
+      "backendIntegrationDependenciesInstalled": true,
+      "repeatedWildLossesReuseRivalNft": true,
+      "productionContractChanges": false
     }
   },
   "liveReadChecks": {
