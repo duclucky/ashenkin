@@ -6,6 +6,16 @@ This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
 [Play Ashenkin](https://ashenkin.xyz/) · [Judge mode](https://ashenkin.xyz/#/judge) · [Verify Wild Hunt #1](https://ashenkin.xyz/#/arena/log/1)
 
+## Gameplay video
+
+Three minutes of recorded gameplay, with English AI narration and 26 synchronized English captions. The walkthrough shows onboarding, NFT ownership, private battle plans, a real Sepolia replay, public verification and Living Xenos.
+
+[![Watch the three-minute Ashenkin gameplay video](docs/media/ashenkin-gameplay-preview.webp)](https://github.com/duclucky/ashenkin/raw/refs/heads/main/docs/media/ashenkin-gameplay-english-ai.mp4)
+
+[Watch / download the MP4](https://github.com/duclucky/ashenkin/raw/refs/heads/main/docs/media/ashenkin-gameplay-english-ai.mp4) · [English subtitles](docs/media/ashenkin-gameplay-english.srt)
+
+This walkthrough uses a synthetic voice. The [Zama Season 5 rules](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming) require a real-person pitch for the competition submission.
+
 ## Play and verify
 
 1. Open [How to play](https://ashenkin.xyz/#/guide), then sign in with a wallet or email. The hosted game links your identity to a Circle developer-controlled Sepolia wallet. Mint an NFT to enter the game activities.

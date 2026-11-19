@@ -1,0 +1,129 @@
+1
+00:00:00,200 --> 00:00:04,640
+Your rival can see your NFT.
+But can they read its strength before a fight?
+
+2
+00:00:04,898 --> 00:00:09,650
+In Ashenkin, a creature exists onchain
+while its hidden genes stay encrypted.
+
+3
+00:00:10,200 --> 00:00:16,152
+Sign in with a wallet or email.
+Your identity restores a Circle-managed game wallet.
+
+4
+00:00:18,200 --> 00:00:24,247
+Need gas? The funded daily faucet offers
+0.002 Sepolia ETH per account, every 24 hours.
+
+5
+00:00:24,397 --> 00:00:29,650
+Mint an NFT before playing. Circle handles
+hosted signing; blockchain actions still use gas.
+
+6
+00:00:30,200 --> 00:00:35,504
+Appearance and ownership are public.
+Hidden alleles contribute to a Xeno’s real power.
+
+7
+00:00:35,961 --> 00:00:41,385
+Breeding passes traits through encrypted
+inheritance and Zama-generated randomness.
+
+8
+00:00:41,842 --> 00:00:47,650
+Owners choose which genes to sequence privately,
+or deliberately make the full genome public.
+
+9
+00:00:48,200 --> 00:00:56,624
+This optional practice uses local rolls.
+It requires an NFT, but gives no rewards and uses no gas.
+
+10
+00:00:57,909 --> 00:01:04,053
+First, the rival’s moves are concealed.
+Now expose the same plan and keep the same rolls.
+
+11
+00:01:05,338 --> 00:01:11,650
+You can choose a counter for every exposed move.
+That is why the real match keeps plans encrypted.
+
+12
+00:01:12,200 --> 00:01:17,264
+This is a replay of Wild Hunt number one,
+a completed match on Ethereum Sepolia.
+
+13
+00:01:17,797 --> 00:01:25,189
+Zama generates hidden rolls for each fighter.
+FHE scores moves and private strength together.
+
+14
+00:01:25,722 --> 00:01:31,650
+The challenger won rounds one and two,
+then lost round three. Two rounds secured the capture.
+
+15
+00:01:32,200 --> 00:01:37,696
+Anyone can open the fight log
+and choose Verify the rounds, without signing in.
+
+16
+00:01:40,837 --> 00:01:48,613
+The app requests all three public KMS results
+and compares them with the settled Sepolia record.
+
+17
+00:01:51,754 --> 00:01:59,650
+The original settlement checked the KMS proof onchain.
+Checking it again needs no new transaction.
+
+18
+00:02:00,200 --> 00:02:06,320
+Your Xeno can also face a daily challenge
+while you are offline, within the sponsor budget.
+
+19
+00:02:06,473 --> 00:02:14,129
+Zama randomizes the encounter, difficulty and loot.
+FHE checks hidden strength, element and luck.
+
+20
+00:02:14,282 --> 00:02:21,698
+A verified win adds items to its field bag.
+If it fails, there is no reward and nothing is lost.
+
+21
+00:02:21,851 --> 00:02:29,651
+The server pays for the trial and checks its proof.
+The owner signs no claim. Here, Verify repeats the check.
+
+22
+00:02:30,200 --> 00:02:35,864
+The first Trail lantern needs three Ash thread,
+or one thread and one Archive fragment.
+
+23
+00:02:36,265 --> 00:02:42,745
+Choose a recipe when your bag has enough materials.
+Crafting is free of gas and grants a cosmetic.
+
+24
+00:02:43,146 --> 00:02:49,650
+These are server-managed game items, not token yield.
+The lantern gives no combat bonus or guaranteed wins.
+
+25
+00:02:50,200 --> 00:02:54,909
+Visit Ashenkin dot X Y Z.
+Sign in, mint a Xeno and explore its world.
+
+26
+00:02:55,059 --> 00:02:59,650
+Play the game. Verify the result.
+The source is on GitHub: duclucky slash ashenkin.
