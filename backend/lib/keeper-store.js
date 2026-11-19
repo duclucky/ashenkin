@@ -30,6 +30,10 @@ function keeperStore(file, secret) {
       circle_id TEXT UNIQUE, status TEXT, hash TEXT, created INTEGER NOT NULL, done INTEGER NOT NULL DEFAULT 0
     );
     CREATE UNIQUE INDEX IF NOT EXISTS keeper_pending_tx ON keeper_transactions(keeper_id,fingerprint) WHERE done = 0;
+    CREATE TABLE IF NOT EXISTS keeper_tx_checks (
+      request_id TEXT PRIMARY KEY REFERENCES keeper_transactions(id) ON DELETE CASCADE,
+      next_check INTEGER NOT NULL, attempts INTEGER NOT NULL, result TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS keeper_starter_funding (
       keeper_id TEXT PRIMARY KEY REFERENCES keepers(id), hash TEXT
     );
@@ -73,6 +77,21 @@ function keeperStore(file, secret) {
     journey: require('./keeper-journey').keeperJourney(db),
     faucet: require('./gas-faucet-store').gasFaucetStore(db),
     keeper(id) { return db.prepare('SELECT * FROM keepers WHERE id = ?').get(id) },
+    dueTransactions(now, graceMs, limit) {
+      return db.prepare(`
+        SELECT t.*, coalesce(c.attempts, 0) AS check_attempts
+        FROM keeper_transactions t LEFT JOIN keeper_tx_checks c ON c.request_id = t.id
+        WHERE t.done = 0 AND t.created <= ? AND coalesce(c.next_check, 0) <= ?
+        ORDER BY coalesce(c.next_check, 0), t.created, t.id LIMIT ?
+      `).all(now - graceMs, now, limit)
+    },
+    scheduleTxCheck(id, nextCheck, result) {
+      db.prepare(`
+        INSERT INTO keeper_tx_checks(request_id,next_check,attempts,result) VALUES (?,?,1,?)
+        ON CONFLICT(request_id) DO UPDATE SET next_check = excluded.next_check,
+          attempts = keeper_tx_checks.attempts + 1, result = excluded.result
+      `).run(id, nextCheck, result)
+    },
     pendingTransactions(keeper) { return db.prepare('SELECT * FROM keeper_transactions WHERE keeper_id = ? AND done = 0').all(keeper.id) },
     rate,
     challenge(identity, makeMessage) {

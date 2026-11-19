@@ -69,3 +69,13 @@ if (keeper?.faucet) {
   timer.unref()
   void tick()
 }
+
+// Finish the database record even when the player's tab stops polling.
+if (keeper?.reconciler) {
+  const tick = () => keeper.reconciler.tick().catch(() => {
+    console.warn(JSON.stringify({ event: 'keeper-transaction-reconcile-scheduler-waiting' }))
+  })
+  const timer = setInterval(tick, 15_000)
+  timer.unref()
+  void tick()
+}

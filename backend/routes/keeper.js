@@ -10,6 +10,7 @@ const { keeperChain, gameCall, labKeyData, lab, hatchData } = require('../lib/ke
 const { CONSENT } = require('../lib/patrol')
 const { productionLife } = require('../lib/life-chain')
 const { productionFaucet } = require('../lib/gas-faucet')
+const { keeperReconciler, refreshKeeperTransaction } = require('../lib/keeper-reconcile')
 
 const MINUTE = 60_000
 const EMAIL = /^[^\s@<>]{1,64}@[a-z0-9](?:[a-z0-9.-]{0,187}[a-z0-9])?\.[a-z]{2,24}$/i
@@ -39,6 +40,7 @@ function productionKeeper(env = process.env) {
   const config = { store, circle, chain, origin, sendCode }
   config.life = productionLife(store, env)
   config.faucet = productionFaucet(store, env)
+  config.reconciler = keeperReconciler({ store, circle })
   return config
 }
 
@@ -157,9 +159,8 @@ function keeperRouter(config) {
     return share(`tx:${keeper.id}:${fingerprint}`, () => store.exclusive(keeper, async () => {
       config.patrol?.guard(keeper, call)
       let request = store.pending(keeper, fingerprint)
-      if (request?.circle_id) {
-        const info = await circle.status(keeper, request.circle_id)
-        store.updateTx(request.id, info)
+      if (request) {
+        const info = await refreshKeeperTransaction(store, circle, keeper, request)
         if (!info.done || (starter && !info.failed)) return { id: request.id }
         request = null
       }
@@ -187,12 +188,13 @@ function keeperRouter(config) {
           status: error.status ?? error.error?.response?.status ?? error.response?.status, circleCode: response?.code,
           reasons: Array.isArray(response?.errors) ? response.errors.map(item => item.error).filter(item => typeof item === 'string' && /^[a-z_]+$/i.test(item)).slice(0, 5) : undefined,
         }))
-        // An ambiguous network error keeps the original idempotency key for retry.
+        // Ambiguous acknowledgement is recovered by refId, never blindly resent.
         const status = error.status ?? error.error?.response?.status ?? error.response?.status
         if (status === 400 || status === 422) {
           store.updateTx(request.id, { status: 'FAILED', done: true })
           throw problem(409, 'Circle could not submit this action. Check the game wallet’s Sepolia ETH and try again.')
         }
+        if (error.notSubmitted) store.updateTx(request.id, { status: 'FAILED', done: true })
         throw error
       }
     }))
@@ -217,12 +219,11 @@ function keeperRouter(config) {
   router.get('/transactions/:id', catchRoute(async (req, res) => {
     const keeper = requireKeeper(req, req.query.address)
     const tx = UUID.test(req.params.id) && store.tx(keeper, req.params.id)
-    if (!tx?.circle_id) throw problem(404, 'Game transaction not found.')
-    const info = await circle.status(keeper, tx.circle_id)
-    store.updateTx(tx.id, info)
+    if (!tx) throw problem(404, 'Game transaction not found.')
+    const info = await store.exclusive(keeper, () => refreshKeeperTransaction(store, circle, keeper, store.tx(keeper, tx.id)))
     if (!tx.done && info.done) console.info(JSON.stringify({
       event: 'keeper-transaction-finished', at: new Date().toISOString(),
-      requestId: tx.id, wallet: keeper.address, circleId: tx.circle_id,
+      requestId: tx.id, wallet: keeper.address, circleId: store.tx(keeper, tx.id).circle_id,
       hash: info.hash, state: info.status, failed: info.failed,
     }))
     res.json({ hash: info.hash, state: info.status, failed: info.failed, ...(info.retryable ? { retryable: true } : {}) })

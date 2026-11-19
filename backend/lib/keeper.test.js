@@ -59,7 +59,7 @@ async function fixture(exercise) {
     return { status: res.status, data: await res.json(), cookie: res.headers.get('set-cookie')?.split(';')[0] }
   }
   try {
-    await exercise({ request, codes, stats: () => ({ creates, grants, transactions: transactions.size }) })
+    await exercise({ request, codes, store, circle, stats: () => ({ creates, grants, transactions: transactions.size }) })
   } finally {
     await new Promise(resolve => server.close(resolve))
     store.close()
@@ -280,3 +280,53 @@ test('only a Circle estimation failure without a broadcast hash is retryable', a
   transaction.errorReason = 'INSUFFICIENT_FUNDS'
   assert.notEqual((await adapter.status(keeper, txId)).retryable, true)
 })
+
+async function signedInFixture(request) {
+  const player = privateKeyToAccount(generatePrivateKey())
+  const { data } = await request('wallet/start', { body: { address: player.address } })
+  const login = await request('wallet/finish', { body: { id: data.id, signature: await player.signMessage({ message: data.message }) } })
+  await request('provision', { body: {}, cookie: login.cookie })
+  return login.cookie
+}
+
+test('an unacknowledged starter request remains recoverable and is never blindly submitted again', async () => fixture(async ({ request, store, circle, stats }) => {
+  const cookie = await signedInFixture(request)
+  circle.find = async () => null
+  circle.execute = async () => { throw new Error('ambiguous network failure') }
+  assert.equal((await request('starter', { body: {}, cookie })).status, 503)
+  const keeper = store.session(cookie.split('=')[1])
+  const pending = store.pending(keeper, `${lab.toLowerCase()}:${hatchData}`)
+  assert.ok(pending)
+  assert.equal(pending.done, 0)
+  circle.execute = async () => { throw new Error('must not be called') }
+  assert.deepEqual((await request('starter', { body: {}, cookie })).data, { id: pending.id })
+  const unresolved = await request(`transactions/${pending.id}`, { cookie })
+  assert.equal(unresolved.status, 200)
+  assert.equal(unresolved.data.state, 'RECONCILING')
+  assert.equal(unresolved.data.failed, false)
+  assert.equal(stats().grants, 1)
+  assert.equal((await request(`transactions/${pending.id}`)).status, 401)
+  const another = await signedInFixture(request)
+  assert.equal((await request(`transactions/${pending.id}`, { cookie: another })).status, 404)
+
+  circle.find = async () => ({ circleId: 'recovered', status: 'SENT' })
+  circle.status = async () => ({ status: 'CONFIRMED', hash, done: true, failed: false })
+  const recovered = await request(`transactions/${pending.id}`, { cookie })
+  assert.equal(recovered.data.hash, hash)
+  assert.equal(store.tx(keeper, pending.id).circle_id, 'recovered')
+  assert.equal(store.tx(keeper, pending.id).done, 1)
+}))
+
+test('a proven pre-submission error closes only its unsent intent so a later retry can proceed', async () => fixture(async ({ request, store, circle }) => {
+  const cookie = await signedInFixture(request)
+  const original = circle.execute
+  circle.execute = async () => { throw Object.assign(new Error('unavailable estimate'), { notSubmitted: true, status: 503 }) }
+  assert.equal((await request('starter', { body: {}, cookie })).status, 503)
+  const keeper = store.session(cookie.split('=')[1])
+  const fingerprint = `${lab.toLowerCase()}:${hatchData}`
+  assert.equal(store.latest(keeper, fingerprint).done, 1)
+  circle.execute = original
+  const next = await request('starter', { body: {}, cookie })
+  assert.equal(next.status, 200)
+  assert.ok(store.pending(keeper, fingerprint).circle_id)
+}))

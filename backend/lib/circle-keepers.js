@@ -76,18 +76,20 @@ function circleKeepers(env, client, chainClient) {
     },
     async find(keeper, refId, created) {
       let pageAfter
+      const visited = new Set()
       // A missing acknowledgement is not a license to resubmit. Find its refId
       // across every page of this wallet's transactions in the relevant window.
       do {
         const { data } = await client.listTransactions({
-          blockchain: 'ETH-SEPOLIA', walletIds: [keeper.circle_id],
+          walletIds: [keeper.circle_id],
           from: new Date(created - 60_000).toISOString(), pageSize: 50, pageAfter,
         })
         const transactions = data?.transactions ?? []
         const tx = transactions.find(tx => tx.refId === refId && tx.walletId === keeper.circle_id && tx.blockchain === 'ETH-SEPOLIA')
         if (tx) return { circleId: tx.id, status: tx.state }
         const next = data?.nextPageAfter || (transactions.length === 50 ? transactions.at(-1).id : undefined)
-        if (next === pageAfter) throw problem(503, 'Circle pagination did not advance.')
+        if (next && visited.has(next)) throw problem(503, 'Circle pagination did not advance.')
+        if (next) visited.add(next)
         pageAfter = next
       } while (pageAfter)
       return null

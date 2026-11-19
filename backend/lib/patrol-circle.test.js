@@ -31,3 +31,33 @@ test('lost acknowledgement lookup scans later pages and filters by wallet and re
   }
   assert.deepEqual(await circleKeepers({}, client, {}).find(keeper, request, Date.now()), { circleId: 'found', status: 'SENT' })
 })
+
+test('wallet-scoped transaction lookup omits incompatible blockchain filter and accepts empty results', async () => {
+  const keeper = { circle_id: randomUUID() }
+  const client = { listTransactions: async input => {
+    assert.equal('blockchain' in input, false)
+    assert.deepEqual(input.walletIds, [keeper.circle_id])
+    return { data: { transactions: [] } }
+  } }
+  assert.equal(await circleKeepers({}, client, {}).find(keeper, randomUUID(), Date.now()), null)
+})
+
+test('a short last page without the refId ends normally and never accepts another wallet or chain', async () => {
+  const keeper = { circle_id: randomUUID() }, request = randomUUID()
+  const client = { listTransactions: async () => ({ data: { transactions: [
+    { id: 'wrong-wallet', walletId: 'another', blockchain: 'ETH-SEPOLIA', refId: request },
+    { id: 'wrong-chain', walletId: keeper.circle_id, blockchain: 'ETH', refId: request },
+  ] } }) }
+  assert.equal(await circleKeepers({}, client, {}).find(keeper, request, Date.now()), null)
+})
+
+test('repeating pagination cursors abort instead of looping or reporting a false absence', async () => {
+  let calls = 0
+  const client = { listTransactions: async () => {
+    calls++
+    if (calls > 3) throw new Error('lookup exceeded the bounded cursor cycle')
+    return { data: { transactions: [], nextPageAfter: calls % 2 ? 'a' : 'b' } }
+  } }
+  await assert.rejects(circleKeepers({}, client, {}).find({ circle_id: randomUUID() }, randomUUID(), Date.now()), /pagination/)
+  assert.equal(calls, 3)
+})
