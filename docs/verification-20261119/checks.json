@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-19",
+  "scope": "Public game repository; deterministic mock tests are separate from live read-only verification.",
+  "baselineCommit": "4d4774069f1619fe8d5c0346bf131b38a380ea67",
+  "runtime": "Node.js 22; Bun 1.4.0",
+  "checks": {
+    "frontendLint": {
+      "errors": 0,
+      "warnings": 63,
+      "warningDisposition": "Existing mixed-export, hook dependency and unused code warnings remain visible; no lint rules disabled."
+    },
+    "frontendTypecheck": "passed",
+    "frontendProductionBuild": "passed",
+    "frontendTests": {
+      "passed": 111,
+      "failed": 0
+    },
+    "backendTests": {
+      "passed": 74,
+      "failed": 0
+    },
+    "hardhatFhevmMockTests": {
+      "passed": 128,
+      "failed": 0
+    },
+    "totalTestsPassed": 313,
+    "contractLockedInstall": "passed",
+    "documentationLinks": {
+      "passed": 130,
+      "documents": 29,
+      "missingFiles": 0
+    }
+  },
+  "liveReadChecks": {
+    "date": "2026-11-19",
+    "publicHttpsAndNftMetadata": "passed",
+    "cleanClonePublicDemo": "passed",
+    "guestProofComparison": "all three KMS results matched settled Sepolia battle #1",
+    "browserWidth": 390,
+    "guestRoutes": [
+      "guide",
+      "fairness",
+      "about",
+      "arena/log/1"
+    ],
+    "pageErrors": 0,
+    "horizontalOverflow": false,
+    "matchingRuntimeBytecodesAfterImmutableMask": 16,
+    "transactionsSubmittedForThisReview": 0
+  },
+  "limits": [
+    "Local contract suite uses FHEVM mock, not Sepolia.",
+    "Immutable-reference ranges excluded from runtime comparison.",
+    "Explorer verified-source status not independently confirmed.",
+    "An organically rare production title claim remains unverified.",
+    "CI badge reflects the actual GitHub run; VPS checks do not imply a completed hosted run."
+  ]
+}

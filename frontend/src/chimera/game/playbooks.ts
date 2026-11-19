@@ -10,7 +10,10 @@ const validId = (value: unknown): value is string => typeof value === 'string' &
 const validTime = (value: unknown): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value >= 0
 const validPlan = (value: unknown): value is TacticPlan => Array.isArray(value) && value.length === 3 && value.every(move => Number.isInteger(move) && move >= 0 && move <= 2)
 function cleanName(value: unknown): string | null {
-  if (typeof value !== 'string' || /[\x00-\x08\x0b-\x1f\x7f]/.test(value)) return null
+  if (typeof value !== 'string' || Array.from(value).some(character => {
+    const code = character.charCodeAt(0)
+    return code <= 8 || (code >= 11 && code <= 31) || code === 127
+  })) return null
   const name = value.trim().replace(/\s+/g, ' ')
   return name.length > 0 && name.length <= PLAYBOOK_NAME_LIMIT ? name : null
 }

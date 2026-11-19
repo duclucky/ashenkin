@@ -4,7 +4,11 @@ Ashenkin is a creature-collecting game on Ethereum Sepolia. Hatch Xenos, breed n
 
 This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
+[![Repository checks](https://github.com/duclucky/ashenkin/actions/workflows/checks.yml/badge.svg)](https://github.com/duclucky/ashenkin/actions/workflows/checks.yml)
+
 [Play Ashenkin](https://ashenkin.xyz/) · [Judge mode](https://ashenkin.xyz/#/judge) · [Verify Wild Hunt #1](https://ashenkin.xyz/#/arena/log/1)
+
+[Confidentiality and trust model](docs/confidentiality.md) · [Configuration](docs/configuration.md) · [Tests and Sepolia evidence](docs/verification.md)
 
 ## Gameplay video
 
@@ -57,7 +61,7 @@ See the scoring and settlement in [Colosseum](contracts/contracts/ChimeraColosse
 
 ## Run from a clone
 
-Install Node.js 22 or later, npm, and Bun. Run from the repository root.
+Install Node.js 22 or later, npm, and Bun 1.4.0. Run from the repository root.
 
 ```sh
 bun install --cwd frontend --frozen-lockfile
@@ -66,14 +70,16 @@ npm --prefix frontend run build
 npm --prefix backend run demo
 ```
 
-Open [http://127.0.0.1:4173](http://127.0.0.1:4173/). Express serves the built app, NFT API, and FHE WebAssembly files. The app reads Sepolia over public RPC and uses the Zama testnet relayer. The standalone app can connect an external wallet; hosted wallet/email login additionally requires server-only Circle and email configuration. Configure those values outside Git. The guest proof check uses public reads. Source builds, tests and services for the hosted project run on its VPS.
+Open [http://127.0.0.1:4173](http://127.0.0.1:4173/). Express serves the built app, NFT API, and FHE WebAssembly files. The app reads Sepolia over public RPC and uses the Zama testnet relayer. The standalone app can connect an external wallet; hosted wallet/email login additionally requires server-only Circle and email configuration. Use the safe [environment examples and configuration guide](docs/configuration.md) to configure those values outside Git. The guest proof check uses public reads. Source builds, tests and services for the hosted project run on its VPS.
 
 For development, run `npm --prefix backend run dev` and `npm --prefix frontend run dev` in separate terminals. Vite serves the game at [http://127.0.0.1:5173](http://127.0.0.1:5173/) and proxies the API to port 3001.
 
 ## Test
 
 ```sh
+npm --prefix frontend run lint
 npm --prefix frontend run type-check
+node scripts/check-doc-links.js
 bun test --cwd frontend tests
 node --test backend/lib/*.test.js
 npm --prefix contracts ci
@@ -85,3 +91,21 @@ The Solidity suite uses the Hardhat FHEVM mock. The [Season of Masks test](contr
 ```sh
 node backend/scripts/check-demo-v2.js --release https://ashenkin.xyz 1 --require-uri
 ```
+
+## Evidence and limits
+
+[Verification summary](docs/verification.md) distinguishes local FHEVM mock tests
+from actual Sepolia receipts, public KMS verification and authenticated privacy
+checks. The repo includes [full game QA](docs/qa-2026-11-18.md) and
+[reward/ACL QA](docs/qa-rewards-2026-11-18.md). An organically rare title has not
+been successfully claimed on production; its success branch is fixture-tested.
+
+The hosted operator controls Circle wallet signing and ordinary inventories.
+Sponsor availability affects offline encounters. See the
+[trust boundaries](docs/confidentiality.md#hosted-wallet-custody-and-operator-powers)
+before treating the hosted wallet as private from its operator. This is a Sepolia
+MVP, not an audited mainnet game or a promise of token yield.
+
+The contract workspace derives from Zama's FHEVM Hardhat template and retains its
+[BSD-3-Clause-Clear license and attribution](contracts/LICENSE). Third-party
+libraries retain their own licenses; the template is not authored by Ashenkin.

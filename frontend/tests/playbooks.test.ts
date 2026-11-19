@@ -76,3 +76,13 @@ test('failed writes do not report a new plan or delete the existing one', () => 
   expect(() => deletePlaybook(storage, scope, 'one')).toThrow('Storage full')
   expect(readPlaybooks(storage, scope).map(book => book.id)).toEqual(['one'])
 })
+
+test('playbook names reject every unsafe ASCII control while preserving whitespace normalization', () => {
+  const storage = new MemoryStorage()
+  for (let code = 0; code <= 127; code++) {
+    if (code <= 8 || (code >= 11 && code <= 31) || code === 127) {
+      expect(() => savePlaybook(storage, scope, input(`Bad${String.fromCharCode(code)}name`), 100)).toThrow()
+    }
+  }
+  expect(savePlaybook(storage, scope, input('  Hold\tthen\nstrike  '), 100)[0].name).toBe('Hold then strike')
+})

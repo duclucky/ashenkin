@@ -396,7 +396,7 @@ export function buildCreature(traits: number[], seed: number, element: number | 
   /* eyes (locus 3) */
   const blink = new Grid()
   let cfg = { ...EYES[eyeG] }
-  let eyeY = topY + Math.max(2, Math.round(H * 0.28))
+  const eyeY = topY + Math.max(2, Math.round(H * 0.28))
   if (cfg.n === 4 && eyeY + 7 > bottomY - 3) cfg = { n: 2, s: 2, angry: cfg.angry }
   const maxS = bottomY - 5 - eyeY
   if (cfg.s > maxS) cfg.s = Math.max(1, maxS)

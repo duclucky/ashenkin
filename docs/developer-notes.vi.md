@@ -19,7 +19,7 @@ Mở hai terminal. Chạy `npm --prefix backend run dev` trong terminal thứ nh
 - [API health](http://127.0.0.1:5173/api/health) trả về `{"status":"ok"}`. [Metadata Ashenkin #1](http://127.0.0.1:5173/api/ashenkin-nft/1) đọc dữ liệu công khai từ Sepolia và trả liên kết ảnh SVG.
 - Khi đổi `BACKEND_PORT`, đặt cùng giá trị ở hai terminal. Backend dùng RPC Sepolia công khai mặc định. Có thể cấu hình `SEPOLIA_RPC_URL` trong môi trường backend hoặc `backend/.env`.
 
-Frontend và API chạy trên máy. Các tính năng on-chain dùng hợp đồng Sepolia và Zama Relayer, nên cần Internet. Giao dịch trong game cần ví Sepolia. Các địa chỉ và ABI frontend sử dụng nằm trong [contracts.json](frontend/src/chimera/contracts.json).
+Frontend và API chạy trên máy. Các tính năng on-chain dùng hợp đồng Sepolia và Zama Relayer, nên cần Internet. Giao dịch trong game cần ví Sepolia. Các địa chỉ và ABI frontend sử dụng nằm trong [contracts.json](../frontend/src/chimera/contracts.ashenkin.json).
 
 Để bật chốt tự động cho trận đấu, trứng và Dojo, đặt `CHIMERA_SETTLEMENT_PRIVATE_KEY` cho **process backend** bằng khóa của một ví riêng đã nạp Sepolia ETH. `CHIMERA_SETTLEMENT_MAX_GWEI` giới hạn `maxFeePerGas` theo gwei, mặc định 3. Dùng một process tài trợ cho mỗi ví đó. Backend chỉ gửi giao dịch chốt đã mô phỏng vào các contract Sepolia của Ashenkin. Nếu chưa cấu hình khóa, game tiếp tục chốt qua ví người chơi. Inbox có đường chốt trực tiếp nếu backend hoặc ngân sách tài trợ tạm thời không khả dụng.
 
@@ -44,7 +44,7 @@ npm --prefix backend run check:demo -- http://127.0.0.1:4173 1
 
 Metadata trả bảy đặc điểm ngoại hình công khai, cấp độ, ngày nở và phả hệ. Khi Zama chưa trả đủ đặc điểm, API trả `503` kèm `Retry-After` để ví thử lại. Nếu sửa hình sprite, chạy `npm --prefix frontend run build:nft-art` để cập nhật bộ dựng ảnh phía backend.
 
-Khi địa chỉ HTTPS công khai đã hoạt động, thêm `--prepare-uri` sau ID để mô phỏng `setTraining` với địa chỉ Training hiện tại và in dữ liệu giao dịch cho chủ Lab xem trước. Sau khi chủ Lab cập nhật, chạy với `--require-uri` để xác nhận `tokenURI` trỏ tới JSON đã kiểm tra. Lệnh kiểm tra chỉ dùng `eth_call` và đọc API. Xem [checklist nộp bài](docs/submission.md) để kiểm chứng từ phiên khách.
+Khi địa chỉ HTTPS công khai đã hoạt động, thêm `--prepare-uri` sau ID để mô phỏng `setTraining` với địa chỉ Training hiện tại và in dữ liệu giao dịch cho chủ Lab xem trước. Sau khi chủ Lab cập nhật, chạy với `--require-uri` để xác nhận `tokenURI` trỏ tới JSON đã kiểm tra. Lệnh kiểm tra chỉ dùng `eth_call` và đọc API. Xem [checklist nộp bài](submission.md) để kiểm chứng từ phiên khách.
 
 URL gốc dùng bộ hợp đồng Ashenkin trên Sepolia. Các NFT test của hai bộ Chimera cũ có URL hồ sơ với `?world=original` hoặc `?world=v2` để giữ đúng địa chỉ hợp đồng cho từng ID.
 
@@ -56,14 +56,14 @@ Trên VPS, Docker Compose chạy game và Cloudflare Tunnel trong dự án `/opt
 npm --prefix frontend run type-check
 npm --prefix frontend run build
 bun test --cwd frontend
-node --test backend/lib/settlement.test.js
-npm --prefix contracts install --no-package-lock
+node --test backend/lib/*.test.js
+npm --prefix contracts ci
 npm --prefix contracts test
 ```
 
 Frontend build ra `frontend/dist`. Bộ test hợp đồng chạy mặc định trên Hardhat local với FHEVM mock.
 
-Luồng demo ấp hai phôi → lai → đấu Colosseum → bán có test xuyên suốt trong [SeasonOfMasks.ts](contracts/test/SeasonOfMasks.ts). Lượt chạy local dùng 10 giao dịch, tính từ lúc ấp phôi và với cZAMA đã được cấp quyền trước. Các bước FHE chính đo được khoảng 2,94 triệu gas khi tạo trứng và 4,11 triệu gas khi bắt đầu trận. Bộ test HCU đo khoảng 5,79 triệu HCU cho Breed và 12,97 triệu HCU cho Colosseum Explore, dưới giới hạn 20 triệu HCU mỗi giao dịch.
+Luồng demo ấp hai phôi → lai → đấu Colosseum → bán có test xuyên suốt trong [SeasonOfMasks.ts](../contracts/test/SeasonOfMasks.ts). Lượt chạy local dùng 10 giao dịch, tính từ lúc ấp phôi và với cZAMA đã được cấp quyền trước. Các bước FHE chính đo được khoảng 2,94 triệu gas khi tạo trứng và 4,11 triệu gas khi bắt đầu trận. Bộ test HCU đo khoảng 5,79 triệu HCU cho Breed và 12,97 triệu HCU cho Colosseum Explore, dưới giới hạn 20 triệu HCU mỗi giao dịch.
 
 Để kiểm tra với Zama KMS trên Sepolia, chuẩn bị hai ví test có Sepolia ETH và cZAMA. Đặt `E2E_SELLER_PRIVATE_KEY` và `E2E_BUYER_PRIVATE_KEY` trong môi trường terminal, rồi chạy lệnh sau từ `contracts`.
 
@@ -83,6 +83,6 @@ Script ký giao dịch trên Sepolia. Ví mua cần ít nhất 15 cZAMA. Ví bá
 | Oracle | Đáp án được giữ kín trong vòng. Chỉ người đoán đọc được gợi ý của mình. | Jackpot, kết quả xác nhận người thắng và đáp án khi vòng kết thúc. |
 | Raffle và Depths | Raffle giấu số vé và hũ đang tích lũy. Depths giữ kín máu, túi đồ và nội dung cửa; người chơi xem được cửa đã chiếu đèn. | Raffle công bố người thắng và tiền thưởng khi chốt vòng. Depths công bố bằng chứng sống sót khi người chơi chọn đăng kỷ lục. |
 
-Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [kế hoạch Season of Masks](plan.md) để theo dõi tiến độ.
+Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [kế hoạch Season of Masks](big-update-plan.md) để theo dõi tiến độ.
 
-Kịch bản quay và bản nháp bài giới thiệu nằm trong [tài liệu nộp bài](docs/submission.md).
+Kịch bản quay và bản nháp bài giới thiệu nằm trong [tài liệu nộp bài](submission.md).

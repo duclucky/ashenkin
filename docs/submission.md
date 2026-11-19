@@ -18,7 +18,7 @@ Living Xenos là điểm nhấn mới: máy chủ tài trợ tối đa một th�
 
 Ngày 17/11/2026, trên website công khai của Ashenkin, ví thử dùng Keliakor #1 mở Wild Hunt #1 và gặp quái hoang #2. Sau khi giao dịch mở trận xác nhận, tải lại Battle Log. Trận hiện `Awaiting reveal` và hoàn tất qua `Reveal rounds`. Keliakor thắng hiệp 1 và 2, thua hiệp 3, bắt được quái hoang. Từ cửa sổ khách, bấm `Verify the rounds` rồi `Verify all three rounds`. Game báo cả ba kết quả KMS khớp dữ liệu đã chốt trên Sepolia. [Trận và Proof Center](https://ashenkin.xyz/#/arena/log/1) · [Giao dịch ấp Keliakor](https://sepolia.etherscan.io/tx/0x0a0c550cd9e6e174b4056dfdadc2073ecb0d0ea3edd9301b804841bf3efbd62a) · [Mở trận](https://sepolia.etherscan.io/tx/0xdd102d9b3391f71ee5539ab71d9d0324823e5e3c9ccd1446ae05d8440f1aeddd) · [Chốt trận](https://sepolia.etherscan.io/tx/0xab52e10d32f2b05bd0b3b4dc09fd58bd72a47bc869b1f02cddcc90b13c4e9d1e)
 
-Lần đo trên Chrome với ví thử tự ký mất 38,6 giây từ nút mở trận đến xác nhận và 24,6 giây từ nút chốt đến xác nhận. Thời gian này gồm xử lý của ứng dụng, Zama và Sepolia. [Ảnh xác minh từ phiên khách](../tmpshots/ashenkin-release-hunt/guest-proof.png)
+Lần đo trên Chrome với ví thử tự ký mất 38,6 giây từ nút mở trận đến xác nhận và 24,6 giây từ nút chốt đến xác nhận. Thời gian này gồm xử lý của ứng dụng, Zama và Sepolia. [Ảnh xác minh từ phiên khách](proof-center.png)
 
 Bản hiện tại dùng Relayer SDK cũ và phép kiểm tra trên vẫn chạy. Tài liệu Zama giới thiệu SDK mới làm mặc định. Chỉ đưa việc đổi SDK vào luồng phát hành nếu có vấn đề tương thích hoặc lỗi thực tế khi kiểm tra demo. [Tổng quan Zama SDK](https://docs.zama.org/protocol/sdk)
 
@@ -51,14 +51,19 @@ không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp
 1. Trong Ashenkin, bạn nuôi, lai và đưa Xenos vào đấu trường trên Sepolia. Gen ẩn và ba chiêu đã chọn được giữ kín bằng Zama FHEVM. Đó là luật chơi của Colosseum.
 2. Mỗi sinh vật có tám locus, mỗi locus có hai alen. Chủ sinh vật có thể giải trình tự để phát hiện alen hiếm ẩn sau ngoại hình rồi chọn cặp bố mẹ cho lần lai tiếp theo.
 3. Hai bên chọn ba chiêu trước trận. Hợp đồng tính từng hiệp từ chiêu, chỉ số ẩn và ngẫu nhiên on-chain. Kết quả từng hiệp có bằng chứng Zama KMS để kiểm tra trong Proof Center.
-4. Thử Judge Mode để ấp phôi, vào Colosseum và mở Proof Center. Demo `<DEMO_URL>`. Mã nguồn và test `<REPO_URL>`.
+4. Thử Judge Mode để ấp phôi, vào Colosseum và mở Proof Center. Demo https://ashenkin.xyz/. Mã nguồn và test https://github.com/duclucky/ashenkin.
 
 ## Trước khi nộp
 
 - [x] Thêm đúng tuyên bố miễn trừ trách nhiệm ở chân trang game và trong README.
-- [ ] Dùng chế độ `npm --prefix backend run demo` để phục vụ bản build và API cùng origin. Chạy `npm --prefix backend run check:demo -- <PUBLIC_ORIGIN> 1` với URL HTTPS triển khai. Mở URL gốc của demo cùng link repo từ cửa sổ ẩn danh, trên máy tính và điện thoại.
+- [x] Đã kiểm tra clone sạch trên VPS ngày 19/11: build, API, WASM và metadata đạt. Dùng chế độ `npm --prefix backend run demo` để phục vụ bản build và API cùng origin. Chạy `npm --prefix backend run check:demo -- <PUBLIC_ORIGIN> 1` với URL HTTPS triển khai. Mở URL gốc của demo cùng link repo từ cửa sổ ẩn danh, trên máy tính và điện thoại.
 - [x] Xác nhận `tokenURI(1)` của Ashenkin trỏ tới JSON công khai dưới `/api/ashenkin-nft/`.
 - [x] Chơi Wild Hunt #1 trên demo công khai với NFT đã ấp trên Sepolia. Tải lại sau khi mở trận và chốt tiếp từ Battle Log.
 - [x] Mở trực tiếp Wild Hunt #1 từ phiên khách và đối chiếu ba kết quả KMS với giao dịch chốt.
-- [ ] Chạy vòng ấp → lai → đấu → bán nếu các cảnh này sẽ xuất hiện trong video. Ghi lại giao dịch Breed, Hatch, Settle và Finalize sale. Kiểm tra trạng thái xác minh mã nguồn của hợp đồng trên explorer và gắn các liên kết cần thiết vào README.
+- [x] Luồng ấp → lai → đấu → bán đã chạy trên Sepolia trong [QA ngày 18/11](qa-2026-11-18.md). Bộ kiểm thử clone sạch ngày 19/11 đạt 312 ca trước đợt sửa tài liệu; xem [bằng chứng hiện tại](verification.md).
+- [ ] Xác nhận trạng thái verify source trên explorer; đối chiếu runtime bytecode không thay thế việc verify source.
 - [ ] Quay video 3 phút với người trình bày thật. Điền URL demo và mã nguồn vào bài X. Khi đủ liên kết, dùng email đã xin API key để mở hai trang cuối, kiểm tra toàn bộ hồ sơ rồi mới gửi.
+
+## Tài liệu dành cho giám khảo
+
+[Thiết kế FHE và ranh giới tin cậy](confidentiality.md) · [Cấu hình để chạy lại](configuration.md) · [Bằng chứng kiểm thử](verification.md). Video nộp cuối và URL bài X vẫn do chủ dự án hoàn thiện; không coi bản nháp là bài đã đăng.

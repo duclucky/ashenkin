@@ -1,110 +1,66 @@
-# FHEVM Hardhat Template
+# Ashenkin contracts
 
-A Hardhat-based template for developing Fully Homomorphic Encryption (FHE) enabled Solidity smart contracts using the
-FHEVM protocol by Zama.
+Solidity contracts for Ashenkin's Sepolia creature collection, confidential combat,
+economy and sponsored offline encounters. This directory started from the
+[Zama FHEVM Hardhat template](https://github.com/zama-ai/fhevm-hardhat-template);
+Ashenkin's game code is maintained in [duclucky/ashenkin](https://github.com/duclucky/ashenkin).
+The upstream [BSD-3-Clause-Clear notice](LICENSE) is retained.
 
-## Quick Start
+This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
-For detailed instructions see:
-[FHEVM Hardhat Quick Start Tutorial](https://docs.zama.ai/protocol/solidity-guides/getting-started/quick-start-tutorial)
+## Compile and test without a funded wallet
 
-### Prerequisites
+Node.js 22+ and npm are required. From this directory:
 
-- **Node.js**: Version 20 or higher
-- **npm or yarn/pnpm**: Package manager
-
-### Installation
-
-1. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-2. **Set up environment variables**
-
-   ```bash
-   npx hardhat vars set MNEMONIC
-
-   # Set your Infura API key for network access
-   npx hardhat vars set INFURA_API_KEY
-
-   # Optional: Set Etherscan API key for contract verification
-   npx hardhat vars set ETHERSCAN_API_KEY
-   ```
-
-3. **Compile and test**
-
-   ```bash
-   npm run compile
-   npm run test
-   ```
-
-4. **Deploy to local network**
-
-   ```bash
-   # Start a local FHEVM-ready node
-   npx hardhat node
-   # Deploy to local network
-   npx hardhat deploy --network localhost
-   ```
-
-5. **Deploy to Sepolia Testnet**
-
-   ```bash
-   # Deploy to Sepolia
-   npx hardhat deploy --network sepolia
-   # Verify contract on Etherscan
-   npx hardhat verify --network sepolia <CONTRACT_ADDRESS>
-   ```
-
-6. **Test on Sepolia Testnet**
-
-   ```bash
-   # Once deployed, you can run a simple test on Sepolia.
-   npx hardhat test --network sepolia
-   ```
-
-## 📁 Project Structure
-
-```
-fhevm-hardhat-template/
-├── contracts/           # Smart contract source files
-│   └── FHECounter.sol   # Example FHE counter contract
-├── deploy/              # Deployment scripts
-├── tasks/               # Hardhat custom tasks
-├── test/                # Test files
-├── hardhat.config.ts    # Hardhat configuration
-└── package.json         # Dependencies and scripts
+```sh
+npm ci
+npm run compile
+npm test
 ```
 
-## 📜 Available Scripts
+Hardhat uses chain 31337 and the FHEVM mock for these tests. No real wallet or
+Sepolia ETH is needed. `npm test` compiles as necessary. The standard Hardhat
+mnemonic is a public test fixture, never a funded production signer.
 
-| Script             | Description              |
-| ------------------ | ------------------------ |
-| `npm run compile`  | Compile all contracts    |
-| `npm run test`     | Run all tests            |
-| `npm run coverage` | Generate coverage report |
-| `npm run lint`     | Run linting checks       |
-| `npm run clean`    | Clean build artifacts    |
+| Entry point | Responsibility |
+| --- | --- |
+| [ChimeraLab](contracts/ChimeraLab.sol) | NFT genesis, encrypted alleles, breeding and explicit genome disclosure |
+| [ChimeraColosseum](contracts/ChimeraColosseum.sol) / [ChimeraCombat](contracts/ChimeraCombat.sol) | Sealed three-move plans, FHE scoring, random rolls and proof settlement |
+| [AshenkinEncounters](contracts/AshenkinEncounters.sol) | One encrypted daily challenge per eligible NFT; public outcome proof |
+| [ChimeraTraining](contracts/ChimeraTraining.sol) | Earned XP, confidential payment and encrypted random power bonus |
+| [ChimeraMarket](contracts/ChimeraMarket.sol) | NFT escrow and confidential ERC-7984 payment |
+| [SeasonOfMasks test](test/SeasonOfMasks.ts) | Genesis, breeding, combat, sale and why a leaked defender plan matters |
+| [Encounter tests](test/AshenkinEncounters.ts) | Daily snapshot, difficulty, forged proof rejection and backend exactly-once credit |
 
-## 📚 Documentation
+The internal `Chimera*` Solidity identifiers predate the public Ashenkin name.
+They are retained to preserve deployment and ABI compatibility. The current public
+collection is Ashenkin (ASHEN), not a new user-facing version of an older game.
 
-- [FHEVM Documentation](https://docs.zama.ai/fhevm)
-- [FHEVM Hardhat Setup Guide](https://docs.zama.ai/protocol/solidity-guides/getting-started/setup)
-- [FHEVM Testing Guide](https://docs.zama.ai/protocol/solidity-guides/development-guide/hardhat/write_test)
-- [FHEVM Hardhat Plugin](https://docs.zama.ai/protocol/solidity-guides/development-guide/hardhat)
+## Current Sepolia deployment
 
-## 📄 License
+The [root README](../README.md#sepolia-deployment) links the public contracts.
+[Deployment receipts](deployments-ashenkin/sepolia.json) record the release;
+[frontend addresses and ABIs](../frontend/src/chimera/contracts.ashenkin.json)
+select that release. Legacy deployment files are compatibility/history, not the
+current judge entry point. [Privacy design](../docs/confidentiality.md) explains
+ACLs, operator trust, randomness and proof boundaries.
 
-This project is licensed under the BSD-3-Clause-Clear License. See the [LICENSE](LICENSE) file for details.
+## New deployments and verification
 
-## 🆘 Support
+Running deployment scripts spends test ETH and creates/changes contracts. It is
+not required to run the app against its existing public Sepolia deployment.
+Copy [.env.example](.env.example) to `.env` only for an intentionally authorized
+new deployment. Keep its signer outside Git. `hardhat.config.ts` reads
+`DEPLOYER_PRIVATE_KEY` and optional `SEPOLIA_RPC_URL`; it falls back to the public
+Hardhat mnemonic if no private key is configured. **Never fund that fallback on a
+public network.** Set the explorer API key with `npx hardhat vars set ETHERSCAN_API_KEY`.
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/zama-ai/fhevm/issues)
-- **Documentation**: [FHEVM Docs](https://docs.zama.ai)
-- **Community**: [Zama Discord](https://discord.gg/zama)
+`deploy/deploy.ts` deploys the original core modules. The scripts under `scripts/`
+add later modules and links; they are not a single command that recreates the
+entire hosted release. Do not overwrite committed addresses with a partial export.
+For an already deployed contract, source verification uses its actual constructor
+arguments and `npm run verify:sepolia -- <address> <constructor arguments...>`.
+A passing bytecode comparison is not the same as a verified explorer listing or
+an independent security audit.
 
----
-
-**Built with ❤️ by the Zama team**
+[Configuration](../docs/configuration.md) · [Test and Sepolia evidence](../docs/verification.md)

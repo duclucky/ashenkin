@@ -49,4 +49,4 @@ frames, AAC stereo and 26 non-overlapping English subtitle blocks. Each gameplay
 source is a real WebM browser recording, not a still image. No blockchain action
 was submitted for filming. Output is a music/subtitle edit; real-person narration
 remains for the owner to record before using it as a completed pitch.
-The video, SRT and timed read-along are delivered outside the source repository.
+The original music/subtitle edit and timed read-along were delivered outside the source repository. A later AI-narrated walkthrough and matching SRT are linked from README; the owner handles the real-person submission pitch.

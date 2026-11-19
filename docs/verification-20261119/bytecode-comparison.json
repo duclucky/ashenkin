@@ -1,0 +1,130 @@
+[
+  {
+    "name": "ChimeraLab",
+    "address": "0x233d680fc473C36B0d1c6C32Dc8B23eaEcaC8aF2",
+    "bytes": 22884,
+    "expectedBytes": 22884,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 7
+  },
+  {
+    "name": "ChimeraArena",
+    "address": "0x6D84bA2BeBBC13f2D5BbF652c340365a0dD857BD",
+    "bytes": 14208,
+    "expectedBytes": 14208,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 16
+  },
+  {
+    "name": "ChimeraMarket",
+    "address": "0xEd1A5BB249073A404F3b6033c242B10D6529975d",
+    "bytes": 7512,
+    "expectedBytes": 7512,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 13
+  },
+  {
+    "name": "ChimeraTreasury",
+    "address": "0x2132C2e0f76382DC58414fBbff7068619009d906",
+    "bytes": 3961,
+    "expectedBytes": 3961,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 5
+  },
+  {
+    "name": "ChimeraRaid",
+    "address": "0xC76cd75830Ab24aE2BD2eC74bA83c8D8A9dd0610",
+    "bytes": 11382,
+    "expectedBytes": 11382,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 7
+  },
+  {
+    "name": "ChimeraExpeditions",
+    "address": "0x9173f61880c927dd1D691ad713e4Eb68f71ab6dd",
+    "bytes": 8208,
+    "expectedBytes": 8208,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 9
+  },
+  {
+    "name": "ChimeraQuests",
+    "address": "0x65af84C702d4CE512d0215e0738f4a4CE693FDA5",
+    "bytes": 5135,
+    "expectedBytes": 5135,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 3
+  },
+  {
+    "name": "ChimeraTraining",
+    "address": "0x90E352a87be05cAd5C69bA353bF2C5fC23969f47",
+    "bytes": 11150,
+    "expectedBytes": 11150,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 11
+  },
+  {
+    "name": "ChimeraColosseum",
+    "address": "0xa6fa68c5E4d9dAeF079c197c1f3d45ef7D21B59a",
+    "bytes": 17806,
+    "expectedBytes": 17806,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 16
+  },
+  {
+    "name": "ChimeraRelics",
+    "address": "0x2C68d0ECA760b4c6B470CC283EE2b25DB28d03D9",
+    "bytes": 12250,
+    "expectedBytes": 12250,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 10
+  },
+  {
+    "name": "ChimeraOracle",
+    "address": "0x9c79EBa3B3959C0F2F9d14048704407dB99ddFD8",
+    "bytes": 11023,
+    "expectedBytes": 11023,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 7
+  },
+  {
+    "name": "ChimeraAscension",
+    "address": "0xd2E86Fb170dd2aEf71C4FA1f43c4615A0Ef82aBD",
+    "bytes": 4130,
+    "expectedBytes": 4130,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 11
+  },
+  {
+    "name": "ChimeraSeason",
+    "address": "0x547c1282C900456d2E398256dCad1254BF5A1d11",
+    "bytes": 11102,
+    "expectedBytes": 11102,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 20
+  },
+  {
+    "name": "ChimeraRaffle",
+    "address": "0x1a1a62018Af484B8C3390EDAC7c7f63A8bB22BcD",
+    "bytes": 9437,
+    "expectedBytes": 9437,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 5
+  },
+  {
+    "name": "ChimeraDepths",
+    "address": "0xdc87d1a2B997ecaB5f985C4e594Af28236c42d70",
+    "bytes": 12452,
+    "expectedBytes": 12452,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 6
+  },
+  {
+    "name": "AshenkinEncounters",
+    "address": "0xf2aAf9a3dc7b1a58013117f4712ee6214D8F73E4",
+    "bytes": 9196,
+    "expectedBytes": 9196,
+    "matchesAfterImmutableMask": true,
+    "immutableRegions": 4
+  }
+]

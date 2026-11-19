@@ -58,7 +58,7 @@ Fixture kiểm tra được nhánh thành công và ranh giới bảo mật, nh�
 - [Jackpot Oracle](qa-rewards-2026-11-18/reward-oracle-result.json), [Relic thưởng](qa-rewards-2026-11-18/reward-oracle-cache.json).
 - [Nhật ký hạn và khôi phục](qa-rewards-2026-11-18/reward-deadlines.json), [event admin](qa-rewards-2026-11-18/reward-events.jsonl).
 - [31 receipt](qa-rewards-2026-11-18/reward-ledger.jsonl), [CSV](qa-rewards-2026-11-18/reward-ledger.csv). Tất cả thành công; tổng gas **0,000266805294799155 ETH Sepolia**. Riêng kết mùa dùng **12.535.761 gas**, dưới trần 16 triệu của ví game.
-- [Log tiến trình](qa-rewards-2026-11-18/reward-runner.log), [trạng thái đã thoát/khôi phục](qa-rewards-2026-11-18/reward-runner-status.json).
+- Log tiến trình nội bộ (không đưa tệp `.log` vào repo công khai), [trạng thái đã thoát/khôi phục](qa-rewards-2026-11-18/reward-runner-status.json).
 - [Kiểm tra riêng tư](qa-rewards-2026-11-18/reward-privacy.json), [owner không vượt ACL](qa-rewards-2026-11-18/reward-owner-privacy.json), [chặn admin/proof sai](qa-rewards-2026-11-18/reward-guards.json).
 - [UI trước đóng vòng](qa-rewards-2026-11-18/ui/before.json), [UI sau trả thưởng](qa-rewards-2026-11-18/ui/after.json): jackpot won, raffle winner, vương miện mùa cũ/mùa mới và jackpot rollover đều hiển thị; không ghi nhận pageerror.
 - [122 bài contract cục bộ](qa-rewards-2026-11-18/full-contract-tests.txt), [bốn fixture danh hiệu](qa-rewards-2026-11-18/rare-fixture-tests.txt), [kiểm tra metadata](qa-rewards-2026-11-18/rare-metadata-tests.txt).
