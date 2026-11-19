@@ -55,9 +55,25 @@ Current patch results and deployed-bytecode comparison are recorded in
 [Settlement transaction](https://sepolia.etherscan.io/tx/0xab52e10d32f2b05bd0b3b4dc09fd58bd72a47bc869b1f02cddcc90b13c4e9d1e) ·
 [Runtime comparison](verification-20261119/bytecode-comparison.json).
 
-Explorer source verification could not be independently confirmed during this
-review. Runtime comparison and an explorer's verified-source listing are distinct.
-No new blockchain transactions were sent during this repository review.
+## Explorer source verification — November 19
+
+All **16 deployed application contracts** returned `Pass - Verified` from Etherscan.
+A follow-up `getsourcecode` read confirmed each contract name, published source
+and ABI, and constructor arguments matching its creation transaction. Sourcify
+and Blockscout also completed verification for all 16.
+[Addresses, creation transactions and explorer links](verification-20261119/source-verification.json).
+
+Sourcify reports `creationMatch: match` and `runtimeMatch: match` for every contract.
+The submitted inputs came from the original deployment build records: Solidity
+`0.8.27+commit.40a35a09`, optimizer enabled with 800 runs, Cancun EVM and metadata
+bytecode hash `none`. Both original build records were retained to reproduce the
+creation code exactly. No contracts were redeployed and no new blockchain
+transactions were sent for source verification.
+
+These results establish correspondence between published and deployed code.
+They are separate from behavioral tests, FHE privacy checks and an independent
+security audit. The [deployment table](../README.md#sepolia-deployment) links
+verified Etherscan source for every application contract.
 
 ## Earlier actual gameplay and privacy checks
 
@@ -91,13 +107,12 @@ production genes, outcomes and rare-title thresholds are not overwritten.
 
 ## Judge path
 
-1. Read [How to Play](https://ashenkin.xyz/#/guide).
-2. Sign in, request gas if needed, mint an NFT, and complete one Wild Hunt.
-3. If the tab closes, return to Battle log to settle the pending result.
-4. Open [battle #1](https://ashenkin.xyz/#/arena/log/1) in a guest browser and choose
-   **Verify the rounds → Verify all three rounds** to repeat the public check.
-5. Read [Living Xenos](https://ashenkin.xyz/#/life) for ordinary daily items; this
-   branch is optional for completing the first playable and verifiable match.
+Use the [five-minute walkthrough](judge-walkthrough.md) for pages, actions,
+expected outcomes, pending-battle recovery and proof boundaries. It covers a new
+NFT-to-hunt route and a read-only check of historical battle #1. Living encounters
+are optional; a new NFT may need to wait for a later day.
 
 The owner handles the real-person pitch and published X post required by the
 [competition](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming).
+The [submission checklist](submission.md) separates those pending deliverables
+from completed repository and source-verification checks.

@@ -45,7 +45,10 @@ collection is Ashenkin (ASHEN), not a new user-facing version of an older game.
 
 ## Current Sepolia deployment
 
-The [root README](../README.md#sepolia-deployment) links the public contracts.
+All 16 application contracts are source-verified on Sepolia Etherscan, Sourcify
+and Blockscout. The [root README](../README.md#sepolia-deployment) links each
+verified contract. [Verification evidence](../docs/verification-20261119/source-verification.json)
+records creation transactions, compiler details and explorer URLs.
 [Deployment receipts](deployments-ashenkin/sepolia.json) record the release;
 [frontend addresses and ABIs](../frontend/src/chimera/contracts.ashenkin.json)
 select that release. Legacy deployment files are compatibility/history, not the

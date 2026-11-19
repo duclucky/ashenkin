@@ -41,8 +41,8 @@ thật. Không thay kết quả, không bịa phần thưởng và không dùng 
 | 2:30–2:50 | Túi đồ và hai công thức đèn đầu tiên; không hứa thưởng chắc chắn |
 | 2:50–3:00 | URL game và repo |
 
-Xuất bản nhạc nền + phụ đề tiếng Anh và tệp SRT, kèm kịch bản đọc có mốc thời
-gian để chủ dự án thu giọng thật. Theo thông báo chính thức, pitch phải do người
+README hiện có video thao tác thật, voice AI tiếng Anh và phụ đề khớp 26 câu.
+Đây là tài liệu minh họa để chủ dự án chuẩn bị bản pitch bằng giọng người thật. Theo thông báo chính thức, pitch phải do người
 thật trình bày; bản nhạc/phụ đề chưa có giọng người thật là bản để lồng tiếng,
 không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp.
 
@@ -61,9 +61,9 @@ không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp
 - [x] Chơi Wild Hunt #1 trên demo công khai với NFT đã ấp trên Sepolia. Tải lại sau khi mở trận và chốt tiếp từ Battle Log.
 - [x] Mở trực tiếp Wild Hunt #1 từ phiên khách và đối chiếu ba kết quả KMS với giao dịch chốt.
 - [x] Luồng ấp → lai → đấu → bán đã chạy trên Sepolia trong [QA ngày 18/11](qa-2026-11-18.md). Bộ kiểm thử clone sạch ngày 19/11 đạt 312 ca trước đợt sửa tài liệu; xem [bằng chứng hiện tại](verification.md).
-- [ ] Xác nhận trạng thái verify source trên explorer; đối chiếu runtime bytecode không thay thế việc verify source.
+- [x] Cả 16 hợp đồng ứng dụng đã verify source trên Sepolia Etherscan, Sourcify và Blockscout ngày 19/11; đã đối chiếu source, ABI và constructor arguments. [Bằng chứng](verification-20261119/source-verification.json).
 - [ ] Quay video 3 phút với người trình bày thật. Điền URL demo và mã nguồn vào bài X. Khi đủ liên kết, dùng email đã xin API key để mở hai trang cuối, kiểm tra toàn bộ hồ sơ rồi mới gửi.
 
 ## Tài liệu dành cho giám khảo
 
-[Thiết kế FHE và ranh giới tin cậy](confidentiality.md) · [Cấu hình để chạy lại](configuration.md) · [Bằng chứng kiểm thử](verification.md). Video nộp cuối và URL bài X vẫn do chủ dự án hoàn thiện; không coi bản nháp là bài đã đăng.
+[Luồng demo 5 phút bằng tiếng Anh](judge-walkthrough.md) · [Thiết kế FHE và ranh giới tin cậy](confidentiality.md) · [Cấu hình để chạy lại](configuration.md) · [Bằng chứng kiểm thử](verification.md). Video nộp cuối và URL bài X vẫn do chủ dự án hoàn thiện; không coi bản nháp là bài đã đăng.
