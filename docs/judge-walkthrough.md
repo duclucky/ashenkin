@@ -7,7 +7,7 @@ confirmation-time promise. Blockchain and FHE services can take longer.
 | --- | --- | --- |
 | 0:00–0:45 | Read [How to Play](https://ashenkin.xyz/#/guide), then sign in with wallet or email. | Your verified identity restores a persistent Circle game wallet. Its address can differ from the sign-in wallet. |
 | 0:45–1:30 | Follow Gas → Hatch at the [Lab](https://ashenkin.xyz/#/lab). If needed, use the daily faucet, then Hatch embryo. | An owned NFT appears. Ownership and appearance are public; genes use Zama randomness and hidden traits have contract read permissions. |
-| 1:30–3:15 | In the [Colosseum](https://ashenkin.xyz/#/arena), select the NFT, choose three moves and enter Wild hunts. | Complete a three-round hunt without needing another player online. Win or lose, settlement counts toward the first-fight tutorial. |
+| 1:30–3:15 | In the [Colosseum](https://ashenkin.xyz/#/arena), select the NFT, choose three moves and select Start a hunt in Wild hunts. | Complete a three-round hunt without needing another player online. Win or lose, settlement counts toward the first-fight tutorial. |
 | 3:15–4:15 | On the settled battle, choose Verify the rounds → Verify all three rounds. | Public KMS results match the three Sepolia round bits and majority winner. |
 | 4:15–5:00 | Visit [Living Xenos](https://ashenkin.xyz/#/life), replay an available story and check its proof. | A verified daily challenge may give ordinary items without a player claim transaction. Loss removes nothing. |
 
@@ -21,6 +21,10 @@ funding. It supplies test gas, not cash income. Use the linked game-wallet addre
 Circle signs allowed hosted game calls on the server. Minting and live hunts
 still consume gas. Standalone external wallets authorize their own transactions.
 A hunt has opening and settlement transactions with FHE/decryption work between.
+Ordinary hunts allocate an opponent per keeper; shared rare sightings remain
+competitive. The interactive sponsor pays for settlement independently of the
+offline worker. It can broadcast multiple settlements before earlier ones mine;
+this does not remove Sepolia or Zama processing time.
 After a reload, resume Battle log → Awaiting reveal → Reveal rounds before opening
 another hunt. The settled record determines the result; animation presents it.
 

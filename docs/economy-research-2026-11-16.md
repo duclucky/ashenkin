@@ -1,5 +1,9 @@
 # Nghiên cứu nền kinh tế Chimera
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 16/11/2026 · Chimera v2 trên Sepolia.
 
 Chimera có nguồn cung NFT và giới hạn chi trả được kiểm soát trong contract. Dữ liệu hiện tại đủ để kiểm chứng cơ chế đó. Để chứng minh người chơi có thể kiếm tiền, cần kiểm tra hai nguồn thu độc lập: người mua thật trả tiền cho sinh vật có ích và một quỹ giải đã được nạp trả cho người chơi có thành tích xác minh được. Phí chơi, tiền cược, phần thưởng từ quỹ và doanh thu của đội phải được hạch toán riêng.

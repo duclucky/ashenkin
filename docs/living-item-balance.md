@@ -1,5 +1,9 @@
 # Living encounter item pacing — 2026-11-18
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 ## Scope
 
 Tune the first cosmetic milestone, not the verified encounter reward stream.
@@ -70,7 +74,7 @@ Rare natural lanterns retain the original onchain gate and probability.
 
 ## Public release verification
 
-Publishing authorized and completed on 2026-11-18. Live image is
+Publishing authorized and completed on 2026-11-18. The image at that release was
 ashenkin:loot-balance-20261118-1040. Previous image, config and online SQLite
 backup are retained privately under /opt/ashenkin/auth/loot-balance-20261118/before.
 The keeper environment config is byte-identical to its pre-release backup.

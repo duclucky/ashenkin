@@ -1,5 +1,10 @@
 # Ashenkin · Kịch bản nộp bài
 
+> Chủ dự án đã báo nộp bài xong. Đây là hồ sơ chuẩn bị và tiêu chí đã ghi nhận
+> trong đợt nộp, không phải danh sách việc chưa làm hiện tại. URL hồ sơ cuối, bài X
+> và video nộp do chủ dự án quản lý; không suy ra từ các bản nháp bên dưới.
+> [Trạng thái game hiện tại](current-state.md).
+
 ## Điều kiện của Season 5
 
 - **Confidential Gaming** là hạng mục duy nhất. Ban giám khảo chấm gameplay và UX, cách mã hóa tạo ra luật chơi, công bằng có thể kiểm chứng, một vòng chơi hoàn chỉnh trên Sepolia, chất lượng video và chất lượng mã nguồn. Hạn chót là **14/12/2026, 23:59 AoE** (15/12, 18:59 giờ Việt Nam). Giữ mốc chuẩn bị nội bộ trước hạn công bố. [Bài công bố chính thức](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming)
@@ -53,7 +58,7 @@ không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp
 3. Hai bên chọn ba chiêu trước trận. Hợp đồng tính từng hiệp từ chiêu, chỉ số ẩn và ngẫu nhiên on-chain. Kết quả từng hiệp có bằng chứng Zama KMS để kiểm tra trong Proof Center.
 4. Thử Judge Mode để ấp phôi, vào Colosseum và mở Proof Center. Demo https://ashenkin.xyz/. Mã nguồn và test https://github.com/duclucky/ashenkin.
 
-## Trước khi nộp
+## Checklist lưu tại thời điểm chuẩn bị nộp
 
 - [x] Thêm đúng tuyên bố miễn trừ trách nhiệm ở chân trang game và trong README.
 - [x] Đã kiểm tra clone sạch trên VPS ngày 19/11: build, API, WASM và metadata đạt. Dùng chế độ `npm --prefix backend run demo` để phục vụ bản build và API cùng origin. Chạy `npm --prefix backend run check:demo -- <PUBLIC_ORIGIN> 1` với URL HTTPS triển khai. Mở URL gốc của demo cùng link repo từ cửa sổ ẩn danh, trên máy tính và điện thoại.
@@ -66,4 +71,4 @@ không tự được coi là bài pitch hoàn chỉnh đủ điều kiện nộp
 
 ## Tài liệu dành cho giám khảo
 
-[Luồng demo 5 phút bằng tiếng Anh](judge-walkthrough.md) · [Thiết kế FHE và ranh giới tin cậy](confidentiality.md) · [Cấu hình để chạy lại](configuration.md) · [Bằng chứng kiểm thử](verification.md). Video nộp cuối và URL bài X vẫn do chủ dự án hoàn thiện; không coi bản nháp là bài đã đăng.
+[Luồng demo 5 phút bằng tiếng Anh](judge-walkthrough.md) · [Thiết kế FHE và ranh giới tin cậy](confidentiality.md) · [Cấu hình để chạy lại](configuration.md) · [Bằng chứng kiểm thử](verification.md). Chủ dự án đã báo hoàn tất nộp bài; tài liệu này không lưu URL hồ sơ cuối hoặc bài X. Không coi bản nháp ở trên là bài đã đăng.

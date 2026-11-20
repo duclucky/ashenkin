@@ -37,6 +37,7 @@ mnemonic is a public test fixture, never a funded production signer.
 | [ChimeraTraining](contracts/ChimeraTraining.sol) | Earned XP, confidential payment and encrypted random power bonus |
 | [ChimeraMarket](contracts/ChimeraMarket.sol) | NFT escrow and confidential ERC-7984 payment |
 | [SeasonOfMasks test](test/SeasonOfMasks.ts) | Genesis, breeding, combat, sale and why a leaked defender plan matters |
+| [Settlement pipeline test](test/SettlementPipeline.ts) | Three sponsored fights broadcast before mining, consecutive nonces, receipt and journal reconciliation |
 | [Encounter tests](test/AshenkinEncounters.ts) | Daily snapshot, difficulty, forged proof rejection and backend exactly-once credit |
 
 The internal `Chimera*` Solidity identifiers predate the public Ashenkin name.
@@ -54,6 +55,12 @@ records creation transactions, compiler details and explorer URLs.
 select that release. Legacy deployment files are compatibility/history, not the
 current judge entry point. [Privacy design](../docs/confidentiality.md) explains
 ACLs, operator trust, randomness and proof boundaries.
+
+The current hosted Colosseum has a 180-second cooldown and `maxRoaming = 10000`.
+The source default remains 24 roaming slots; a fresh deployment needs explicit
+owner configuration. The Lab population limit is independently capped at 10000.
+The hosted backend coordinates ordinary hunts per keeper; the public contract
+still prevents simultaneous capture of the same NFT. [Current rules](../docs/current-state.md).
 
 ## New deployments and verification
 

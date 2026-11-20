@@ -19,8 +19,9 @@ without errors; sampled game-region frames changed in all ten chapters. The
 English SRT and timed read-along accompany the video. SHA256:
 `ddc3de197bbc5eb56ad8247509438ad3a4b1121ed48be0c82dd850f671c5edca`.
 
-This is the music-and-subtitle version for the owner to narrate. It contains no
-AI voice. A real-person pitch is required by the
+This record describes the original music-and-subtitle export, without AI voice;
+the hash above belongs to that export. A later AI-narrated version and its matching
+English SRT are now linked in the [root README](../README.md#gameplay-video). A real-person pitch is required by the
 [official Season 5 rules](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming).
-Private browser cookies and raw runtime data are excluded from Git. Finished
-media is delivered separately rather than checking binary video into the repo.
+Private browser cookies and raw runtime data are excluded from Git. Raw recordings and private delivery files remain outside the repository; the
+README-linked finished walkthrough is included under `docs/media/`.

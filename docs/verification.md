@@ -37,8 +37,38 @@ losses instead of exhausting the genesis mint cap. No contract rules were change
 subscriptions and unused expressions/imports. They are not silently suppressed or
 claimed fixed. `npm run lint` permits warnings but fails on errors.
 
-Current patch results and deployed-bytecode comparison are recorded in
+The November 19 patch results and deployed-bytecode comparison are recorded in
 [the machine-readable check summary](verification-20261119/checks.json).
+
+## November 20: hunts and pipelined settlement
+
+The current backend passed **107 tests** and frontend passed **114 tests** on the
+VPS, with frontend type checking and production build successful. Lint has zero
+errors and the same 63 pre-existing warnings. These are dated results, not a
+replacement for the latest [GitHub CI run](https://github.com/duclucky/ashenkin/actions/workflows/checks.yml).
+
+The [settlement integration test](../contracts/test/SettlementPipeline.ts) opens
+three fights on the local FHEVM mock, disables automining, broadcasts all three
+settlements with consecutive nonces before any mines, then mines and verifies
+all receipts and journal states. This is deterministic concurrency/recovery
+coverage, not a measurement of live FHE latency.
+
+Live Sepolia acceptance confirmed seven successful settlements from the dedicated
+interactive signer. Three were included together in block **12173908**, and four
+in **12173910**. For example, these transactions have consecutive nonces 0, 1 and 2
+and share the first block:
+
+- [Settlement 0](https://sepolia.etherscan.io/tx/0xe1be3d38d87d59829369c6b66ed12512849d3059ca36a56712e5653b13bea461)
+- [Settlement 1](https://sepolia.etherscan.io/tx/0x528ebc665c9797e5dabcc9d4948f3cd1121cd5a5fbc804e72afa3638fa06cdbd)
+- [Settlement 2](https://sepolia.etherscan.io/tx/0x8bb15c3aaf5613c30cf6a8ade54faec8701d305180a8a67ce56a9bb351cce6cd)
+
+Their receipts and expected outcomes were checked independently over RPC, with
+accepted Zama proofs and journal confirmation. Observed signing/broadcast-to-mining
+intervals for the seven transactions were about **4–10 seconds**. This excludes
+opening transactions and prior FHE/proof work; it is not an end-to-end latency
+promise. No contract or NFT deployment changed. See [current behavior](current-state.md)
+and [configuration](configuration.md#optional-funding-services) rather than old
+proposal text for the signer separation and ordinary-hunt allocation.
 
 ## What was checked live on November 19
 
@@ -112,7 +142,7 @@ expected outcomes, pending-battle recovery and proof boundaries. It covers a new
 NFT-to-hunt route and a read-only check of historical battle #1. Living encounters
 are optional; a new NFT may need to wait for a later day.
 
-The owner handles the real-person pitch and published X post required by the
-[competition](https://www.zama.org/post/zama-developer-program-mainnet-season-5-confidential-gaming).
-The [submission checklist](submission.md) separates those pending deliverables
-from completed repository and source-verification checks.
+The owner reports the competition submission is complete. Final pitch and X-post
+links are managed by the owner and are not inferred from repository drafts. The
+[submission preparation record](submission.md) retains the original checklist
+separately from reproducible repository and source-verification checks.

@@ -1,6 +1,10 @@
 # Economy v2 — finite rewards and lineage circulation
 
-User choice: parents survive breeding and permanent offerings are voluntary. The rollout uses a separate Sepolia world with its own Lab and Treasury.
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
+User choice: parents survive breeding and permanent offerings are voluntary. This document records the November 16 economy rollout into the historical `v2` world. The default public entry now uses the Ashenkin release, which also includes these economy rules; `?world=original` and `?world=v2` retain access to legacy NFTs.
 
 ## Đề xuất quỹ thưởng mainnet
 
@@ -10,7 +14,7 @@ User choice: parents survive breeding and permanent offerings are voluntary. The
 
 ## Problems and scope
 
-Ascension already removes NFTs from player circulation by locking them forever, but only rewards XP. Breeding creates new reusable breeders; seven uses per parent does not bound descendant growth. Treasury fees recirculate, rather than burn cZAMA; unbounded testnet minting is external testing supply, not sustainable game revenue. Treasury currently has no daily budget; an oversized payment returns zero instead of an affordable partial reward. Seasonal payments are sequential and can favor the first seat when reserves run out.
+Ascension already removes NFTs from player circulation by locking them forever, but only rewards XP. Breeding creates new reusable breeders; seven uses per parent does not bound descendant growth. Treasury fees recirculate, rather than burn cZAMA; unbounded testnet minting is external testing supply, not sustainable game revenue. Before this rollout, Treasury had no daily budget; an oversized payment returns zero instead of an affordable partial reward. Seasonal payments are sequential and can favor the first seat when reserves run out.
 
 ## Rules to implement
 
@@ -63,7 +67,7 @@ The v2 deployment journal is `contracts/deployments-v2/sepolia.json`. It records
 
 The smoke test uses dedicated test keepers. It tests breeding against the new Lab. Exhausting a reward budget and closing a season use a separate instance of the same Treasury and Season contracts so the live world opens with a funded Treasury and a regular season. See `contracts/deployments-v2/smoke.json` for transaction hashes and final verified results.
 
-The existing game address opens v1. The `?world=v2` query opens v2, and the menu links between worlds. NFT IDs are scoped to the world. The local metadata API uses `/api/nft` for v1 and `/api/nft-v2` for v2. Each world’s Lab key is stored separately.
+At the November 16 rollout, the default game address opened v1. Today the default opens Ashenkin; `?world=original` and `?world=v2` select the two historical worlds. NFT IDs are scoped to the world. The local metadata API uses `/api/nft` for v1 and `/api/nft-v2` for v2. Each world’s Lab key is stored separately.
 
 The live smoke test passed. Egg #5 was unpaid and returned the introductory allowance. The same keeper hatched #6, retired it for one charge, then spent that charge to hatch #7. Both parents (#1 and #4) stayed in the keeper’s wallet. The live Quest paid 1 cZAMA. The isolated reward test opened a 2 cZAMA budget, paid 1 to the first check-in and split the remaining 1 among the thrones as 0.571428, 0.285714 and 0.142858 cZAMA. The next check-in received 0. Each transfer was read through the real Zama KMS. The regular v2 season remained on season 1.
 

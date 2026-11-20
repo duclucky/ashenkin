@@ -1,12 +1,12 @@
 # Ashenkin
 
-Ashenkin là game sưu tập, lai tạo và đưa Xenos vào đấu trường trên Sepolia. Zama FHEVM cho phép hợp đồng xử lý gen, chỉ số và cZAMA ngay trên dữ liệu mã hóa. Bản đồ, Judge Mode và chế độ luyện tập mở được khi chưa kết nối ví.
+Ashenkin là game sưu tập, lai tạo và đưa Xenos vào đấu trường trên Sepolia. Zama FHEVM cho phép hợp đồng xử lý gen, chỉ số và cZAMA ngay trên dữ liệu mã hóa. Khách xem được bản đồ, hướng dẫn, Judge Mode và proof công khai; phải sở hữu NFT mới chơi, kể cả chế độ luyện tập. Bản hosted đăng nhập bằng ví hoặc email, khôi phục ví game Circle gắn với danh tính đó. Xem [cơ chế hiện tại](current-state.md).
 
 This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
 ## Chạy local
 
-Cài dependency với Node.js 22 trở lên và Bun. Chạy các lệnh từ thư mục gốc của dự án.
+Các build, test và dịch vụ của bản hosted chạy trên VPS. Các lệnh dưới đây dành cho checkout ở máy chủ hoặc môi trường độc lập của người clone repo. Cài dependency với Node.js 22 trở lên và Bun 1.4.0. Chạy các lệnh từ thư mục gốc của dự án.
 
 ```powershell
 bun install --cwd frontend --frozen-lockfile
@@ -21,9 +21,9 @@ Mở hai terminal. Chạy `npm --prefix backend run dev` trong terminal thứ nh
 
 Frontend và API chạy trên máy. Các tính năng on-chain dùng hợp đồng Sepolia và Zama Relayer, nên cần Internet. Giao dịch trong game cần ví Sepolia. Các địa chỉ và ABI frontend sử dụng nằm trong [contracts.json](../frontend/src/chimera/contracts.ashenkin.json).
 
-Để bật chốt tự động cho trận đấu, trứng và Dojo, đặt `CHIMERA_SETTLEMENT_PRIVATE_KEY` cho **process backend** bằng khóa của một ví riêng đã nạp Sepolia ETH. `CHIMERA_SETTLEMENT_MAX_GWEI` giới hạn `maxFeePerGas` theo gwei, mặc định 3. Dùng một process tài trợ cho mỗi ví đó. Backend chỉ gửi giao dịch chốt đã mô phỏng vào các contract Sepolia của Ashenkin. Nếu chưa cấu hình khóa, game tiếp tục chốt qua ví người chơi. Inbox có đường chốt trực tiếp nếu backend hoặc ngân sách tài trợ tạm thời không khả dụng.
+Để bật chốt tự động cho trận đấu, trứng và Dojo, dùng ví tương tác riêng qua `ASHENKIN_INTERACTIVE_KEY_FILE` và `ASHENKIN_INTERACTIVE_EXPECTED_ADDRESS`. Tệp JSON chứa `pk`, lưu ngoài Git, quyền 600. `CHIMERA_SETTLEMENT_MAX_GWEI` giới hạn phí, mặc định 3 gwei. Giữ signer offline qua `CHIMERA_SETTLEMENT_KEY_FILE` riêng với ví này và ví faucet. Journal `backend/db/settlements.sqlite` phải được lưu bền vững cùng dữ liệu dịch vụ. Không dùng ví tương tác trong script bên ngoài.
 
-`npm --prefix backend run demo` cũng đọc `backend/.env.sponsor` nếu có. Để dùng lại một tệp ký cục bộ chứa trường `pk`, đặt `CHIMERA_SETTLEMENT_KEY_FILE` (đường dẫn tính từ `backend`) và `CHIMERA_SETTLEMENT_EXPECTED_ADDRESS` để backend kiểm tra đúng địa chỉ trước khi chạy.
+Backend cấp nonce tuần tự nhưng không đợi từng receipt trước khi gửi tác vụ tiếp theo, tối đa tám giao dịch đang chờ. Journal lưu trước khi broadcast và khôi phục đúng hash khi mất ACK. Nếu chưa có key tương tác, backend dùng cơ chế signer chung thận trọng cũ. Nếu tài trợ chưa cấu hình hoặc tạm hết ngân sách, Inbox có đường chốt bằng ví người chơi. [Cấu hình đầy đủ và backup](configuration.md).
 
 ## Chạy bản demo production
 
@@ -55,7 +55,9 @@ Trên VPS, Docker Compose chạy game và Cloudflare Tunnel trong dự án `/opt
 ```powershell
 npm --prefix frontend run type-check
 npm --prefix frontend run build
-bun test --cwd frontend
+npm --prefix frontend run lint
+node scripts/check-doc-links.js
+bun test --isolate --cwd frontend tests
 node --test backend/lib/*.test.js
 npm --prefix contracts ci
 npm --prefix contracts test
@@ -83,6 +85,6 @@ Script ký giao dịch trên Sepolia. Ví mua cần ít nhất 15 cZAMA. Ví bá
 | Oracle | Đáp án được giữ kín trong vòng. Chỉ người đoán đọc được gợi ý của mình. | Jackpot, kết quả xác nhận người thắng và đáp án khi vòng kết thúc. |
 | Raffle và Depths | Raffle giấu số vé và hũ đang tích lũy. Depths giữ kín máu, túi đồ và nội dung cửa; người chơi xem được cửa đã chiếu đèn. | Raffle công bố người thắng và tiền thưởng khi chốt vòng. Depths công bố bằng chứng sống sót khi người chơi chọn đăng kỷ lục. |
 
-Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [kế hoạch Season of Masks](big-update-plan.md) để theo dõi tiến độ.
+Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [trạng thái bản hiện tại](current-state.md). [Kế hoạch Season of Masks](big-update-plan.md) là tài liệu lịch sử, không phải danh sách việc đang chờ.
 
 Kịch bản quay và bản nháp bài giới thiệu nằm trong [tài liệu nộp bài](submission.md).

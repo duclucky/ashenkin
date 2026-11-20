@@ -1,5 +1,9 @@
 # Tactical Fieldbook — research and implementation
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 Goal: research and add meaningful game features, preserving the mobile surface, Zama colors, NFT ownership, existing encrypted state and deployed Sepolia gameplay.
 
 The previous work advanced the authoritative implementation: mobile layout and brand palette were implemented and checked. This goal begins by inspecting the current source and plan instead of assuming those changes or the old feature list are complete.

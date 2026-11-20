@@ -84,6 +84,17 @@ See [worker verification](../backend/lib/life.js),
 [proof binding](../backend/lib/life-chain.js) and
 [exactly-once inventory storage](../backend/lib/life-store.js).
 
+## Hosted hunt allocation and settlement
+
+Ordinary hunts reserve opponents in the backend; shared rare sightings remain
+competitive. Reservations are coordination, not encrypted identity or exclusive
+access against direct contract callers. The onchain single-capture rule still
+applies. The interactive sponsor uses a separate signer and persistent transaction
+journal from the offline worker and faucet. Public proofs and transaction hashes
+are exposed; private signer keys and raw signed payloads are not. Sponsoring gas
+does not change the contract's KMS checks or the read permissions described above.
+[Current flow](current-state.md) · [Transaction design](transaction-design.md).
+
 ## Hosted wallet custody and operator powers
 
 Two wallet paths exist: an external wallet in a standalone deployment, and the

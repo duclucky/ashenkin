@@ -53,15 +53,26 @@ them only after intentionally provisioning the signer, limits and test ETH.
 | Service | Required configuration / behavior |
 | --- | --- |
 | Daily faucet | `ASHENKIN_GAS_FAUCET_ENABLED=true`, `ASHENKIN_GAS_FAUCET_KEY_FILE`, optional expected address; one grant per account per rolling 24h, default `ASHENKIN_GAS_FAUCET_AMOUNT=0.002` ETH. Key JSON uses the property `privateKey`. The faucet must be a separate wallet from the settlement signer. |
-| Public-result sponsor | `CHIMERA_SETTLEMENT_KEY_FILE`, optional `CHIMERA_SETTLEMENT_EXPECTED_ADDRESS`, `CHIMERA_SETTLEMENT_MAX_GWEI` (default 3). Key JSON uses `pk`. Legacy `CHIMERA_SETTLEMENT_PRIVATE_KEY` is also supported; prefer a mounted secret file. |
+| Legacy / offline sponsor | `CHIMERA_SETTLEMENT_KEY_FILE`, optional `CHIMERA_SETTLEMENT_EXPECTED_ADDRESS`, `CHIMERA_SETTLEMENT_MAX_GWEI` (default 3). Key JSON uses `pk`. Legacy `CHIMERA_SETTLEMENT_PRIVATE_KEY` is also supported; prefer a mounted secret file. |
+| Interactive public-result sponsor | `ASHENKIN_INTERACTIVE_KEY_FILE` and required `ASHENKIN_INTERACTIVE_EXPECTED_ADDRESS`; key JSON uses `pk`. Use a distinct wallet from the legacy/offline signer and faucet. Uses the settlement fee ceiling above. Without this key, public settlement falls back to the conservative shared signer. |
 | Living encounters | Requires hosted keeper configuration and `ASHENKIN_ENCOUNTERS_ADDRESS`. Set `ASHENKIN_LIFE_WORKER=true` plus the settlement signer to submit draws. `ASHENKIN_LIFE_DAILY_ETH` defaults to 0.005; `ASHENKIN_LIFE_MAX_GWEI` defaults to 0.1. Worker false allows viewing available data without submitting new draws. |
 | Legacy starter sponsorship | Off unless both `ASHENKIN_CIRCLE_STARTER_ETH` and positive `ASHENKIN_STARTER_MINT_LIMIT` are set, with a settlement signer. The public daily faucet is the documented onboarding route. |
 
+The interactive sponsor persists nonce, calldata, signed bytes and hash in
+`backend/db/settlements.sqlite` before broadcasting. Persist this database and
+its SQLite WAL state together with the signer configuration; back it up using
+SQLite's online backup API. Do not delete the journal while its signer has pending
+transactions or use that signer from external scripts. Up to eight sends may be
+pending; the journal finalizes a receipt after its block plus two more blocks.
+Recovery rebroadcasts identical bytes and checks the recorded sender, nonce and
+call. `GET /api/settlement` reports a known job hash/state without signing; unknown
+status is not evidence that it is safe to send a new transaction.
+
 Key files should live outside Git, for example in a read-only mounted
 `/run/secrets/` directory. Restrict file permissions to the service account, and
-never commit a real key JSON. The two key formats differ (`privateKey` versus
+never commit a real key JSON. The key formats differ (`privateKey` versus
 `pk`); do not copy the faucet file into the settlement slot. Circle signing uses
-its own credentials rather than either local sponsor key.
+its own credentials rather than the local sponsor keys.
 
 ## Tests and repeatable read checks
 

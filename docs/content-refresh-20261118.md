@@ -1,5 +1,9 @@
 # Current game information audit — 18 November 2026
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 Compared the deployed loot-balance release, current contracts, keeper API, and
 source text visible in the guide, judge checklist, Proof Center, Archives,
 Treasury, collection, Arena, Hall and seasonal screens.
@@ -38,7 +42,7 @@ Local practice is explicitly labelled. No new blockchain transaction is needed
 for filming. Rendering and browser runs occur on the VPS, not the user's PC.
 
 Evidence: /opt/ashenkin/auth/content-refresh-20261118 and
-/opt/ashenkin/media/refresh-20261118. Publishing was approved and the website now runs
+/opt/ashenkin/media/refresh-20261118. Publishing was approved and that release used
 ashenkin:content-refresh-20261118-1900. Live responsive checks passed for the same
 screens at all three widths. A real Living proof check also confirmed Judge Mode
 records that milestone only after success. Keeper configuration is unchanged.

@@ -1,5 +1,9 @@
 # Living NFT: daily encounters
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 Approved scope: every owned NFT automatically experiences up to one daily
 challenge, online or offline. Zama randomizes encounter, difficulty, small luck
 roll and loot. FHE compares the existing hidden battle power/element against

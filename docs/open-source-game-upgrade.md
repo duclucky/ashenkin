@@ -1,5 +1,9 @@
 # Chimera: học từ game mã nguồn mở và áp dụng
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 ## Nguồn đã kiểm tra ngày 13/11/2026
 
 Số liệu đọc trực tiếp từ GitHub API; star/fork là tín hiệu chọn nguồn tham khảo, không chứng minh thiết kế phù hợp hay sản phẩm thành công.

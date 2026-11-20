@@ -1,6 +1,12 @@
-# Chimera · Giảm chữ ký và gas trên Sepolia
+# Ashenkin: chữ ký, gas và chốt kết quả
 
-Đề xuất ngày 16/11/2026. Dùng ví hiện tại để vào trận, tự động chốt kết quả bằng bằng chứng Zama và ưu tiên đấu quái hoang đã tồn tại. Sau khi đo chi phí còn lại, thử phiên chơi có quyền giới hạn để bỏ popup giữa các hành động thường xuyên.
+Hai mục cập nhật ngày 20/11 mô tả bản hiện tại. Phần từ số đo ngày 16/11 trở xuống là hồ sơ thiết kế lịch sử, gồm cả các hướng thử chưa được chọn. Bản hosted hiện dùng ví Circle gắn với đăng nhập, không dùng ERC-4337 hay khóa phiên trình duyệt. Xem [trạng thái hiện tại](current-state.md) và [cấu hình signer](configuration.md#optional-funding-services).
+
+## Cập nhật điều phối chốt kết quả ngày 20/11/2026
+
+Chốt tương tác có signer riêng, tách khỏi worker sự kiện offline và ví faucet. Sổ giao dịch SQLite lưu nonce, calldata, raw signature và hash trước broadcast. Máy chủ cho tối đa tám giao dịch tương tác đang chờ; chỉ ký tuần tự trong thời gian cấp nonce, không chờ receipt của giao dịch trước mới gửi giao dịch tiếp theo. Raw payload được giữ riêng ở VPS, không đưa vào repo hoặc API.
+
+API dùng job key gồm chain, contract, loại tác vụ, ID và handles; gửi lại cùng tác vụ trả về hash đã lưu trước khi tạo proof mới. Status GET chỉ đọc, giúp khôi phục ACK bị mất. Worker đối soát và phát lại đúng signed bytes, không ký giao dịch thay thế khi chưa rõ trạng thái. Nonce lạ, hết cửa sổ hoặc vượt ngân sách đều chặn trước khi ký. Kết quả và quyền sở hữu NFT vẫn chỉ được xác nhận từ receipt và proof Zama. Journal hoàn tất sau block chứa giao dịch cộng thêm hai block; UI đọc receipt và event mong đợi trước khi báo thành công. Đây không phải cam kết xác nhận tức thời.
 
 ## Cập nhật săn thường ngày 20/11/2026
 
@@ -8,7 +14,11 @@
 
 Reservation nằm ở backend, gắn với tài khoản, NFT tham chiến và calldata cố định. Chỉ reservation chưa gửi mới hết hạn; yêu cầu đã bind nhưng chưa rõ trạng thái tiếp tục được bảo vệ và đối soát. Đây là điều phối lượt chơi qua website, không phải giấu quyền sở hữu hoặc cấm người khác gọi contract trực tiếp. Contract vẫn chặn hai người bắt cùng một NFT. Cấu hình roaming cần bằng trần dân số Lab, giữ nguyên cooldown và trần dân số NFT. Các số đo và thiết kế ngày 16/11 bên dưới được giữ như lịch sử.
 
-## Đo trên Chimera v2
+## Hồ sơ ngày 16/11/2026: số đo và đề xuất ban đầu
+
+Các mô tả chưa có worker thật, chọn mục tiêu chung và thử smart account bên dưới thuộc thời điểm 16/11; không thay thế hai cập nhật 20/11 ở trên.
+
+### Đo trên Chimera v2
 
 | Luồng | Giao dịch đã quan sát | Gas từ receipt |
 | --- | --- | --- |

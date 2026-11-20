@@ -1,5 +1,9 @@
 # First steps and returning stories
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 Scope: signed-in Circle accounts follow free gas → first NFT → settled first
 hunt → Living Xenos. Existing practice and Beacon remain optional routes.
 Reuse current onchain evidence; no extra transactions/rewards for tutorial steps.
@@ -28,7 +32,7 @@ transaction. Preserve the running faucet and living-world worker.
 - Evidence: /opt/ashenkin/auth/first-steps-20261118.
 - Release image: ashenkin:first-steps-20261118-0950
   sha256:7f27398096d103e51d54ce672d1b5ccf32735a385de5d672f7c5e299514f9810.
-- Public deployment authorized and completed on 2026-11-18. Live image is
+- Public deployment authorized and completed on 2026-11-18. The image at that release was
   ashenkin:first-steps-20261118-0950; previous image and SQLite backup are
   retained under /opt/ashenkin/auth/first-steps-20261118/before.
 - Live https://ashenkin.xyz check passed using the existing QA account:

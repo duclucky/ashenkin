@@ -1,5 +1,9 @@
 # Ashenkin — xác nhận các nhánh thưởng ngày 18/11/2026
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 **Raffle, kết mùa, jackpot Oracle và Oracle hết hạn đã hoàn thành trên Sepolia thật.** Đối chiếu 31 receipt thành công, kiểm tra lại các khoản chuyển cZAMA bằng giải mã FHE từ event token và kiểm tra kết quả trên giao diện. Riêng danh hiệu hiếm: nhánh thành công đã qua fixture FHEVM cục bộ; chưa có NFT tự sinh đủ điều kiện để xác nhận một lần nhận danh hiệu thật trên Sepolia.
 
 Theo yêu cầu kiểm thử, các hạn đang mở được chuyển về **07:37:12 ngày 18/11, UTC+7**. Tiến trình hoàn tất các nhánh lúc **07:40:45**, khôi phục cấu hình xong lúc **07:41:52**. Kiểm tra lại sau đó xác nhận các chu kỳ gốc vẫn đúng.

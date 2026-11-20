@@ -35,4 +35,4 @@ Configure `CHIMERA_SETTLEMENT_PRIVATE_KEY` or `CHIMERA_SETTLEMENT_KEY_FILE` for 
 
 The existing Lab contract mints the NFT and uses Zama to generate its encrypted genome. Circle Developer Wallets are custodial. Ashenkin can sign for the game wallet and therefore has the ability to request wallet-authorized FHE decryption. Other players and public observers cannot read private FHE data without authorization.
 
-Before opening this to players, verify both login methods on separate browser profiles, confirm the same method restores the same Circle address, and check the confirmed Lab `Hatched` event and NFT ownership on Sepolia.
+For any new deployment, verify both login methods on separate browser profiles, confirm the same method restores the same Circle address, and check the confirmed Lab `Hatched` event and NFT ownership on Sepolia.

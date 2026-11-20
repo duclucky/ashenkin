@@ -8,7 +8,7 @@ This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
 [Play Ashenkin](https://ashenkin.xyz/) · [Judge mode](https://ashenkin.xyz/#/judge) · [Verify Wild Hunt #1](https://ashenkin.xyz/#/arena/log/1)
 
-[Five-minute judge walkthrough](docs/judge-walkthrough.md) · [Confidentiality and trust model](docs/confidentiality.md) · [Configuration](docs/configuration.md) · [Tests and Sepolia evidence](docs/verification.md)
+[Current game rules and release](docs/current-state.md) · [Five-minute judge walkthrough](docs/judge-walkthrough.md) · [Confidentiality and trust model](docs/confidentiality.md) · [Configuration](docs/configuration.md) · [Tests and Sepolia evidence](docs/verification.md)
 
 ## Gameplay video
 
@@ -27,7 +27,10 @@ wallet or email, fund the linked game wallet if needed, mint an NFT, and complet
 one three-round Wild Hunt. **Gas → Hatch → Fight → Life** is the first-steps path.
 NFT ownership is required for gameplay; public replays and proof checks are open
 to guests. Hosted Circle signing reduces wallet prompts, but minting and live
-battles still submit Sepolia transactions and consume gas.
+battles still submit Sepolia transactions and consume gas. Ordinary hunts reserve
+an opponent per keeper; shared rare sightings are listed separately. A dedicated
+interactive sponsor settles public results without waiting for each previous
+receipt, while preserving Zama proofs and confirmed-result checks.
 
 For an immediate read-only check, open [Wild Hunt #1](https://ashenkin.xyz/#/arena/log/1),
 choose **Verify the rounds → Verify all three rounds**, and compare the three
@@ -141,8 +144,9 @@ Sponsor availability affects offline encounters. See the
 before treating the hosted wallet as private from its operator. This is a Sepolia
 MVP, not an audited mainnet game or a promise of token yield.
 
-The [submission checklist](docs/submission.md) keeps the real-person pitch,
-published X post and final form separate from completed repository checks.
+The owner reports that the competition submission is complete. The
+[submission preparation record](docs/submission.md) retains the original checklist;
+it is separate from reproducible repository and chain verification.
 
 The contract workspace derives from Zama's FHEVM Hardhat template and retains its
 [BSD-3-Clause-Clear license and attribution](contracts/LICENSE). Third-party

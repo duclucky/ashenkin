@@ -1,5 +1,9 @@
 # CHIMERA — Kế hoạch Big Update "Season of Masks" (v5)
 
+> Historical design / QA record. Dates, test counts, images, balances and open
+> branches below describe that run. For the current player flow, deployment and
+> sponsor behavior, see [Current Ashenkin release](current-state.md).
+
 > Mốc: hôm nay 12/11/2026 → **nộp bài 13/12** (hạn chót Zama 14/12 23:59 AOE). Còn ~4,5 tuần.
 > Mục tiêu: biến CHIMERA từ "bộ sưu tập tính năng FHE" thành **một game có chiều sâu quyết định**, nơi việc giấu thông tin chính là luật chơi, kèm một nền kinh tế không tự sụp.
 
@@ -197,14 +201,7 @@ Mỗi trận đấu, lần mở hộp, lượt expedition, đòn Boss, lần gi�
 
 ### H. 🌍 Thế giới sống & UX (P0)
 
-1. **NPC Keepers:** 6 ví bot chạy script mỗi ngày (từ giờ đến ngày nộp), làm các việc:
-   - đăng ký defender với kế hoạch chiêu ẩn và cược ẩn;
-   - chạy expedition;
-   - đánh Boss;
-   - đoán Riddle;
-   - mở hộp relic.
-
-   Kết quả là Hall / Chronicle / Arena luôn có hoạt động, và giám khảo có đối thủ thật để đánh.
+1. **Thế giới sống:** bản hiện tại dùng các cuộc săn không cần người chơi khác online và [Living Xenos](living-nft-mvp.md) cho sự kiện NFT hằng ngày. Các công cụ QA vận hành riêng không phải tính năng của sản phẩm nộp bài.
 2. **Hộp thư "Việc đang chờ":** gom mọi thứ cần bấm hoàn tất (trứng chờ nở, training chờ xác nhận, trận chờ chốt, loot chờ nhận) vào 1 nút "Finish all" ở thanh trên.
 3. **Tự chốt kết quả:** khi trình duyệt đang mở, tự gọi giải mã công khai và gửi giao dịch settle sau khi hỏi 1 lần ("tự hoàn tất các bước chờ").
 4. **Tour 3 phút cho giám khảo:** nút "Judge mode" trên bản đồ đi qua 1 vòng đầy đủ: nhận cZAMA → mở hộp relic → đấu Tactics với NPC → đoán Riddle → xem Proof.
