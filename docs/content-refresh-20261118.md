@@ -1,9 +1,5 @@
 # Current game information audit — 18 November 2026
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 Compared the deployed loot-balance release, current contracts, keeper API, and
 source text visible in the guide, judge checklist, Proof Center, Archives,
 Treasury, collection, Arena, Hall and seasonal screens.

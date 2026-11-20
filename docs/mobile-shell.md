@@ -1,9 +1,5 @@
 # One fluid mobile game surface
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 The game uses one mobile layout on phones and desktop Chrome. Its width is 100% of the available window up to 430px. On wider windows it is centered. No iframe, screenshot scaling or browser zoom is involved; wallet integration remains in the original document.
 
 Implementation:

@@ -93,7 +93,7 @@ applies. The interactive sponsor uses a separate signer and persistent transacti
 journal from the offline worker and faucet. Public proofs and transaction hashes
 are exposed; private signer keys and raw signed payloads are not. Sponsoring gas
 does not change the contract's KMS checks or the read permissions described above.
-[Current flow](current-state.md) · [Transaction design](transaction-design.md).
+[Player flow](first-steps.md) · [Transaction design](transaction-design.md).
 
 ## Hosted wallet custody and operator powers
 

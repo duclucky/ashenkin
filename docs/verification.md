@@ -66,9 +66,9 @@ Their receipts and expected outcomes were checked independently over RPC, with
 accepted Zama proofs and journal confirmation. Observed signing/broadcast-to-mining
 intervals for the seven transactions were about **4–10 seconds**. This excludes
 opening transactions and prior FHE/proof work; it is not an end-to-end latency
-promise. No contract or NFT deployment changed. See [current behavior](current-state.md)
-and [configuration](configuration.md#optional-funding-services) rather than old
-proposal text for the signer separation and ordinary-hunt allocation.
+promise. No contract or NFT deployment changed. See [transaction design](transaction-design.md)
+and [configuration](configuration.md#optional-funding-services) for signer
+separation, receipt recovery and ordinary-hunt allocation.
 
 The full contract suite passed **131 tests** on the VPS after isolating the
 interactive integration signer from the earlier living-worker fixture. The first

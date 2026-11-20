@@ -1,8 +1,4 @@
-# Nghiên cứu nền kinh tế Chimera
-
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
+# Nghiên cứu nền kinh tế: số đo ngày 16/11/2026
 
 16/11/2026 · Chimera v2 trên Sepolia.
 

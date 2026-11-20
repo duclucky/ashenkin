@@ -1,68 +1,87 @@
-# Living NFT: daily encounters
+# Living Xenos: daily encounters
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
+Eligible owned NFTs automatically experience up to one challenge per UTC day,
+whether their keeper is online or offline. Zama randomizes the encounter,
+difficulty, luck and loot. FHE compares hidden power and element with difficulty.
+A verified win adds ordinary items; a loss has no debit, injury, XP loss or NFT
+transfer. The operator pays draw gas; the player does not sign or claim each
+result. This is the live Living Xenos feature, separate from single expeditions.
 
-Approved scope: every owned NFT automatically experiences up to one daily
-challenge, online or offline. Zama randomizes encounter, difficulty, small luck
-roll and loot. FHE compares the existing hidden battle power/element against
-difficulty. A loss has no debit, injury, XP loss or NFT transfer. Rewards are
-non-transferable backend items attached to the NFT. No player signature or gas.
+## Contract and result flow
 
-## Implementation
+`AshenkinEncounters` is deployed at
+[0xf2aAf9a3dc7b1a58013117f4712ee6214D8F73E4](https://sepolia.etherscan.io/address/0xf2aAf9a3dc7b1a58013117f4712ee6214D8F73E4#code).
+The Lab grants it combat-profile access; it does not hold or transfer the NFT.
+Only the packed encounter/loot result is publicly decryptable. Power, element,
+luck and comparison inputs remain under their FHE permissions.
 
-1. New independent `AshenkinEncounters` contract, not an upgrade of the Lab.
-   The Lab owner must grant it `setCombat` to access transient encrypted battle
-   profiles. Fixed rules, one result/NFT/UTC day, bounded batches and a minted-ID
-   snapshot before the first draw of each day. Publish only the packed encounter
-   result; never grant decryption of power, element or random input.
-2. SQLite encounter store and sponsor worker. Persist a signed raw transaction
-   and its hash BEFORE broadcast, recover receipts after restart, never replace
-   an ambiguous request with a new roll. Enforce daily gas cap, RPC fee ceiling,
-   per-transaction gas ceiling and one instance lease. No player-wallet signing.
-3. Decrypt final result with Zama; verify its KMS proof by read-only contract call
-   before atomically crediting items. Replay/restart cannot duplicate rewards.
-   Persist failed and victorious encounters plus receipt/proof for inspection.
-4. A Living NFT screen with animated story replay, resident activity and item
-   bag; link it from the map and creature life story. Keep single expeditions
-   intact. Remove the obsolete delegated patrol from player flows and startup;
-   retain its local files as superseded work rather than deleting them.
-5. Contract tests cover hidden ACLs, rules, win/loss, duplicate/cross-day draws,
-   batch bounds and proof forgery. Backend tests cover crash recovery, budgets,
-   daily scheduling, ownership, proof failure and exactly-once item credit.
-   Frontend type/build/tests plus responsive isolated browser interaction.
+1. The worker selects eligible wallet-held NFTs from the daily minted-ID snapshot.
+2. It persists a signed raw transaction and hash before broadcasting. Restart or
+   a lost acknowledgement reuses those bytes, never rerolls an unknown result.
+3. After the inclusion block plus two more blocks, it reads the receipt, obtains
+   the public Zama result and verifies its KMS proof through contract `verify`.
+4. SQLite atomically records that world/day/NFT result and credits any item once.
+   Replay, restart and duplicate proof submissions cannot credit it again.
+5. The Life screen shows the verified story, proof and NFT bag. A replay presents
+   the existing outcome; it does not request a new roll.
 
-## Rules v1
+The ordinary inventory ledger is server-authoritative. Proof verification shows
+the contract outcome, not trustless custody or redemption of backend items.
+[Confidentiality and operator powers](confidentiality.md).
 
-- One daily trial, 00:00 UTC day index. No offline-only advantage; login does not
-  trigger/skip/reset it. No retroactive farming for missed days.
-- Tier draw 50% gentle / 37.5% daring / 12.5% formidable; difficulty 60/95/130.
-- Hidden gene power + existing training/relic bonus + element advantage 20
-  (Void 10) + encrypted d16. Success uses >=. No scores/rolls are published.
-- Winning loot: Ash thread (1/2/3 by tier), an archive fragment on 3/16 rolls,
-  or a lantern cosmetic on the highest tier and a 0/16 loot roll. No payout for
-  a loss. These items have no token redemption or onchain power effect in v1.
-- Three narrative templates: Signal beneath the ash, Keeper of the crossing,
-  Footprints in the hollows. Replay uses the verified result, not new randomness.
-- Items/history belong to NFT identity; a new owner inherits the bag. Only the
-  current wallet holder may read/use its account view. Escrow/arena/market-held
-  NFTs are skipped until available; eligibility is rechecked before scheduling.
+## Daily rules and loot
 
-## Release boundary
+- One trial per NFT per UTC day. Login does not trigger, reset or skip it, and
+  missed days cannot be farmed retroactively.
+- Tier draw: 50% gentle / 37.5% daring / 12.5% formidable, difficulty 60/95/130.
+- Hidden gene power plus training/relic bonus, element advantage 20 (Void 10)
+  and encrypted d16 determine success with `>=`. Scores and rolls stay hidden.
+- A win grants Ash thread (1/2/3 by tier), an Archive fragment on 3/16 loot rolls,
+  or a Trail lantern on the highest tier with loot roll 0. A loss grants nothing.
+- Narrative templates are Signal beneath the ash, Keeper of the crossing and
+  Footprints in the hollows.
+- Items and history follow NFT ownership. Only the current owner can use its
+  account view. Escrow/arena/market-held NFTs are skipped while unavailable.
+- NFTs minted after the day's population snapshot wait for a subsequent day.
+  Budget, fee ceilings or RPC/KMS problems can postpone draws. Daily loot is
+  not guaranteed. The battle profile is read at draw time, not at midnight.
 
-Implement and verify locally first. The superseded patrol deployment approval
-was explicitly stopped and does not authorize deployment of a new contract.
-Keep encounters disabled without a configured deployed contract. Do not deploy,
-modify live Lab permissions or spend sponsor gas until the concrete release is
-reviewable and the user authorizes those actions.
+The first cosmetic Trail lantern costs **3 Ash thread** or **1 Ash thread +
+1 Archive fragment**. It has no token redemption or combat bonus and is distinct
+from the Depths door-reading lantern. [Recipes and pacing](living-item-balance.md).
+Opening the Life page alone does not mark a story seen; replay must reach its
+result. [Tutorial and returning reminders](first-steps.md).
 
-Expected checks: `npx hardhat test test/AshenkinEncounters.ts` in contracts,
-`node --test lib/*.test.js` in backend, `bun test tests`, `npm run type-check`
-and `npm run build` in frontend. Record actual evidence below after execution.
+## Hosting and recovery
 
-The backend item ledger remains server-authoritative. KMS verification proves
-the contract result, not trustless custody/redemption of backend inventory.
+The recurring worker polls once per minute and starts with one pending draw.
+The contract supports batches of up to two NFTs. Its offline signer is separate
+from interactive settlement and faucet funding. An unresolved offline transaction
+blocks another draw from that signer, without blocking the dedicated interactive
+signer. External scripts must not independently spend from a managed signer.
+
+The service uses `ASHENKIN_ENCOUNTERS_ADDRESS`, `ASHENKIN_LIFE_WORKER=true`,
+`ASHENKIN_LIFE_DAILY_ETH=0.005` and `ASHENKIN_LIFE_MAX_GWEI=0.1`; the budget is a
+maximum, not a promise to process the entire population. SQLite and signed
+transaction state persist in the keeper volume. The deployed setup has one app
+replica and durable worker leases. A nonce consumed outside its journal requires
+operator reconciliation; a deeper reorg can require inventory reconciliation.
+[Configuration and backups](configuration.md#optional-funding-services).
+
+The old delegated patrol prototype is disabled in production startup and player
+navigation. Living Xenos needs neither a player-selected route nor an eight-hour
+gas-spending mandate.
+
+## Tests
+
+Run the repository checks in [verification](verification.md). The focused contract
+suite is `npx hardhat test test/AshenkinEncounters.ts` from `contracts/`, using the
+FHEVM mock. It covers rules, hidden ACLs, loss/win, duplicate/cross-NFT proofs and
+the real backend worker's exactly-once item credit. Backend tests cover budgets,
+scheduling, ownership and crash recovery. Mock tests do not measure live FHE fees.
+
+The following sections retain the measured evidence from the initial release.
+Their image names and counts describe that release, not the latest running image.
 
 ## Verification — 18 November 2026
 
@@ -85,42 +104,12 @@ the contract result, not trustless custody/redemption of backend inventory.
 - Read-only Sepolia release quote succeeded using the actual Lab owner. No
   deployment or Lab ACL transaction was sent. Two public RPCs returned a bounded
   deployment estimate of **14,888,469 gas**; release gas limit capped at **16m**.
-  The dry-run script defaults to no broadcast and the worker is not enabled live.
+  At this pre-release check, the dry-run script had not broadcast and the worker
+  had not yet been enabled. The authorized deployment evidence follows below.
 
 Evidence: `uploads/living-contract-tests.log`, `living-contract-focused.log`,
 `living-backend-tests.log`, `living-frontend-tests.log`, `living-build.log`,
 `living-deployment-quote.json`, `living-ui/result.json` and its scene screenshots.
-
-## Concrete release
-
-1. Back up the VPS keeper SQLite volume and preserve the current release image.
-2. With the existing Lab-owner signer, deploy `AshenkinEncounters` on Sepolia and
-   grant only `ChimeraLab.setCombat(newContract, true)`. This grants transient
-   encrypted battle profile access, not NFT transfer or token spending authority.
-   `contracts/scripts/deploy-living.ts` produces a public manifest; default is a
-   read-only quote. Broadcasting requires `ASHENKIN_DEPLOY_LIVING=true`.
-3. Deploy the checked backend/frontend. Set server-only configuration:
-   `ASHENKIN_ENCOUNTERS_ADDRESS=<new address>`, `ASHENKIN_LIFE_WORKER=true`,
-   `ASHENKIN_LIFE_DAILY_ETH=0.005`, `ASHENKIN_LIFE_MAX_GWEI=0.1`.
-   The existing sponsor/deployer key is reused on the server, never in the UI.
-4. Run one sponsored NFT draw first, with all player browser sessions closed.
-   Verify real receipt, KMS proof, win/loss and exactly-once inventory. Measure
-   actual gas before enabling the recurring worker for the collection.
-5. The worker polls every minute, one NFT/draw initially. Contract accepts up to
-   two NFTs, but the conservative worker starts with one pending transaction.
-   Day/ID snapshots, results and inventory persist in the existing keeper DB.
-
-Budget is a maximum, not a promise to cover every NFT: high fees, an exhausted
-budget, an unavailable sponsor or an escrowed NFT can defer/skip a daily trial.
-There is no historical catch-up farming. Today’s trial does not need a login.
-The NFT’s training/profile is read at its actual draw, not snapshotted at 00:00.
-
-The shared sponsor signing lane and durable pending blocker assume the existing
-single app replica. External scripts using that signer must be coordinated during
-release. An unresolved raw transaction deliberately stops new sponsorship rather
-than spending again; operator reconciliation is required if its nonce was consumed
-elsewhere. Two-block confirmation is used for MVP inventory; a deeper reorg would
-require ledger reconciliation. Ordinary item state remains backend-authoritative.
 
 
 ## Live release — 18 November 2026

@@ -8,7 +8,7 @@ This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
 [Play Ashenkin](https://ashenkin.xyz/) · [Judge mode](https://ashenkin.xyz/#/judge) · [Verify Wild Hunt #1](https://ashenkin.xyz/#/arena/log/1)
 
-[Current game rules and release](docs/current-state.md) · [Five-minute judge walkthrough](docs/judge-walkthrough.md) · [Confidentiality and trust model](docs/confidentiality.md) · [Configuration](docs/configuration.md) · [Tests and Sepolia evidence](docs/verification.md)
+[Five-minute judge walkthrough](docs/judge-walkthrough.md) · [Confidentiality and trust model](docs/confidentiality.md) · [Configuration](docs/configuration.md) · [Tests and Sepolia evidence](docs/verification.md)
 
 ## Gameplay video
 
@@ -39,6 +39,48 @@ transaction is needed. Keliakor won rounds 1 and 2 and lost round 3.
 [Opening transaction](https://sepolia.etherscan.io/tx/0xdd102d9b3391f71ee5539ab71d9d0324823e5e3c9ccd1446ae05d8440f1aeddd) ·
 [Settlement transaction](https://sepolia.etherscan.io/tx/0xab52e10d32f2b05bd0b3b4dc09fd58bd72a47bc869b1f02cddcc90b13c4e9d1e) ·
 [Guest proof screenshot](docs/proof-center.png).
+
+## Gameplay and progression
+
+Hosted players sign in with wallet or email. Each verified identity restores its
+linked Circle game wallet, which holds the NFTs and pays for game transactions.
+The sign-in wallet is an identity credential and may have a different address.
+An owned NFT is required for gameplay, including practice. Guests can browse
+metadata, guides and replays and verify public results.
+
+**Start a hunt** reserves an idle ordinary wild NFT for the keeper, or creates a
+new one with Zama randomness when capacity permits. Shared rare sightings are
+listed separately: at least two of seven public appearance traits must be
+Rare/Mythic. This filter does not disclose hidden genes or guarantee strength.
+A keeper's unsigned reservation expires after five minutes. Bound submissions
+stay protected while their status is reconciled; public contract callers are
+still subject to the contract's single-capture rule.
+
+Hunting, expeditions and training progress the collection. Breeding keeps both
+parents. The introductory egg requires no lineage charge; later eggs consume a
+charge earned by voluntarily retiring a spare NFT permanently through Ascension.
+Payment, population headroom, cooldowns and breeding limits still apply.
+[Economy and lineage rules](docs/economy-v2.md).
+
+The hosted Colosseum has a 180-second battle cooldown and `maxRoaming = 10000`;
+the Lab population ceiling is 10000. A fresh contract deployment still defaults
+to 24 roaming slots and needs explicit owner configuration.
+
+## Signing and gas
+
+Circle signs allowed hosted calls on the server; standalone external wallets
+sign their own transactions. Minting and live hunts consume Sepolia gas. A hunt
+has opening and settlement transactions with FHE/proof work between them.
+Stories, practice and cosmetic crafting do not submit gameplay transactions.
+
+The daily faucet offers **0.002 Sepolia ETH per account per rolling 24 hours**
+while funded, without a server-wide daily cap. Its signer is separate from the
+interactive settlement sponsor and offline encounter sponsor. The interactive
+sponsor pays for public battle, egg and training settlement, with up to eight
+pending transactions and durable same-hash recovery. This removes waiting for a
+previous unrelated receipt before broadcast; it does not make Sepolia or Zama
+processing instant. [Signing, recovery and confirmation](docs/transaction-design.md)
+· [Service configuration](docs/configuration.md).
 
 ## Living Xenos
 

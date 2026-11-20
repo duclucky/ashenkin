@@ -1,9 +1,5 @@
 # Living encounter item pacing — 2026-11-18
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 ## Scope
 
 Tune the first cosmetic milestone, not the verified encounter reward stream.

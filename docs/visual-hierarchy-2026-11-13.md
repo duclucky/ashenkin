@@ -1,9 +1,5 @@
 # Visual hierarchy — 13 November 2026
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 ## Implemented
 
 - Shared compact location strip, consistent Zama yellow, quieter frames and a clear place for primary actions.

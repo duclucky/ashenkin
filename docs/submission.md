@@ -3,7 +3,7 @@
 > Chủ dự án đã báo nộp bài xong. Đây là hồ sơ chuẩn bị và tiêu chí đã ghi nhận
 > trong đợt nộp, không phải danh sách việc chưa làm hiện tại. URL hồ sơ cuối, bài X
 > và video nộp do chủ dự án quản lý; không suy ra từ các bản nháp bên dưới.
-> [Trạng thái game hiện tại](current-state.md).
+> [Hướng dẫn chạy vòng demo](judge-walkthrough.md).
 
 ## Điều kiện của Season 5
 

@@ -60,7 +60,7 @@ The current hosted Colosseum has a 180-second cooldown and `maxRoaming = 10000`.
 The source default remains 24 roaming slots; a fresh deployment needs explicit
 owner configuration. The Lab population limit is independently capped at 10000.
 The hosted backend coordinates ordinary hunts per keeper; the public contract
-still prevents simultaneous capture of the same NFT. [Current rules](../docs/current-state.md).
+still prevents simultaneous capture of the same NFT. [Hunt allocation and recovery](../docs/transaction-design.md).
 
 ## New deployments and verification
 

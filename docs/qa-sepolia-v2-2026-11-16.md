@@ -1,9 +1,5 @@
 # Audit Chimera v2 trên Sepolia · 16/11/2026
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 Bản production local `http://127.0.0.1:4173/?world=v2`, Chrome và ví test `0xc495…8272`. Người dùng ký trong OKX. Ghi nhận riêng giao dịch thành công, bước bị từ chối và bước chưa được kiểm tra.
 
 | Luồng | Kết quả | Bằng chứng |

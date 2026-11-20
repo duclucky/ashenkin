@@ -17,7 +17,7 @@ so a newly signed-in account can obtain gas for its first mint.
 VPS-only build/test/deploy. Private key is generated and stored on the VPS in the
 existing persistent volume with mode 600; no key is sent to the browser or chat.
 
-## VPS release verification
+## Initial release verification: 18 November 2026
 
 - Image: `ashenkin:faucet-20261118-0910`.
 - Image ID: `sha256:eec0d9b348fa632dcfb98c6e7bb9fb408787b275e40cbfb2f01b17cd10fa256a`.
@@ -30,7 +30,7 @@ existing persistent volume with mode 600; no key is sent to the browser or chat.
 - Existing Living NFT worker remains active with its separate deployer sponsor.
 - Key backup and DB/env rollback files remain private on the VPS.
 
-## Live acceptance
+## Live acceptance: 18 November 2026
 
 A real browser on the VPS requested the faucet for isolated QA account 2. The
 dedicated wallet sent exactly 0.002 ETH on Sepolia with no player signature.

@@ -1,6 +1,6 @@
 # Ashenkin
 
-Ashenkin là game sưu tập, lai tạo và đưa Xenos vào đấu trường trên Sepolia. Zama FHEVM cho phép hợp đồng xử lý gen, chỉ số và cZAMA ngay trên dữ liệu mã hóa. Khách xem được bản đồ, hướng dẫn, Judge Mode và proof công khai; phải sở hữu NFT mới chơi, kể cả chế độ luyện tập. Bản hosted đăng nhập bằng ví hoặc email, khôi phục ví game Circle gắn với danh tính đó. Xem [cơ chế hiện tại](current-state.md).
+Ashenkin là game sưu tập, lai tạo và đưa Xenos vào đấu trường trên Sepolia. Zama FHEVM cho phép hợp đồng xử lý gen, chỉ số và cZAMA ngay trên dữ liệu mã hóa. Khách xem được bản đồ, hướng dẫn, Judge Mode và proof công khai; phải sở hữu NFT mới chơi, kể cả chế độ luyện tập. Bản hosted đăng nhập bằng ví hoặc email, khôi phục ví game Circle gắn với danh tính đó. Xem [luồng khởi đầu](first-steps.md).
 
 This project is not audited, endorsed or operated by Zama. Use at your own risk.
 
@@ -85,6 +85,6 @@ Script ký giao dịch trên Sepolia. Ví mua cần ít nhất 15 cZAMA. Ví bá
 | Oracle | Đáp án được giữ kín trong vòng. Chỉ người đoán đọc được gợi ý của mình. | Jackpot, kết quả xác nhận người thắng và đáp án khi vòng kết thúc. |
 | Raffle và Depths | Raffle giấu số vé và hũ đang tích lũy. Depths giữ kín máu, túi đồ và nội dung cửa; người chơi xem được cửa đã chiếu đèn. | Raffle công bố người thắng và tiền thưởng khi chốt vòng. Depths công bố bằng chứng sống sót khi người chơi chọn đăng kỷ lục. |
 
-Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [trạng thái bản hiện tại](current-state.md). [Kế hoạch Season of Masks](big-update-plan.md) là tài liệu lịch sử, không phải danh sách việc đang chờ.
+Các kết quả cần chốt công khai sử dụng bằng chứng từ Zama KMS. Xem [Proof Center](http://127.0.0.1:5173/#/fairness) khi game đang chạy và [thiết kế giao dịch](transaction-design.md). [Thiết kế trò chơi](big-update-plan.md) mô tả các hệ thống đã triển khai và phần còn giới hạn.
 
 Kịch bản quay và bản nháp bài giới thiệu nằm trong [tài liệu nộp bài](submission.md).

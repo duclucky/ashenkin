@@ -1,9 +1,5 @@
 # Chẩn đoán danh hiệu hiếm — 18/11/2026
 
-> Historical design / QA record. Dates, test counts, images, balances and open
-> branches below describe that run. For the current player flow, deployment and
-> sponsor behavior, see [Current Ashenkin release](current-state.md).
-
 **Nguyên nhân chính là thiết kế xác suất quá khắt khe.** Chưa thấy lỗi mint, lỗi đồng bộ điều kiện giữa UI/contract hay lỗi kiểm tra proof giải thích cho việc 30 NFT chưa có danh hiệu.
 
 ## Bằng chứng từ contract đang chạy
