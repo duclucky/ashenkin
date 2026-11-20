@@ -1,6 +1,6 @@
 import { isAddress, type Address, type Hex } from 'viem'
 import { api } from '@/lib/api'
-import { failedKeeperAction } from './keeper-retry'
+import { failedKeeperAction, KeeperEstimateRetry } from './keeper-retry'
 
 export type KeeperSession = {
   enabled: boolean
@@ -17,6 +17,7 @@ export async function keeperRequest<T>(route = '', body?: object, timeout = 15_0
     ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}),
   })
   const data = await response.json()
+  if (!response.ok && response.status === 429 && data.code === 'CIRCLE_GAS_RESERVED' && data.notSubmitted === true) throw new KeeperEstimateRetry(data.error ?? 'Synchronizing the gas reserved by your previous action…')
   if (!response.ok) throw new Error(data.error ?? 'Ashenkin could not complete this request.')
   return data as T
 }

@@ -63,6 +63,20 @@ thể làm chậm một hành động.
 
 ## Khôi phục và thử lại
 
+Backend cộng gas Circle còn dự phòng theo từng ví trước khi ký lệnh mới. Receipt
+đã mined vẫn có thể được Circle giữ dự phòng cho tới khi provider cập nhật xong.
+Nếu tổng dự phòng và lệnh mới vượt số dư, backend trả `CIRCLE_GAS_RESERVED` cùng
+`notSubmitted=true`; giao diện thử lại có giới hạn trong cùng hành động. Đây khác
+với ví thực sự không đủ ETH cho riêng lệnh mới. Trạng thái ví khác không bị chặn.
+
+Client có thể gửi `clientRequestId` UUID bền vững cùng lời gọi. API authenticated
+`POST /api/keeper/transactions/recover` tra ID và calldata đã gắn với tài khoản:
+trả request cũ nếu đã nhận; nếu chưa nhận thì lưu khóa hủy ID cũ trước khi trả
+`notSubmitted=true`. Request đến muộn dùng ID đã khóa bị từ chối. Lượt săn cũ
+chưa có UUID chỉ được phục hồi khi backend kiểm tra reservation và đóng nó;
+không suy ra chưa gửi chỉ từ việc nonce chưa tăng. Việc đối soát không tự ký
+hay cấp thêm ETH. Dữ liệu intent và trạng thái hủy phải lưu cùng keeper SQLite.
+
 `GET /api/settlement?world=ashenkin&kind=battle&id=<id>&handles=<h1,h2,h3>` là phép
 đọc để lấy hash/state đã biết. `unknown` không chứng minh rằng được phép ký lại.
 POST của cùng job dùng hash bền vững; các payload không khớp bị từ chối.

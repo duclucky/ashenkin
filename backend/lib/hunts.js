@@ -49,6 +49,14 @@ function huntsService({store,chain,world,clock=Date.now,log=()=>{}}){
    store.hunts.bind(id,keeper,call.data);
    if(!row.data)log({event:'private-hunt-bound',reservation:id,creature:row.creature,target:row.target});
   })},
+  async cancelUnsubmitted(keeper,id,call){return serial(()=>{
+   const row=store.hunts.get(id,keeper);if(!row||row.world!==world)throw problem(404,'Hunt encounter not found.');
+   if(!isAddressEqual(call.address,chain.address))throw problem(400,'Hunt contract mismatch.');
+   const decoded=decodeFunctionData({abi:chain.abi,data:call.data}),method=row.target==null?'explore':'challengeWild';
+   if(decoded.functionName!==method||Number(decoded.args[0])!==row.creature||(row.target!=null&&Number(decoded.args[1])!==row.target)||(row.data&&row.data!==call.data))throw problem(409,'Hunt call does not match this reservation.');
+   if(store.latest(keeper,chain.address.toLowerCase()+':'+call.data))throw problem(409,'This hunt has a recorded submission.');
+   store.hunts.close(id,'expired');return{reservationReleased:true};
+  })},
   async release(keeper,id){return serial(()=>{const row=store.hunts.get(id,keeper);if(!row||row.world!==world)throw problem(404,'Hunt encounter not found.');if(row.data)throw problem(409,'This hunt may already be submitted. Check the Inbox.');store.hunts.close(id);return{released:true}})},
   async rare(offset=0){store.hunts.expire(clock());store.hunts.reconcile(world,chain.address);const ids=await chain.roaming(),reserved=new Set(store.hunts.reserved(world)),sightings=[];
    for(let start=offset;start<Math.min(ids.length,offset+24);start+=4){const group=await Promise.all(ids.slice(start,start+4).map(async id=>{const count=await rarity(id);return count>=RARE_TRAITS?{id,rareTraits:count,engaged:reserved.has(id)||await chain.engaged(id)}:null}));sightings.push(...group.filter(Boolean))}

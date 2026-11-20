@@ -4,6 +4,7 @@ const { RPC } = require('./zama')
 const { setTimeout: delay } = require('node:timers/promises')
 const { problem } = require('./keeper-store')
 const { gameCall } = require('./keeper-chain')
+const { reservedCircleGas, budgetWaiting } = require('./circle-budget')
 
 function circleKeepers(env, client, chainClient) {
   const { CIRCLE_API_KEY: apiKey, CIRCLE_ENTITY_SECRET: entitySecret, CIRCLE_WALLET_SET_ID: walletSetId } = env
@@ -30,10 +31,11 @@ function circleKeepers(env, client, chainClient) {
       try {
         // Circle's internal estimation can lag behind a just-confirmed approval.
         // An explicit limit uses the same Sepolia state the game has confirmed.
-        const [estimate, ratesResponse, balance] = await Promise.all([
+        const [estimate, ratesResponse, balance, reserved] = await Promise.all([
           chain.estimateGas({ account: keeper.address, to: call.address, data: call.data }),
           estimateCircleCall(keeper, call, request.id),
           chain.getBalance({ address: keeper.address, blockTag: 'pending' }),
+          reservedCircleGas(client, keeper),
         ])
         const gas = estimate * 15n / 10n
         if (estimate > 16_000_000n) throw problem(409, 'This action exceeds the Sepolia transaction gas limit.')
@@ -49,6 +51,10 @@ function circleKeepers(env, client, chainClient) {
             throw problem(503, 'Starter sponsorship is temporarily unavailable.')
           }
           if (gasLimit * maxFee > balance) throw problem(409, 'Your game wallet needs more Sepolia ETH for this action.')
+          if (gasLimit * maxFee + reserved > balance) {
+            console.info(JSON.stringify({event:'keeper-circle-budget-wait',requestId:request.id,reservedWei:String(reserved),requiredWei:String(gasLimit*maxFee),balanceWei:String(balance)}))
+            throw budgetWaiting()
+          }
           if (limits && (maxFee > limits.maxFeePerGas || gasLimit * maxFee > limits.maxCostWei ||
               gasLimit * maxFee + limits.balanceReserveWei > balance)) {
             throw problem(409, 'The patrol gas cap or reserved return allowance would be exceeded.')

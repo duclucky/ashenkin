@@ -2,6 +2,7 @@ const { problem } = require('./keeper-store')
 
 // Read-only provider operations: no signing, funding, execution or automatic resend.
 async function refreshKeeperTransaction(store, circle, keeper, request) {
+  if(request.done && !request.circle_id)return {status:request.status,hash:request.hash||null,done:true,failed:request.status==='FAILED',...(request.status==='FAILED'&&!request.hash?{notSubmitted:true}:{})}
   let circleId = request.circle_id
   if (!circleId) {
     const found = await circle.find(keeper, request.id, request.created)

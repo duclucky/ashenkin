@@ -11,3 +11,16 @@ test('another account, wrong target, another function and changed input cannot h
 test('only terminal reconciled transactions release old reservations, including other inactive accounts',async t=>{const f=fixture(t),s=f.service,r=await s.prepare(f.people[0],1),call=f.call(r);await s.bind(f.people[0],r.id,call);const tx=f.store.beginTx(f.people[0],call.address.toLowerCase()+':'+call.data);f.state.now+=600000;assert.notEqual((await s.prepare(f.people[1],2)).targetId,r.targetId);f.store.updateTx(tx.id,{status:'CONFIRMED',hash:'0xhash',done:true});const other=await s.prepare(f.people[2],3);assert.equal(other.targetId,r.targetId)});
 
 test('rare sightings are paginated without hiding the later part of the world',async t=>{const f=fixture(t);f.state.ids=Array.from({length:30},(_,i)=>i+10);f.state.rare[39]=2;const first=await f.service.rare();assert.equal(first.sightings.length,0);assert.equal(first.nextOffset,24);const next=await f.service.rare(24);assert.deepEqual(next.sightings.map(s=>s.id),[39]);assert.equal(next.nextOffset,null)});
+
+
+test('legacy lost-ACK recovery fences an unsubmitted reservation and refuses a delayed original',async t=>{
+ const f=fixture(t),r=await f.service.prepare(f.people[0],1),call=f.call(r);f.state.now=r.expires+1;
+ assert.deepEqual(await f.service.cancelUnsubmitted(f.people[0],r.id,call),{reservationReleased:true});
+ await assert.rejects(f.service.bind(f.people[0],r.id,call));
+ await assert.rejects(f.service.cancelUnsubmitted(f.people[1],r.id,call),e=>e.status===404);
+});
+test('a reservation with a stored transaction cannot be declared unsubmitted',async t=>{
+ const f=fixture(t),r=await f.service.prepare(f.people[0],1),call=f.call(r);await f.service.bind(f.people[0],r.id,call);
+ f.store.beginTx(f.people[0],call.address.toLowerCase()+':'+call.data);
+ await assert.rejects(f.service.cancelUnsubmitted(f.people[0],r.id,call),e=>e.status===409);
+});

@@ -56,7 +56,8 @@ async function fixture(exercise) {
       headers: { origin: from, cookie, 'content-type': 'application/json' },
       ...(body ? { method: 'POST', body: JSON.stringify(body) } : {}),
     })
-    return { status: res.status, data: await res.json(), cookie: res.headers.get('set-cookie')?.split(';')[0] }
+    const text = await res.text(); let data; try { data = JSON.parse(text) } catch { data = { nonJSON: true } }
+    return { status: res.status, data, cookie: res.headers.get('set-cookie')?.split(';')[0] }
   }
   try {
     await exercise({ request, codes, store, circle, stats: () => ({ creates, grants, transactions: transactions.size }) })
@@ -147,6 +148,7 @@ test('the Circle adapter provisions stable Sepolia EOA wallets and submits signe
   const keeper = { id: randomUUID(), circle_id: circleId, address }
   const env = { CIRCLE_WALLET_SET_ID: randomUUID() }
   const client = {
+    async listTransactions(){return{data:{transactions:[]}}},
     async estimateContractExecutionFee(input) {
       assert.equal(input.source.walletId, circleId)
       assert.equal(input.contractAddress, lab)
@@ -337,3 +339,39 @@ test('a permanent contract revert and an unavailable RPC are never treated as sa
  chain.call=async()=>({data:'0x'});transaction.state='DENIED';assert.notEqual((await adapter.status(keeper,txId)).retryable,true);
  transaction.state='FAILED';transaction.contractAddress=address;assert.notEqual((await adapter.status(keeper,txId)).retryable,true);
 });
+
+
+test('lost acknowledgements recover the original request by client intent without a second Circle send',async()=>fixture(async({request,store,stats})=>{
+ const cookie=await signedInFixture(request);const keeper=store.session(cookie.split('=')[1]);const clientRequestId=randomUUID();
+ const body={address:keeper.address,destination:lab,data:hatchData,clientRequestId};
+ // Use the starter path to create an owned NFT before an allowlisted sequence.
+ const mint=await request('starter',{body:{},cookie});await request('transactions/'+mint.data.id,{cookie});
+ body.data=seq;
+ const sent=await request('transactions',{body,cookie});assert.equal(sent.status,200);const count=stats().transactions;
+ const recovered=await request('transactions/recover',{body,cookie});assert.equal(recovered.status,200);assert.equal(recovered.data.id,sent.data.id);
+ assert.equal((await request('transactions',{body,cookie})).data.id,sent.data.id);assert.equal(stats().transactions,count);
+}));
+
+test('recovery fences an unreceived intent before permitting retry and rejects a delayed original',async()=>fixture(async({request,store,stats})=>{
+ const cookie=await signedInFixture(request);const keeper=store.session(cookie.split('=')[1]);const body={address:keeper.address,destination:lab,data:seq,clientRequestId:randomUUID()};
+ const mint=await request('starter',{body:{},cookie});await request('transactions/'+mint.data.id,{cookie});const count=stats().transactions;
+ const result=await request('transactions/recover',{body,cookie});assert.equal(result.status,200);assert.equal(result.data.notSubmitted,true);
+ const delayed=await request('transactions',{body,cookie});assert.equal(delayed.status,409);assert.equal(delayed.data.code,'INTENT_CANCELLED');assert.equal(stats().transactions,count);
+ const other=await signedInFixture(request);assert.equal((await request('transactions/recover',{body,cookie:other})).status,409);
+}));
+
+
+test('a definitive unsent failure remains failed during recovery instead of becoming ambiguous again',async()=>fixture(async({request,store,circle})=>{
+ const cookie=await signedInFixture(request);circle.execute=async()=>{throw Object.assign(Error('quote unavailable'),{notSubmitted:true,status:503})};
+ await request('starter',{body:{},cookie});const keeper=store.session(cookie.split('=')[1]),tx=store.latest(keeper,`${lab.toLowerCase()}:${hatchData}`);
+ circle.find=async()=>{throw Error('Must not search for a proven unsent request')};
+ const status=await request('transactions/'+tx.id,{cookie});assert.equal(status.data.failed,true);assert.equal(status.data.notSubmitted,true);assert.equal(store.tx(keeper,tx.id).done,1);
+}));
+
+
+test('a delayed starter with a fenced client intent cannot consume a sponsorship slot',async()=>fixture(async({request,store,stats})=>{
+ const cookie=await signedInFixture(request),keeper=store.session(cookie.split('=')[1]),clientRequestId=randomUUID();
+ const body={address:keeper.address,destination:lab,data:hatchData,clientRequestId};
+ assert.equal((await request('transactions/recover',{body,cookie})).data.notSubmitted,true);
+ const result=await request('starter',{body:{clientRequestId},cookie});assert.equal(result.status,409);assert.equal(stats().grants,0);assert.equal(stats().transactions,0);
+}));

@@ -156,27 +156,32 @@ function keeperRouter(config) {
     res.clearCookie(cookie, options).json(view(null))
   })
 
-  async function submit(keeper, call, { starter = false, huntId } = {}) {
+  async function submit(keeper, call, { starter = false, huntId, clientRequestId } = {}) {
     const fingerprint = `${call.address.toLowerCase()}:${call.data}`
     return share(`tx:${keeper.id}:${fingerprint}`, () => store.exclusive(keeper, async () => {
+      const intent = clientRequestId ? store.intents.claim(keeper, clientRequestId, fingerprint) : null
+      if (intent?.cancelled) throw Object.assign(problem(409, 'This unsent action was cancelled. Start a new action.'), {code:'INTENT_CANCELLED',notSubmitted:true})
+      if (intent?.request_id) return {id:intent.request_id}
+      const remember = request => { if(clientRequestId)store.intents.attach(keeper,clientRequestId,request.id); return {id:request.id} }
       config.patrol?.guard(keeper, call)
       if (huntId != null) {
         await config.hunts.bind(keeper, huntId, call)
         const previous = store.latest(keeper, fingerprint)
-        if (previous && (!previous.done || ['CLEARED', 'CONFIRMED', 'COMPLETE'].includes(previous.status))) return { id: previous.id }
+        if (previous && (!previous.done || ['CLEARED', 'CONFIRMED', 'COMPLETE'].includes(previous.status))) return remember(previous)
       }
       let request = store.pending(keeper, fingerprint)
       if (request) {
         const info = await refreshKeeperTransaction(store, circle, keeper, request)
-        if (!info.done || (starter && !info.failed)) return { id: request.id }
+        if (!info.done || (starter && !info.failed)) return remember(request)
         request = null
       }
       if (starter) {
         const latest = store.latest(keeper, fingerprint)
-        if (latest?.hash && ['CLEARED', 'CONFIRMED', 'COMPLETE'].includes(latest.status)) return { id: latest.id }
+        if (latest?.hash && ['CLEARED', 'CONFIRMED', 'COMPLETE'].includes(latest.status)) return remember(latest)
         await chain.fund(keeper)
       }
       request ??= store.beginTx(keeper, fingerprint)
+      remember(request)
       try {
         await chain.waitForDependencies?.(keeper, call)
         const result = await circle.execute(keeper, request, call, starter ? await chain.starterFee(keeper) : undefined)
@@ -186,7 +191,7 @@ function keeperRouter(config) {
           requestId: request.id, wallet: keeper.address, destination: call.address,
           method: call.name ?? 'hatchGenesis', circleId: result.circleId, state: result.status,
         }))
-        return { id: request.id }
+        return remember(request)
       } catch (error) {
         const response = error.error?.response?.data ?? error.response?.data
         console.error(JSON.stringify({
@@ -214,7 +219,8 @@ function keeperRouter(config) {
     const [owned, claimed] = await chain.metrics(keeper.address)
     if (owned > 0n) return res.json({ owned: true })
     if (claimed > 0n) throw problem(409, 'You already minted a starter. Check your collection or recover a specimen from the game.')
-    res.json(await submit(keeper, { address: lab, data: hatchData }, { starter: true }))
+    if (req.body?.clientRequestId != null && (typeof req.body.clientRequestId !== 'string' || !UUID.test(req.body.clientRequestId))) throw problem(400, 'Invalid action ID.')
+    res.json(await submit(keeper, { address: lab, data: hatchData }, { starter: true, clientRequestId:req.body?.clientRequestId }))
   })
   post('/hunts', async (req, res) => {
     const keeper = requireKeeper(req)
@@ -246,7 +252,27 @@ function keeperRouter(config) {
     if (req.body?.huntId != null) {
       if (!config.hunts || typeof req.body.huntId !== 'string') throw problem(400, 'Invalid hunt reservation.')
     }
-    res.json(await submit(keeper, call, { huntId: req.body?.huntId }))
+    if (req.body?.clientRequestId != null && (typeof req.body.clientRequestId !== 'string' || !UUID.test(req.body.clientRequestId))) throw problem(400, 'Invalid action ID.')
+    res.json(await submit(keeper, call, { huntId: req.body?.huntId, clientRequestId: req.body?.clientRequestId }))
+  })
+  post('/transactions/recover', async (req,res)=>{
+    const keeper=requireKeeper(req),call=gameCall(keeper.address,req.body?.destination,req.body?.data)
+    const id=req.body?.clientRequestId,huntId=req.body?.huntId
+    if(id!=null&&(typeof id!=='string'||!UUID.test(id)))throw problem(400,'Invalid action ID.')
+    if(id==null&&(!config.hunts||typeof huntId!=='string'))return res.json({state:'unknown'})
+    store.rate(`recover:${keeper.id}`,90,60*MINUTE)
+    res.json(await store.exclusive(keeper,async()=>{
+      const fingerprint=`${call.address.toLowerCase()}:${call.data}`
+      const intent=id?store.intents.claim(keeper,id,fingerprint):null
+      if(intent?.request_id)return{id:intent.request_id}
+      // Legacy hunts carry a reservation fence. Generic legacy calls cannot
+      // prove absence and therefore cannot acquire automatic retry authority.
+      const previous=huntId?store.latest(keeper,fingerprint):null
+      if(previous){if(id)store.intents.attach(keeper,id,previous.id);return{id:previous.id}}
+      if(huntId){if(!config.hunts)throw problem(409,'Hunt recovery unavailable.');await config.hunts.cancelUnsubmitted(keeper,huntId,call)}
+      if(id)store.intents.cancel(keeper,id)
+      return{state:'not-submitted',notSubmitted:true,reservationReleased:!!huntId}
+    }))
   })
   router.get('/transactions/:id', catchRoute(async (req, res) => {
     const keeper = requireKeeper(req, req.query.address)
@@ -258,7 +284,7 @@ function keeperRouter(config) {
       requestId: tx.id, wallet: keeper.address, circleId: store.tx(keeper, tx.id).circle_id,
       hash: info.hash, state: info.status, failed: info.failed,
     }))
-    res.json({ hash: info.hash, state: info.status, failed: info.failed, ...(info.retryable ? { retryable: true } : {}) })
+    res.json({ hash: info.hash, state: info.status, failed: info.failed, ...(info.retryable ? { retryable: true } : {}), ...(info.notSubmitted ? { notSubmitted: true } : {}) })
   }))
   router.get('/gas-faucet', catchRoute(async (req, res) => {
     const keeper = requireKeeper(req, req.query.address)
@@ -355,6 +381,7 @@ function keeperRouter(config) {
   })
 
   router.use((error, _req, res, _next) => {
+    if (error.notSubmitted && ['CIRCLE_GAS_RESERVED','INTENT_CANCELLED'].includes(error.code)) return res.set('Retry-After',String(error.retryAfterSeconds||5)).status(error.status).json({error:error.message,code:error.code,notSubmitted:true})
     if (error.status && error.expose !== false && !error.isAxiosError && error.status < 500) {
       return res.status(error.status).json({ error: error.type ? 'Invalid request.' : error.message })
     }

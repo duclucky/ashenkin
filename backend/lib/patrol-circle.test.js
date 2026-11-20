@@ -7,6 +7,7 @@ test('patrol fee, cost, return balance and revoked authorization are checked bef
   let sends = 0
   const keeper = { id: randomUUID(), circle_id: randomUUID(), address: '0x7777777777777777777777777777777777777777' }
   const client = {
+    listTransactions:async()=>({data:{transactions:[]}}),
     estimateContractExecutionFee: async () => ({ data: { medium: { priorityFee: '0.02', maxFee: '0.03' } } }),
     createContractExecutionTransaction: async () => { sends++; return { data: { id: randomUUID(), state: 'INITIATED' } } },
   }

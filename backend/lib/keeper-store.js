@@ -73,6 +73,7 @@ function keeperStore(file, secret) {
     },
     // Lazy require avoids a cycle through problem() while the module loads.
     hunts: require('./hunts-store').huntsStore(db),
+    intents: require('./keeper-intents').keeperIntents(db),
     patrols: require('./patrol-store').patrolStore(db),
     life: require('./life-store').lifeStore(db),
     journey: require('./keeper-journey').keeperJourney(db),

@@ -74,6 +74,15 @@ never commit a real key JSON. The key formats differ (`privateKey` versus
 `pk`); do not copy the faucet file into the settlement slot. Circle signing uses
 its own credentials rather than the local sponsor keys.
 
+Circle fee admission reads wallet-scoped transaction history with pagination and
+reserves the estimated gas of provider-pending outgoing calls, including calls
+already mined but not yet released by Circle. Missing reservation data refuses
+before signing; no provider payload or credential is logged. `CIRCLE_GAS_RESERVED`
+is a bounded wait for that wallet, not a request to refill it or a global queue.
+Keeper SQLite also stores client intent IDs, their request binding and cancelled
+IDs for lost-acknowledgement recovery. Include these tables in online backups;
+deleting them removes protection against delayed duplicate requests.
+
 ## Tests and repeatable read checks
 
 ```sh

@@ -42,7 +42,16 @@ The November 19 patch results and deployed-bytecode comparison are recorded in
 
 ## November 20: hunts and pipelined settlement
 
-The current backend passed **107 tests** and frontend passed **114 tests** on the
+Circle wallet admission now includes the gas still reserved by provider-pending
+outgoing transactions. Summary responses missing fee fields are completed by
+identity-checked transaction-detail reads. A wallet-local refusal before signing
+permits only bounded retries; a lost acknowledgement is recovered by a persistent
+client intent or a fenced hunt reservation before any new send is allowed.
+[Budget regression tests](../backend/lib/circle-budget.test.js) ·
+[Durable intent tests](../backend/lib/keeper-intents.test.js).
+
+
+The current backend passed **121 tests** and frontend passed **116 tests** on the
 VPS, with frontend type checking and production build successful. Lint has zero
 errors and the same 63 pre-existing warnings. These are dated results, not a
 replacement for the latest [GitHub CI run](https://github.com/duclucky/ashenkin/actions/workflows/checks.yml).
