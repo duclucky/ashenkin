@@ -1,5 +1,11 @@
 // The existing settlement sponsor and living-world worker may share a signer.
 // Serialize signing and keep a durable worker blocker during uncertain sends.
+class SponsorBusyError extends Error {
+  constructor() {
+    super('Sponsor is reconciling a living-world transaction.')
+    this.name = 'SponsorBusyError'
+  }
+}
 const lanes = new Map()
 const blockers = new Map()
 function blockSponsor(address, check) {
@@ -12,7 +18,7 @@ async function sponsorLane(address, work, { living = false } = {}) {
     .catch(() => {})
     .then(async () => {
       if (!living && blockers.get(key)?.())
-        throw new Error('Sponsor is reconciling a living-world transaction.')
+        throw new SponsorBusyError()
       return work()
     })
   lanes.set(key, next)
@@ -22,4 +28,4 @@ async function sponsorLane(address, work, { living = false } = {}) {
     if (lanes.get(key) === next) lanes.delete(key)
   }
 }
-module.exports = { blockSponsor, sponsorLane }
+module.exports = { blockSponsor, sponsorLane, SponsorBusyError }

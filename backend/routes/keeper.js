@@ -10,6 +10,7 @@ const { keeperChain, gameCall, labKeyData, lab, hatchData } = require('../lib/ke
 const { CONSENT } = require('../lib/patrol')
 const { productionLife } = require('../lib/life-chain')
 const { productionFaucet } = require('../lib/gas-faucet')
+const { productionHunts } = require('../lib/hunt-chain')
 const { keeperReconciler, refreshKeeperTransaction } = require('../lib/keeper-reconcile')
 
 const MINUTE = 60_000
@@ -38,6 +39,7 @@ function productionKeeper(env = process.env) {
     })
   }
   const config = { store, circle, chain, origin, sendCode }
+  config.hunts = productionHunts(store)
   config.life = productionLife(store, env)
   config.faucet = productionFaucet(store, env)
   config.reconciler = keeperReconciler({ store, circle })
@@ -154,10 +156,15 @@ function keeperRouter(config) {
     res.clearCookie(cookie, options).json(view(null))
   })
 
-  async function submit(keeper, call, { starter = false } = {}) {
+  async function submit(keeper, call, { starter = false, huntId } = {}) {
     const fingerprint = `${call.address.toLowerCase()}:${call.data}`
     return share(`tx:${keeper.id}:${fingerprint}`, () => store.exclusive(keeper, async () => {
       config.patrol?.guard(keeper, call)
+      if (huntId != null) {
+        await config.hunts.bind(keeper, huntId, call)
+        const previous = store.latest(keeper, fingerprint)
+        if (previous && (!previous.done || ['CLEARED', 'CONFIRMED', 'COMPLETE'].includes(previous.status))) return { id: previous.id }
+      }
       let request = store.pending(keeper, fingerprint)
       if (request) {
         const info = await refreshKeeperTransaction(store, circle, keeper, request)
@@ -208,13 +215,37 @@ function keeperRouter(config) {
     if (claimed > 0n) throw problem(409, 'You already minted a starter. Check your collection or recover a specimen from the game.')
     res.json(await submit(keeper, { address: lab, data: hatchData }, { starter: true }))
   })
+  post('/hunts', async (req, res) => {
+    const keeper = requireKeeper(req)
+    if (!config.hunts) throw problem(409, 'Private hunts are not open yet.')
+    const nft = req.body?.creatureId
+    if (!Number.isSafeInteger(nft) || nft < 1) throw problem(400, 'Invalid champion.')
+    store.rate(`hunts:${keeper.id}`, 20, MINUTE)
+    res.json(await config.hunts.prepare(keeper, nft))
+  })
+  router.get('/hunts/rare', catchRoute(async (req, res) => {
+    const keeper = requireKeeper(req, req.query.address)
+    if (!config.hunts) throw problem(409, 'Rare sightings are not open yet.')
+    store.rate(`rare-sightings:${keeper.id}`, 20, MINUTE)
+    const offset = Number(req.query.offset || 0)
+    if (!Number.isSafeInteger(offset) || offset < 0) throw problem(400, 'Invalid sighting offset.')
+    res.json(await config.hunts.rare(offset))
+  }))
+  post('/hunts/:id/release', async (req, res) => {
+    const keeper = requireKeeper(req)
+    if (!config.hunts) throw problem(409, 'Private hunts are not open yet.')
+    res.json(await config.hunts.release(keeper, req.params.id))
+  })
   post('/transactions', async (req, res) => {
     const keeper = requireKeeper(req)
     const call = gameCall(keeper.address, req.body?.destination, req.body?.data)
     store.rate(`tx:${keeper.id}`, 90, 60 * MINUTE)
     const [owned, claimed] = await chain.metrics(keeper.address)
     if (!owned && !claimed) throw problem(403, 'Mint a starter NFT before playing.')
-    res.json(await submit(keeper, call))
+    if (req.body?.huntId != null) {
+      if (!config.hunts || typeof req.body.huntId !== 'string') throw problem(400, 'Invalid hunt reservation.')
+    }
+    res.json(await submit(keeper, call, { huntId: req.body?.huntId }))
   })
   router.get('/transactions/:id', catchRoute(async (req, res) => {
     const keeper = requireKeeper(req, req.query.address)

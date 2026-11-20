@@ -17,3 +17,12 @@ test('living-world reservation blocks interactive sponsorship until its durable 
   await sponsorLane(address, async () => { order.push('interactive') })
   assert.equal(order.at(-1), 'interactive')
 })
+
+test('a busy sponsor refusal is typed and happens before the signing callback', async () => {
+  const { SponsorBusyError } = require('./sponsor-lane')
+  const address = '0x8888888888888888888888888888888888888888'
+  let signed = false
+  blockSponsor(address, () => true)
+  await assert.rejects(sponsorLane(address, async () => { signed = true }), error => error instanceof SponsorBusyError)
+  assert.equal(signed, false)
+})

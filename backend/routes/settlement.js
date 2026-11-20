@@ -1,6 +1,7 @@
 const { Router, json } = require('express')
 const { setTimeout: delay } = require('node:timers/promises')
 const { parseAbi } = require('viem')
+const { SponsorBusyError } = require('../lib/sponsor-lane')
 const worlds = {
   ashenkin: require('../lib/ashenkin.json').addresses,
   v1: require('../lib/chimera.json').addresses,
@@ -60,6 +61,16 @@ async function proveWithRetry(prove, signal) {
   }
 }
 
+function failureReason(error) {
+  for (let cause = error, depth = 0; cause && depth < 8; cause = cause.cause, depth++) {
+    const message = String(cause.shortMessage || cause.message || '')
+    if (/replacement transaction underpriced|replacement fee too low/i.test(message)) return 'nonce-replacement-underpriced'
+    if (/nonce too low/i.test(message)) return 'nonce-too-low'
+    if (/outside the sponsor budget/i.test(message)) return 'sponsor-budget'
+  }
+  return 'submission-unknown'
+}
+
 function settlementRouter(sponsor) {
   const router = Router()
   const active = new Map()
@@ -99,7 +110,12 @@ function settlementRouter(sponsor) {
     try {
       const hash = await active.get(key)
       return hash ? res.json({ hash }) : res.status(409).json({ code: 'CHANGED' })
-    } catch {
+    } catch (error) {
+      const busy = error instanceof SponsorBusyError
+      // Keep provider payloads, proofs and credentials out of operational logs.
+      console.warn(JSON.stringify({ event: 'settlement-refused', world, kind, id,
+        reason: busy ? 'sponsor-busy-before-signing' : failureReason(error) }))
+      if (busy) return res.set('Retry-After', '15').status(429).json({ code: 'SPONSOR_BUSY' })
       return res.status(503).json({ code: 'UNAVAILABLE' })
     }
   })

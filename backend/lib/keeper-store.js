@@ -72,6 +72,7 @@ function keeperStore(file, secret) {
       try { return await current } finally { if (flights.get(keeper.id) === current) flights.delete(keeper.id) }
     },
     // Lazy require avoids a cycle through problem() while the module loads.
+    hunts: require('./hunts-store').huntsStore(db),
     patrols: require('./patrol-store').patrolStore(db),
     life: require('./life-store').lifeStore(db),
     journey: require('./keeper-journey').keeperJourney(db),

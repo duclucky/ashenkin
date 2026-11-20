@@ -3,6 +3,8 @@ import * as chain from '../src/chimera/chain'
 import * as fhe from '../src/chimera/fhe'
 import { tacticsAutoSettle, tacticsSettle } from '../src/chimera/season'
 import * as sponsor from '../src/chimera/sponsored-settlement'
+import * as keeper from '../src/chimera/keeper-api'
+import { tacticsExplore } from '../src/chimera/season'
 
 const handles = [1, 2, 3].map(n => `0x${n.toString().repeat(64)}` as `0x${string}`)
 const account = `0x${'ab'.repeat(20)}` as `0x${string}`
@@ -72,4 +74,15 @@ test('a freshly confirmed hunt can retry one sponsor read after a temporary conf
     if (previousWindow) Object.defineProperty(globalThis, 'window', previousWindow)
     else Reflect.deleteProperty(globalThis, 'window')
   }
+})
+
+test('ordinary hunts send only the reserved target and carry the reservation through the existing signing path', async () => {
+  spyOn(chain, 'getWallet').mockReturnValue({ account, chainId: chain.CHAIN_ID, mode: 'circle' } as any)
+  const reservation = { id: '11111111-1111-4111-8111-111111111111', world: `${chain.CHAIN_ID}:${chain.COLOSSEUM.toLowerCase()}`, creatureId: 7, kind: 'challengeWild', targetId: 88, expires: Date.now()+60000 }
+  const request = spyOn(keeper, 'keeperRequest').mockResolvedValue(reservation)
+  const send = spyOn(chain, 'send').mockResolvedValue({ ...tx, events: [{ address: chain.COLOSSEUM, eventName: 'BattleStarted', args: { battleId: 20n, kind: 0, opponentId: 88n, roundHandles: handles } }] })
+  const result = await tacticsExplore(account, 7, [0,1,2], () => {}, { take: async () => ({ handle: handles[0], proof: '0x01' }) } as any)
+  expect(request).toHaveBeenCalledWith('hunts', { address: account, creatureId: 7 }, 45000)
+  expect(send.mock.calls[0][0]).toMatchObject({ functionName: 'challengeWild', args: [7n,88n,handles[0],'0x01'], huntId: reservation.id, expectedAccount: account })
+  expect(result.wildId).toBe(88)
 })

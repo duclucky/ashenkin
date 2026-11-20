@@ -297,7 +297,7 @@ function walletClient() {
 
 /* ───────────────────────── transactions ───────────────────────── */
 
-export type Call = { address: Address; abi: Abi | readonly unknown[]; functionName: string; args?: readonly unknown[]; gas?: bigint; expectedAccount?: Address }
+export type Call = { address: Address; abi: Abi | readonly unknown[]; functionName: string; args?: readonly unknown[]; gas?: bigint; expectedAccount?: Address; huntId?: string }
 export type Sent = { hash: Hex; receipt: TransactionReceipt; events: { eventName: string; args: any; address: Address }[] }
 
 let lastMinedAt = 0
@@ -323,13 +323,14 @@ export async function readSentReceipt(hash: Hex): Promise<Sent> {
 
 export async function send(call: Call): Promise<Sent> {
   const report = txStep
-  const { gas: gasLimit, expectedAccount, ...c } = call
+  const { gas: gasLimit, expectedAccount, huntId, ...c } = call
   const checkAccount = () => {
     if (expectedAccount && state.account?.toLowerCase() !== expectedAccount.toLowerCase()) {
       throw new Error('Wallet changed. Select your moves again with the current wallet.')
     }
   }
   checkAccount()
+  if (huntId && state.mode !== 'circle') throw new Error('Sign in again before starting this hunt.')
   if (state.mode === 'circle') {
     const account = state.account
     if (!account) throw new Error('Sign in to your Ashenkin account.')
@@ -337,7 +338,7 @@ export async function send(call: Call): Promise<Sent> {
     const data = encodeFunctionData({ abi: c.abi as Abi, functionName: c.functionName, args: c.args })
     const hash = await withKeeperRetry(async () => {
       checkAccount()
-      const { id } = await keeperRequest<{ id: string }>('transactions', { address: account, destination: c.address, data }, 45_000)
+      const { id } = await keeperRequest<{ id: string }>('transactions', { address: account, destination: c.address, data, ...(huntId ? { huntId } : {}) }, 45_000)
       return actionHash(id, account)
     }, () => report?.('Synchronizing your game wallet with Sepolia…'))
     report?.('Sent — waiting for a Sepolia confirmation…', hash)

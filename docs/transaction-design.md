@@ -2,6 +2,12 @@
 
 Đề xuất ngày 16/11/2026. Dùng ví hiện tại để vào trận, tự động chốt kết quả bằng bằng chứng Zama và ưu tiên đấu quái hoang đã tồn tại. Sau khi đo chi phí còn lại, thử phiên chơi có quyền giới hạn để bỏ popup giữa các hành động thường xuyên.
 
+## Cập nhật săn thường ngày 20/11/2026
+
+`Start a hunt` cấp cuộc chạm trán theo từng Keeper. Máy chủ dành riêng một cá thể thường đang rảnh, hoặc chọn `explore` để contract sinh cá thể mới khi cần. Không cho người chơi phải chọn một mục tiêu chung đang bận. Sighting có từ hai đặc điểm ngoại hình Rare/Mythic trở lên nằm ở danh sách săn chung riêng; quyền sở hữu NFT vẫn do settlement xác minh bằng proof Zama.
+
+Reservation nằm ở backend, gắn với tài khoản, NFT tham chiến và calldata cố định. Chỉ reservation chưa gửi mới hết hạn; yêu cầu đã bind nhưng chưa rõ trạng thái tiếp tục được bảo vệ và đối soát. Đây là điều phối lượt chơi qua website, không phải giấu quyền sở hữu hoặc cấm người khác gọi contract trực tiếp. Contract vẫn chặn hai người bắt cùng một NFT. Cấu hình roaming cần bằng trần dân số Lab, giữ nguyên cooldown và trần dân số NFT. Các số đo và thiết kế ngày 16/11 bên dưới được giữ như lịch sử.
+
 ## Đo trên Chimera v2
 
 | Luồng | Giao dịch đã quan sát | Gas từ receipt |

@@ -2,13 +2,15 @@
    Actions (signing) + read hooks for the three new contracts. */
 import { useQuery } from '@tanstack/react-query'
 import { parseEventLogs, type Abi, type Address, type Hex } from 'viem'
-import { CHAIN_ID, COLOSSEUM, DEPLOYED, LAB, ORACLE, RELICS, SEASON_BLOCK, TRAINING, colosseumAbi, getWallet, labAbi, oracleAbi, relicsAbi, trainingAbi, read, scanLogs, send, type Sent } from './chain'
+import { ACTIVE_WORLD, CHAIN_ID, COLOSSEUM, DEPLOYED, LAB, ORACLE, RELICS, SEASON_BLOCK, TRAINING, colosseumAbi, getWallet, labAbi, oracleAbi, relicsAbi, trainingAbi, read, scanLogs, send, type Sent } from './chain'
 import { encryptMany, isZero, privateValues, publicDecryptWithProof, publicValues } from './fhe'
 import { ensureOperator } from './actions'
 import { useLabKeyReady } from './hooks'
 import { settlementEvent, sponsoredSettlement } from './sponsored-settlement'
 import { sealHuntPlan } from './game/hunt-encryption'
 import type { HuntPlanPreparation } from './game/hunt-plan'
+import { keeperRequest } from './keeper-api'
+import { validHuntEncounter, type HuntEncounter } from './game/private-hunt'
 export { MOVE_BONUS, ROLL_BOUND, duelOf } from './game/tactics-rules'
 
 type Step = (s: string, hash?: string) => void
@@ -50,7 +52,7 @@ function started(r: Sent, moves: number[]): TacticStarted {
   const w = evAt(r, 'WildSpawned', COLOSSEUM)
   const battleId = Number(b?.battleId)
   savePlan(battleId, moves)
-  return { ...r, battleId, rounds: [...(b?.roundHandles ?? [])] as Hex[], wildId: w ? Number(w.wildId) : undefined }
+  return { ...r, battleId, rounds: [...(b?.roundHandles ?? [])] as Hex[], wildId: Number(b?.kind) === 0 ? Number(b?.opponentId) : w ? Number(w.wildId) : undefined }
 }
 
 async function sealForHunt(account: Address, moves: number[], step: Step, prepared?: HuntPlanPreparation) {
@@ -63,9 +65,23 @@ async function sealForHunt(account: Address, moves: number[], step: Step, prepar
 }
 
 export async function tacticsExplore(account: Address, myId: number, moves: number[], step: Step, prepared?: HuntPlanPreparation) {
-  const { handle, proof } = await sealForHunt(account, moves, step, prepared)
-  step('Venturing into the Colosseum pits…')
-  return started(await send({ address: COLOSSEUM, abi: colosseumAbi, functionName: 'explore', args: [BigInt(myId), handle, proof], expectedAccount: account }), moves)
+  let encounter: HuntEncounter | undefined
+  try {
+    if (ACTIVE_WORLD === 'ashenkin' && getWallet().mode === 'circle') {
+      step('Finding your own encounter in the Ashlands…')
+      encounter = validHuntEncounter(await keeperRequest('hunts', { address: account, creatureId: myId }, 45_000), myId, `${CHAIN_ID}:${COLOSSEUM.toLowerCase()}`)
+    }
+    const { handle, proof } = await sealForHunt(account, moves, step, prepared)
+    step('Entering your hunt…')
+    return started(await send({ address: COLOSSEUM, abi: colosseumAbi, functionName: encounter?.kind ?? 'explore',
+      args: encounter?.targetId != null ? [BigInt(myId), BigInt(encounter.targetId), handle, proof] : [BigInt(myId), handle, proof],
+      expectedAccount: account, huntId: encounter?.id }), moves)
+  } catch (error) {
+    // Release only an unsigned reservation. The server refuses to release an
+    // action whose signing acknowledgement may have been lost.
+    if (encounter) void keeperRequest(`hunts/${encounter.id}/release`, { address: account }).catch(() => {})
+    throw error
+  }
 }
 
 export async function tacticsChallenge(account: Address, myId: number, wildId: number, moves: number[], step: Step, prepared?: HuntPlanPreparation) {
@@ -248,13 +264,17 @@ export function useTBattles(limit = 30, enabled = true) {
   })
 }
 
-export function useTWilds(enabled = true) {
+export function useTWilds(enabled = true, offset = 0) {
   return useQuery({
-    queryKey: ['twilds'],
+    queryKey: ['twilds', COLOSSEUM, getWallet().account, offset],
     queryFn: async () => {
+      if (ACTIVE_WORLD === 'ashenkin' && getWallet().mode === 'circle') {
+        return keeperRequest<{ sightings: { id: number; engaged: boolean }[]; nextOffset: number | null }>(`hunts/rare?address=${getWallet().account}&offset=${offset}`, undefined, 60_000)
+      }
       const ids = (await read<bigint[]>(COLOSSEUM, colosseumAbi, 'roamingWilds')).map(Number)
-      const engaged = await Promise.all(ids.map((id) => read<boolean>(COLOSSEUM, colosseumAbi, 'wildEngaged', [BigInt(id)])))
-      return ids.map((id, i) => ({ id, engaged: engaged[i] })).sort((a, b) => b.id - a.id)
+      const page = ids.slice(offset, offset + 24)
+      const engaged = await Promise.all(page.map((id) => read<boolean>(COLOSSEUM, colosseumAbi, 'wildEngaged', [BigInt(id)])))
+      return { sightings: page.map((id, i) => ({ id, engaged: engaged[i] })).sort((a, b) => b.id - a.id), nextOffset: ids.length > offset + 24 ? offset + 24 : null }
     },
     enabled: DEPLOYED && enabled,
     refetchInterval: 15_000,

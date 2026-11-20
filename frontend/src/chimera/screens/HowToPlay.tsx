@@ -46,7 +46,8 @@ export default function HowToPlay() {
             <p>Mint a starter NFT before entering game activities. Minting is on Sepolia and uses gas from your game wallet; hosted actions are signed through Circle without a browser-wallet popup for every move.</p>
           </GuideStep>
           <GuideStep icon="sword" title="Complete your first hunt" to="arena" action="Enter the Colosseum">
-            <p>Choose a champion and three moves. Winning two rounds captures the wild Xeno; win or lose, a settled hunt completes this first step.</p>
+            <p>Choose a champion, three moves and Start a hunt. Your ordinary encounter has its own opponent. Winning two rounds captures that NFT; win or lose, a settled hunt completes this first step.</p>
+            <p>Rare sightings are optional shared captures: two or more visible Rare/Mythic traits, one specimen and one winner. They do not block ordinary hunts.</p>
             <p>Resume unfinished hunts from the <Link to="arena/log" className="font-bold underline underline-offset-4">Battle log</Link>. Local practice is optional after you own an NFT; it uses no encryption, gas or rewards.</p>
           </GuideStep>
           <GuideStep icon="paw" title="Meet your living Xeno" to="life" action="Open Living Xenos">

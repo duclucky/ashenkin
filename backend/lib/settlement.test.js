@@ -90,3 +90,33 @@ test('a temporary proof failure can recover without a second signed transaction'
     assert.equal(writes, 1)
   })
 })
+
+test('a typed pre-signing sponsor refusal is safely retryable, and is not cached', async () => {
+  const { SponsorBusyError } = require('./sponsor-lane')
+  let calls = 0
+  await withServer({
+    read: async () => [{ status: 1 }, handles],
+    prove: async () => ({ abiEncodedClearValues: '0x01', decryptionProof: '0x02' }),
+    send: async () => { if (++calls === 1) throw new SponsorBusyError(); return hash },
+  }, async submit => {
+    const first = await submit(body)
+    assert.equal(first.status, 429)
+    assert.equal(first.headers.get('retry-after'), '15')
+    assert.deepEqual(await first.json(), { code: 'SPONSOR_BUSY' })
+    const second = await submit(body)
+    assert.equal(second.status, 200)
+    assert.deepEqual(await second.json(), { hash })
+    assert.equal(calls, 2)
+  })
+})
+test('an ambiguous send failure stays unavailable and never masquerades as a pre-signing refusal', async () => {
+  await withServer({
+    read: async () => [{ status: 1 }, handles],
+    prove: async () => ({ abiEncodedClearValues: '0x01', decryptionProof: '0x02' }),
+    send: async () => { throw Object.assign(new Error('private provider payload'), { code: 'SPONSOR_BUSY' }) },
+  }, async submit => {
+    const result = await submit(body)
+    assert.equal(result.status, 503)
+    assert.deepEqual(await result.json(), { code: 'UNAVAILABLE' })
+  })
+})

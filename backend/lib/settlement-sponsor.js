@@ -4,7 +4,7 @@ const { createPublicClient, createWalletClient, http, parseGwei } = require('vie
 const { privateKeyToAccount, nonceManager } = require('viem/accounts')
 const { sepolia } = require('viem/chains')
 const { RPC, zama } = require('./zama')
-const { sponsorLane } = require('./sponsor-lane')
+const { sponsorLane, SponsorBusyError } = require('./sponsor-lane')
 
 function sponsorClients(env = process.env) {
   let key = env.CHIMERA_SETTLEMENT_PRIVATE_KEY
@@ -35,10 +35,10 @@ function sponsorClients(env = process.env) {
   return { account, client, wallet, maxFee }
 }
 
-function createSettlementSponsor(env = process.env) {
-  const clients = sponsorClients(env)
+function createSettlementSponsor(env = process.env, clients = sponsorClients(env)) {
   if (!clients) return null
   const { account, client, wallet, maxFee } = clients
+  let lastSubmittedNonce = -1
   return {
     read: call => client.readContract(call),
     async prove(handles) {
@@ -48,20 +48,26 @@ function createSettlementSponsor(env = process.env) {
     async send(call) {
       return sponsorLane(account.address, async () => {
         const input = { ...call, account: account.address }
-        const [fees, balance, simulation, estimate] = await Promise.all([
+        const [fees, balance, simulation, estimate, pending, latest] = await Promise.all([
           client.estimateFeesPerGas(),
           client.getBalance({ address: account.address, blockTag: 'pending' }),
           client.simulateContract(input),
           client.estimateContractGas(input),
+          client.getTransactionCount({ address: account.address, blockTag: 'pending' }),
+          client.getTransactionCount({ address: account.address, blockTag: 'latest' }),
         ])
         const gas = estimate * 12n / 10n
         if (gas > 9_000_000n || fees.maxFeePerGas > maxFee || gas * fees.maxFeePerGas > balance) {
           throw new Error('The settlement is outside the sponsor budget.')
         }
-        // Living-world raw signing may have consumed a nonce since this manager's
-        // previous interactive settlement. Reload its pending nonce inside the lane.
-        nonceManager.reset({ address: account.address, chainId: sepolia.id })
-        return wallet.writeContract({ ...simulation.request, ...fees, gas, account })
+        // A returned hash may precede RPC mempool propagation. Keep its nonce
+        // reserved until mined; never reset the nonce manager and reuse it.
+        // The living worker uses this signer too, so pending sends also wait.
+        if (pending !== latest || latest <= lastSubmittedNonce) throw new SponsorBusyError()
+        // Preserve the reservation even if the provider loses the ACK.
+        lastSubmittedNonce = pending
+        const hash = await wallet.writeContract({ ...simulation.request, ...fees, gas, account, nonce: pending })
+        return hash
       })
     },
     async wait(hash) {

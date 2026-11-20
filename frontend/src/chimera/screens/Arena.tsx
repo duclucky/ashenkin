@@ -4,7 +4,7 @@ import { ProofButton } from '../game/ProofDrawer'
 import { GuestGate } from '../game/GuestGate'
 import { Compass, Dice5, Lock, Shield, Swords, ScrollText, Eye, RefreshCw } from 'lucide-react'
 import { Addr, Button, CreatureCard, Empty, Label, Link, Panel, go, useAction } from '../ui'
-import { CHAIN_ID, COLOSSEUM, DEPLOYED, TRAINING, useWallet, errorText, type Sent } from '../chain'
+import { ACTIVE_WORLD, CHAIN_ID, COLOSSEUM, DEPLOYED, TRAINING, useWallet, errorText, type Sent } from '../chain'
 import { xpGrantedFromReceipt } from '../game/expedition-progression'
 import { useDefenders, useMyCreatures, useNow, useRefresh, fmtDuration } from '../hooks'
 import { withdrawDefender } from '../actions'
@@ -63,6 +63,7 @@ export default function Arena({ preset, practice = false, starter = false, log =
   const mine = useMyCreatures(account)
   const [champ, setChamp] = useState<number | null>(preset ?? null)
   const [tab, setTab] = useState<'hunt' | 'duel' | 'log'>(log ? 'log' : defenderId || defend ? 'duel' : 'hunt')
+  const [rareOffset, setRareOffset] = useState(0)
   const [plan, setPlan] = useState<number[]>([0, 1, 2])
   const planEdited = useRef(false)
   const [huntPreparation] = useState(() => new HuntPlanPreparation(sealHuntPlan))
@@ -70,7 +71,7 @@ export default function Arena({ preset, practice = false, starter = false, log =
   const { busy, run } = useAction()
   const ready = useTReadyAt(champ)
   const stats = useTStats(account)
-  const roaming = useTWilds(!!account && !practice && tab === 'hunt')
+  const roaming = useTWilds(!!account && !practice && tab === 'hunt', rareOffset)
   const now = useNow(1000)
   const inHunt = DEPLOYED && !practice && tab === 'hunt' && chainId === CHAIN_ID && !!account
   const hasChampion = champ != null && (mine.data?.includes(champ) ?? false)
@@ -119,7 +120,6 @@ export default function Arena({ preset, practice = false, starter = false, log =
   if (!account && log) return <div className="space-y-5"><Location place="arena" /><Log run={run} battleLookup={battleLookup} /></div>
 
   const cd = (ready.data ?? 0) - now
-  const roamingTarget = roaming.data?.find(wild => !wild.engaged)
   const huntDisabled = !champ || ready.data == null || cd > 0 || !!busy
 
   async function resolve(s: Scene, cont = false) {
@@ -220,24 +220,14 @@ export default function Arena({ preset, practice = false, starter = false, log =
               <PlanPicker plan={plan} onChange={editPlan} label="Choose three commands" prepare={tab === 'hunt'} />
               {champ && <TacticalPlaybooks key={`${CHAIN_ID}:${COLOSSEUM}:${account.toLowerCase()}:${champ}`} scope={{ chainId: CHAIN_ID, colosseum: COLOSSEUM, account, specimenId: champ }} plan={plan} apply={editPlan} />}
               {tab === 'hunt' && <div className="chm-hunt-entry">
-                {roaming.isError && !roaming.data ? <Button variant="ghost" onClick={() => roaming.refetch()}>Retry reading the wilds</Button> : (
-                  <Button
-                    onClick={roamingTarget ? () => hunt(roamingTarget.id) : explore}
-                    disabled={huntDisabled || !roaming.data}
-                    busy={busy === 'Hunt'}
-                    variant="gold"
-                    className={firstFight && !huntDisabled ? 'chm-quest-target' : ''}
-                  >
-                    <Compass className="h-4 w-4" />
-                    {!roaming.data ? 'Reading the wilds…' : roamingTarget ? `Hunt wild #${roamingTarget.id}` : 'Explore for a new wild'}
-                  </Button>
-                )}
-                {roamingTarget && <Button onClick={explore} disabled={huntDisabled} variant="ghost">Explore for a new wild</Button>}
-                <p>Win 2 of 3 rounds to capture.{roamingTarget ? ' Hunting a roaming wild uses less gas.' : ''}</p>
+                <Button onClick={explore} disabled={huntDisabled} busy={busy === 'Hunt'} variant="gold" className={firstFight && !huntDisabled ? 'chm-quest-target' : ''}>
+                  <Compass className="h-4 w-4" /> Start a hunt
+                </Button>
+                <p>Your own encounter. Win 2 of 3 rounds to capture your opponent.</p>
               </div>}
             </div>
           </div>}
-          {tab === 'hunt' && <Hunts roaming={roaming} disabled={huntDisabled} onChallenge={hunt} />}
+          {tab === 'hunt' && <Hunts roaming={roaming} disabled={huntDisabled} onChallenge={hunt} offset={rareOffset} onPage={setRareOffset} />}
           {tab === 'duel' && <Duels target={defenderId} champ={champ} cd={cd} busy={busy} run={run} plan={plan} onDuel={(d, stake) => start(1, d, (st) => tacticsDuel(account, champ!, d, stake, plan, st))} />}
           {tab === 'log' && (
             <Log
@@ -271,29 +261,34 @@ function MatchRules() {
   )
 }
 
-function Hunts({ roaming, disabled, onChallenge }: { roaming: ReturnType<typeof useTWilds>; disabled: boolean; onChallenge: (id: number) => void }) {
+function Hunts({ roaming, disabled, onChallenge, offset, onPage }: { roaming: ReturnType<typeof useTWilds>; disabled: boolean; onChallenge: (id: number) => void; offset: number; onPage: (offset: number) => void }) {
   return (
     <details className="chm-panel chm-roaming-list">
-      <summary>Choose a specific wild <span>{roaming.isPending ? '…' : roaming.isError ? 'Unavailable' : roaming.data?.length ?? 0} roaming</span></summary>
+      <summary>{ACTIVE_WORLD === 'ashenkin' ? 'Rare sightings' : 'Wild sightings'} <span>{roaming.isPending ? '…' : roaming.isError ? 'Unavailable' : roaming.data?.sightings.length ?? 0} spotted</span></summary>
       <div className="p-4">
-        {!roaming.data?.length ? (
-          <div className="text-sm text-[var(--chm-dim)]">{roaming.isPending ? 'Reading the wilds…' : roaming.isError ? 'The wilds could not be read.' : 'Nothing roams right now. Wild creatures that beat a Keeper stay here until someone captures them.'}</div>
+        {ACTIVE_WORLD === 'ashenkin' && <p className="mb-3 text-sm text-[var(--chm-dim)]">Two or more rare visible traits. These sightings are shared: one specimen, one capture. Ordinary hunts above are separate.</p>}
+        {!roaming.data?.sightings.length ? (
+          <div className="text-sm text-[var(--chm-dim)]">{roaming.isPending ? 'Reading the wilds…' : roaming.isError ? 'The wilds could not be read.' : 'No rare sightings in this stretch. Your own hunts are still open.'}</div>
         ) : (
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
-            {roaming.data.map((w) => (
+            {roaming.data.sightings.map((w) => (
               <CreatureCard
                 key={w.id}
                 id={w.id}
                 compact
                 footer={
                   <div className="space-y-1"><Button variant="ghost" className="w-full !py-1.5 text-xs" disabled={disabled || w.engaged} onClick={() => onChallenge(w.id)}>
-                    {w.engaged ? 'Being fought' : 'Hunt it'}
+                    {w.engaged ? 'In a shared hunt' : 'Challenge sighting'}
                   </Button><ScoutButton id={w.id} /></div>
                 }
               />
             ))}
           </div>
         )}
+        {(offset > 0 || roaming.data?.nextOffset != null) && <div className="mt-3 flex gap-2">
+          <Button variant="ghost" disabled={offset === 0 || roaming.isFetching} onClick={() => onPage(Math.max(0, offset - 24))}>Previous</Button>
+          <Button variant="ghost" disabled={roaming.data?.nextOffset == null || roaming.isFetching} onClick={() => onPage(roaming.data!.nextOffset!)}>Next sightings</Button>
+        </div>}
       </div>
     </details>
   )
