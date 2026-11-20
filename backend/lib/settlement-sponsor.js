@@ -35,9 +35,20 @@ function sponsorClients(env = process.env) {
   return { account, client, wallet, maxFee }
 }
 
-function createSettlementSponsor(env = process.env, clients = sponsorClients(env)) {
+function interactiveClients(env) {
+  if(!env.ASHENKIN_INTERACTIVE_KEY_FILE)return sponsorClients(env)
+  const config={...env,CHIMERA_SETTLEMENT_PRIVATE_KEY:undefined,CHIMERA_SETTLEMENT_KEY_FILE:env.ASHENKIN_INTERACTIVE_KEY_FILE,CHIMERA_SETTLEMENT_EXPECTED_ADDRESS:env.ASHENKIN_INTERACTIVE_EXPECTED_ADDRESS}
+  const clients=sponsorClients(config)
+  if(!config.CHIMERA_SETTLEMENT_EXPECTED_ADDRESS||clients.account.address.toLowerCase()===env.CHIMERA_SETTLEMENT_EXPECTED_ADDRESS?.toLowerCase())throw Error('Interactive settlements need a separate expected signer')
+  return clients
+}
+function createSettlementSponsor(env = process.env, clients = interactiveClients(env), options = {}) {
   if (!clients) return null
   const { account, client, wallet, maxFee } = clients
+  const pipeline=options.pipeline||env.ASHENKIN_INTERACTIVE_KEY_FILE
+    ? require('./settlement-pipeline').settlementPipeline({account,client,maxFee,
+      file:options.journalFile||path.resolve(__dirname,'..','db','settlements.sqlite'),
+      maxPending:options.maxPending||8,log:options.log}) : null
   let lastSubmittedNonce = -1
   return {
     read: call => client.readContract(call),
@@ -45,7 +56,9 @@ function createSettlementSponsor(env = process.env, clients = sponsorClients(env
       const inst = await zama()
       return inst.publicDecrypt(handles)
     },
-    async send(call) {
+    ...(pipeline?{getJob:key=>pipeline.getJob(key),tick:()=>pipeline.tick(),close:()=>pipeline.close()}:{}),
+    async send(call,job) {
+      if(pipeline)return pipeline.send(call,job)
       return sponsorLane(account.address, async () => {
         const input = { ...call, account: account.address }
         const [fees, balance, simulation, estimate, pending, latest] = await Promise.all([
@@ -77,4 +90,4 @@ function createSettlementSponsor(env = process.env, clients = sponsorClients(env
   }
 }
 
-module.exports = { createSettlementSponsor, sponsorClients }
+module.exports = { createSettlementSponsor, sponsorClients, interactiveClients }

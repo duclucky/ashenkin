@@ -13,9 +13,11 @@ async function withServer(sponsor, exercise) {
   const server = await new Promise(resolve => {
     const listener = app.listen(0, '127.0.0.1', () => resolve(listener))
   })
-  const submit = data => fetch(`http://127.0.0.1:${server.address().port}/api/settlement`, {
+  const url = `http://127.0.0.1:${server.address().port}/api/settlement`
+  const submit = data => fetch(url, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
   })
+  submit.status = data => fetch(url+'?'+new URLSearchParams({...data,handles:data.handles.join(',')}))
   try { await exercise(submit) } finally { await new Promise(resolve => server.close(resolve)) }
 }
 
@@ -120,3 +122,16 @@ test('an ambiguous send failure stays unavailable and never masquerades as a pre
     assert.deepEqual(await result.json(), { code: 'UNAVAILABLE' })
   })
 })
+
+test('a persisted settlement hash is recovered after restart without recomputing proof or signing again',async()=>{
+ let lookups=0
+ await withServer({getJob:async key=>{lookups++;assert.match(key,/battle:7:/);return{hash,state:'signed'}},read:async()=>{throw Error('Must recover journal before chain/proof work')},prove:async()=>{throw Error('No second proof')}},async submit=>{const result=await submit(body);assert.equal(result.status,200);assert.deepEqual(await result.json(),{hash});assert.equal(lookups,1)})
+})
+
+test('read-only status recovers a journal hash even if the original response was lost',async()=>{
+ let reads=0,writes=0
+ await withServer({getJob:async()=>({hash,state:'signed'}),read:async()=>{reads++},send:async()=>{writes++}},async submit=>{
+  const response=await submit.status(body);assert.equal(response.status,200);assert.deepEqual(await response.json(),{hash,state:'signed'});assert.equal(reads,0);assert.equal(writes,0)
+ })
+ await withServer({getJob:async()=>null},async submit=>{const response=await submit.status(body);assert.deepEqual(await response.json(),{hash:null,state:'unknown'})})
+});

@@ -19,7 +19,8 @@ app.get('/api/health', (_req, res) => res.json({ status: 'ok' }))
 app.use('/api/ashenkin-nft', nft)
 app.use('/api/nft', nft)
 app.use('/api/nft-v2', nft)
-app.use('/api/settlement', settlementRouter(createSettlementSponsor()))
+const settlementSponsor = createSettlementSponsor()
+app.use('/api/settlement', settlementRouter(settlementSponsor))
 const keeper = productionKeeper()
 app.use('/api/keeper', keeperRouter(keeper))
 app.use('/api/beacon/scout', beaconScout)
@@ -76,6 +77,22 @@ if (keeper?.reconciler) {
     console.warn(JSON.stringify({ event: 'keeper-transaction-reconcile-scheduler-waiting' }))
   })
   const timer = setInterval(tick, 15_000)
+  timer.unref()
+  void tick()
+}
+
+// Interactive receipts and rebroadcasts have their own signer and persistent
+// journal. They never wait for the offline encounter worker's transaction.
+if (settlementSponsor?.tick) {
+  let checking = false
+  const tick = async () => {
+    if (checking) return
+    checking = true
+    try { await settlementSponsor.tick() }
+    catch { console.warn(JSON.stringify({event:'settlement-pipeline-reconciling'})) }
+    finally { checking = false }
+  }
+  const timer = setInterval(tick, 3000)
   timer.unref()
   void tick()
 }

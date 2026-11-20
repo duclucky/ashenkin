@@ -86,3 +86,9 @@ test('ordinary hunts send only the reserved target and carry the reservation thr
   expect(send.mock.calls[0][0]).toMatchObject({ functionName: 'challengeWild', args: [7n,88n,handles[0],'0x01'], huntId: reservation.id, expectedAccount: account })
   expect(result.wildId).toBe(88)
 })
+
+test('a pre-signing busy response stays in the same action and retries without opening the player wallet',async()=>{
+ const previousWindow=Object.getOwnPropertyDescriptor(globalThis,'window');Object.defineProperty(globalThis,'window',{configurable:true,value:{}})
+ const fetchMock=spyOn(globalThis,'fetch').mockResolvedValueOnce(new Response(null,{status:429,headers:{'Retry-After':'0.001'}})).mockResolvedValueOnce(Response.json({hash:tx.hash}));const receipt=spyOn(chain,'readSentReceipt').mockResolvedValue(tx),wallet=spyOn(chain,'send'),steps:string[]=[]
+ try{expect(await sponsor.sponsoredSettlement('battle',20,handles,s=>steps.push(s))).toBe(tx);expect(fetchMock).toHaveBeenCalledTimes(2);expect(receipt).toHaveBeenCalledTimes(1);expect(wallet).not.toHaveBeenCalled();expect(steps.some(s=>s.includes('still running'))).toBe(true)}finally{if(previousWindow)Object.defineProperty(globalThis,'window',previousWindow);else Reflect.deleteProperty(globalThis,'window')}
+})

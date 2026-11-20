@@ -37,7 +37,7 @@ const definitions = {
   },
 }
 
-const MAX_ACTIVE = 4
+const MAX_ACTIVE = 8
 const MAX_RECENT = 128
 const RETAIN_MS = 5 * 60_000
 const HANDLE = /^0x(?!0{64}$)[0-9a-f]{64}$/i
@@ -76,27 +76,44 @@ function settlementRouter(sponsor) {
   const active = new Map()
   const recent = new Map()
 
+  function job(body) {
+    const { world, kind, id, handles, ...extra } = body || {}
+    if (typeof world !== 'string' || !Object.hasOwn(worlds, world) || typeof kind !== 'string' || !Object.hasOwn(definitions, kind)
+      || !Number.isSafeInteger(id) || id < 1 || Object.keys(extra).length) return null
+    const definition = definitions[kind]
+    if (!Array.isArray(handles) || handles.length !== definition.count || !handles.every(h => typeof h === 'string' && HANDLE.test(h))) return null
+    const expected = handles.map(h => h.toLowerCase())
+    const address = worlds[world][definition.contract]
+    return {world,kind,id,definition,expected,address,key:`11155111:${address}:${kind}:${id}:${expected.join(',')}`}
+  }
+  router.get('/', async (req,res) => {
+    res.set('Cache-Control','no-store')
+    const value=job({world:req.query.world,kind:req.query.kind,id:Number(req.query.id),handles:typeof req.query.handles==='string'?req.query.handles.split(','):null})
+    if(!value)return res.status(400).json({code:'INVALID_JOB'})
+    try {
+      const known=await sponsor?.getJob?.(value.key)
+      return res.json(known?{hash:known.hash,state:known.state}:{hash:null,state:'unknown'})
+    } catch { return res.status(503).json({code:'UNAVAILABLE'}) }
+  })
   router.post('/', json({ limit: '1kb' }), async (req, res) => {
     res.set('Cache-Control', 'no-store')
     if (!sponsor) return res.status(501).json({ code: 'DISABLED' })
-    const { world, kind, id, handles, ...extra } = req.body || {}
-    if (typeof world !== 'string' || !Object.hasOwn(worlds, world) || typeof kind !== 'string' || !Object.hasOwn(definitions, kind)
-      || !Number.isSafeInteger(id) || id < 1 || Object.keys(extra).length) {
-      return res.status(400).json({ code: 'INVALID_JOB' })
-    }
-    const definition = definitions[kind]
-    if (!Array.isArray(handles) || handles.length !== definition.count || !handles.every(h => typeof h === 'string' && HANDLE.test(h))) {
-      return res.status(400).json({ code: 'INVALID_HANDLES' })
-    }
-    const expected = handles.map(h => h.toLowerCase())
-    const address = worlds[world][definition.contract]
-    const key = `${address}:${kind}:${id}:${expected.join(',')}`
+    const value=job(req.body)
+    if(!value)return res.status(400).json({code:'INVALID_JOB'})
+    const {world,kind,id,definition,expected,address,key}=value
+    try {
+      const known=await sponsor.getJob?.(key)
+      if(known){
+        if(known.state==='reverted')return res.status(409).json({code:'REVERTED'})
+        return res.json({hash:known.hash})
+      }
+    } catch { return res.status(503).json({code:'UNAVAILABLE'}) }
     const cached = recent.get(key)
     if (cached?.until > Date.now()) return res.json({ hash: cached.hash })
     recent.delete(key)
     if (!active.has(key)) {
       if (active.size >= MAX_ACTIVE) return res.status(429).json({ code: 'BUSY' })
-      const pending = submit(address, definition, BigInt(id), expected).then(hash => {
+      const pending = submit(address, definition, BigInt(id), expected, key).then(hash => {
         if (!hash) return null
         if (recent.size >= MAX_RECENT) recent.delete(recent.keys().next().value)
         recent.set(key, { hash, until: Date.now() + RETAIN_MS })
@@ -115,12 +132,12 @@ function settlementRouter(sponsor) {
       // Keep provider payloads, proofs and credentials out of operational logs.
       console.warn(JSON.stringify({ event: 'settlement-refused', world, kind, id,
         reason: busy ? 'sponsor-busy-before-signing' : failureReason(error) }))
-      if (busy) return res.set('Retry-After', '15').status(429).json({ code: 'SPONSOR_BUSY' })
+      if (busy) return res.set('Retry-After', sponsor.getJob ? '2' : '15').status(429).json({ code: 'SPONSOR_BUSY' })
       return res.status(503).json({ code: 'UNAVAILABLE' })
     }
   })
 
-  async function submit(address, definition, id, expected) {
+  async function submit(address, definition, id, expected, key) {
     const { abi, view, write, pending } = definition
     const input = { address, abi, functionName: view, args: [id] }
     const current = async () => pending(await sponsor.read(input)).map(h => h.toLowerCase())
@@ -143,7 +160,7 @@ function settlementRouter(sponsor) {
       ])
     } finally { clearTimeout(timer) }
     if (!matches(await current())) return null
-    return sponsor.send({ address, abi, functionName: write, args: [id, proof.abiEncodedClearValues, proof.decryptionProof] })
+    return sponsor.send({ address, abi, functionName: write, args: [id, proof.abiEncodedClearValues, proof.decryptionProof] }, {key})
   }
 
   return router

@@ -14,15 +14,21 @@ export async function sponsoredSettlement(kind: Kind, id: number, handles: Hex[]
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ world: ACTIVE_WORLD, kind, id, handles }),
-      signal: AbortSignal.timeout(70_000),
     }
     const url = api('settlement')
-    response = await fetch(url, request)
+    const post = () => fetch(url, {...request, signal: AbortSignal.timeout(70_000)})
+    response = await post()
+    for (let attempt = 0; response.status === 429 && attempt < 3; attempt++) {
+      step('Your action is still running. Synchronizing the sponsor…')
+      const seconds = Number(response.headers.get('Retry-After'))
+      await new Promise(resolve => setTimeout(resolve, Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds * 1000, 5000) : 1500))
+      response = await post()
+    }
     if (response.status === 409 && kind === 'battle') {
       // The browser and sponsor can briefly see different heads after the hunt is mined.
       step('Sepolia is syncing your fight…')
       await new Promise(resolve => setTimeout(resolve, 1500))
-      response = await fetch(url, request)
+      response = await post()
     }
   } catch {
     throw new Error('Automatic settlement could not be reached. Check the Inbox for the current status.')
