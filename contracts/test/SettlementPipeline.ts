@@ -10,7 +10,7 @@ describe("Interactive settlement pipeline",function(){
   const {createPublicClient,custom,parseGwei}=require('../../backend/node_modules/viem');
   const {mnemonicToAccount}=require('../../backend/node_modules/viem/accounts');
   const {createSettlementSponsor}=require('../../backend/lib/settlement-sponsor');
-  const [,alice,bob,charlie]=await ethers.getSigners();
+  const [offlineSigner,alice,bob,charlie,interactiveSigner]=await ethers.getSigners();
   const token=await ethers.deployContract('ConfidentialTokenMock'),lab=await ethers.deployContract('ChimeraLab',[await token.getAddress()]),col=await ethers.deployContract('ChimeraColosseum',[await lab.getAddress(),await token.getAddress()]);
   await(await lab.setArena(await col.getAddress())).wait();
   const players=[alice,bob,charlie],calls=[];
@@ -21,7 +21,10 @@ describe("Interactive settlement pipeline",function(){
    calls.push({address:await col.getAddress(),abi:JSON.parse(col.interface.formatJson()),functionName:'settle',args:[BigInt(i+1),proof.abiEncodedClearValues,proof.decryptionProof]});
   }
   const network={id:31337,name:'Local FHE mock',nativeCurrency:{name:'Ether',symbol:'ETH',decimals:18},rpcUrls:{default:{http:['http://localhost']}}};
-  const account=mnemonicToAccount('test test test test test test test test test test test junk');
+  // Model production's separate interactive signer: the living-worker suite
+  // registers a durable blocker for account 0, backed by its own SQLite store.
+  const account=mnemonicToAccount('test test test test test test test test test test test junk',{addressIndex:4});
+  expect(account.address).to.eq(interactiveSigner.address);expect(account.address).not.to.eq(offlineSigner.address);
   const client=createPublicClient({chain:network,transport:custom({request:({method,params}:any)=>ethers.provider.send(method,params||[])})});
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'settlement-integration-'));
   const sponsor=createSettlementSponsor({}, {account,client,wallet:{},maxFee:parseGwei('100')},{pipeline:true,journalFile:path.join(dir,'journal.sqlite'),log:()=>{}});

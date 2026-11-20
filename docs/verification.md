@@ -70,6 +70,12 @@ promise. No contract or NFT deployment changed. See [current behavior](current-s
 and [configuration](configuration.md#optional-funding-services) rather than old
 proposal text for the signer separation and ordinary-hunt allocation.
 
+The full contract suite passed **131 tests** on the VPS after isolating the
+interactive integration signer from the earlier living-worker fixture. The first
+CI run exposed their shared test account retaining a blocker for a closed SQLite
+store. The integration now uses a separate funded Hardhat account, matching the
+hosted signer separation; no production transaction code or contract changed.
+
 ## What was checked live on November 19
 
 | Check | Evidence / interpretation |
