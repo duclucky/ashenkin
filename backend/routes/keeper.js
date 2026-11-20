@@ -178,6 +178,7 @@ function keeperRouter(config) {
       }
       request ??= store.beginTx(keeper, fingerprint)
       try {
+        await chain.waitForDependencies?.(keeper, call)
         const result = await circle.execute(keeper, request, call, starter ? await chain.starterFee(keeper) : undefined)
         store.updateTx(request.id, result)
         console.info(JSON.stringify({
@@ -357,7 +358,7 @@ function keeperRouter(config) {
     if (error.status && error.expose !== false && !error.isAxiosError && error.status < 500) {
       return res.status(error.status).json({ error: error.type ? 'Invalid request.' : error.message })
     }
-    if (error.status && !error.isAxiosError && error.status === 503 && error.message.startsWith('Starter')) {
+    if (error.status && !error.isAxiosError && error.status === 503 && (error.message.startsWith('Starter') || error.code === 'APPROVAL_SYNC_PENDING')) {
       return res.status(503).json({ error: error.message })
     }
     res.status(503).json({ error: 'Ashenkin could not complete this request. Please try again.' })

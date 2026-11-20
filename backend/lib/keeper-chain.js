@@ -4,6 +4,7 @@ const { problem } = require('./keeper-store')
 const { sponsorClients } = require('./settlement-sponsor')
 const { RPC } = require('./zama')
 const { addresses: A } = require('./ashenkin.json')
+const { waitForApproval } = require('./approval-sync')
 
 // Sepolia contracts in the release. Browser input cannot add a target or a method to this list.
 const CZAMA = '0xf2D628d2598aF4eAF94CB76a437Ff86CA78FfbFB'
@@ -171,7 +172,7 @@ function keeperChain(store, env, clients = {}) {
     if (!await verifyFunding(hash)) throw problem(503, 'Starter gas could not be sent. Try the mint again.')
   }
 
-  return { metrics, fund, starterFee, sponsored: enabled, verifyMessage: params => chain.verifyMessage(params) }
+  return { metrics, fund, starterFee, waitForDependencies: (keeper, call) => waitForApproval({store,chain,keeper,call,czama:CZAMA,zama:ZAMA}), sponsored: enabled, verifyMessage: params => chain.verifyMessage(params) }
 }
 
 module.exports = { gameCall, labKeyData, keeperChain, lab: A.ChimeraLab, hatchData }

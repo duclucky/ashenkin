@@ -270,9 +270,9 @@ test('Circle CLEARED does not finish an unmined transaction', async () => {
 test('only a Circle estimation failure without a broadcast hash is retryable', async () => {
   const keeper = { id: randomUUID(), circle_id: randomUUID(), address }
   const txId = randomUUID()
-  const transaction = { id: txId, walletId: keeper.circle_id, blockchain: 'ETH-SEPOLIA', state: 'FAILED', errorReason: 'ESTIMATION_ERROR' }
+  const transaction = { id: txId, walletId: keeper.circle_id, blockchain: 'ETH-SEPOLIA', state: 'FAILED', errorReason: 'ESTIMATION_ERROR', contractAddress: lab, callData: hatchData }
   const circle = { getTransaction: async () => ({ data: { transaction } }) }
-  const adapter = circleKeepers({}, circle, {})
+  const adapter = circleKeepers({}, circle, { call: async () => ({ data: '0x' }) })
   assert.equal((await adapter.status(keeper, txId)).retryable, true)
   transaction.txHash = hash
   assert.notEqual((await adapter.status(keeper, txId)).retryable, true)
@@ -330,3 +330,10 @@ test('a proven pre-submission error closes only its unsent intent so a later ret
   assert.equal(next.status, 200)
   assert.ok(store.pending(keeper, fingerprint).circle_id)
 }))
+
+test('a permanent contract revert and an unavailable RPC are never treated as safe Circle estimation retries',async()=>{
+ const keeper={id:randomUUID(),circle_id:randomUUID(),address},txId=randomUUID();const transaction={id:txId,walletId:keeper.circle_id,blockchain:'ETH-SEPOLIA',state:'FAILED',errorReason:'ESTIMATION_ERROR',contractAddress:lab,callData:hatchData};const circle={getTransaction:async()=>({data:{transaction}})},chain={call:async()=>{throw Error('Still reverts or provider unavailable')}};const adapter=circleKeepers({},circle,chain);
+ assert.notEqual((await adapter.status(keeper,txId)).retryable,true);
+ chain.call=async()=>({data:'0x'});transaction.state='DENIED';assert.notEqual((await adapter.status(keeper,txId)).retryable,true);
+ transaction.state='FAILED';transaction.contractAddress=address;assert.notEqual((await adapter.status(keeper,txId)).retryable,true);
+});

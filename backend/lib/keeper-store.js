@@ -93,6 +93,9 @@ function keeperStore(file, secret) {
           attempts = keeper_tx_checks.attempts + 1, result = excluded.result
       `).run(id, nextCheck, result)
     },
+    recentConfirmedTransactions(keeper, since) {
+      return db.prepare("SELECT fingerprint,hash FROM keeper_transactions WHERE keeper_id=? AND done=1 AND hash IS NOT NULL AND status IN ('CONFIRMED','COMPLETE') AND created>=? ORDER BY created DESC,id DESC LIMIT 100").all(keeper.id,since)
+    },
     pendingTransactions(keeper) { return db.prepare('SELECT * FROM keeper_transactions WHERE keeper_id = ? AND done = 0').all(keeper.id) },
     rate,
     challenge(identity, makeMessage) {

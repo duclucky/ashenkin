@@ -3,6 +3,7 @@ const { sepolia } = require('viem/chains')
 const { RPC } = require('./zama')
 const { setTimeout: delay } = require('node:timers/promises')
 const { problem } = require('./keeper-store')
+const { gameCall } = require('./keeper-chain')
 
 function circleKeepers(env, client, chainClient) {
   const { CIRCLE_API_KEY: apiKey, CIRCLE_ENTITY_SECRET: entitySecret, CIRCLE_WALLET_SET_ID: walletSetId } = env
@@ -125,9 +126,21 @@ function circleKeepers(env, client, chainClient) {
           reason: typeof tx.errorReason === 'string' && /^[A-Z_]+$/.test(tx.errorReason) ? tx.errorReason : 'UNKNOWN',
         }))
       }
+      let retryable = false
+      if (state === 'FAILED' && !hash && tx.errorReason === 'ESTIMATION_ERROR') {
+        try {
+          // A permanent revert is not a delayed approval. Validate the same
+          // allowlisted call against current chain state before permitting retry.
+          const call = gameCall(keeper.address, tx.contractAddress, tx.callData)
+          await chain.call({ account: keeper.address, to: call.address, data: call.data, blockTag: 'latest' })
+          retryable = true
+        } catch { /* Unknown state or a continuing revert cannot authorize resend. */ }
+        console.info(JSON.stringify({ event: 'keeper-circle-estimation-check', circleId,
+          result: retryable ? 'current-simulation-succeeded' : 'retry-not-proven-safe' }))
+      }
       return {
         status: state, hash, done: chainFailed || confirmed, failed: chainFailed,
-        ...(chainFailed && !hash && tx.errorReason === 'ESTIMATION_ERROR' ? { retryable: true } : {}),
+        ...(retryable ? { retryable: true } : {}),
       }
     },
     async signLabKey(keeper, typedData) {
