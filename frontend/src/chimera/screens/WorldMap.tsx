@@ -546,7 +546,7 @@ export default function WorldMap() {
     <div className="chm-overworld">
       <div className="chm-world-title">
         <h1 className="font-display">The Arkhive</h1>
-        <div className="ml-auto flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--chm-yellow)]">
+        <div className="ml-auto flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--chm-black)]">
           <Link to="lore" className="inline-flex min-h-11 items-center px-1 underline underline-offset-4">Lore</Link>
           <Link to="guide" className="inline-flex min-h-11 items-center px-1 underline underline-offset-4">Guide</Link>
         </div>

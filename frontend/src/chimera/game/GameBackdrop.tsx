@@ -16,7 +16,7 @@ export function GameBackdrop() {
   if (!visible) return null
 
   return (
-    <div className="chm-backdrop" aria-hidden="true" data-motion="ambient">
+    <div className="chm-backdrop" aria-hidden="true" data-motion="pointer">
       <Cells motion="always" tokens={{ '--texture-ink': 'var(--chm-yellow, #FFD209)', '--texture-field': '#FFFFFF' }} />
     </div>
   )
