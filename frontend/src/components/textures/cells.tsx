@@ -95,7 +95,8 @@ type Spec = {
 	}
 }
 type Target = { el: SVGGraphicsElement; role: string; index: number; cx: number; cy: number }
-type Options = { spec: Spec; targets: Target[]; aspect: number; min?: [number, number] }
+type MotionPreference = "system" | "always"
+type Options = { spec: Spec; targets: Target[]; aspect: number; min?: [number, number]; motion?: MotionPreference }
 const AMBIENT_SPEED = 1.5
 const AMBIENT_CYCLE = 4.5
 const LEAVE_K = 900
@@ -108,7 +109,7 @@ function mount(root: HTMLElement, o: Options): () => void {
 	const rad0 = fall.radius ?? 0.35
 	const curve = curves[fall.curve ?? "smoothstep"]
 	const short = Math.min(1, o.aspect)
-	const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(update: slow)").matches
+	const calm = () => (o.motion !== "always" && matchMedia("(prefers-reduced-motion: reduce)").matches) || matchMedia("(update: slow)").matches
 	const reduced = () => spec.reducedMotion !== "none" && calm()
 	const n = o.targets.length
 	const C: number = 1
@@ -452,8 +453,9 @@ export type CellsProps = {
 	tokens?: Partial<Record<"--texture-ink" | "--texture-field", string>>
 	className?: string
 	static?: boolean
+	motion?: MotionPreference
 }
-export function Cells({ tokens, className = "", static: isStatic = false }: CellsProps) {
+export function Cells({ tokens, className = "", static: isStatic = false, motion = "system" }: CellsProps) {
 	const ref = useRef<HTMLDivElement>(null)
 	useEffect(() => selfSize(ref.current), [])
 	const geometry = useGeometry()
@@ -468,8 +470,8 @@ export function Cells({ tokens, className = "", static: isStatic = false }: Cell
 			cx: e.cx,
 			cy: e.cy,
 		}))
-		return mount(root, { spec: MOTION, targets, aspect: ASPECT, min: MIN_BOX })
-	}, [isStatic, geometry])
+		return mount(root, { spec: MOTION, targets, aspect: ASPECT, min: MIN_BOX, motion })
+	}, [isStatic, geometry, motion])
 	return (
 		<div
 			ref={ref}
