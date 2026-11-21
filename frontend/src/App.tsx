@@ -1,3 +1,4 @@
+import { GameBackdrop } from './chimera/game/GameBackdrop'
 import { FirstSteps } from './chimera/game/FirstSteps'
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react'
 import './chimera/game/living-world.css'
@@ -224,6 +225,8 @@ export default function App() {
   if (DEPLOYED && SIDE_ACTIVITIES.has(page)) screen = <KeeperActivity>{screen}</KeeperActivity>
 
   return (
+    <>
+      <GameBackdrop />
     <div className="chm-root">
       {(page === 'lab' || page === 'breed' || page === 'creature') && <FheWarmup />}
       <style>{CHIMERA_CSS}</style>
@@ -297,6 +300,7 @@ export default function App() {
       <ProofDrawer />
       {DEPLOYED && <JudgePanel />}
     </div>
+    </>
   )
 }
 

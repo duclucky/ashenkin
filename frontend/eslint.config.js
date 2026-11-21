@@ -39,4 +39,8 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-function-type': 'warn',
     },
   },
+  {
+    files: ['src/components/textures/cells.tsx'],
+    rules: { 'prefer-const': 'off' },
+  },
 )
