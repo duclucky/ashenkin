@@ -6,6 +6,12 @@
   background: #FFFFFF;
 }
 
+.chm-backdrop svg path {
+  transform-box: fill-box;
+  transform-origin: center;
+  scale: 0.6;
+}
+
 .chm-root {
   z-index: 1;
 }

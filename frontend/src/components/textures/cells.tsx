@@ -497,7 +497,7 @@ export function Cells({ tokens, className = "", static: isStatic = false }: Cell
 				fillRule="nonzero"
 				focusable="false"
 			>
-				{(geometry?.plates ?? []).map((d, i) => (
+				{(geometry?.plates.flatMap((d) => d.split(/(?=M)/)) ?? []).map((d, i) => (
 					<path key={`p${i}`} d={d} fillOpacity={0.1} />
 				))}
 				{(geometry?.elements ?? []).map((e) => (
